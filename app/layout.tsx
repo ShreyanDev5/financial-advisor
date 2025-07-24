@@ -1,0 +1,46 @@
+import type React from "react"
+import type { Metadata } from "next"
+import { Inter } from "next/font/google"
+import "./globals.css"
+
+const inter = Inter({ subsets: ["latin"] })
+
+export const metadata: Metadata = {
+  title: "Rajesh Kumar - Certified Financial Advisor | LIC, Mutual Funds & Insurance",
+  description:
+    "Expert financial guidance in Mumbai. Specializing in LIC policies, mutual funds, and comprehensive insurance solutions. 15+ years experience, 500+ satisfied clients.",
+  keywords:
+    "financial advisor Mumbai, LIC agent, mutual funds, insurance, financial planning, investment advisor India",
+  authors: [{ name: "Rajesh Kumar" }],
+  openGraph: {
+    title: "Rajesh Kumar - Certified Financial Advisor",
+    description:
+      "Expert financial guidance for a secure future. Specializing in LIC, Mutual Funds, and comprehensive insurance solutions.",
+    type: "website",
+    locale: "en_IN",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Rajesh Kumar - Certified Financial Advisor",
+    description:
+      "Expert financial guidance for a secure future. Specializing in LIC, Mutual Funds, and comprehensive insurance solutions.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  viewport: "width=device-width, initial-scale=1",
+    generator: 'v0.dev'
+}
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="en">
+      <body className={inter.className}>{children}</body>
+    </html>
+  )
+}
