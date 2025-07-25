@@ -1,6 +1,63 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 2rem;
@@ -12,6 +69,10 @@
     /* Optimize for smooth scrolling */
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
+  }
+
+  * {
+    @apply border-border;
   }
 }
 
@@ -31,48 +92,220 @@
   }
 }
 
+/* Premium Card Hover Effects */
+.premium-card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateZ(0);
+}
+
+.premium-card-hover:hover {
+  transform: translate3d(0, -4px, 0) scale3d(1.01, 1.01, 1);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04), 0 0 0 1px
+    rgba(255, 255, 255, 0.1), 0 0 40px rgba(16, 185, 129, 0.08);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+}
+
+/* Premium Button Hover Effects */
+.premium-button-hover {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.premium-button-hover:hover {
+  transform: translate3d(0, -2px, 0) scale3d(1.02, 1.02, 1);
+  box-shadow: 0 15px 30px -5px rgba(16, 185, 129, 0.4), 0 5px 15px -5px rgba(16, 185, 129, 0.2);
+}
+
+.premium-button-hover::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.premium-button-hover:hover::before {
+  left: 100%;
+}
+
+/* Stat Card Hover Effects */
+.stat-card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateZ(0);
+}
+
+.stat-card-hover:hover {
+  transform: translate3d(0, -6px, 0) scale3d(1.03, 1.03, 1);
+}
+
+.stat-card-hover:hover .relative {
+  box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.15), 0 5px 15px -5px rgba(0, 0, 0, 0.08), 0 0 0 1px
+    rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.98);
+}
+
+/* Service Card Hover Effects */
+.service-card-hover {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateZ(0);
+}
+
+.service-card-hover:hover {
+  transform: translate3d(0, -3px, 0) scale3d(1.02, 1.02, 1);
+  box-shadow: 0 12px 25px -5px rgba(0, 0, 0, 0.12), 0 8px 15px -5px rgba(0, 0, 0, 0.06);
+}
+
+.service-card-hover::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transform: translateX(-100%) translateY(-100%) rotate(30deg);
+  transition: transform 0.6s;
+  pointer-events: none;
+}
+
+.service-card-hover:hover::before {
+  transform: translateX(100%) translateY(100%) rotate(30deg);
+}
+
+/* Contact Item Hover Effects */
+.contact-item-hover {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateZ(0);
+}
+
+.contact-item-hover:hover {
+  transform: translate3d(0, -1px, 0) scale3d(1.02, 1.02, 1);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+}
+
+/* Badge Hover Effects */
+.badge-hover {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateZ(0);
+}
+
+.badge-hover:hover {
+  transform: translate3d(0, -1px, 0) scale3d(1.05, 1.05, 1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Investment Option Hover Effects */
+.investment-option-hover {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateZ(0);
+}
+
+.investment-option-hover:hover {
+  transform: translate3d(0, -2px, 0) scale3d(1.01, 1.01, 1);
+  box-shadow: 0 8px 20px -5px rgba(0, 0, 0, 0.1), 0 4px 8px -3px rgba(0, 0, 0, 0.05);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.9));
+}
+
+/* Enhanced card shine effect */
+@keyframes cardShine {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(30deg);
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(30deg);
+  }
+}
+
+.card-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-shine::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transform: translateX(-100%) translateY(-100%) rotate(30deg);
+  transition: transform 0.6s;
+}
+
+.card-shine:hover::before {
+  animation: cardShine 0.6s ease-out;
+}
+
 /* Optimized animations with hardware acceleration */
-@keyframes fadeInUp {
+@keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translate3d(0, 24px, 0);
   }
   to {
     opacity: 1;
-    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
 @keyframes scaleIn {
   from {
     opacity: 0;
-    transform: scale3d(0.98, 0.98, 1);
+    transform: scale(0.9);
   }
   to {
     opacity: 1;
-    transform: scale3d(1, 1, 1);
+    transform: scale(1);
   }
 }
 
 @keyframes slideInLeft {
   from {
     opacity: 0;
-    transform: translate3d(-24px, 0, 0);
+    transform: translateX(-30px);
   }
   to {
     opacity: 1;
-    transform: translate3d(0, 0, 0);
+    transform: translateX(0);
   }
 }
 
 @keyframes slideInRight {
   from {
     opacity: 0;
-    transform: translate3d(24px, 0, 0);
+    transform: translateX(30px);
   }
   to {
     opacity: 1;
-    transform: translate3d(0, 0, 0);
+    transform: translateX(0);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
   }
 }
 
@@ -244,6 +477,21 @@ a:focus-visible {
 
   .header-subtitle {
     font-size: 0.6875rem;
+  }
+
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Optimize animations for mobile devices */
+  .mobile-optimized {
+    animation-duration: 0.2s;
+  }
+
+  /* Reduce motion on mobile for better performance */
+  * {
+    transition-duration: 100ms;
   }
 }
 
@@ -628,4 +876,22 @@ a:focus-visible {
   .performance-monitor {
     will-change: transform, opacity;
   }
+}
+
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.2);
 }
