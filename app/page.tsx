@@ -6,6 +6,7 @@ import {
   Shield,
   TrendingUp,
   FileText,
+  DollarSign,
   Target,
   BarChart3,
   Phone,
@@ -21,6 +22,8 @@ import {
   UserCheck,
   FileCheck,
   Calculator,
+  Briefcase,
+  ScrollText,
   Baby,
   CheckCircle,
   Sparkles,
@@ -247,7 +250,7 @@ function ServiceCard({
 
   return (
     <AnimatedSection animation="fade-up" delay={delay} duration={500}>
-      <div className="premium-card-hover bg-white/80 backdrop-blur-xl rounded-3xl shadow-lg border border-white/20 overflow-hidden group transform-gpu">
+      <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-lg border border-white/20 overflow-hidden hover:shadow-xl hover:bg-white/90 transition-all duration-300 group transform-gpu">
         <div className="p-6">
           <div className="flex items-center gap-4 mb-4">
             <div
@@ -431,7 +434,7 @@ function HomeContent() {
       label: "Assets Managed",
       color: "from-purple-500 to-pink-500",
       icon: TrendingUp,
-      bgGradient: "from-purple-50/80 to-violet-50/80",
+      bgGradient: "from-purple-50/80 to-pink-50/80",
     },
     {
       number: "98%",
@@ -486,7 +489,7 @@ function HomeContent() {
           <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/30 via-white/50 to-teal-50/30 rounded-3xl"></div>
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-emerald-100/20 via-transparent to-transparent rounded-3xl"></div>
 
-          <div className="premium-card-hover relative bg-white/85 backdrop-blur-2xl rounded-3xl p-8 shadow-xl border border-white/40 group">
+          <div className="relative bg-white/85 backdrop-blur-2xl rounded-3xl p-8 shadow-xl border border-white/40 hover:shadow-2xl transition-all duration-500 group">
             {/* Decorative elements */}
             <div className="absolute top-4 right-4 w-20 h-20 bg-gradient-to-br from-emerald-100/30 to-teal-100/30 rounded-full blur-2xl"></div>
             <div className="absolute bottom-4 left-4 w-16 h-16 bg-gradient-to-br from-blue-100/20 to-purple-100/20 rounded-full blur-xl"></div>
@@ -524,7 +527,7 @@ function HomeContent() {
               <div className="flex gap-4 mb-6">
                 <button
                   onClick={() => setShowContact(!showContact)}
-                  className="premium-button-hover flex-1 bg-gradient-to-r from-emerald-500 via-emerald-600 to-teal-600 hover:from-emerald-600 hover:via-emerald-700 hover:to-teal-700 text-white px-6 py-4 rounded-2xl font-semibold transition-all duration-300 transform hover:scale-[1.02] active:scale-95 shadow-lg hover:shadow-2xl relative overflow-hidden group/btn"
+                  className="flex-1 bg-gradient-to-r from-emerald-500 via-emerald-600 to-teal-600 hover:from-emerald-600 hover:via-emerald-700 hover:to-teal-700 text-white px-6 py-4 rounded-2xl font-semibold transition-all duration-300 transform hover:scale-[1.02] active:scale-95 shadow-lg hover:shadow-2xl relative overflow-hidden group/btn"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-700"></div>
                   <span className="relative">Contact Me</span>
@@ -533,7 +536,7 @@ function HomeContent() {
                   href="https://wa.me/919836472260?text=Hi%20Monotosh%2C%20I'm%20interested%20in%20your%20financial%20services"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="premium-button-hover px-6 py-4 bg-gradient-to-r from-emerald-500 via-emerald-600 to-teal-600 hover:from-emerald-600 hover:via-emerald-700 hover:to-teal-700 text-white rounded-2xl font-semibold transition-all duration-300 transform hover:scale-[1.02] active:scale-95 shadow-lg hover:shadow-2xl flex items-center gap-3 relative overflow-hidden group/btn"
+                  className="px-6 py-4 bg-gradient-to-r from-emerald-500 via-emerald-600 to-teal-600 hover:from-emerald-600 hover:via-emerald-700 hover:to-teal-700 text-white rounded-2xl font-semibold transition-all duration-300 transform hover:scale-[1.02] active:scale-95 shadow-lg hover:shadow-2xl flex items-center gap-3 relative overflow-hidden group/btn"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-700"></div>
                   <MessageCircle className="w-5 h-5 relative z-10" />
@@ -547,11 +550,11 @@ function HomeContent() {
                   ${showContact ? "opacity-100 max-h-40 translate-y-0" : "opacity-0 max-h-0 -translate-y-4"}
                 `}
               >
-                <div className="premium-card-hover bg-gradient-to-r from-white/90 to-gray-50/90 backdrop-blur-sm rounded-2xl p-6 shadow-inner border border-white/50">
+                <div className="bg-gradient-to-r from-white/90 to-gray-50/90 backdrop-blur-sm rounded-2xl p-6 shadow-inner border border-white/50">
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <a
                       href="tel:+919836472260"
-                      className="contact-item-hover flex items-center gap-3 text-gray-700 hover:text-emerald-600 transition-all duration-200 p-3 rounded-xl hover:bg-emerald-50/50 group/contact"
+                      className="flex items-center gap-3 text-gray-700 hover:text-emerald-600 transition-all duration-200 p-3 rounded-xl hover:bg-emerald-50/50 group/contact"
                     >
                       <div className="w-10 h-10 bg-gradient-to-br from-emerald-100 to-teal-100 rounded-xl flex items-center justify-center group-hover/contact:scale-110 transition-transform duration-200">
                         <Phone className="w-4 h-4 text-emerald-600" />
@@ -560,7 +563,7 @@ function HomeContent() {
                     </a>
                     <a
                       href="mailto:monotosh@example.com"
-                      className="contact-item-hover flex items-center gap-3 text-gray-700 hover:text-emerald-600 transition-all duration-200 p-3 rounded-xl hover:bg-emerald-50/50 group/contact"
+                      className="flex items-center gap-3 text-gray-700 hover:text-emerald-600 transition-all duration-200 p-3 rounded-xl hover:bg-emerald-50/50 group/contact"
                     >
                       <div className="w-10 h-10 bg-gradient-to-br from-emerald-100 to-teal-100 rounded-xl flex items-center justify-center group-hover/contact:scale-110 transition-transform duration-200">
                         <Mail className="w-4 h-4 text-emerald-600" />
@@ -571,7 +574,7 @@ function HomeContent() {
                       href="https://wa.me/919836472260?text=Hi%20Monotosh%2C%20I'm%20interested%20in%20your%20financial%20services"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="contact-item-hover flex items-center gap-3 text-gray-700 hover:text-emerald-600 transition-all duration-200 p-3 rounded-xl hover:bg-emerald-50/50 group/contact"
+                      className="flex items-center gap-3 text-gray-700 hover:text-emerald-600 transition-all duration-200 p-3 rounded-xl hover:bg-emerald-50/50 group/contact"
                     >
                       <div className="w-10 h-10 bg-gradient-to-br from-emerald-100 to-teal-100 rounded-xl flex items-center justify-center group-hover/contact:scale-110 transition-transform duration-200">
                         <MessageCircle className="w-4 h-4 text-emerald-600" />
@@ -594,13 +597,13 @@ function HomeContent() {
             return (
               <div
                 key={index}
-                className="stat-card-hover relative overflow-hidden group"
+                className="relative overflow-hidden group"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 {/* Background gradient */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${stat.bgGradient} rounded-2xl opacity-50`}></div>
 
-                <div className="relative bg-white/90 backdrop-blur-xl rounded-2xl p-6 shadow-lg border border-white/30 group">
+                <div className="relative bg-white/90 backdrop-blur-xl rounded-2xl p-6 shadow-lg border border-white/30 hover:shadow-2xl hover:bg-white/95 transition-all duration-400 transform hover:-translate-y-2 group">
                   {/* Decorative corner element */}
                   <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-white/20 to-transparent rounded-bl-3xl"></div>
 
@@ -635,7 +638,7 @@ function HomeContent() {
           {/* Background pattern */}
           <div className="absolute inset-0 bg-gradient-to-br from-gray-50/50 via-white/80 to-blue-50/30 rounded-3xl"></div>
 
-          <div className="premium-card-hover relative bg-white/90 backdrop-blur-xl rounded-3xl p-8 shadow-xl border border-white/40">
+          <div className="relative bg-white/90 backdrop-blur-xl rounded-3xl p-8 shadow-xl border border-white/40">
             {/* Decorative elements */}
             <div className="absolute top-6 right-6 w-24 h-24 bg-gradient-to-br from-blue-100/20 to-purple-100/20 rounded-full blur-2xl"></div>
 
@@ -652,7 +655,7 @@ function HomeContent() {
                     <button
                       key={index}
                       className={`
-                        service-card-hover relative overflow-hidden group
+                        relative overflow-hidden group
                         flex flex-col items-center gap-4 p-6 rounded-2xl 
                         bg-gradient-to-br ${service.color} 
                         border ${service.borderColor}
@@ -701,7 +704,7 @@ function HomeContent() {
           <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/30 via-white/60 to-teal-50/40 rounded-3xl"></div>
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-emerald-100/20 via-transparent to-transparent rounded-3xl"></div>
 
-          <div className="premium-card-hover relative bg-white/90 backdrop-blur-xl rounded-3xl p-8 shadow-xl border border-white/40">
+          <div className="relative bg-white/90 backdrop-blur-xl rounded-3xl p-8 shadow-xl border border-white/40">
             {/* Decorative corner elements */}
             <div className="absolute top-0 left-0 w-20 h-20 bg-gradient-to-br from-emerald-100/30 to-transparent rounded-br-3xl"></div>
             <div className="absolute bottom-0 right-0 w-16 h-16 bg-gradient-to-tl from-teal-100/30 to-transparent rounded-tl-3xl"></div>
@@ -737,7 +740,7 @@ function HomeContent() {
                   <span
                     key={index}
                     className={`
-                      badge-hover bg-gradient-to-r ${badge.color} 
+                      bg-gradient-to-r ${badge.color} 
                       px-4 py-2 rounded-xl text-sm font-semibold 
                       backdrop-blur-sm border
                       hover:scale-105 transition-transform duration-200
@@ -1000,7 +1003,7 @@ function InvestContent() {
 
       {/* Investment Options */}
       <AnimatedSection animation="fade-up" delay={200} duration={500}>
-        <div className="premium-card-hover bg-white/80 backdrop-blur-xl rounded-3xl p-6 shadow-xl border border-white/30">
+        <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-6 shadow-xl border border-white/30">
           <h3 className="text-xl font-bold text-gray-900 mb-6">Investment Options</h3>
           <div className="grid gap-4">
             {investmentOptions.map((option, index) => {
@@ -1008,7 +1011,7 @@ function InvestContent() {
               return (
                 <div
                   key={index}
-                  className="investment-option-hover flex items-center justify-between p-4 bg-gradient-to-r from-gray-50/80 to-white/80 backdrop-blur-sm rounded-2xl hover:from-white/80 hover:to-gray-50/80 transition-all duration-200 border border-white/30 group transform-gpu"
+                  className="flex items-center justify-between p-4 bg-gradient-to-r from-gray-50/80 to-white/80 backdrop-blur-sm rounded-2xl hover:from-white/80 hover:to-gray-50/80 transition-all duration-200 border border-white/30 group transform-gpu"
                 >
                   <div className="flex items-center gap-4">
                     <div
@@ -1210,10 +1213,126 @@ function DocumentsContent() {
         "Application form completion",
         "Submission to registrar office",
         "Verification process",
+        "Certificate issuance",
       ],
-      pricing: "₹100 application fee",
+      pricing: "₹50 for registration",
       icon: Baby,
-      colorScheme: "teal",
+      colorScheme: "purple",
+    },
+    {
+      title: "Trade License Services",
+      description: "Trade license registration for businesses and commercial establishments.",
+      benefits: [
+        "New trade license application",
+        "License renewal services",
+        "License modifications",
+        "NOC assistance",
+        "Compliance support",
+        "Expert guidance throughout",
+      ],
+      documents: [
+        "Business registration documents",
+        "Property ownership/rental agreement",
+        "Identity and address proof",
+        "NOC from fire department",
+        "Pollution clearance certificate",
+        "Partnership deed (if applicable)",
+      ],
+      process: [
+        "Business eligibility assessment",
+        "Documentation preparation",
+        "Application submission",
+        "Inspection by authorities",
+        "License issuance",
+      ],
+      pricing: "Varies by business type",
+      icon: Briefcase,
+      colorScheme: "orange",
+    },
+  ]
+
+  const taxServices = [
+    {
+      title: "Income Tax Filing",
+      description: "Professional income tax return filing services for individuals and businesses.",
+      benefits: [
+        "ITR filing for all categories",
+        "Tax planning and optimization",
+        "Refund processing assistance",
+        "Notice handling support",
+        "TDS return filing",
+        "Expert tax consultation",
+      ],
+      documents: [
+        "Form 16/16A (salary/other income)",
+        "Bank statements",
+        "Investment proofs",
+        "Property documents",
+        "Business books (for business income)",
+        "Previous year ITR",
+      ],
+      process: [
+        "Income and investment analysis",
+        "Tax calculation and planning",
+        "ITR preparation and review",
+        "Online filing and verification",
+        "Acknowledgment and refund tracking",
+      ],
+      pricing: "₹500 onwards",
+      icon: Calculator,
+      colorScheme: "emerald",
+    },
+    {
+      title: "Professional Tax Services",
+      description: "Professional tax registration and compliance for employees and professionals.",
+      benefits: [
+        "Professional tax registration",
+        "Monthly return filing",
+        "Compliance management",
+        "Penalty avoidance",
+        "Expert consultation",
+        "Timely reminders",
+      ],
+      documents: ["Employment certificate", "Salary certificate", "PAN card", "Aadhaar card", "Bank account details"],
+      process: [
+        "Registration with authorities",
+        "Monthly tax calculation",
+        "Return preparation and filing",
+        "Payment processing",
+        "Compliance monitoring",
+      ],
+      pricing: "₹200 per month",
+      icon: FileText,
+      colorScheme: "blue",
+    },
+    {
+      title: "Agreement Services",
+      description: "Legal agreement drafting and documentation services for various purposes.",
+      benefits: [
+        "Rental agreement drafting",
+        "Partnership agreements",
+        "Service agreements",
+        "Employment contracts",
+        "Legal consultation",
+        "Stamp paper arrangements",
+      ],
+      documents: [
+        "Party identification documents",
+        "Property documents (if applicable)",
+        "Terms and conditions",
+        "Witness details",
+        "Stamp paper",
+      ],
+      process: [
+        "Requirement understanding",
+        "Agreement drafting",
+        "Review and modifications",
+        "Stamp paper execution",
+        "Registration (if required)",
+      ],
+      pricing: "₹1,000 onwards",
+      icon: ScrollText,
+      colorScheme: "purple",
     },
   ]
 
@@ -1221,52 +1340,197 @@ function DocumentsContent() {
     <div className="space-y-6">
       <AnimatedSection animation="fade-up" delay={0} duration={400}>
         <div className="text-center mb-6">
-          <h2 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-1 mt-2.5">
-            Document Services
+          <h2 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mt-2.5 mb-1">
+            Document & Legal Services
           </h2>
-          <p className="text-gray-600">Efficient document management for your convenience</p>
+          <p className="text-gray-600">Complete documentation support for all your needs</p>
         </div>
       </AnimatedSection>
 
-      {/* Document Services */}
-      {documentServices.map((service, index) => (
-        <ServiceCard
-          key={index}
-          title={service.title}
-          description={service.description}
-          benefits={service.benefits}
-          documents={service.documents}
-          process={service.process}
-          pricing={service.pricing}
-          icon={service.icon}
-          ctaText="Get Started"
-          colorScheme={service.colorScheme}
-          delay={100 + index * 100}
-        />
-      ))}
+      {/* Collapsible Government Documentation Services */}
+      <AnimatedSection animation="fade-up" delay={100} duration={400}>
+        <div className="bg-gradient-to-r from-blue-50/80 to-indigo-50/80 backdrop-blur-xl rounded-3xl shadow-lg border border-white/30 overflow-hidden">
+          <button
+            onClick={() => setIsGovDocsExpanded(!isGovDocsExpanded)}
+            className="w-full p-6 flex items-center justify-between hover:bg-blue-50/50 transition-all duration-200 group"
+          >
+            <div className="text-left">
+              <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-700 transition-colors duration-200">
+                Government Documentation
+              </h3>
+              <p className="text-gray-600 text-sm">Essential government document services with expert assistance</p>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="text-blue-600 font-semibold text-sm bg-blue-100/80 px-3 py-1 rounded-full">
+                {documentServices.length} Services
+              </div>
+              <ChevronDown
+                className={`w-6 h-6 text-blue-600 transition-transform duration-300 ${
+                  isGovDocsExpanded ? "rotate-180" : ""
+                }`}
+              />
+            </div>
+          </button>
+
+          <div
+            className={`
+              transition-all duration-500 ease-out overflow-hidden
+              ${isGovDocsExpanded ? "max-h-[9999px] opacity-100" : "max-h-0 opacity-0"}
+            `}
+          >
+            <div className="px-6 pb-6 space-y-6 border-t border-blue-100/50">
+              {documentServices.map((service, index) => (
+                <div key={index} className="pt-6 first:pt-6">
+                  <ServiceCard
+                    title={service.title}
+                    description={service.description}
+                    benefits={service.benefits}
+                    documents={service.documents}
+                    process={service.process}
+                    pricing={service.pricing}
+                    icon={service.icon}
+                    ctaText="Apply Now"
+                    colorScheme={service.colorScheme}
+                    delay={0}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </AnimatedSection>
+
+      {/* Collapsible Tax & Financial Services */}
+      <AnimatedSection animation="fade-up" delay={200} duration={400}>
+        <div className="bg-gradient-to-r from-emerald-50/80 to-teal-50/80 backdrop-blur-xl rounded-3xl shadow-lg border border-white/30 overflow-hidden">
+          <button
+            onClick={() => setIsTaxServicesExpanded(!isTaxServicesExpanded)}
+            className="w-full p-6 flex items-center justify-between hover:bg-emerald-50/50 transition-all duration-200 group"
+          >
+            <div className="text-left">
+              <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-emerald-700 transition-colors duration-200">
+                Tax & Financial Services
+              </h3>
+              <p className="text-gray-600 text-sm">Professional tax and financial documentation services</p>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="text-emerald-600 font-semibold text-sm bg-emerald-100/80 px-3 py-1 rounded-full">
+                {taxServices.length} Services
+              </div>
+              <ChevronDown
+                className={`w-6 h-6 text-emerald-600 transition-transform duration-300 ${
+                  isTaxServicesExpanded ? "rotate-180" : ""
+                }`}
+              />
+            </div>
+          </button>
+
+          <div
+            className={`
+              transition-all duration-500 ease-out overflow-hidden
+              ${isTaxServicesExpanded ? "max-h-[9999px] opacity-100" : "max-h-0 opacity-0"}
+            `}
+          >
+            <div className="px-6 pb-6 space-y-6 border-t border-emerald-100/50">
+              {taxServices.map((service, index) => (
+                <div key={index} className="pt-6 first:pt-6">
+                  <ServiceCard
+                    title={service.title}
+                    description={service.description}
+                    benefits={service.benefits}
+                    documents={service.documents}
+                    process={service.process}
+                    pricing={service.pricing}
+                    icon={service.icon}
+                    ctaText="Get Started"
+                    colorScheme={service.colorScheme}
+                    delay={0}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </AnimatedSection>
     </div>
   )
 }
 
-// Main Page Component
-function Page() {
+export default function FinancialAdvisorWebsite() {
   const [activeTab, setActiveTab] = useState("home")
+  const isScrolling = useScrollOptimization()
 
-  const handleTabChange = useCallback((tabId) => {
-    setActiveTab(tabId)
-  }, [])
+  const renderContent = useCallback(() => {
+    switch (activeTab) {
+      case "home":
+        return <HomeContent />
+      case "insurance":
+        return <InsuranceContent />
+      case "invest":
+        return <InvestContent />
+      case "documents":
+        return <DocumentsContent />
+      default:
+        return <HomeContent />
+    }
+  }, [activeTab])
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <main className="flex-1">
-        {activeTab === "home" && <HomeContent />}
-        {activeTab === "insurance" && <InsuranceContent />}
-        {activeTab === "invest" && <InvestContent />}
-        {activeTab === "documents" && <DocumentsContent />}
-      </main>
-      <BottomNavigation activeTab={activeTab} onTabChange={handleTabChange} />
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-emerald-50/50 relative overflow-hidden">
+      {/* Enhanced Background with subtle textures */}
+      <div className="fixed inset-0 bg-gradient-to-br from-white/40 via-emerald-50/20 to-blue-50/30 pointer-events-none" />
+      <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-emerald-100/20 via-transparent to-blue-100/20 pointer-events-none" />
+      <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-purple-100/10 via-transparent to-pink-100/10 pointer-events-none" />
+
+      {/* Optimized animated background elements */}
+      <div className="fixed top-20 right-20 w-72 h-72 bg-gradient-to-br from-emerald-200/20 to-teal-200/20 rounded-full blur-3xl animate-pulse pointer-events-none transform-gpu" />
+      <div
+        className="fixed bottom-20 left-20 w-96 h-96 bg-gradient-to-br from-blue-200/15 to-purple-200/15 rounded-full blur-3xl animate-pulse pointer-events-none transform-gpu"
+        style={{ animationDelay: "2s" }}
+      />
+
+      {/* Redesigned Header with subtle gradients and clean aesthetic */}
+      <AnimatedSection animation="fade-in" delay={0} duration={400}>
+        <div className="relative z-10">
+          {/* Subtle gradient background overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-emerald-50/30 via-blue-50/20 to-purple-50/30 pointer-events-none" />
+
+          {/* Main header container */}
+          <div className="relative bg-white/70 backdrop-blur-xl border-b border-white/30 shadow-sm">
+            <div className="px-6 py-4 flex items-center justify-between">
+              {/* Left side - Logo and brand */}
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-gradient-to-br from-emerald-400/80 to-teal-500/80 rounded-xl flex items-center justify-center shadow-sm backdrop-blur-sm">
+                  <DollarSign className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <h1 className="text-lg font-semibold text-gray-800">FinanceFlow</h1>
+                  <p className="text-xs text-gray-500 font-medium">Your Financial Partner</p>
+                </div>
+              </div>
+
+              {/* Right side - WhatsApp contact */}
+              <a
+                href="https://wa.me/919836472260?text=Hi%20Monotosh%2C%20I'm%20interested%20in%20your%20financial%20services"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-gradient-to-br from-emerald-400/80 to-teal-500/80 hover:from-emerald-500/90 hover:to-teal-600/90 rounded-xl flex items-center justify-center shadow-sm hover:shadow-md transition-all duration-200 transform hover:scale-105 backdrop-blur-sm"
+              >
+                <MessageCircle className="w-5 h-5 text-white" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </AnimatedSection>
+
+      {/* Add spacing between header and content */}
+      <div className="h-4"></div>
+
+      {/* Main Content with scroll optimization */}
+      <div className={`relative z-10 px-6 pb-24 ${isScrolling ? "will-change-scroll" : ""}`}>{renderContent()}</div>
+
+      {/* Bottom Navigation */}
+      <BottomNavigation activeTab={activeTab} onTabChange={setActiveTab} />
     </div>
   )
 }
-
-export default Page
