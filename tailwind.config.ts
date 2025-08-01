@@ -75,9 +75,14 @@ const config: Config = {
           800: "#115e59",
           900: "#134e4a",
         },
+        brand: {
+          navy: "#0A192F",
+          teal: "#64FFDA",
+        },
       },
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],
+        serif: ["Playfair Display", "serif"],
       },
       animation: {
         "fade-in": "fadeIn 0.5s ease-out",

@@ -20,14 +20,14 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://financeflow.example.com"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || `https://${process.env.VERCEL_URL}` || "http://localhost:3000"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     title: "FinanceFlow - Your Financial Partner",
     description: "Professional financial planning and advisory services in Mumbai",
-    url: "https://financeflow.example.com",
+    url: process.env.NEXT_PUBLIC_BASE_URL || `https://${process.env.VERCEL_URL}` || "http://localhost:3000",
     siteName: "FinanceFlow",
     locale: "en_IN",
     type: "website",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "FinanceFlow - Your Financial Partner",
     description: "Professional financial planning and advisory services in Mumbai",
-    creator: "@financeflow",
+    creator: "@your_twitter_handle",
   },
   robots: {
     index: true,
@@ -50,9 +50,8 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: "your-google-verification-code",
+    google: "",
   },
-    generator: 'v0.dev'
 }
 
 export default function RootLayout({
