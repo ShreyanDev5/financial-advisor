@@ -6,7 +6,7 @@ export function PageHeader({ title, description }: { title: string; description:
       animation="fade-up"
       delay={0}
       duration={400}
-      className="text-center py-28 bg-gray-100/80 rounded-3xl"
+      className="text-center py-28 bg-white/60 backdrop-blur-lg rounded-3xl border border-gray-200/80 shadow-sm"
     >
       <h1 className="text-6xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-6">
         {title}

@@ -129,7 +129,7 @@ export default function HomeContent() {
           />
         </div>
       </AnimatedSection>
-      <AnimatedSection className="bg-gray-100/80 p-16 rounded-2xl text-center">
+      <AnimatedSection className="bg-white/60 backdrop-blur-lg p-16 rounded-2xl text-center border border-gray-200/80 shadow-sm">
         <h2 className="text-5xl font-bold mb-6">Ready to Get Started?</h2>
         <p className="text-xl text-gray-600 mb-10 max-w-4xl mx-auto">
           Take the first step towards a secure financial future. Contact us today
