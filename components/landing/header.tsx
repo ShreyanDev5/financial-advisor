@@ -1,4 +1,5 @@
-import { DollarSign, MessageCircle } from "lucide-react";
+import { MessageCircle } from "lucide-react";
+import Image from "next/image";
 
 export default function Header() {
   return (
@@ -11,9 +12,13 @@ export default function Header() {
         <div className="px-6 py-4 flex items-center justify-between">
           {/* Left side - Logo and brand */}
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-emerald-400/80 to-teal-500/80 rounded-xl flex items-center justify-center shadow-sm backdrop-blur-sm">
-              <DollarSign className="w-5 h-5 text-white" />
-            </div>
+            <Image
+              src="/monotosh_logo_1.1.png"
+              alt="Monotosh Logo"
+              width={40}
+              height={40}
+              className="rounded-xl shadow-sm"
+            />
             <div>
               <h1 className="text-lg font-semibold text-gray-800">FinanceFlow</h1>
               <p className="text-xs text-gray-500 font-medium">Your Financial Partner</p>
@@ -34,3 +39,4 @@ export default function Header() {
     </div>
   );
 }
+
