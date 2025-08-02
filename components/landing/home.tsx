@@ -57,22 +57,28 @@ export default function HomeContent() {
         title="Your Financial Journey, Simplified"
         description="Expert advice and comprehensive services to help you achieve your financial goals. Whether you're planning for retirement, investing in the market, or securing your family's future, we're here to guide you every step of the way."
       />
-      <AnimatedSection className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mx-16">
-        {quickServices.map((service, index) => (
-          <div
-            key={index}
-            className={`p-8 rounded-2xl transition-all duration-300 ${service.color} ${service.hoverColor} border ${service.borderColor} flex flex-col items-center text-center shadow-sm`}
-          >
+      <AnimatedSection className="text-center">
+        <h2 className="text-5xl font-bold mb-6">Our Core Services</h2>
+        <p className="text-xl text-gray-600 mb-16 max-w-4xl mx-auto">
+          Explore the essential financial services designed to secure and grow your wealth.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mx-16">
+          {quickServices.map((service, index) => (
             <div
-              className={`p-5 rounded-full ${service.iconColor} bg-white mb-5 shadow-md`}
+              key={index}
+              className={`p-6 rounded-xl transition-all duration-300 ${service.color} ${service.hoverColor} border ${service.borderColor} flex flex-col items-center text-center shadow-sm`}
             >
-              <service.icon className="w-10 h-10" />
+              <div
+                className={`p-4 rounded-full ${service.iconColor} bg-white mb-4 shadow-md`}
+              >
+                <service.icon className="w-8 h-8" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-800">
+                {service.title}
+              </h3>
             </div>
-            <h3 className="text-2xl font-semibold text-gray-800">
-              {service.title}
-            </h3>
-          </div>
-        ))}
+          ))}
+        </div>
       </AnimatedSection>
       <AnimatedSection className="mx-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
