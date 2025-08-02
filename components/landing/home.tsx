@@ -20,39 +20,39 @@ export default function HomeContent() {
     {
       title: "Health Insurance",
       icon: Heart,
-      color: "from-emerald-500/20 to-teal-500/20",
+      color: "bg-emerald-500/10",
       iconColor: "text-emerald-500",
-      borderColor: "border-emerald-200/50",
-      hoverColor: "hover:from-emerald-500/30 hover:to-teal-500/30",
+      borderColor: "border-emerald-500/20",
+      hoverColor: "hover:bg-emerald-500/20",
     },
     {
       title: "Mutual Funds",
       icon: TrendingUp,
-      color: "from-blue-500/20 to-indigo-500/20",
+      color: "bg-blue-500/10",
       iconColor: "text-blue-500",
-      borderColor: "border-blue-200/50",
-      hoverColor: "hover:from-blue-500/30 hover:to-indigo-500/30",
+      borderColor: "border-blue-500/20",
+      hoverColor: "hover:bg-blue-500/20",
     },
     {
       title: "PAN Card",
       icon: CreditCard,
-      color: "from-orange-500/20 to-red-500/20",
+      color: "bg-orange-500/10",
       iconColor: "text-orange-500",
-      borderColor: "border-orange-200/50",
-      hoverColor: "hover:from-orange-500/30 hover:to-red-500/30",
+      borderColor: "border-orange-500/20",
+      hoverColor: "hover:bg-orange-500/20",
     },
     {
       title: "Tax Filing",
       icon: Calculator,
-      color: "from-purple-500/20 to-violet-500/20",
+      color: "bg-purple-500/10",
       iconColor: "text-purple-500",
-      borderColor: "border-purple-200/50",
-      hoverColor: "hover:from-purple-500/30 hover:to-violet-500/30",
+      borderColor: "border-purple-500/20",
+      hoverColor: "hover:bg-purple-500/20",
     },
   ];
 
   return (
-    <div className="space-y-24 pb-24">
+    <div className="space-y-32 pb-32">
       <PageHeader
         title="Your Financial Journey, Simplified"
         description="Expert advice and comprehensive services to help you achieve your financial goals. Whether you're planning for retirement, investing in the market, or securing your family's future, we're here to guide you every step of the way."
@@ -61,14 +61,16 @@ export default function HomeContent() {
         {quickServices.map((service, index) => (
           <div
             key={index}
-            className={`p-6 rounded-xl shadow-lg transition-all duration-300 bg-gradient-to-br ${service.color} ${service.hoverColor} border ${service.borderColor} flex flex-col items-center text-center`}
+            className={`p-8 rounded-2xl transition-all duration-300 ${service.color} ${service.hoverColor} border ${service.borderColor} flex flex-col items-center text-center shadow-sm`}
           >
             <div
-              className={`p-4 rounded-full ${service.iconColor} bg-white mb-4 shadow-md`}
+              className={`p-5 rounded-full ${service.iconColor} bg-white mb-5 shadow-md`}
             >
-              <service.icon className="w-8 h-8" />
+              <service.icon className="w-10 h-10" />
             </div>
-            <h3 className="text-xl font-bold text-gray-800">{service.title}</h3>
+            <h3 className="text-2xl font-semibold text-gray-800">
+              {service.title}
+            </h3>
           </div>
         ))}
       </AnimatedSection>
@@ -101,12 +103,12 @@ export default function HomeContent() {
         </div>
       </AnimatedSection>
       <AnimatedSection className="text-center">
-        <h2 className="text-4xl font-bold mb-4">What Our Clients Say</h2>
-        <p className="text-lg text-gray-600 mb-12 max-w-3xl mx-auto">
+        <h2 className="text-5xl font-bold mb-6">What Our Clients Say</h2>
+        <p className="text-xl text-gray-600 mb-16 max-w-4xl mx-auto">
           We pride ourselves on providing exceptional service. Here's what our
           clients have to say about their experience with us.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           <TestimonialCard
             name="Alice Johnson"
             role="Marketing Manager"
@@ -127,9 +129,9 @@ export default function HomeContent() {
           />
         </div>
       </AnimatedSection>
-      <AnimatedSection className="bg-gray-50/80 p-12 rounded-xl text-center">
-        <h2 className="text-4xl font-bold mb-4">Ready to Get Started?</h2>
-        <p className="text-lg text-gray-600 mb-8 max-w-3xl mx-auto">
+      <AnimatedSection className="bg-gray-100/80 p-16 rounded-2xl text-center">
+        <h2 className="text-5xl font-bold mb-6">Ready to Get Started?</h2>
+        <p className="text-xl text-gray-600 mb-10 max-w-4xl mx-auto">
           Take the first step towards a secure financial future. Contact us today
           for a free consultation.
         </p>
