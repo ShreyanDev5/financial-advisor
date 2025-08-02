@@ -14,6 +14,7 @@ export function ServiceCard({
   icon: Icon,
   ctaText = "Get Started",
   delay = 0,
+  colorScheme = "teal",
 }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -22,8 +23,8 @@ export function ServiceCard({
       <div className="bg-white rounded-2xl shadow-medium border border-gray-100 overflow-hidden">
         <div className="p-6">
           <div className="flex items-center gap-4 mb-4">
-            <div className="w-14 h-14 bg-brand-teal/20 rounded-xl flex items-center justify-center">
-              <Icon className="w-7 h-7 text-brand-teal" />
+            <div className={`w-14 h-14 bg-${colorScheme}-50/20 rounded-xl flex items-center justify-center`}>
+              <Icon className={`w-7 h-7 text-${colorScheme}-500`} />
             </div>
             <div className="flex-1">
               <h3 className="text-xl font-bold text-brand-navy mb-1">{title}</h3>
@@ -57,7 +58,7 @@ export function ServiceCard({
                 <ul className="space-y-2">
                   {benefits.map((benefit, index) => (
                     <li key={index} className="flex items-start gap-2 text-gray-600">
-                      <CheckCircle className="w-4 h-4 text-brand-teal mt-1 flex-shrink-0" />
+                      <CheckCircle className={`w-4 h-4 text-${colorScheme}-500 mt-1 flex-shrink-0`} />
                       <span>{benefit}</span>
                     </li>
                   ))}

@@ -15,7 +15,7 @@ export default function Footer() {
     { id: "documents", href: "/documents", label: "Documents", icon: FileText, colorScheme: "purple" },
   ];
 
-  const getTabColors = useCallback((colorScheme, isActive) => {
+  const getTabColors = useCallback((colorScheme: 'emerald' | 'blue' | 'orange' | 'purple', isActive: boolean) => {
     const colors = {
       emerald: {
         bg: isActive ? "bg-gradient-to-br from-emerald-50 to-teal-50" : "",
@@ -38,7 +38,7 @@ export default function Footer() {
         text: isActive ? "text-purple-600" : "text-gray-400",
       },
     };
-    return colors[colorScheme] || colors.emerald;
+    return colors[colorScheme];
   }, []);
 
   return (
@@ -47,7 +47,7 @@ export default function Footer() {
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = (pathname === '/' && tab.id === 'home') || pathname === tab.href;
-          const tabColors = getTabColors(tab.colorScheme, isActive);
+          const tabColors = getTabColors(tab.colorScheme as 'emerald' | 'blue' | 'orange' | 'purple', isActive);
 
           return (
             <Link href={tab.href} key={tab.id} className={`
