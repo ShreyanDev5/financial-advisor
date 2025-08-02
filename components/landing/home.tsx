@@ -8,76 +8,72 @@ import {
   Heart,
   CreditCard,
   Calculator,
-  UserRoundCheck,
-  Clock,
-  HeartHandshake,
 } from "lucide-react";
 import { StatCard } from "@/components/ui/stat-card";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { TestimonialCard } from "@/components/ui/testimonial-card";
 import { PageHeader } from "@/components/ui/page-header";
+import { Button } from "@/components/ui/button";
 
 export default function HomeContent() {
   const quickServices = [
     {
       title: "Health Insurance",
       icon: Heart,
-      color: "from-emerald-50/90 to-teal-50/90",
+      color: "from-emerald-500/20 to-teal-500/20",
       iconColor: "text-emerald-500",
-      borderColor: "border-emerald-100/50",
-      hoverColor: "hover:from-emerald-100/50 hover:to-teal-100/50",
+      borderColor: "border-emerald-200/50",
+      hoverColor: "hover:from-emerald-500/30 hover:to-teal-500/30",
     },
     {
       title: "Mutual Funds",
       icon: TrendingUp,
-      color: "from-blue-50/90 to-indigo-50/90",
+      color: "from-blue-500/20 to-indigo-500/20",
       iconColor: "text-blue-500",
-      borderColor: "border-blue-100/50",
-      hoverColor: "hover:from-blue-100/50 hover:to-indigo-100/50",
+      borderColor: "border-blue-200/50",
+      hoverColor: "hover:from-blue-500/30 hover:to-indigo-500/30",
     },
     {
       title: "PAN Card",
       icon: CreditCard,
-      color: "from-orange-50/90 to-red-50/90",
+      color: "from-orange-500/20 to-red-500/20",
       iconColor: "text-orange-500",
-      borderColor: "border-orange-100/50",
-      hoverColor: "hover:from-orange-100/50 hover:to-red-100/50",
+      borderColor: "border-orange-200/50",
+      hoverColor: "hover:from-orange-500/30 hover:to-red-500/30",
     },
     {
       title: "Tax Filing",
       icon: Calculator,
-      color: "from-purple-50/90 to-violet-50/90",
+      color: "from-purple-500/20 to-violet-500/20",
       iconColor: "text-purple-500",
-      borderColor: "border-purple-100/50",
-      hoverColor: "hover:from-purple-100/50 hover:to-violet-100/50",
+      borderColor: "border-purple-200/50",
+      hoverColor: "hover:from-purple-500/30 hover:to-violet-500/30",
     },
   ];
 
   return (
-    <div className="space-y-12">
+    <div className="space-y-24 pb-24">
       <PageHeader
         title="Your Financial Journey, Simplified"
         description="Expert advice and comprehensive services to help you achieve your financial goals. Whether you're planning for retirement, investing in the market, or securing your family's future, we're here to guide you every step of the way."
       />
-      <AnimatedSection className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <AnimatedSection className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {quickServices.map((service, index) => (
           <div
             key={index}
-            className={`p-6 rounded-lg shadow-sm transition-all duration-300 ${service.color} ${service.hoverColor} border ${service.borderColor}`}
+            className={`p-6 rounded-xl shadow-lg transition-all duration-300 bg-gradient-to-br ${service.color} ${service.hoverColor} border ${service.borderColor} flex flex-col items-center text-center`}
           >
-            <div className="flex items-center space-x-4">
-              <div className={`p-3 rounded-full ${service.iconColor} bg-white`}>
-                <service.icon className="w-6 h-6" />
-              </div>
-              <h3 className="text-lg font-semibold text-gray-800">
-                {service.title}
-              </h3>
+            <div
+              className={`p-4 rounded-full ${service.iconColor} bg-white mb-4 shadow-md`}
+            >
+              <service.icon className="w-8 h-8" />
             </div>
+            <h3 className="text-xl font-bold text-gray-800">{service.title}</h3>
           </div>
         ))}
       </AnimatedSection>
       <AnimatedSection>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <StatCard
             title="Happy Clients"
             value="1,250+"
@@ -104,11 +100,13 @@ export default function HomeContent() {
           />
         </div>
       </AnimatedSection>
-      <AnimatedSection>
-        <h2 className="text-3xl font-bold text-center mb-8">
-          What Our Clients Say
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <AnimatedSection className="text-center">
+        <h2 className="text-4xl font-bold mb-4">What Our Clients Say</h2>
+        <p className="text-lg text-gray-600 mb-12 max-w-3xl mx-auto">
+          We pride ourselves on providing exceptional service. Here's what our
+          clients have to say about their experience with us.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <TestimonialCard
             name="Alice Johnson"
             role="Marketing Manager"
@@ -128,6 +126,14 @@ export default function HomeContent() {
             avatarSrc="/placeholder-user.jpg"
           />
         </div>
+      </AnimatedSection>
+      <AnimatedSection className="bg-gray-50/80 p-12 rounded-xl text-center">
+        <h2 className="text-4xl font-bold mb-4">Ready to Get Started?</h2>
+        <p className="text-lg text-gray-600 mb-8 max-w-3xl mx-auto">
+          Take the first step towards a secure financial future. Contact us today
+          for a free consultation.
+        </p>
+        <Button size="lg">Contact Us</Button>
       </AnimatedSection>
     </div>
   );
