@@ -75,6 +75,7 @@ export default function HomeContent() {
             description="Wide range of financial services."
             iconBgColor="bg-emerald-100"
             iconTextColor="text-emerald-600"
+            className="bg-gradient-to-br from-emerald-50 to-emerald-100 border-emerald-200 shadow-lg"
           />
           <StatCard
             title="Growth Rate"
@@ -83,6 +84,7 @@ export default function HomeContent() {
             description="Annual growth in client investments."
             iconBgColor="bg-purple-100"
             iconTextColor="text-purple-600"
+            className="bg-gradient-to-br from-purple-50 to-purple-100 border-purple-200 shadow-lg"
           />
           <StatCard
             title="Client Rating"
@@ -91,6 +93,7 @@ export default function HomeContent() {
             description="Average rating from our clients."
             iconBgColor="bg-orange-100"
             iconTextColor="text-orange-600"
+            className="bg-gradient-to-br from-orange-50 to-orange-100 border-orange-200 shadow-lg"
           />
         </div>
       </AnimatedSection>
