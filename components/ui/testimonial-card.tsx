@@ -14,7 +14,7 @@ export function TestimonialCard({
   avatarSrc,
 }: TestimonialCardProps) {
   return (
-    <div className="bg-white p-10 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center text-center h-full">
+    <div className="bg-gray-50 p-10 rounded-2xl shadow-strong border border-gray-100 flex flex-col items-center text-center h-full">
       <Image
         src={avatarSrc}
         alt={name}

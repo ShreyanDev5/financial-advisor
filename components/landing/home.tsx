@@ -148,13 +148,13 @@ export default function HomeContent() {
           />
         </div>
       </AnimatedSection>
-      <AnimatedSection className="bg-white/50 backdrop-blur-2xl p-16 rounded-2xl text-center border border-gray-200/60 shadow-lg mx-16">
+      <AnimatedSection className="bg-white/50 backdrop-blur-2xl p-16 rounded-2xl text-center border-4 border-emerald-600 shadow-strong mx-16">
         <h2 className="text-5xl font-bold mb-6">Ready to Get Started?</h2>
         <p className="text-xl text-gray-600 mb-10 max-w-4xl mx-auto">
           Take the first step towards a secure financial future. Contact us today
           for a free consultation.
         </p>
-        <Button size="lg">Contact Us</Button>
+        <Button size="lg" variant="gradient-emerald">Contact Us</Button>
       </AnimatedSection>
     </div>
   );
