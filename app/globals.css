@@ -52,8 +52,8 @@
     border-color: hsl(var(--border));
   }
 
-  body {
-    @apply bg-gradient-to-br from-emerald-50/50 via-white to-blue-50/50;
+    body {
+    @apply bg-gradient-to-br from-emerald-50/80 via-white via-purple-50/80 via-pink-50/80 to-blue-50/80;
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
     font-feature-settings: "rlig" 1, "calt" 1;
