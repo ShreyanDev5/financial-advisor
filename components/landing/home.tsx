@@ -57,7 +57,7 @@ export default function HomeContent() {
         title="Your Financial Journey, Simplified"
         description="Expert advice and comprehensive services to help you achieve your financial goals. Whether you're planning for retirement, investing in the market, or securing your family's future, we're here to guide you every step of the way."
       />
-      <AnimatedSection className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <AnimatedSection className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mx-16">
         {quickServices.map((service, index) => (
           <div
             key={index}
@@ -74,7 +74,7 @@ export default function HomeContent() {
           </div>
         ))}
       </AnimatedSection>
-      <AnimatedSection>
+      <AnimatedSection className="mx-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <StatCard
             title="Happy Clients"
@@ -129,7 +129,7 @@ export default function HomeContent() {
           />
         </div>
       </AnimatedSection>
-      <AnimatedSection className="bg-white/50 backdrop-blur-2xl p-16 rounded-2xl text-center border border-gray-200/60 shadow-lg">
+      <AnimatedSection className="bg-white/50 backdrop-blur-2xl p-16 rounded-2xl text-center border border-gray-200/60 shadow-lg mx-16">
         <h2 className="text-5xl font-bold mb-6">Ready to Get Started?</h2>
         <p className="text-xl text-gray-600 mb-10 max-w-4xl mx-auto">
           Take the first step towards a secure financial future. Contact us today
