@@ -116,34 +116,7 @@ export default function HomeContent() {
           ))}
         </div>
       </AnimatedSection>
-      <AnimatedSection className="mx-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <StatCard
-            title="Happy Clients"
-            value="1,250+"
-            icon={Users}
-            description="Satisfied clients across the country."
-          />
-          <StatCard
-            title="Services Offered"
-            value="25+"
-            icon={Award}
-            description="Wide range of financial services."
-          />
-          <StatCard
-            title="Growth Rate"
-            value="15%"
-            icon={TrendingUp}
-            description="Annual growth in client investments."
-          />
-          <StatCard
-            title="Client Rating"
-            value="4.9/5"
-            icon={Star}
-            description="Average rating from our clients."
-          />
-        </div>
-      </AnimatedSection>
+      
       <AnimatedSection className="text-center">
         <h2 className="text-5xl font-bold mb-6">What Our Clients Say</h2>
         <p className="text-xl text-gray-600 mb-16 max-w-4xl mx-auto">
