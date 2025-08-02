@@ -57,6 +57,42 @@ export default function HomeContent() {
         title="Your Financial Journey, Simplified"
         description="Expert advice and comprehensive services to help you achieve your financial goals. Whether you're planning for retirement, investing in the market, or securing your family's future, we're here to guide you every step of the way."
       />
+      <AnimatedSection className="mx-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <StatCard
+            title="Happy Clients"
+            value="1,250+"
+            icon={Users}
+            description="Satisfied clients across the country."
+            iconBgColor="bg-blue-100"
+            iconTextColor="text-blue-600"
+          />
+          <StatCard
+            title="Services Offered"
+            value="25+"
+            icon={Award}
+            description="Wide range of financial services."
+            iconBgColor="bg-emerald-100"
+            iconTextColor="text-emerald-600"
+          />
+          <StatCard
+            title="Growth Rate"
+            value="15%"
+            icon={TrendingUp}
+            description="Annual growth in client investments."
+            iconBgColor="bg-purple-100"
+            iconTextColor="text-purple-600"
+          />
+          <StatCard
+            title="Client Rating"
+            value="4.9/5"
+            icon={Star}
+            description="Average rating from our clients."
+            iconBgColor="bg-orange-100"
+            iconTextColor="text-orange-600"
+          />
+        </div>
+      </AnimatedSection>
       <AnimatedSection className="text-center">
         <h2 className="text-5xl font-bold mb-6">Our Core Services</h2>
         <p className="text-xl text-gray-600 mb-16 max-w-4xl mx-auto">

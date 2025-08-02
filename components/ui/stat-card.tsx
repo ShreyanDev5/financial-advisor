@@ -5,6 +5,8 @@ interface StatCardProps {
   value: string;
   icon: LucideIcon;
   description: string;
+  iconBgColor: string;
+  iconTextColor: string;
 }
 
 export const StatCard = ({
@@ -12,19 +14,21 @@ export const StatCard = ({
   value,
   icon: Icon,
   description,
+  iconBgColor,
+  iconTextColor,
 }: StatCardProps) => {
   return (
-    <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between h-full">
+    <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between h-full">
       <div>
-        <div className="flex items-center justify-between mb-5">
-          <h3 className="text-xl font-semibold text-gray-800">{title}</h3>
-          <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center">
-            <Icon className="w-6 h-6 text-gray-600" />
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-lg font-semibold text-gray-800">{title}</h3>
+          <div className={`w-10 h-10 rounded-full ${iconBgColor} flex items-center justify-center`}>
+            <Icon className={`w-5 h-5 ${iconTextColor}`} />
           </div>
         </div>
-        <div className="text-4xl font-bold text-gray-900 mb-3">{value}</div>
+        <div className="text-3xl font-bold text-gray-900 mb-2">{value}</div>
       </div>
-      <p className="text-base text-gray-500">{description}</p>
+      <p className="text-sm text-gray-500">{description}</p>
     </div>
   );
 };
