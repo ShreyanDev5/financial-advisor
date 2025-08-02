@@ -66,6 +66,7 @@ export default function HomeContent() {
             description="Satisfied clients across the country."
             iconBgColor="bg-blue-100"
             iconTextColor="text-blue-600"
+            className="bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200 shadow-lg"
           />
           <StatCard
             title="Services Offered"
