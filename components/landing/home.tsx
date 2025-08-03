@@ -1,5 +1,6 @@
 'use client';
 
+import Link from "next/link";
 import {
   Users,
   Award,
@@ -14,45 +15,50 @@ import { AnimatedSection } from "@/components/ui/animated-section";
 import { TestimonialCard } from "@/components/ui/testimonial-card";
 import { PageHeader } from "@/components/ui/page-header";
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 
 export default function HomeContent() {
   const quickServices = [
     {
       title: "Health Insurance",
       icon: Heart,
-      color: "bg-emerald-500/10",
-      iconColor: "text-emerald-500",
-      borderColor: "border-emerald-500/20",
-      hoverColor: "hover:bg-emerald-500/20",
+      color: "bg-red-500/10",
+      iconColor: "text-red-500",
+      borderColor: "border-red-500/20",
+      hoverColor: "hover:bg-red-500/20",
+      href: "/insurance#star-health-and-care-insurance",
     },
     {
       title: "Mutual Funds",
       icon: TrendingUp,
-      color: "bg-blue-500/10",
-      iconColor: "text-blue-500",
-      borderColor: "border-blue-500/20",
-      hoverColor: "hover:bg-blue-500/20",
+      color: "bg-green-500/10",
+      iconColor: "text-green-500",
+      borderColor: "border-green-500/20",
+      hoverColor: "hover:bg-green-500/20",
+      href: "/invest#licensed-mutual-fund-advisor",
     },
     {
       title: "PAN Card",
       icon: CreditCard,
-      color: "bg-orange-500/10",
-      iconColor: "text-orange-500",
-      borderColor: "border-orange-500/20",
-      hoverColor: "hover:bg-orange-500/20",
+      color: "bg-blue-500/10",
+      iconColor: "text-blue-500",
+      borderColor: "border-blue-500/20",
+      hoverColor: "hover:bg-blue-500/20",
+      href: "/documents#pan-card-services",
     },
     {
       title: "Tax Filing",
       icon: Calculator,
-      color: "bg-purple-500/10",
-      iconColor: "text-purple-500",
-      borderColor: "border-purple-500/20",
-      hoverColor: "hover:bg-purple-500/20",
+      color: "bg-indigo-500/10",
+      iconColor: "text-indigo-500",
+      borderColor: "border-indigo-500/20",
+      hoverColor: "hover:bg-indigo-500/20",
+      href: "/documents#income-tax-filing",
     },
   ];
 
   return (
-    <div className="space-y-32 pb-32">
+    <div className="pb-32 space-y-16">
       <PageHeader
         title="Your Financial Journey, Simplified"
         description="Expert advice and comprehensive services to help you achieve your financial goals. Whether you're planning for retirement, investing in the market, or securing your family's future, we're here to guide you every step of the way."
@@ -97,32 +103,34 @@ export default function HomeContent() {
           />
         </div>
       </AnimatedSection>
+      <Separator className="w-1/2 mx-auto" />
       <AnimatedSection className="text-center">
-        <h2 className="text-5xl font-bold mb-6">Our Core Services</h2>
+        <h2 className="text-5xl font-bold mb-4">Our Core Services</h2>
         <p className="text-xl text-gray-600 mb-16 max-w-4xl mx-auto">
           Explore the essential financial services designed to secure and grow your wealth.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mx-16">
           {quickServices.map((service, index) => (
-            <div
-              key={index}
-              className={`p-6 rounded-xl transition-all duration-300 ${service.color} ${service.hoverColor} border ${service.borderColor} flex flex-col items-center text-center shadow-sm`}
-            >
+            <Link href={service.href!} key={index}>
               <div
-                className={`p-4 rounded-full ${service.iconColor} bg-white mb-4 shadow-md`}
+                className={`p-6 rounded-xl transition-all duration-300 ${service.color} ${service.hoverColor} border ${service.borderColor} flex flex-col items-center text-center shadow-sm h-full`}
               >
-                <service.icon className="w-8 h-8" />
+                <div
+                  className={`p-4 rounded-full ${service.iconColor} bg-white mb-4 shadow-md`}
+                >
+                  <service.icon className="w-8 h-8" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-800">
+                  {service.title}
+                </h3>
               </div>
-              <h3 className="text-xl font-semibold text-gray-800">
-                {service.title}
-              </h3>
-            </div>
+            </Link>
           ))}
         </div>
       </AnimatedSection>
-      
+      <Separator className="w-1/2 mx-auto" />
       <AnimatedSection className="text-center">
-        <h2 className="text-5xl font-bold mb-6">What Our Clients Say</h2>
+        <h2 className="text-5xl font-bold mb-4">What Our Clients Say</h2>
         <p className="text-xl text-gray-600 mb-16 max-w-4xl mx-auto">
           We pride ourselves on providing exceptional service. Here's what our
           clients have to say about their experience with us.
@@ -148,8 +156,9 @@ export default function HomeContent() {
           />
         </div>
       </AnimatedSection>
+      <Separator className="w-1/2 mx-auto" />
       <AnimatedSection className="bg-white/50 backdrop-blur-2xl p-16 rounded-2xl text-center border-4 border-emerald-600 shadow-strong mx-16">
-        <h2 className="text-5xl font-bold mb-6">Ready to Get Started?</h2>
+        <h2 className="text-5xl font-bold mb-4">Ready to Get Started?</h2>
         <p className="text-xl text-gray-600 mb-10 max-w-4xl mx-auto">
           Take the first step towards a secure financial future. Contact us today
           for a free consultation.

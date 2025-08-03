@@ -106,6 +106,7 @@ export default function InsuranceContent() {
 
       {/* Health Insurance */}
       <ServiceCard
+        id={healthInsuranceServices.title.toLowerCase().replace(/\s+/g, "-")}
         title={healthInsuranceServices.title}
         description={healthInsuranceServices.description}
         benefits={healthInsuranceServices.benefits}
@@ -121,6 +122,7 @@ export default function InsuranceContent() {
       {/* Vehicle Insurance */}
       {vehicleInsuranceServices.map((service, index) => (
         <ServiceCard
+          id={service.title.toLowerCase().replace(/\s+/g, "-")}
           key={index}
           title={service.title}
           description={service.description}

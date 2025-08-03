@@ -3,7 +3,7 @@ import Footer from "@/components/landing/footer";
 
 export default function LandingLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-emerald-50/50 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-emerald-50/50 relative flex flex-col">
       {/* Enhanced Background with subtle textures */}
       <div className="fixed inset-0 bg-gradient-to-br from-white/40 via-emerald-50/20 to-blue-50/30 pointer-events-none" />
       <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-emerald-100/20 via-transparent to-blue-100/20 pointer-events-none" />
@@ -19,7 +19,9 @@ export default function LandingLayout({ children }: { children: React.ReactNode 
       <Header />
 
       {/* Main Content with scroll optimization */}
-      <div className={`relative z-10 px-6 pt-6 pb-28`}>{children}</div>
+      <main className="relative z-10 px-6 pt-6 pb-28 flex-grow">
+        {children}
+      </main>
 
       <Footer />
     </div>

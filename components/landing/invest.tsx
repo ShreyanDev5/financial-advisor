@@ -85,6 +85,7 @@ export default function InvestContent() {
 
       {/* Mutual Fund Advisory */}
       <ServiceCard
+        id={mutualFundServices.title.toLowerCase().replace(/\s+/g, "-")}
         title={mutualFundServices.title}
         description={mutualFundServices.description}
         benefits={mutualFundServices.benefits}
