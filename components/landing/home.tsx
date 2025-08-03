@@ -58,7 +58,7 @@ export default function HomeContent() {
   ];
 
   return (
-    <div className="pb-32 space-y-16">
+    <div className="pb-0 space-y-16">
       <PageHeader
         title="Your Financial Journey, Simplified"
         description="Expert advice and comprehensive services to help you achieve your financial goals. Whether you're planning for retirement, investing in the market, or securing your family's future, we're here to guide you every step of the way."
