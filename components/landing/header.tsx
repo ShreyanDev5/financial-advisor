@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Header() {
   return (
-    <div className="relative z-10">
+    <div className="fixed top-0 left-0 right-0 z-50">
       {/* Subtle gradient background overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-emerald-50/30 via-blue-50/20 to-purple-50/30 pointer-events-none" />
 

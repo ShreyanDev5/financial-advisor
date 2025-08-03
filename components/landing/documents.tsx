@@ -316,7 +316,7 @@ export default function DocumentsContent() {
           icon={service.icon}
           ctaText="Apply Now"
           colorScheme={service.colorScheme}
-          delay={100 + index * 100}
+          delay={index * 50}
         />
       ))}
 
@@ -333,7 +333,7 @@ export default function DocumentsContent() {
           icon={service.icon}
           ctaText="Get Started"
           colorScheme={service.colorScheme}
-          delay={100 + documentServices.length * 100 + index * 100}
+          delay={documentServices.length * 50 + index * 50}
         />
       ))}
     </div>

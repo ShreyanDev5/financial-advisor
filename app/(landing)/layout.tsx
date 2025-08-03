@@ -19,7 +19,7 @@ export default function LandingLayout({ children }: { children: React.ReactNode 
       <Header />
 
       {/* Main Content with scroll optimization */}
-      <main className="relative z-10 px-6 pt-6 pb-28 flex-grow">
+      <main className="relative z-10 px-6 pt-24 pb-28 flex-grow">
         {children}
       </main>
 

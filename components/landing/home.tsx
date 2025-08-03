@@ -163,7 +163,14 @@ export default function HomeContent() {
           Take the first step towards a secure financial future. Contact us today
           for a free consultation.
         </p>
-        <Button size="lg" variant="gradient-emerald">Contact Us</Button>
+                <a
+          href="https://wa.me/919836472260?text=Hi%20Monotosh%2C%20I'm%20interested%20in%20your%20financial%20services"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block"
+        >
+          <Button size="lg" variant="gradient-emerald">Contact Us</Button>
+        </a>
       </AnimatedSection>
     </div>
   );
