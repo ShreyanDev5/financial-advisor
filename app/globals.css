@@ -53,7 +53,7 @@
   }
 
     body {
-    @apply bg-gradient-to-br from-emerald-50/80 via-white via-purple-50/80 via-pink-50/80 to-blue-50/80;
+    @apply bg-gradient-to-br from-emerald-50/80 via-white to-blue-50/80;
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
     font-feature-settings: "rlig" 1, "calt" 1;
@@ -75,6 +75,8 @@
   .will-change-scroll {
     will-change: scroll-position;
   }
+  
+  
 }
 
 /* Enhanced card shine effect */
@@ -460,19 +462,6 @@ a:focus-visible {
   100% {
     background-position: -200% 0;
   }
-}
-
-@keyframes marquee {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-.animate-marquee {
-  animation: marquee 30s linear infinite;
 }
 
 /* Enhanced ripple effect with GPU acceleration */

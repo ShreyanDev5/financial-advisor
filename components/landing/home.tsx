@@ -105,10 +105,12 @@ export default function HomeContent() {
       </AnimatedSection>
       <Separator className="w-1/2 mx-auto" />
       <AnimatedSection className="text-center">
-        <h2 className="text-4xl sm:text-5xl font-bold mb-4">Our Core Services</h2>
-        <p className="text-base sm:text-xl text-gray-600 mb-12 sm:mb-16 max-w-4xl mx-auto px-4 sm:px-0">
-          Explore the essential financial services designed to secure and grow your wealth.
-        </p>
+        <div className="space-y-2">
+          <h2 className="text-3xl sm:text-4xl font-bold">Our Most In-Demand Services</h2>
+          <p className="text-base sm:text-lg text-gray-600 max-w-4xl mx-auto px-4 sm:px-0">
+            Explore the trusted financial solutions our clients count on.
+          </p>
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mx-4 sm:mx-16">
           {quickServices.map((service, index) => (
             <Link href={service.href!} key={index}>
@@ -130,11 +132,12 @@ export default function HomeContent() {
       </AnimatedSection>
       <Separator className="w-1/2 mx-auto" />
       <AnimatedSection className="text-center">
-        <h2 className="text-4xl sm:text-5xl font-bold mb-4">What Our Clients Say</h2>
-        <p className="text-base sm:text-xl text-gray-600 mb-12 sm:mb-16 max-w-4xl mx-auto px-4 sm:px-0">
-          We pride ourselves on providing exceptional service. Here's what our
-          clients have to say about their experience with us.
-        </p>
+        <div className="space-y-2">
+          <h2 className="text-3xl sm:text-4xl font-bold">What Our Clients Say About Us</h2>
+          <p className="text-base sm:text-lg text-gray-600">
+            Discover how we’ve helped others achieve lasting financial confidence.
+          </p>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 mx-4 sm:mx-0">
           <TestimonialCard
             name="Alice Johnson"
@@ -158,11 +161,12 @@ export default function HomeContent() {
       </AnimatedSection>
       <Separator className="w-1/2 mx-auto" />
       <AnimatedSection className="bg-white/50 backdrop-blur-2xl p-8 sm:p-16 rounded-2xl text-center border-4 border-emerald-600 shadow-strong mx-4 sm:mx-16">
-        <h2 className="text-4xl sm:text-5xl font-bold mb-4">Ready to Get Started?</h2>
-        <p className="text-base sm:text-xl text-gray-600 mb-8 sm:mb-10 max-w-4xl mx-auto">
-          Take the first step towards a secure financial future. Contact us today
-          for a free consultation.
-        </p>
+        <div className="space-y-2">
+          <h2 className="text-3xl sm:text-4xl font-bold">Begin Your Journey to Financial Freedom</h2>
+          <p className="text-base sm:text-lg text-gray-600 max-w-4xl mx-auto">
+            Let’s turn your goals into a clear, confident plan.
+          </p>
+        </div>
                 <a
           href="https://wa.me/919836472260?text=Hi%20Monotosh%2C%20I'm%20interested%20in%20your%20financial%20services"
           target="_blank"

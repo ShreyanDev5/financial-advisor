@@ -20,8 +20,8 @@ export default function Header() {
               className="rounded-xl shadow-sm"
             />
             <div>
-              <h1 className="text-lg font-semibold text-gray-800">FinanceFlow</h1>
-              <p className="text-xs text-gray-500 font-medium">Your Financial Partner</p>
+              <h1 className="text-base md:text-lg font-semibold text-gray-800">WealthWise</h1>
+              <p className="text-xs md:text-sm text-gray-500 font-medium font-serif">Growth | Ambition | Stability</p>
             </div>
           </div>
 
