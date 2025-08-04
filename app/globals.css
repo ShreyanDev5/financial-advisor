@@ -809,3 +809,18 @@ a:focus-visible {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(0, 0, 0, 0.2);
 }
+
+.underline-wavy {
+  text-decoration: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 20'%3E%3Cpath d='M10 15 C 25 10, 95 10, 110 18' stroke='%238B5CF6' fill='transparent' stroke-width='2'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: 100% auto;
+  padding-bottom: 8px; /* Reduced padding for mobile */
+}
+
+@media (min-width: 640px) { /* sm breakpoint */
+  .underline-wavy {
+    padding-bottom: 14px; /* Original padding for desktop */
+  }
+}

@@ -58,13 +58,13 @@ export default function HomeContent() {
   ];
 
   return (
-    <div className="pb-0 space-y-16">
+    <div className="pb-0 space-y-12 sm:space-y-16">
       <PageHeader
-        title="Your Financial Journey, Simplified"
-        description="Expert advice and comprehensive services to help you achieve your financial goals. Whether you're planning for retirement, investing in the market, or securing your family's future, we're here to guide you every step of the way."
+        title="Take Control of Your Wealth"
+        description={<span>Partner with <span className="underline-wavy">Monotosh Sardar</span> for personalized financial guidance and lasting peace of mind.</span>}
       />
-      <AnimatedSection className="mx-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <AnimatedSection className="mx-4 sm:mx-16 mt-16 sm:mt-24">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           <StatCard
             title="Happy Clients"
             value="1,250+"
@@ -105,11 +105,11 @@ export default function HomeContent() {
       </AnimatedSection>
       <Separator className="w-1/2 mx-auto" />
       <AnimatedSection className="text-center">
-        <h2 className="text-5xl font-bold mb-4">Our Core Services</h2>
-        <p className="text-xl text-gray-600 mb-16 max-w-4xl mx-auto">
+        <h2 className="text-4xl sm:text-5xl font-bold mb-4">Our Core Services</h2>
+        <p className="text-base sm:text-xl text-gray-600 mb-12 sm:mb-16 max-w-4xl mx-auto px-4 sm:px-0">
           Explore the essential financial services designed to secure and grow your wealth.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mx-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mx-4 sm:mx-16">
           {quickServices.map((service, index) => (
             <Link href={service.href!} key={index}>
               <div
@@ -130,12 +130,12 @@ export default function HomeContent() {
       </AnimatedSection>
       <Separator className="w-1/2 mx-auto" />
       <AnimatedSection className="text-center">
-        <h2 className="text-5xl font-bold mb-4">What Our Clients Say</h2>
-        <p className="text-xl text-gray-600 mb-16 max-w-4xl mx-auto">
+        <h2 className="text-4xl sm:text-5xl font-bold mb-4">What Our Clients Say</h2>
+        <p className="text-base sm:text-xl text-gray-600 mb-12 sm:mb-16 max-w-4xl mx-auto px-4 sm:px-0">
           We pride ourselves on providing exceptional service. Here's what our
           clients have to say about their experience with us.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 mx-4 sm:mx-0">
           <TestimonialCard
             name="Alice Johnson"
             role="Marketing Manager"
@@ -157,9 +157,9 @@ export default function HomeContent() {
         </div>
       </AnimatedSection>
       <Separator className="w-1/2 mx-auto" />
-      <AnimatedSection className="bg-white/50 backdrop-blur-2xl p-16 rounded-2xl text-center border-4 border-emerald-600 shadow-strong mx-16">
-        <h2 className="text-5xl font-bold mb-4">Ready to Get Started?</h2>
-        <p className="text-xl text-gray-600 mb-10 max-w-4xl mx-auto">
+      <AnimatedSection className="bg-white/50 backdrop-blur-2xl p-8 sm:p-16 rounded-2xl text-center border-4 border-emerald-600 shadow-strong mx-4 sm:mx-16">
+        <h2 className="text-4xl sm:text-5xl font-bold mb-4">Ready to Get Started?</h2>
+        <p className="text-base sm:text-xl text-gray-600 mb-8 sm:mb-10 max-w-4xl mx-auto">
           Take the first step towards a secure financial future. Contact us today
           for a free consultation.
         </p>
