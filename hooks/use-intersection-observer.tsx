@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 
-export function useIntersectionObserver(options = {}) {
+export function useIntersectionObserver(options = {}): [React.MutableRefObject<HTMLDivElement | null>, boolean] {
   const [isIntersecting, setIsIntersecting] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
   const ref = useRef(null);
