@@ -19,7 +19,7 @@ export function AnimatedSection({ children, className = "", animation = "fade-up
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     setPrefersReducedMotion(mediaQuery.matches);
 
-    const handleChange = (e) => {
+    const handleChange = (e: MediaQueryListEvent) => {
       setPrefersReducedMotion(e.matches);
     };
 
