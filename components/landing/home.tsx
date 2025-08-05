@@ -61,7 +61,7 @@ export default function HomeContent() {
     <div className="pb-0 space-y-12 sm:space-y-16">
       <PageHeader
         title="Take Control of Your Wealth"
-        description={<span>Partner with <span className="underline-wavy">Monotosh Sardar</span> for personalized financial guidance and lasting peace of mind.</span>}
+                  description="Partner with Monotosh Sardar for personalized financial guidance and lasting peace of mind."
         color="emerald-600 to-green-600"
       />
       <AnimatedSection className="mx-4 sm:mx-16 mt-16 sm:mt-24">
