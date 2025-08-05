@@ -4,7 +4,22 @@ import { useState } from "react";
 import { ChevronDown, CheckCircle, FileText, UserRoundCheck } from "lucide-react";
 import { AnimatedSection } from "./animated-section";
 
+interface ServiceCardProps {
+  id: string;
+  title: string;
+  description: string;
+  benefits: string[];
+  documents: string[];
+  process: string[];
+  pricing: string;
+  icon: any; // You might want to refine this type further
+  ctaText?: string;
+  delay?: number;
+  colorScheme?: string;
+}
+
 export function ServiceCard({
+  id,
   title,
   description,
   benefits,
@@ -15,7 +30,7 @@ export function ServiceCard({
   ctaText = "Get Started",
   delay = 0,
   colorScheme = "teal",
-}) {
+}: ServiceCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
