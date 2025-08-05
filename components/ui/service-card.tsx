@@ -12,7 +12,7 @@ interface ServiceCardProps {
   documents: string[];
   process: string[];
   pricing: string;
-  icon: any; // You might want to refine this type further
+  icon: React.ElementType;
   ctaText?: string;
   delay?: number;
   colorScheme?: string;
