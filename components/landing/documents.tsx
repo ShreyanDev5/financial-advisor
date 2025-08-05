@@ -2,7 +2,7 @@
 
 import { CreditCard, UserCheck, FileCheck, Building, Car, Baby, Briefcase, Calculator, FileText, ScrollText } from "lucide-react";
 import { ServiceCard } from "@/components/ui/service-card";
-import { PageHeader } from "@/components/ui/page-header";
+import { SimplePageHeader } from "@/components/ui/simple-page-header";
 
 export default function DocumentsContent() {
   const documentServices = [
@@ -121,7 +121,7 @@ export default function DocumentsContent() {
       ],
       pricing: "₹15 application fee",
       icon: Building,
-      colorScheme: "teal",
+      colorScheme: "emerald",
     },
     {
       title: "Driving License & Motor Vehicle Services",
@@ -300,8 +300,8 @@ export default function DocumentsContent() {
   ];
 
   return (
-    <div className="space-y-6">
-      <PageHeader title="Document & Legal Services" description="Complete documentation support for all your needs" />
+    <div className="space-y-6 px-4 sm:px-6 lg:px-8">
+      <SimplePageHeader title="Document & Legal Services" description="Complete documentation support for all your needs" color="purple-500 to-violet-500" />
 
       {documentServices.map((service, index) => (
         <ServiceCard

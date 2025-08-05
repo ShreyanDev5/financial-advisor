@@ -3,7 +3,7 @@
 import { Heart, Bike, Car } from "lucide-react";
 import { ServiceCard } from "@/components/ui/service-card";
 import { AnimatedSection } from "@/components/ui/animated-section";
-import { PageHeader } from "@/components/ui/page-header";
+import { SimplePageHeader } from "@/components/ui/simple-page-header";
 
 export default function InsuranceContent() {
   const healthInsuranceServices = {
@@ -101,8 +101,8 @@ export default function InsuranceContent() {
   ];
 
   return (
-    <div className="space-y-6">
-      <PageHeader title="Insurance Services" description="Comprehensive protection for your peace of mind" />
+    <div className="space-y-6 px-4 sm:px-6 lg:px-8">
+      <SimplePageHeader title="Insurance Services" description="Comprehensive protection for your peace of mind" />
 
       {/* Health Insurance */}
       <ServiceCard

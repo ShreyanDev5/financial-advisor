@@ -3,7 +3,7 @@
 import { TrendingUp, Shield, BarChart3, Target, ChevronRight } from "lucide-react";
 import { ServiceCard } from "@/components/ui/service-card";
 import { AnimatedSection } from "@/components/ui/animated-section";
-import { PageHeader } from "@/components/ui/page-header";
+import { SimplePageHeader } from "@/components/ui/simple-page-header";
 
 export default function InvestContent() {
   const mutualFundServices = {
@@ -80,8 +80,8 @@ export default function InvestContent() {
   ];
 
   return (
-    <div className="space-y-6">
-      <PageHeader title="Investment Solutions" description="Grow your wealth with smart investment strategies" />
+    <div className="space-y-6 px-4 sm:px-6 lg:px-8">
+      <SimplePageHeader title="Investment Solutions" description="Grow your wealth with smart investment strategies" color="orange-500 to-yellow-500" />
 
       {/* Mutual Fund Advisory */}
       <ServiceCard

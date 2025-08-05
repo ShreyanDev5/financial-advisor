@@ -1,12 +1,13 @@
+
 import { AnimatedSection } from "@/components/ui/animated-section";
 
-export function PageHeader({ title, description, color = 'blue-600 to-purple-600' }: { title: string; description: string; color?: string }) {
+export function SimplePageHeader({ title, description, color = 'blue-600 to-purple-600' }: { title: string; description: string; color?: string }) {
   return (
     <AnimatedSection
       animation="fade-up"
       delay={0}
       duration={400}
-                              className="text-center py-16 sm:py-28 bg-gradient-to-br from-emerald-50 to-green-50 backdrop-blur-2xl rounded-3xl border border-emerald-200/60 shadow-lg mx-4 sm:mx-16"
+      className="text-center pt-8 pb-4 sm:pt-12 sm:pb-8"
     >
       <h1 className={`text-4xl sm:text-6xl font-bold bg-gradient-to-r from-${color} bg-clip-text text-transparent mb-2`}>
         {title}

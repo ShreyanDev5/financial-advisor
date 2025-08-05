@@ -62,6 +62,7 @@ export default function HomeContent() {
       <PageHeader
         title="Take Control of Your Wealth"
         description={<span>Partner with <span className="underline-wavy">Monotosh Sardar</span> for personalized financial guidance and lasting peace of mind.</span>}
+        color="emerald-600 to-green-600"
       />
       <AnimatedSection className="mx-4 sm:mx-16 mt-16 sm:mt-24">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
@@ -105,7 +106,7 @@ export default function HomeContent() {
       </AnimatedSection>
       <Separator className="w-1/2 mx-auto" />
       <AnimatedSection className="text-center">
-        <div className="space-y-2">
+        <div className="space-y-2 mb-8">
           <h2 className="text-3xl sm:text-4xl font-bold">Our Most In-Demand Services</h2>
           <p className="text-base sm:text-lg text-gray-600 max-w-4xl mx-auto px-4 sm:px-0">
             Explore the trusted financial solutions our clients count on.
@@ -132,7 +133,7 @@ export default function HomeContent() {
       </AnimatedSection>
       <Separator className="w-1/2 mx-auto" />
       <AnimatedSection className="text-center">
-        <div className="space-y-2">
+        <div className="space-y-2 mb-8">
           <h2 className="text-3xl sm:text-4xl font-bold">What Our Clients Say About Us</h2>
           <p className="text-base sm:text-lg text-gray-600">
             Discover how we’ve helped others achieve lasting financial confidence.
@@ -161,9 +162,9 @@ export default function HomeContent() {
       </AnimatedSection>
       <Separator className="w-1/2 mx-auto" />
       <AnimatedSection className="bg-white/50 backdrop-blur-2xl p-8 sm:p-16 rounded-2xl text-center border-4 border-emerald-600 shadow-strong mx-4 sm:mx-16">
-        <div className="space-y-2">
+        <div className="space-y-2 mb-8">
           <h2 className="text-3xl sm:text-4xl font-bold">Begin Your Journey to Financial Freedom</h2>
-          <p className="text-base sm:text-lg text-gray-600 max-w-4xl mx-auto">
+          <p className="text-base sm:text-lg text-gray-600 max-w-4xl mx-auto mb-8">
             Let’s turn your goals into a clear, confident plan.
           </p>
         </div>

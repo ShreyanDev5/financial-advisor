@@ -21,7 +21,7 @@ export default function Header() {
             />
             <div>
               <h1 className="text-base md:text-lg font-semibold text-gray-800">WealthWise</h1>
-              <p className="text-xs md:text-sm text-gray-500 font-medium font-serif">Growth | Ambition | Stability</p>
+              <p className="text-xs md:text-sm text-gray-600 font-semibold font-serif">Growth | Ambition | Stability</p>
             </div>
           </div>
 
