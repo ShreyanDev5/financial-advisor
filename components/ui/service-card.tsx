@@ -41,6 +41,11 @@ export function ServiceCard({
               Details
               <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isExpanded ? "rotate-180" : ""}`} />
             </button>
+            <button
+              className={`flex-1 px-4 py-3 bg-${colorScheme}-500 text-white rounded-lg font-semibold transition-all duration-200`}
+            >
+              {ctaText}
+            </button>
           </div>
         </div>
 

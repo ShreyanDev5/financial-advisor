@@ -2,7 +2,7 @@
 
 import { Heart, Bike, Car } from "lucide-react";
 import { ServiceCard } from "@/components/ui/service-card";
-import { AnimatedSection } from "@/components/ui/animated-section";
+
 import { SimplePageHeader } from "@/components/ui/simple-page-header";
 
 export default function InsuranceContent() {

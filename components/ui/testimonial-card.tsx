@@ -23,7 +23,7 @@ export function TestimonialCard({
         className="rounded-full mb-4 sm:mb-6 border-4 border-white shadow-md w-20 h-20 sm:w-[90px] sm:h-[90px]"
       />
       <p className="text-base sm:text-xl text-gray-700 mb-4 sm:mb-6 font-serif italic">
-        "{testimonial}"
+        &quot;{testimonial}&quot;
       </p>
       <div className="mt-auto">
         <p className="font-bold text-base sm:text-lg text-gray-900">{name}</p>
