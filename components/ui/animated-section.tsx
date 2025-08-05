@@ -3,7 +3,15 @@
 import { useCallback, useEffect, useState } from "react";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 
-export function AnimatedSection({ children, className = "", animation = "fade-up", delay = 0, duration = 600 }) {
+interface AnimatedSectionProps {
+  children: React.ReactNode;
+  className?: string;
+  animation?: "fade-up" | "fade-in" | "slide-left" | "slide-right" | "scale-in";
+  delay?: number;
+  duration?: number;
+}
+
+export function AnimatedSection({ children, className = "", animation = "fade-up", delay = 0, duration = 600 }: AnimatedSectionProps) {
   const [ref, isVisible] = useIntersectionObserver();
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
