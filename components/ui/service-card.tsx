@@ -30,6 +30,14 @@ export function ServiceCard({
   colorScheme = "teal",
 }: ServiceCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const hoverBgColor: { [key: string]: string } = {
+    teal: "rgba(20, 184, 166, 0.1)",
+    emerald: "rgba(16, 185, 129, 0.1)",
+    blue: "rgba(59, 130, 246, 0.1)",
+    purple: "rgba(139, 92, 246, 0.1)",
+  };
 
   return (
     <AnimatedSection animation="fade-up" delay={delay} duration={500}>
@@ -40,22 +48,25 @@ export function ServiceCard({
               <Icon className={`w-7 h-7`} />
             </div>
             <div className="flex-1">
-              <h3 className="text-xl font-bold text-brand-navy mb-1">{title}</h3>
+              <h3 className="text-xl font-bold text-brand-navy mb-0">{title}</h3>
             </div>
           </div>
 
-          <p className="text-gray-600 mb-4 leading-relaxed">{description}</p>
+          <p className="text-gray-600 mb-6 leading-relaxed mt-[-0.5rem] ml-16">{description}</p>
 
-          <div className="flex flex-col sm:flex-row gap-3">
+          <div className="flex flex-col sm:flex-row sm:justify-center sm:ml-72 gap-3">
             <button
               onClick={() => setIsExpanded(!isExpanded)}
-              className={`w-full px-4 py-3 bg-${colorScheme}-100 text-${colorScheme}-800 rounded-lg font-semibold transition-all duration-200 flex items-center justify-center gap-2`}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+              className={`w-full sm:w-80 px-6 py-3 border text-${colorScheme}-500 rounded-lg font-semibold transition-all duration-200 flex items-center justify-center gap-2 ${isHovered ? 'shadow-sm' : ''}`}
+              style={{ backgroundColor: isHovered ? hoverBgColor[colorScheme || 'teal'] : 'transparent', borderColor: `hsl(var(--border-${colorScheme}-500))` }}
             >
               Details
               <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isExpanded ? "rotate-180" : ""}`} />
             </button>
             <button
-              className={`w-full px-4 py-3 bg-${colorScheme}-500 text-white rounded-lg font-semibold transition-all duration-200`}
+              className={`w-full sm:w-80 px-6 py-3 bg-${colorScheme}-500 text-white rounded-lg font-semibold transition-all duration-200`}
             >
             {ctaText}
             </button>

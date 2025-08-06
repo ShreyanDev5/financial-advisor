@@ -7,7 +7,7 @@ export function SimplePageHeader({ title, description, color = 'blue-600 to-purp
       animation="fade-up"
       delay={0}
       duration={400}
-      className="text-center pt-8 pb-4 sm:pt-12 sm:pb-8"
+      className="text-center pt-4 pb-2 sm:pt-6 sm:pb-4"
     >
       <h1 className={`text-4xl sm:text-6xl font-bold bg-gradient-to-r from-${color} bg-clip-text text-transparent mb-2`}>
         {title}

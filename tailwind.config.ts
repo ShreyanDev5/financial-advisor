@@ -18,6 +18,10 @@ const config = {
     "to-yellow-500",
     "from-purple-500",
     "to-violet-500",
+    "bg-teal-50/50",
+    "bg-emerald-50/50",
+    "bg-blue-50/50",
+    "bg-purple-50/50",
   ],
   theme: {
     container: {

@@ -24,10 +24,25 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
     --radius: 0.5rem;
+
+    --bg-teal-50-alpha: 224, 255, 250, 0.5;
+    --bg-emerald-50-alpha: 224, 255, 230, 0.5;
+    --bg-blue-50-alpha: 224, 247, 255, 0.5;
+    --bg-purple-50-alpha: 247, 224, 255, 0.5;
+
+    --border-teal-500: 173.4 80.4% 40%;
+    --border-emerald-500: 160.12 84.08% 39.41%;
+    --border-blue-500: 217.2 91.2% 59.8%;
+    --border-purple-500: 270.7 91% 65.1%;
   }
 
   .dark {
     --background: 222.2 84% 4.9%;
+
+    --bg-teal-50-alpha: 224, 255, 250, 0.5;
+    --bg-emerald-50-alpha: 224, 255, 230, 0.5;
+    --bg-blue-50-alpha: 224, 247, 255, 0.5;
+    --bg-purple-50-alpha: 247, 224, 255, 0.5;
     --foreground: 210 40% 98%;
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
