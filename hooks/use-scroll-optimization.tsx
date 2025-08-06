@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 
 export function useScrollOptimization() {
   const [isScrolling, setIsScrolling] = useState(false);
-  const scrollTimeoutRef = useRef();
+  const scrollTimeoutRef = useRef<NodeJS.Timeout>();
 
   useEffect(() => {
     let ticking = false;

@@ -4,7 +4,7 @@ export function useIntersectionObserver(options = {}): [React.MutableRefObject<H
   const [isIntersecting, setIsIntersecting] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
   const ref = useRef(null);
-  const observerRef = useRef(null);
+  const observerRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
     const element = ref.current;

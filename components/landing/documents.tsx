@@ -305,7 +305,6 @@ export default function DocumentsContent() {
 
       {documentServices.map((service, index) => (
         <ServiceCard
-          id={service.title.toLowerCase().replace(/\s+/g, "-")}
           key={index}
           title={service.title}
           description={service.description}
@@ -322,7 +321,6 @@ export default function DocumentsContent() {
 
       {taxServices.map((service, index) => (
         <ServiceCard
-          id={service.title.toLowerCase().replace(/\s+/g, "-")}
           key={index}
           title={service.title}
           description={service.description}

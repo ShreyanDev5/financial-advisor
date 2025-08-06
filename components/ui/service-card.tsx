@@ -5,7 +5,6 @@ import { ChevronDown, CheckCircle, FileText, UserRoundCheck } from "lucide-react
 import { AnimatedSection } from "./animated-section";
 
 interface ServiceCardProps {
-  id: string;
   title: string;
   description: string;
   benefits: string[];
@@ -19,7 +18,6 @@ interface ServiceCardProps {
 }
 
 export function ServiceCard({
-  id,
   title,
   description,
   benefits,
@@ -48,18 +46,18 @@ export function ServiceCard({
 
           <p className="text-gray-600 mb-4 leading-relaxed">{description}</p>
 
-          <div className="flex gap-3">
+          <div className="flex flex-col sm:flex-row gap-3">
             <button
               onClick={() => setIsExpanded(!isExpanded)}
-              className={`flex-1 px-4 py-3 bg-${colorScheme}-100 text-${colorScheme}-800 rounded-lg font-semibold transition-all duration-200 flex items-center justify-center gap-2`}
+              className={`w-full px-4 py-3 bg-${colorScheme}-100 text-${colorScheme}-800 rounded-lg font-semibold transition-all duration-200 flex items-center justify-center gap-2`}
             >
               Details
               <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isExpanded ? "rotate-180" : ""}`} />
             </button>
             <button
-              className={`flex-1 px-4 py-3 bg-${colorScheme}-500 text-white rounded-lg font-semibold transition-all duration-200`}
+              className={`w-full px-4 py-3 bg-${colorScheme}-500 text-white rounded-lg font-semibold transition-all duration-200`}
             >
-              {ctaText}
+            {ctaText}
             </button>
           </div>
         </div>
