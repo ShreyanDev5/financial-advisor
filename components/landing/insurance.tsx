@@ -101,11 +101,12 @@ export default function InsuranceContent() {
   ];
 
   return (
-    <div className="space-y-6 px-4 sm:px-6 lg:px-8">
-      <SimplePageHeader title="Insurance Services" description="Comprehensive protection for your peace of mind" />
+    <div className="container mx-auto space-y-8 px-4 sm:px-6 lg:px-8">
+      <SimplePageHeader title="Insurance Services" description="Comprehensive protection for your peace of mind" className="mb-12" color="from-blue-600 to-purple-600" />
 
       {/* Health Insurance */}
-      <ServiceCard
+            <ServiceCard
+        className="sm:max-w-5xl sm:mx-auto"
         title={healthInsuranceServices.title}
         description={healthInsuranceServices.description}
         benefits={healthInsuranceServices.benefits}
@@ -121,6 +122,7 @@ export default function InsuranceContent() {
       {/* Vehicle Insurance */}
       {vehicleInsuranceServices.map((service, index) => (
         <ServiceCard
+          className="sm:max-w-5xl sm:mx-auto"
           key={index}
           title={service.title}
           description={service.description}

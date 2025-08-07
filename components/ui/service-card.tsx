@@ -15,6 +15,7 @@ interface ServiceCardProps {
   ctaText?: string;
   delay?: number;
   colorScheme?: string;
+  className?: string;
 }
 
 export function ServiceCard({
@@ -28,6 +29,7 @@ export function ServiceCard({
   ctaText = "Get Started",
   delay = 0,
   colorScheme = "teal",
+  className = "",
 }: ServiceCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -37,22 +39,23 @@ export function ServiceCard({
     emerald: "rgba(16, 185, 129, 0.1)",
     blue: "rgba(59, 130, 246, 0.1)",
     purple: "rgba(139, 92, 246, 0.1)",
+    orange: "rgba(249, 115, 22, 0.1)",
   };
 
   return (
     <AnimatedSection animation="fade-up" delay={delay} duration={500}>
-      <div className="bg-white rounded-2xl shadow-medium border border-gray-100 overflow-hidden">
+      <div className={`bg-white rounded-2xl shadow-medium border border-gray-100 overflow-hidden ${className}`}>
         <div className="p-6">
-          <div className={`flex items-center gap-4 mb-4 text-${colorScheme}-500`}>
+          <div className={`flex items-center gap-3 mb-4 text-${colorScheme}-500`}>
             <div className={`w-14 h-14 bg-${colorScheme}-50/20 rounded-xl flex items-center justify-center`}>
-              <Icon className={`w-7 h-7`} />
+              <Icon className={`w-7 h-7 sm:w-8 sm:h-8`} />
             </div>
             <div className="flex-1">
-              <h3 className="text-xl font-bold text-brand-navy mb-0">{title}</h3>
+              <h3 className="text-xl sm:text-2xl font-bold text-brand-navy mb-0">{title}</h3>
             </div>
           </div>
 
-          <p className="text-gray-600 mb-6 leading-relaxed mt-[-0.5rem] ml-16">{description}</p>
+          <p className="text-base sm:text-lg text-gray-600 mb-6 leading-relaxed mt-[-0.5rem] ml-[68px]">{description}</p>
 
           <div className="flex flex-col sm:flex-row sm:justify-center sm:ml-72 gap-3">
             <button

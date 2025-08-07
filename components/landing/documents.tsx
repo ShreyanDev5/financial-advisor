@@ -300,11 +300,12 @@ export default function DocumentsContent() {
   ];
 
   return (
-    <div className="space-y-6 px-4 sm:px-6 lg:px-8">
-      <SimplePageHeader title="Document & Legal Services" description="Complete documentation support for all your needs" color="purple-500 to-violet-500" />
+    <div className="container mx-auto space-y-8 px-4 sm:px-6 lg:px-8">
+      <SimplePageHeader title="Document Management" description="Securely manage your financial documents with ease." className="mb-12" color="from-purple-600 to-violet-600" />
 
-      {documentServices.map((service, index) => (
+            {documentServices.map((service, index) => (
         <ServiceCard
+          className="sm:max-w-5xl sm:mx-auto"
           key={index}
           title={service.title}
           description={service.description}
@@ -319,8 +320,9 @@ export default function DocumentsContent() {
         />
       ))}
 
-      {taxServices.map((service, index) => (
+            {taxServices.map((service, index) => (
         <ServiceCard
+          className="sm:max-w-5xl sm:mx-auto"
           key={index}
           title={service.title}
           description={service.description}

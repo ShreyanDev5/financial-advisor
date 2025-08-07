@@ -80,11 +80,12 @@ export default function InvestContent() {
   ];
 
   return (
-    <div className="space-y-6 px-4 sm:px-6 lg:px-8">
-      <SimplePageHeader title="Investment Solutions" description="Grow your wealth with smart investment strategies" color="orange-500 to-yellow-500" />
+    <div className="container mx-auto space-y-8 px-4 sm:px-6 lg:px-8">
+      <SimplePageHeader title="Investment Solutions" description="Grow your wealth with our expert investment strategies." className="mb-12" color="from-orange-500 to-orange-700" />
 
       {/* Mutual Fund Advisory */}
       <ServiceCard
+        className="sm:max-w-5xl sm:mx-auto"
         title={mutualFundServices.title}
         description={mutualFundServices.description}
         benefits={mutualFundServices.benefits}
