@@ -115,9 +115,10 @@ export default function InsuranceContent() {
           process={healthInsuranceServices.process}
           pricing={healthInsuranceServices.pricing}
           icon={Heart}
-          ctaText="Get Health Quote"
+          ctaText="Get Started"
           colorScheme="emerald"
           delay={100}
+          whatsAppMessage={`Hi Monotosh, I'm interested in ${healthInsuranceServices.title}. Please help me get started.`}
         />
       </div>
 
@@ -133,9 +134,10 @@ export default function InsuranceContent() {
           process={service.process}
           pricing={service.pricing}
           icon={service.icon}
-          ctaText="Get Vehicle Quote"
+          ctaText="Get Started"
           colorScheme={service.colorScheme}
           delay={200 + index * 100}
+          whatsAppMessage={`Hi Monotosh, I'm interested in ${service.title}. Please help me get started.`}
         />
       ))}
     </div>

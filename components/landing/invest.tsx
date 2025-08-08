@@ -57,6 +57,7 @@ export default function InvestContent() {
           ctaText="Start Investing"
           colorScheme="blue"
           delay={100}
+          whatsAppMessage={`Hi Monotosh, I'm interested in ${mutualFundServices.title}. I'd like to start investing.`}
         />
       </div>
     </div>

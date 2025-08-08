@@ -17,6 +17,8 @@ interface ServiceCardProps {
   delay?: number;
   colorScheme?: string;
   className?: string;
+  whatsAppMessage?: string;
+  whatsAppNumber?: string;
 }
 
 export function ServiceCard({
@@ -31,6 +33,8 @@ export function ServiceCard({
   delay = 0,
   colorScheme = "teal",
   className = "",
+  whatsAppMessage,
+  whatsAppNumber = "919836472260",
 }: ServiceCardProps) {
   const accentGradient = useMemo(() => {
     const map: Record<string, string> = {
@@ -84,6 +88,12 @@ export function ServiceCard({
     return map[colorScheme] || map.teal;
   }, [colorScheme]);
 
+  const waHref = useMemo(() => {
+    const defaultMessage = whatsAppMessage || `Hi Monotosh, I'm interested in ${title}. Please help me get started.`;
+    const encoded = encodeURIComponent(defaultMessage);
+    return `https://wa.me/${whatsAppNumber}?text=${encoded}`;
+  }, [whatsAppMessage, whatsAppNumber, title]);
+
   return (
     <AnimatedSection animation="fade-up" delay={delay} duration={500}>
       <div className="relative">
@@ -112,9 +122,15 @@ export function ServiceCard({
           <p className="text-base sm:text-lg text-gray-600 mb-6 leading-relaxed mt-[-0.5rem] sm:max-w-2xl mx-auto text-center">{description}</p>
 
           <div className="flex flex-col sm:flex-row justify-center gap-3">
-            <button className={`w-full sm:w-80 px-6 py-3 ${colorClasses.button} text-white rounded-lg font-semibold transition-all duration-200`}>
+            <a
+              href={waHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`w-full sm:w-80 px-6 py-3 ${colorClasses.button} text-white rounded-lg font-semibold transition-all duration-200 text-center`}
+              aria-label={`${ctaText} via WhatsApp`}
+            >
               {ctaText}
-            </button>
+            </a>
           </div>
         </div>
         <div className="px-6 pb-6 border-t border-gray-100">
