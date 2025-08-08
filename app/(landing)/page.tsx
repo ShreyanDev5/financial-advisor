@@ -6,7 +6,7 @@ export default function Page() {
   return (
     <>
       <HomeContent />
-      <Separator className="w-1/2 mx-auto mt-16" />
+      <Separator className="w-2/3 sm:w-1/2 mx-auto mt-12 sm:mt-16" />
       <Partners />
     </>
   );

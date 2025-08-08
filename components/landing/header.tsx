@@ -34,7 +34,8 @@ export default function Header() {
             href="https://wa.me/919836472260?text=Hi%20Monotosh%2C%20I'm%20interested%20in%20your%20financial%20services"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-10 h-10 bg-gradient-to-br from-emerald-500/90 to-green-700/90 hover:from-emerald-600 hover:to-green-800 rounded-xl flex items-center justify-center shadow-sm hover:shadow-md transition-all duration-200 transform hover:scale-105 backdrop-blur-sm"
+            aria-label="Contact on WhatsApp"
+            className="w-11 h-11 bg-gradient-to-br from-emerald-500/90 to-green-700/90 hover:from-emerald-600 hover:to-green-800 rounded-xl flex items-center justify-center shadow-sm hover:shadow-md transition-all duration-200 transform hover:scale-105 backdrop-blur-sm touch-target"
           >
             <MessageCircle className="w-5 h-5 text-white" />
           </a>

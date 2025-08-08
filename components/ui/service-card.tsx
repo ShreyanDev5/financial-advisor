@@ -100,15 +100,15 @@ export function ServiceCard({
         <div className={`relative bg-white rounded-2xl shadow-medium border border-gray-100 overflow-hidden sm:text-center ${className}`}>
           <div className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${accentGradient} rounded-t-2xl`} />
         <div className="p-6">
-          <div className={`flex items-center justify-center gap-3 mb-4 ${colorClasses.text}`}>
+          <div className={`flex flex-col sm:flex-row items-center justify-center gap-3 mb-4 ${colorClasses.text}`}>
             <div
-              className={`w-16 h-16 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center ${colorClasses.bgSoft} border ${colorClasses.borderSoft}`}
+              className={`w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center ${colorClasses.bgSoft} border ${colorClasses.borderSoft}`}
               style={{ boxShadow: "inset 0 1px 6px rgba(0,0,0,0.04)" }}
             >
-              <Icon className={`w-7 h-7 sm:w-8 sm:h-8`} />
+              <Icon className={`w-6 h-6 sm:w-8 sm:h-8`} />
             </div>
-            <div>
-              <h3 className="text-xl sm:text-2xl font-bold font-serif text-slate-900 mb-0">{title}</h3>
+            <div className="text-center sm:text-left">
+              <h3 className="text-xl sm:text-2xl font-bold font-serif text-slate-900 mb-0 break-words">{title}</h3>
             </div>
           </div>
           {pricing && (
@@ -119,14 +119,14 @@ export function ServiceCard({
             </div>
           )}
 
-          <p className="text-base sm:text-lg text-gray-600 mb-6 leading-relaxed mt-[-0.5rem] sm:max-w-2xl mx-auto text-center">{description}</p>
+          <p className="text-base sm:text-lg text-gray-600 mb-6 leading-relaxed mt-[-0.5rem] sm:max-w-2xl mx-auto text-center text-pretty">{description}</p>
 
           <div className="flex flex-col sm:flex-row justify-center gap-3">
             <a
               href={waHref}
               target="_blank"
               rel="noopener noreferrer"
-              className={`w-full sm:w-80 px-6 py-3 ${colorClasses.button} text-white rounded-lg font-semibold transition-all duration-200 text-center`}
+              className={`w-full sm:w-80 px-6 py-3 min-h-11 ${colorClasses.button} text-white rounded-lg font-semibold transition-all duration-200 text-center`}
               aria-label={`${ctaText} via WhatsApp`}
             >
               {ctaText}

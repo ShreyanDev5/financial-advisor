@@ -68,7 +68,7 @@ export default function HomeContent() {
         }
         color="emerald-600 to-green-600"
       />
-      <AnimatedSection className="mx-4 sm:mx-16 mt-16 sm:mt-24">
+      <AnimatedSection className="mx-4 sm:mx-16 mt-12 sm:mt-24">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           <StatCard
             title="Happy Clients"
@@ -108,7 +108,7 @@ export default function HomeContent() {
           />
         </div>
       </AnimatedSection>
-      <Separator className="w-1/2 mx-auto" />
+      <Separator className="w-2/3 sm:w-1/2 mx-auto" />
       <AnimatedSection className="text-center">
         <div className="space-y-2 mb-8">
           <h2 className="text-3xl sm:text-4xl font-bold font-serif">Our Most In-Demand Services</h2>
@@ -116,16 +116,16 @@ export default function HomeContent() {
             Explore the trusted financial solutions our clients count on.
           </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mx-4 sm:mx-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mx-4 sm:mx-16">
           {quickServices.map((service, index) => (
             <Link href={service.href!} key={index}>
               <div
-                className={`group relative p-6 rounded-2xl transition-all duration-300 ${service.color} ${service.hoverColor} border ${service.borderColor} flex flex-col items-center text-center shadow-soft h-full overflow-hidden`}
+                className={`group relative p-5 sm:p-6 rounded-2xl transition-all duration-300 ${service.color} ${service.hoverColor} border ${service.borderColor} flex flex-col items-center text-center shadow-soft h-full overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500`}
               >
                 <div
-                  className={`p-4 rounded-xl ${service.iconColor} bg-white/90 mb-4 shadow-md ring-1 ring-white/60`}
+                  className={`p-3 sm:p-4 rounded-xl ${service.iconColor} bg-white/90 mb-3 sm:mb-4 shadow-md ring-1 ring-white/60`}
                 >
-                  <service.icon className="w-8 h-8" />
+                  <service.icon className="w-7 h-7 sm:w-8 sm:h-8" />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-800">
                   {service.title}
@@ -135,7 +135,7 @@ export default function HomeContent() {
           ))}
         </div>
       </AnimatedSection>
-      <Separator className="w-1/2 mx-auto" />
+      <Separator className="w-2/3 sm:w-1/2 mx-auto" />
       <AnimatedSection className="text-center">
         <div className="space-y-2 mb-8">
           <h2 className="text-3xl sm:text-4xl font-bold font-serif">What Our Clients Say About Us</h2>
@@ -143,7 +143,7 @@ export default function HomeContent() {
             Discover how we’ve helped others achieve lasting financial confidence.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 mx-4 sm:mx-0">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10 mx-4 sm:mx-0">
           <TestimonialCard
             name="Alice Johnson"
             role="Marketing Manager"
@@ -165,10 +165,10 @@ export default function HomeContent() {
         </div>
       </AnimatedSection>
       <Separator className="w-1/2 mx-auto" />
-      <AnimatedSection className="bg-white/50 backdrop-blur-2xl p-8 sm:p-16 rounded-2xl text-center border-4 border-emerald-600 shadow-strong mx-4 sm:mx-16">
+      <AnimatedSection className="bg-white/50 backdrop-blur-2xl p-6 sm:p-16 rounded-2xl text-center border-4 border-emerald-600 shadow-strong mx-4 sm:mx-16">
         <div className="space-y-2 mb-8">
-          <h2 className="text-3xl sm:text-4xl font-bold font-serif">Begin Your Journey to Financial Freedom</h2>
-          <p className="text-base sm:text-lg text-gray-600 max-w-4xl mx-auto mb-8">
+          <h2 className="text-3xl sm:text-4xl font-bold font-serif leading-tight">Begin Your Journey to Financial Freedom</h2>
+          <p className="text-base sm:text-lg text-gray-600 max-w-4xl mx-auto mb-8 text-pretty">
             Let’s turn your goals into a clear, confident plan.
           </p>
         </div>
@@ -177,6 +177,7 @@ export default function HomeContent() {
           target="_blank"
           rel="noopener noreferrer"
           className="inline-block"
+          aria-label="Contact us on WhatsApp"
         >
           <Button size="lg" variant="gradient-emerald">Contact Us</Button>
         </a>

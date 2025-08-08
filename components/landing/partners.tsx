@@ -31,26 +31,26 @@ const Partners = ({ className }: { className?: string }) => {
                 </div>
                 <div
                     className="w-full inline-flex flex-nowrap overflow-hidden 
-                    [mask-image:_linear-gradient(to_right,transparent_0,_black_96px,_black_calc(100%-96px),transparent_100%)]"
+                    [mask-image:_linear-gradient(to_right,transparent_0,_black_32px,_black_calc(100%-32px),transparent_100%)] sm:[mask-image:_linear-gradient(to_right,transparent_0,_black_96px,_black_calc(100%-96px),transparent_100%)]"
                 >
                     <ul 
-                        className="flex items-center justify-center md:justify-start [&_li]:mx-6 
+                        className="flex items-center justify-center md:justify-start [&_li]:mx-4 sm:[&_li]:mx-6 
                         [&_img]:max-w-none animate-infinite-scroll"
                     >
                         {partnerLogos.map((logo, index) => (
                             <li key={index}>
-                                <Image src={logo.src} alt={logo.alt} width={150} height={75} />
+                                <Image src={logo.src} alt={logo.alt} width={120} height={60} className="sm:w-[150px] sm:h-[75px] w-[120px] h-[60px] object-contain" />
                             </li>
                         ))}
                     </ul>
                     <ul 
-                        className="flex items-center justify-center md:justify-start [&_li]:mx-6 
+                        className="flex items-center justify-center md:justify-start [&_li]:mx-4 sm:[&_li]:mx-6 
                         [&_img]:max-w-none animate-infinite-scroll" 
                         aria-hidden="true"
                     >
                         {partnerLogos.map((logo, index) => (
                             <li key={index}>
-                                <Image src={logo.src} alt={logo.alt} width={150} height={75} />
+                                <Image src={logo.src} alt={logo.alt} width={120} height={60} className="sm:w-[150px] sm:h-[75px] w-[120px] h-[60px] object-contain" />
                             </li>
                         ))}
                     </ul>

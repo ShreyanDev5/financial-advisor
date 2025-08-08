@@ -46,7 +46,7 @@ export default function Footer() {
 
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-2xl border-t border-white/20 safe-area-pb z-50 shadow-2xl">
-      <div className="flex items-center justify-around py-2 px-4">
+      <div className="flex items-center justify-around py-2 px-4" role="tablist" aria-label="Primary navigation">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = (pathname === '/' && tab.id === 'home') || pathname === tab.href;
@@ -54,14 +54,14 @@ export default function Footer() {
 
           return (
             <Link href={tab.href} key={tab.id} className={`
-                flex flex-col items-center gap-1 py-2 px-3 rounded-2xl
+                flex flex-col items-center gap-1 py-2 px-3 rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white
                 transition-all duration-200 ease-out
                 transform hover:scale-105 active:scale-95
                 touch-manipulation select-none transform-gpu
                 ${tabColors.bg}
-              `}>
-              <div className={`p-2 rounded-xl transition-all duration-200 transform-gpu ${tabColors.button}`}>
-                <Icon className="w-5 h-5" />
+              `} role="tab" aria-selected={isActive} aria-label={tab.label}>
+              <div className={`p-2 rounded-xl transition-all duration-200 transform-gpu ${tabColors.button} min-w-11 min-h-11 flex items-center justify-center`}>
+                <Icon className="w-5 h-5" aria-hidden="true" />
               </div>
               <span className={`text-xs font-medium transition-colors duration-200 ${tabColors.text}`}>
                 {tab.label}

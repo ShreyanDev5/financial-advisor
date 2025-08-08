@@ -36,9 +36,9 @@ export const StatCard = ({
             <Icon className={`w-5 h-5 ${iconTextColor}`} />
           </div>
         </div>
-        <div className="text-3xl font-bold text-gray-900 mb-2">{value}</div>
+        <div className="text-3xl font-bold text-gray-900 mb-2 leading-tight">{value}</div>
       </div>
-      <p className="text-sm text-gray-500">{description}</p>
+      <p className="text-sm text-gray-500 text-pretty">{description}</p>
     </div>
   );
 };
