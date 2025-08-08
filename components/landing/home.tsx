@@ -61,7 +61,11 @@ export default function HomeContent() {
     <div className="pb-0 space-y-12 sm:space-y-16">
       <PageHeader
         title="Take Control of Your Wealth"
-                  description="Partner with Monotosh Sardar for personalized financial guidance and lasting peace of mind."
+                  description={
+          <>
+            Partner with <span className="underline-wavy font-medium">Monotosh Sardar</span> for personalized financial guidance and lasting peace of mind.
+          </>
+        }
         color="emerald-600 to-green-600"
       />
       <AnimatedSection className="mx-4 sm:mx-16 mt-16 sm:mt-24">
@@ -107,7 +111,7 @@ export default function HomeContent() {
       <Separator className="w-1/2 mx-auto" />
       <AnimatedSection className="text-center">
         <div className="space-y-2 mb-8">
-          <h2 className="text-3xl sm:text-4xl font-bold">Our Most In-Demand Services</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold font-serif">Our Most In-Demand Services</h2>
           <p className="text-base sm:text-lg text-gray-600 max-w-4xl mx-auto px-4 sm:px-0">
             Explore the trusted financial solutions our clients count on.
           </p>
@@ -116,10 +120,10 @@ export default function HomeContent() {
           {quickServices.map((service, index) => (
             <Link href={service.href!} key={index}>
               <div
-                className={`p-6 rounded-xl transition-all duration-300 ${service.color} ${service.hoverColor} border ${service.borderColor} flex flex-col items-center text-center shadow-sm h-full`}
+                className={`group relative p-6 rounded-2xl transition-all duration-300 ${service.color} ${service.hoverColor} border ${service.borderColor} flex flex-col items-center text-center shadow-soft h-full overflow-hidden`}
               >
                 <div
-                  className={`p-4 rounded-full ${service.iconColor} bg-white mb-4 shadow-md`}
+                  className={`p-4 rounded-xl ${service.iconColor} bg-white/90 mb-4 shadow-md ring-1 ring-white/60`}
                 >
                   <service.icon className="w-8 h-8" />
                 </div>
@@ -134,7 +138,7 @@ export default function HomeContent() {
       <Separator className="w-1/2 mx-auto" />
       <AnimatedSection className="text-center">
         <div className="space-y-2 mb-8">
-          <h2 className="text-3xl sm:text-4xl font-bold">What Our Clients Say About Us</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold font-serif">What Our Clients Say About Us</h2>
           <p className="text-base sm:text-lg text-gray-600">
             Discover how we’ve helped others achieve lasting financial confidence.
           </p>
@@ -163,7 +167,7 @@ export default function HomeContent() {
       <Separator className="w-1/2 mx-auto" />
       <AnimatedSection className="bg-white/50 backdrop-blur-2xl p-8 sm:p-16 rounded-2xl text-center border-4 border-emerald-600 shadow-strong mx-4 sm:mx-16">
         <div className="space-y-2 mb-8">
-          <h2 className="text-3xl sm:text-4xl font-bold">Begin Your Journey to Financial Freedom</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold font-serif">Begin Your Journey to Financial Freedom</h2>
           <p className="text-base sm:text-lg text-gray-600 max-w-4xl mx-auto mb-8">
             Let’s turn your goals into a clear, confident plan.
           </p>

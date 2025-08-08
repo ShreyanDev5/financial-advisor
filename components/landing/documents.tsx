@@ -303,39 +303,51 @@ export default function DocumentsContent() {
     <div className="container mx-auto space-y-8 px-4 sm:px-6 lg:px-8">
       <SimplePageHeader title="Document Management" description="Securely manage your financial documents with ease." className="mb-12" color="from-purple-600 to-violet-600" />
 
-            {documentServices.map((service, index) => (
-        <ServiceCard
-          className="sm:max-w-5xl sm:mx-auto"
-          key={index}
-          title={service.title}
-          description={service.description}
-          benefits={service.benefits}
-          documents={service.documents}
-          process={service.process}
-          pricing={service.pricing}
-          icon={service.icon}
-          ctaText="Apply Now"
-          colorScheme={service.colorScheme}
-          delay={index * 50}
-        />
-      ))}
+            {documentServices.map((service, index) => {
+        const card = (
+          <ServiceCard
+            className="sm:max-w-5xl sm:mx-auto"
+            title={service.title}
+            description={service.description}
+            benefits={service.benefits}
+            documents={service.documents}
+            process={service.process}
+            pricing={service.pricing}
+            icon={service.icon}
+            ctaText="Apply Now"
+            colorScheme={service.colorScheme}
+            delay={index * 50}
+          />
+        );
+        return service.title === "PAN Card Services" ? (
+          <div id="pan-card-services" className="scroll-mt-28 sm:scroll-mt-32" key={index}>{card}</div>
+        ) : (
+          <div key={index}>{card}</div>
+        );
+      })}
 
-            {taxServices.map((service, index) => (
-        <ServiceCard
-          className="sm:max-w-5xl sm:mx-auto"
-          key={index}
-          title={service.title}
-          description={service.description}
-          benefits={service.benefits}
-          documents={service.documents}
-          process={service.process}
-          pricing={service.pricing}
-          icon={service.icon}
-          ctaText="Get Started"
-          colorScheme={service.colorScheme}
-          delay={documentServices.length * 50 + index * 50}
-        />
-      ))}
+            {taxServices.map((service, index) => {
+        const card = (
+          <ServiceCard
+            className="sm:max-w-5xl sm:mx-auto"
+            title={service.title}
+            description={service.description}
+            benefits={service.benefits}
+            documents={service.documents}
+            process={service.process}
+            pricing={service.pricing}
+            icon={service.icon}
+            ctaText="Get Started"
+            colorScheme={service.colorScheme}
+            delay={documentServices.length * 50 + index * 50}
+          />
+        );
+        return service.title === "Income Tax Filing" ? (
+          <div id="income-tax-filing" className="scroll-mt-28 sm:scroll-mt-32" key={index}>{card}</div>
+        ) : (
+          <div key={index}>{card}</div>
+        );
+      })}
     </div>
   );
 }

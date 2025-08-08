@@ -19,7 +19,10 @@ export default function Footer() {
     const colors = {
       emerald: {
         bg: isActive ? "bg-gradient-to-br from-emerald-50 to-teal-50" : "",
-        button: isActive ? "bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-lg" : "text-gray-400",
+        // Match header WhatsApp icon gradient exactly
+        button: isActive
+          ? "bg-gradient-to-br from-emerald-500/90 to-green-700/90 hover:from-emerald-600 hover:to-green-800 text-white shadow-lg"
+          : "text-gray-400",
         text: isActive ? "text-emerald-600" : "text-gray-400",
       },
       blue: {

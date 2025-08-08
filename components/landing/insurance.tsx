@@ -105,19 +105,21 @@ export default function InsuranceContent() {
       <SimplePageHeader title="Insurance Services" description="Comprehensive protection for your peace of mind" className="mb-12" color="from-blue-600 to-purple-600" />
 
       {/* Health Insurance */}
-            <ServiceCard
-        className="sm:max-w-5xl sm:mx-auto"
-        title={healthInsuranceServices.title}
-        description={healthInsuranceServices.description}
-        benefits={healthInsuranceServices.benefits}
-        documents={healthInsuranceServices.documents}
-        process={healthInsuranceServices.process}
-        pricing={healthInsuranceServices.pricing}
-        icon={Heart}
-        ctaText="Get Health Quote"
-        colorScheme="emerald"
-        delay={100}
-      />
+      <div id="star-health-and-care-insurance" className="scroll-mt-28 sm:scroll-mt-32">
+        <ServiceCard
+          className="sm:max-w-5xl sm:mx-auto"
+          title={healthInsuranceServices.title}
+          description={healthInsuranceServices.description}
+          benefits={healthInsuranceServices.benefits}
+          documents={healthInsuranceServices.documents}
+          process={healthInsuranceServices.process}
+          pricing={healthInsuranceServices.pricing}
+          icon={Heart}
+          ctaText="Get Health Quote"
+          colorScheme="emerald"
+          delay={100}
+        />
+      </div>
 
       {/* Vehicle Insurance */}
       {vehicleInsuranceServices.map((service, index) => (
