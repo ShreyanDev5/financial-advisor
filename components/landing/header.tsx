@@ -19,9 +19,13 @@ export default function Header() {
               height={40}
               className="rounded-xl shadow-sm"
             />
-            <div>
-              <h1 className="text-base md:text-lg font-semibold text-gray-800">WealthWise</h1>
-              <p className="text-xs md:text-sm text-gray-600 font-semibold font-serif">Growth | Ambition | Stability</p>
+            <div className="leading-tight">
+              <h1 className="text-lg md:text-xl font-bold font-serif bg-gradient-to-r from-emerald-600 to-emerald-800 bg-clip-text text-transparent tracking-tight">
+                WealthWise
+              </h1>
+              <p className="text-[11px] md:text-xs text-gray-600/90 font-medium tracking-wider uppercase">
+                Growth <span className="mx-1 text-emerald-600">|</span> Ambition <span className="mx-1 text-emerald-600">|</span> Stability
+              </p>
             </div>
           </div>
 
