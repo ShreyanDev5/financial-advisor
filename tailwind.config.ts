@@ -32,6 +32,12 @@ const config = {
       },
     },
     extend: {
+      colors: {
+        green: {
+          DEFAULT: "#22c55e",
+          foreground: "#ffffff",
+        },
+      },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
         serif: ['Playfair Display', 'serif'],

@@ -4,6 +4,11 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  // TEMP: Improve debuggability of production-only errors
+  productionBrowserSourceMaps: true,
+  experimental: {
+    serverSourceMaps: true,
+  },
 }
 
 export default nextConfig

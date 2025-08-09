@@ -3,6 +3,7 @@
 import { TrendingUp } from "lucide-react";
 import { ServiceCard } from "@/components/ui/service-card";
 import { SimplePageHeader } from "@/components/ui/simple-page-header";
+import InvestmentCalculator from "@/components/landing/investment-calculator";
 
 export default function InvestContent() {
   const mutualFundServices = {
@@ -42,6 +43,11 @@ export default function InvestContent() {
   return (
     <div className="container mx-auto space-y-8 px-4 sm:px-6 lg:px-8">
       <SimplePageHeader title="Investment Solutions" description="Grow your wealth with our expert investment strategies." className="mb-12" color="from-orange-500 to-orange-700" />
+
+      {/* Investment Calculator */}
+      <div id="investment-calculator" className="scroll-mt-28 sm:scroll-mt-32">
+        <InvestmentCalculator />
+      </div>
 
       {/* Mutual Fund Advisory */}
       <div id="licensed-mutual-fund-advisor" className="scroll-mt-28 sm:scroll-mt-32">
