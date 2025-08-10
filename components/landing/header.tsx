@@ -23,8 +23,8 @@ export default function Header() {
               <h1 className="text-lg md:text-xl font-bold font-serif bg-gradient-to-r from-emerald-600 to-emerald-800 bg-clip-text text-transparent tracking-tight">
                 WealthWise
               </h1>
-              <p className="text-[11px] md:text-xs text-gray-600/90 font-medium tracking-wider uppercase">
-                Growth <span className="mx-1 text-emerald-600">|</span> Ambition <span className="mx-1 text-emerald-600">|</span> Stability
+              <p className="text-[11px] md:text-xs text-gray-600/90 font-medium tracking-normal md:tracking-wider uppercase">
+                Growth <span className="mx-0.5 md:mx-1 text-emerald-600">|</span> Ambition <span className="mx-0.5 md:mx-1 text-emerald-600">|</span> Stability
               </p>
             </div>
           </div>
