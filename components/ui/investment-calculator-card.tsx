@@ -5,29 +5,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
-import {
-  PieChart,
-  Pie,
-  Cell,
-  ResponsiveContainer,
-  LineChart as ReLineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip as RechartsTooltip,
-  Legend as RechartsLegend,
-} from 'recharts';
-import {
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-  ChartLegend,
-  ChartLegendContent,
-  type ChartConfig,
-} from "@/components/ui/chart";
 
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
+
+
 
 export function InvestmentCalculatorCard({ investmentType }: { investmentType: string }) {
   const [totalInvestment, setTotalInvestment] = useState("100000");
@@ -85,90 +65,9 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
     return null;
   }, [totalInvestment, investmentAmount, withdrawalAmount, expectedReturnRate, timePeriod, investmentType]);
 
-  const pieData = useMemo(() => {
-    if (!calculatedResult) return [];
-    if (investmentType === 'sip') {
-        return [
-            { name: 'Total Investment', value: calculatedResult.totalInvested },
-            { name: 'Wealth Gained', value: calculatedResult.wealthGained },
-        ];
-    }
-    if (investmentType === 'lumpsum') {
-        return [
-            { name: 'Total Investment', value: calculatedResult.totalInvested },
-            { name: 'Wealth Gained', value: calculatedResult.wealthGained },
-        ];
-    }
-    if (investmentType === 'swp') {
-        return [
-            { name: 'Total Withdrawn', value: calculatedResult.totalWithdrawn },
-            { name: 'Final Balance', value: calculatedResult.finalBalance },
-        ];
-    }
-    return [];
-}, [calculatedResult, investmentType]);
+  
 
-  type GrowthPoint = { year: string; value: number; invested: number };
-
-  const lineData = useMemo<GrowthPoint[]>(() => {
-    const annualRate = parseFloat(expectedReturnRate) / 100;
-    const years = parseInt(timePeriod);
-    if (!Number.isFinite(annualRate) || !Number.isFinite(years)) return [];
-
-    if (investmentType === 'sip') {
-      const monthly = parseFloat(investmentAmount);
-      if (!Number.isFinite(monthly)) return [];
-      const monthlyRate = annualRate / 12;
-      let value = 0;
-      let invested = 0;
-      const data: GrowthPoint[] = [];
-      for (let y = 1; y <= years; y++) {
-        for (let m = 0; m < 12; m++) {
-          value = (value + monthly) * (1 + monthlyRate);
-          invested += monthly;
-        }
-        data.push({ year: `Y${y}`, value, invested });
-      }
-      return data;
-    }
-
-    if (investmentType === 'lumpsum') {
-      const principal = parseFloat(totalInvestment);
-      if (!Number.isFinite(principal)) return [];
-      const data: GrowthPoint[] = [];
-      for (let y = 1; y <= years; y++) {
-        const value = principal * Math.pow(1 + annualRate, y);
-        data.push({ year: `Y${y}`, value, invested: principal });
-      }
-      return data;
-    }
-
-    // SWP
-    const principal = parseFloat(totalInvestment);
-    const withdrawal = parseFloat(withdrawalAmount);
-    if (!Number.isFinite(principal) || !Number.isFinite(withdrawal)) return [];
-    const monthlyRate = annualRate / 12;
-    let balance = principal;
-    const data: GrowthPoint[] = [];
-    for (let y = 1; y <= years; y++) {
-      for (let m = 0; m < 12; m++) {
-        balance = balance * (1 + monthlyRate) - withdrawal;
-      }
-      data.push({ year: `Y${y}`, value: Math.max(balance, 0), invested: principal });
-    }
-    return data;
-  }, [investmentType, investmentAmount, totalInvestment, withdrawalAmount, expectedReturnRate, timePeriod]);
-
-  const chartConfig: ChartConfig = {
-    invested: {
-      label: "Invested",
-      color: "hsl(var(--muted-foreground))",
-    },
-    value: {
-      label: investmentType === 'swp' ? 'Balance' : 'Value',
-      color: "hsl(var(--primary))",
-    },
-  };
+  
 
   return (
     <Card className="w-full max-w-5xl mx-auto bg-gradient-to-b from-background/60 to-background/40 backdrop-blur supports-[backdrop-filter]:bg-background/40 border border-border/60 shadow-xl rounded-xl">
@@ -177,7 +76,7 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="space-y-5">
+          <div className="space-y-8 ml-8">
             {investmentType === "sip" && (
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
@@ -232,18 +131,18 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
             <div className="h-6" />
 
             {calculatedResult && (
-              <div className="flex flex-col gap-4 mt-6 text-center">
+              <div className="flex flex-col gap-4 mt-6">
                 {investmentType === 'sip' && (
                   <>
-                    <div className="p-3 rounded-lg border">
+                    <div className="flex justify-between items-center p-3 rounded-lg border">
                       <p className="text-sm text-muted-foreground">Invested</p>
                       <p className="text-lg font-semibold">₹{formatAmount(calculatedResult.totalInvested)}</p>
                     </div>
-                    <div className="p-3 rounded-lg border">
+                    <div className="flex justify-between items-center p-3 rounded-lg border">
                       <p className="text-sm text-muted-foreground">Returns</p>
                       <p className="text-lg font-semibold">₹{formatAmount(calculatedResult.wealthGained)}</p>
                     </div>
-                    <div className="p-3 rounded-lg border bg-primary/10">
+                    <div className="flex justify-between items-center p-3 rounded-lg border bg-primary/10">
                       <p className="text-sm text-primary">Future Value</p>
                       <p className="text-xl font-bold text-primary">₹{formatAmount(calculatedResult.futureValue)}</p>
                     </div>
@@ -251,15 +150,15 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
                 )}
                 {investmentType === 'lumpsum' && (
                   <>
-                    <div className="p-3 rounded-lg border">
+                    <div className="flex justify-between items-center p-3 rounded-lg border">
                       <p className="text-sm text-muted-foreground">Invested</p>
                       <p className="text-lg font-semibold">₹{formatAmount(calculatedResult.totalInvested)}</p>
                     </div>
-                    <div className="p-3 rounded-lg border">
+                    <div className="flex justify-between items-center p-3 rounded-lg border">
                       <p className="text-sm text-muted-foreground">Returns</p>
                       <p className="text-lg font-semibold">₹{formatAmount(calculatedResult.wealthGained)}</p>
                     </div>
-                    <div className="p-3 rounded-lg border bg-primary/10">
+                    <div className="flex justify-between items-center p-3 rounded-lg border bg-primary/10">
                       <p className="text-sm text-primary">Future Value</p>
                       <p className="text-xl font-bold text-primary">₹{formatAmount(calculatedResult.futureValue)}</p>
                     </div>
@@ -267,15 +166,15 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
                 )}
                 {investmentType === 'swp' && (
                   <>
-                    <div className="p-3 rounded-lg border">
+                    <div className="flex justify-between items-center p-3 rounded-lg border">
                       <p className="text-sm text-muted-foreground">Invested</p>
                       <p className="text-lg font-semibold">₹{formatAmount(calculatedResult.totalInvested)}</p>
                     </div>
-                    <div className="p-3 rounded-lg border">
+                    <div className="flex justify-between items-center p-3 rounded-lg border">
                       <p className="text-sm text-muted-foreground">Withdrawn</p>
                       <p className="text-lg font-semibold">₹{formatAmount(calculatedResult.totalWithdrawn)}</p>
                     </div>
-                    <div className="p-3 rounded-lg border bg-primary/10">
+                    <div className="flex justify-between items-center p-3 rounded-lg border bg-primary/10">
                       <p className="text-sm text-primary">Final Balance</p>
                       <p className="text-xl font-bold text-primary">₹{formatAmount(calculatedResult.finalBalance)}</p>
                     </div>
@@ -287,35 +186,7 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
           <div className="flex flex-col gap-6">
             {calculatedResult && (
               <>
-                <div className="rounded-xl border p-3 w-full">
-                  <div className="text-sm font-medium mb-2">Breakdown</div>
-                  <ResponsiveContainer width="100%" height={220}>
-                    <PieChart>
-                      <Pie data={pieData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={80}>
-                        {pieData.map((_, index) => (
-                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                        ))}
-                      </Pie>
-                      <RechartsTooltip />
-                      <RechartsLegend />
-                    </PieChart>
-                  </ResponsiveContainer>
-                </div>
-
-                <div className="rounded-xl border p-3 w-full">
-                  <div className="text-sm font-medium mb-2">Growth Over Time</div>
-                  <ChartContainer config={chartConfig} className="w-full aspect-[16/10]">
-                    <ReLineChart data={lineData} margin={{ left: 8, right: 8, top: 8, bottom: 8 }}>
-                      <CartesianGrid strokeDasharray="3 3" className="stroke-border/40" />
-                      <XAxis dataKey="year" tickLine={false} axisLine={false} />
-                      <YAxis tickLine={false} axisLine={false} width={60} />
-                      <ChartTooltip content={<ChartTooltipContent />} />
-                      <ChartLegend content={<ChartLegendContent />} />
-                      <Line type="monotone" dataKey="value" stroke="var(--color-value)" strokeWidth={2} dot={false} />
-                      <Line type="monotone" dataKey="invested" stroke="var(--color-invested)" strokeWidth={2} dot={false} />
-                    </ReLineChart>
-                  </ChartContainer>
-                </div>
+                
 
                 
               </>
