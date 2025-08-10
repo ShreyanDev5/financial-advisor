@@ -287,7 +287,7 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
           <div className="flex flex-col gap-6">
             {calculatedResult && (
               <>
-                <div className="rounded-xl border p-3">
+                <div className="rounded-xl border p-3 w-full">
                   <div className="text-sm font-medium mb-2">Breakdown</div>
                   <ResponsiveContainer width="100%" height={220}>
                     <PieChart>
@@ -302,9 +302,9 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
                   </ResponsiveContainer>
                 </div>
 
-                <div className="rounded-xl border p-3">
+                <div className="rounded-xl border p-3 w-full">
                   <div className="text-sm font-medium mb-2">Growth Over Time</div>
-                  <ChartContainer config={chartConfig} className="aspect-[16/10]">
+                  <ChartContainer config={chartConfig} className="w-full aspect-[16/10]">
                     <ReLineChart data={lineData} margin={{ left: 8, right: 8, top: 8, bottom: 8 }}>
                       <CartesianGrid strokeDasharray="3 3" className="stroke-border/40" />
                       <XAxis dataKey="year" tickLine={false} axisLine={false} />
