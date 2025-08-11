@@ -15,7 +15,6 @@ import { AnimatedSection } from "@/components/ui/animated-section";
 import { TestimonialCard } from "@/components/ui/testimonial-card";
 import { PageHeader } from "@/components/ui/page-header";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 
 export default function HomeContent() {
   const quickServices = [
@@ -108,7 +107,9 @@ export default function HomeContent() {
           />
         </div>
       </AnimatedSection>
-      <Separator className="w-2/3 sm:w-1/2 mx-auto" />
+      <div className="w-2/3 sm:w-1/2 md:w-1/3 mx-auto">
+        <div className="h-px w-full bg-gray-200 dark:bg-gray-800" />
+      </div>
       <AnimatedSection className="text-center">
         <div className="space-y-2 mb-8">
           <h2 className="text-3xl sm:text-4xl font-bold font-serif">Our Most In-Demand Services</h2>
@@ -135,7 +136,9 @@ export default function HomeContent() {
           ))}
         </div>
       </AnimatedSection>
-      <Separator className="w-2/3 sm:w-1/2 mx-auto" />
+      <div className="w-2/3 sm:w-1/2 md:w-1/3 mx-auto">
+        <div className="h-px w-full bg-gray-200 dark:bg-gray-800" />
+      </div>
       <AnimatedSection className="text-center">
         <div className="space-y-2 mb-8">
           <h2 className="text-3xl sm:text-4xl font-bold font-serif">What Our Clients Say About Us</h2>
@@ -164,7 +167,9 @@ export default function HomeContent() {
           />
         </div>
       </AnimatedSection>
-      <Separator className="w-1/2 mx-auto" />
+      <div className="w-2/3 sm:w-1/2 md:w-1/3 mx-auto">
+        <div className="h-px w-full bg-gray-200 dark:bg-gray-800" />
+      </div>
       <AnimatedSection className="bg-white/50 backdrop-blur-2xl p-6 sm:p-16 rounded-2xl text-center border-4 border-emerald-600 shadow-strong mx-4 sm:mx-16">
         <div className="space-y-2 mb-8">
           <h2 className="text-3xl sm:text-4xl font-bold font-serif leading-tight">Begin Your Journey to Financial Freedom</h2>
