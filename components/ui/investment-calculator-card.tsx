@@ -6,10 +6,13 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
 
-import { PieChart, Pie, Cell, Label as RechartsLabel, Tooltip } from "recharts";
-
-
-
+type CalculatedResult = {
+  totalInvested: number;
+  wealthGained: number;
+  futureValue?: number;
+  totalWithdrawn?: number;
+  finalBalance?: number;
+} | null;
 
 export function InvestmentCalculatorCard({ investmentType }: { investmentType: string }) {
   const [isMounted, setIsMounted] = useState(false);
@@ -28,7 +31,7 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
   }), []);
   const formatAmount = (value?: number) => numberFormatter.format(Math.round(value || 0));
 
-  const calculatedResult = useMemo(() => {
+  const calculatedResult: CalculatedResult = useMemo(() => {
     const principal = parseFloat(totalInvestment);
     const monthlyInvestment = parseFloat(investmentAmount);
     const monthlyWithdrawal = parseFloat(withdrawalAmount);
@@ -71,34 +74,30 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
     return null;
   }, [totalInvestment, investmentAmount, withdrawalAmount, expectedReturnRate, timePeriod, investmentType]);
 
-  const { chartData, totalValue } = useMemo(() => {
+  const { chartData } = useMemo(() => {
     if (!calculatedResult) {
-      return { chartData: [] as { name: string; value: number; key: "invested" | "gains" }[], totalValue: 0 };
+      return { chartData: [] as { name: string; value: number; key: "invested" | "gains" }[] };
     }
 
     if (investmentType === "sip" || investmentType === "lumpsum") {
-      const invested = Math.max(0, Number((calculatedResult as any).totalInvested || 0));
-      const gains = Math.max(0, Number((calculatedResult as any).wealthGained || 0));
-      const total = Math.max(0, Number((calculatedResult as any).futureValue || invested + gains));
+      const invested = Math.max(0, Number(calculatedResult.totalInvested || 0));
+      const gains = Math.max(0, Number(calculatedResult.wealthGained || 0));
       return {
         chartData: [
           { name: "Invested", value: invested, key: "invested" },
           { name: "Returns", value: gains, key: "gains" },
         ],
-        totalValue: total,
       };
     }
 
     // SWP: minimal composition (Invested vs Gains)
-    const invested = Math.max(0, Number((calculatedResult as any).totalInvested || 0));
-    const gains = Math.max(0, Number((calculatedResult as any).wealthGained || 0));
-    const total = invested + gains; // equals finalBalance + totalWithdrawn
+    const invested = Math.max(0, Number(calculatedResult.totalInvested || 0));
+    const gains = Math.max(0, Number(calculatedResult.wealthGained || 0));
     return {
       chartData: [
         { name: "Invested", value: invested, key: "invested" },
         { name: "Gains", value: gains, key: "gains" },
       ],
-      totalValue: total,
     };
   }, [calculatedResult, investmentType]);
 
