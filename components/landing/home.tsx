@@ -107,7 +107,7 @@ export default function HomeContent() {
           />
         </div>
       </AnimatedSection>
-      <div className="w-2/3 sm:w-1/2 md:w-1/3 mx-auto">
+      <div className="w-4/5 sm:w-2/3 md:w-1/2 mx-auto">
         <div className="h-px w-full bg-gray-200 dark:bg-gray-800" />
       </div>
       <AnimatedSection className="text-center">
@@ -136,10 +136,10 @@ export default function HomeContent() {
           ))}
         </div>
       </AnimatedSection>
-      <div className="w-2/3 sm:w-1/2 md:w-1/3 mx-auto">
+      <div className="w-4/5 sm:w-2/3 md:w-1/2 mx-auto">
         <div className="h-px w-full bg-gray-200 dark:bg-gray-800" />
       </div>
-      <AnimatedSection className="text-center">
+      <AnimatedSection className="text-center mb-12 sm:mb-16">
         <div className="space-y-2 mb-8">
           <h2 className="text-3xl sm:text-4xl font-bold font-serif">What Our Clients Say About Us</h2>
           <p className="text-base sm:text-lg text-gray-600">
@@ -167,26 +167,23 @@ export default function HomeContent() {
           />
         </div>
       </AnimatedSection>
-      <div className="w-2/3 sm:w-1/2 md:w-1/3 mx-auto">
-        <div className="h-px w-full bg-gray-200 dark:bg-gray-800" />
-      </div>
-      <AnimatedSection className="bg-white/50 backdrop-blur-2xl p-6 sm:p-16 rounded-2xl text-center border-4 border-emerald-600 shadow-strong mx-4 sm:mx-16">
-        <div className="space-y-2 mb-8">
-          <h2 className="text-3xl sm:text-4xl font-bold font-serif leading-tight">Begin Your Journey to Financial Freedom</h2>
-          <p className="text-base sm:text-lg text-gray-600 max-w-4xl mx-auto mb-8 text-pretty">
-            Let’s turn your goals into a clear, confident plan.
-          </p>
-        </div>
-                <a
-          href="https://wa.me/919836472260?text=Hi%20Monotosh%2C%20I'm%20interested%20in%20your%20financial%20services"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block"
-          aria-label="Contact us on WhatsApp"
-        >
-          <Button size="lg" variant="gradient-emerald">Contact Us</Button>
-        </a>
-      </AnimatedSection>
+      <AnimatedSection className="bg-white/50 backdrop-blur-2xl p-6 sm:p-16 rounded-2xl text-center border-4 border-emerald-600 shadow-strong mx-4 sm:mx-16 mt-28 sm:mt-36 mb-24 sm:mb-32">
+          <div className="space-y-2 mb-8">
+            <h2 className="text-3xl sm:text-4xl font-bold font-serif leading-tight">Begin Your Journey to Financial Freedom</h2>
+            <p className="text-base sm:text-lg text-gray-600 max-w-4xl mx-auto mb-8 text-pretty">
+              Let’s turn your goals into a clear, confident plan.
+            </p>
+          </div>
+                  <a
+            href="https://wa.me/919836472260?text=Hi%20Monotosh%2C%20I'm%20interested%20in%20your%20financial%20services"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block"
+            aria-label="Contact us on WhatsApp"
+          >
+            <Button size="lg" variant="gradient-emerald">Contact Us</Button>
+          </a>
+        </AnimatedSection>
     </div>
   );
 }
