@@ -1,15 +1,21 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
 
+import { PieChart, Pie, Cell, Label as RechartsLabel, Tooltip } from "recharts";
+
 
 
 
 export function InvestmentCalculatorCard({ investmentType }: { investmentType: string }) {
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
   const [totalInvestment, setTotalInvestment] = useState("100000");
   const [investmentAmount, setInvestmentAmount] = useState("5000");
   const [withdrawalAmount, setWithdrawalAmount] = useState("5000");
@@ -65,14 +71,52 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
     return null;
   }, [totalInvestment, investmentAmount, withdrawalAmount, expectedReturnRate, timePeriod, investmentType]);
 
-  
+  const { chartData, totalValue } = useMemo(() => {
+    if (!calculatedResult) {
+      return { chartData: [] as { name: string; value: number; key: "invested" | "gains" }[], totalValue: 0 };
+    }
 
-  
+    if (investmentType === "sip" || investmentType === "lumpsum") {
+      const invested = Math.max(0, Number((calculatedResult as any).totalInvested || 0));
+      const gains = Math.max(0, Number((calculatedResult as any).wealthGained || 0));
+      const total = Math.max(0, Number((calculatedResult as any).futureValue || invested + gains));
+      return {
+        chartData: [
+          { name: "Invested", value: invested, key: "invested" },
+          { name: "Returns", value: gains, key: "gains" },
+        ],
+        totalValue: total,
+      };
+    }
+
+    // SWP: minimal composition (Invested vs Gains)
+    const invested = Math.max(0, Number((calculatedResult as any).totalInvested || 0));
+    const gains = Math.max(0, Number((calculatedResult as any).wealthGained || 0));
+    const total = invested + gains; // equals finalBalance + totalWithdrawn
+    return {
+      chartData: [
+        { name: "Invested", value: invested, key: "invested" },
+        { name: "Gains", value: gains, key: "gains" },
+      ],
+      totalValue: total,
+    };
+  }, [calculatedResult, investmentType]);
+
+  // Premium color scheme suitable for financial UI
+  const investedColor = "#2563eb"; // blue-600
+  const gainsColor = "#10b981"; // emerald-500
+  const hasChartData = chartData.some((d) => Number(d.value) > 0);
+  const investedValue = Math.max(0, Number(chartData.find((d) => d.key === "invested")?.value || 0));
+  const returnsValue = Math.max(0, Number(chartData.find((d) => d.key === "gains")?.value || 0));
+  const donutSize = 320;
+  const r = 96; // (outer 120 + inner 72) / 2
+  const strokeWidth = 48; // outer - inner
+  const circumference = 2 * Math.PI * r;
 
   return (
     <Card className="w-full max-w-5xl mx-auto bg-gradient-to-b from-background/60 to-background/40 backdrop-blur supports-[backdrop-filter]:bg-background/40 border border-border/60 shadow-xl rounded-xl">
       <CardHeader className="pb-2 mb-6">
-        <CardTitle className="text-center text-2xl font-bold">{investmentType.toUpperCase()} Calculator</CardTitle>
+        <CardTitle className="text-center text-xl font-bold">{investmentType.toUpperCase()} Calculator</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -128,23 +172,23 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
               <Slider value={[Number(timePeriod) || 0]} onValueChange={([v]) => setTimePeriod(String(v))} min={1} max={40} step={1} />
             </div>
 
-            <div className="h-6" />
+            <div className="h-2" />
 
             {calculatedResult && (
-              <div className="flex flex-col gap-4 mt-6">
+              <div className="flex flex-col gap-4 mt-2">
                 {investmentType === 'sip' && (
                   <>
                     <div className="flex justify-between items-center p-3 rounded-lg border">
                       <p className="text-sm text-muted-foreground">Invested</p>
-                      <p className="text-lg font-semibold">₹{formatAmount(calculatedResult.totalInvested)}</p>
+                      <p className="text-base font-semibold">₹{formatAmount(calculatedResult.totalInvested)}</p>
                     </div>
                     <div className="flex justify-between items-center p-3 rounded-lg border">
                       <p className="text-sm text-muted-foreground">Returns</p>
-                      <p className="text-lg font-semibold">₹{formatAmount(calculatedResult.wealthGained)}</p>
+                      <p className="text-base font-semibold">₹{formatAmount(calculatedResult.wealthGained)}</p>
                     </div>
                     <div className="flex justify-between items-center p-3 rounded-lg border bg-primary/10">
                       <p className="text-sm text-primary">Future Value</p>
-                      <p className="text-xl font-bold text-primary">₹{formatAmount(calculatedResult.futureValue)}</p>
+                      <p className="text-lg font-bold text-primary">₹{formatAmount(calculatedResult.futureValue)}</p>
                     </div>
                   </>
                 )}
@@ -152,15 +196,15 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
                   <>
                     <div className="flex justify-between items-center p-3 rounded-lg border">
                       <p className="text-sm text-muted-foreground">Invested</p>
-                      <p className="text-lg font-semibold">₹{formatAmount(calculatedResult.totalInvested)}</p>
+                      <p className="text-base font-semibold">₹{formatAmount(calculatedResult.totalInvested)}</p>
                     </div>
                     <div className="flex justify-between items-center p-3 rounded-lg border">
                       <p className="text-sm text-muted-foreground">Returns</p>
-                      <p className="text-lg font-semibold">₹{formatAmount(calculatedResult.wealthGained)}</p>
+                      <p className="text-base font-semibold">₹{formatAmount(calculatedResult.wealthGained)}</p>
                     </div>
                     <div className="flex justify-between items-center p-3 rounded-lg border bg-primary/10">
                       <p className="text-sm text-primary">Future Value</p>
-                      <p className="text-xl font-bold text-primary">₹{formatAmount(calculatedResult.futureValue)}</p>
+                      <p className="text-lg font-bold text-primary">₹{formatAmount(calculatedResult.futureValue)}</p>
                     </div>
                   </>
                 )}
@@ -168,15 +212,15 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
                   <>
                     <div className="flex justify-between items-center p-3 rounded-lg border">
                       <p className="text-sm text-muted-foreground">Invested</p>
-                      <p className="text-lg font-semibold">₹{formatAmount(calculatedResult.totalInvested)}</p>
+                      <p className="text-base font-semibold">₹{formatAmount(calculatedResult.totalInvested)}</p>
                     </div>
                     <div className="flex justify-between items-center p-3 rounded-lg border">
                       <p className="text-sm text-muted-foreground">Withdrawn</p>
-                      <p className="text-lg font-semibold">₹{formatAmount(calculatedResult.totalWithdrawn)}</p>
+                      <p className="text-base font-semibold">₹{formatAmount(calculatedResult.totalWithdrawn)}</p>
                     </div>
                     <div className="flex justify-between items-center p-3 rounded-lg border bg-primary/10">
                       <p className="text-sm text-primary">Final Balance</p>
-                      <p className="text-xl font-bold text-primary">₹{formatAmount(calculatedResult.finalBalance)}</p>
+                      <p className="text-lg font-bold text-primary">₹{formatAmount(calculatedResult.finalBalance)}</p>
                     </div>
                   </>
                 )}
@@ -184,13 +228,78 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
             )}
           </div>
           <div className="flex flex-col gap-6">
-            {calculatedResult && (
-              <>
-                
+            <div className="w-full flex justify-center overflow-visible" suppressHydrationWarning>
+              {!isMounted ? (
+                <div className="h-[320px] w-full max-w-[320px] animate-pulse rounded-lg bg-muted/30" />
+              ) : hasChartData ? (
+                <div className="mt-2 sm:mt-3 flex flex-col items-center">
+                <svg
+                  width={donutSize}
+                  height={donutSize}
+                  viewBox={`0 0 ${donutSize} ${donutSize}`}
+                  role="img"
+                  aria-label="Donut chart"
+                >
+                  {(() => {
+                    const invested = Math.max(0, Number(chartData.find((d) => d.key === "invested")?.value || 0));
+                    const gains = Math.max(0, Number(chartData.find((d) => d.key === "gains")?.value || 0));
+                    const total = invested + gains;
+                    if (total <= 0) return null;
 
-                
-              </>
-            )}
+                    const investedLen = (invested / total) * circumference;
+                    const gainsLen = circumference - investedLen;
+
+                    return (
+                      <g transform={`translate(${donutSize / 2}, ${donutSize / 2}) rotate(-90)`}>
+                        <circle
+                          r={r}
+                          fill="none"
+                          stroke="#e5e7eb" /* neutral track for subtle base */
+                          strokeWidth={strokeWidth}
+                          strokeLinecap="butt"
+                        />
+                        <circle
+                          r={r}
+                          fill="none"
+                          stroke={investedColor}
+                          strokeWidth={strokeWidth}
+                          strokeDasharray={`${investedLen} ${circumference - investedLen}`}
+                          strokeDashoffset={0}
+                          strokeLinecap="butt"
+                        />
+                        <circle
+                          r={r}
+                          fill="none"
+                          stroke={gainsColor}
+                          strokeWidth={strokeWidth}
+                          strokeDasharray={`${gainsLen} ${circumference - gainsLen}`}
+                          strokeDashoffset={-investedLen}
+                          strokeLinecap="butt"
+                        />
+                      </g>
+                    );
+                  })()}
+                  {/* Center label removed per requirement */}
+                </svg>
+                <div className="mt-3 flex items-center justify-center gap-6 text-sm">
+                  <div className="flex items-center gap-2">
+                    <span className="inline-block h-2.5 w-2.5 rounded-sm" style={{ backgroundColor: investedColor }} />
+                    <span className="text-muted-foreground">Invested</span>
+                    <span className="font-semibold" style={{ color: investedColor }}>₹{formatAmount(investedValue)}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="inline-block h-2.5 w-2.5 rounded-sm" style={{ backgroundColor: gainsColor }} />
+                    <span className="text-muted-foreground">Returns</span>
+                    <span className="font-semibold" style={{ color: gainsColor }}>₹{formatAmount(returnsValue)}</span>
+                  </div>
+                </div>
+                </div>
+              ) : (
+                <div className="h-[320px] w-full max-w-[320px] flex items-center justify-center rounded-lg border text-sm text-muted-foreground">
+                  Adjust inputs to see the chart
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </CardContent>

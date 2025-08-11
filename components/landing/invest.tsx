@@ -41,8 +41,13 @@ export default function InvestContent() {
   };
 
   return (
-    <div className="container mx-auto space-y-8 px-4 sm:px-6 lg:px-8">
-      <SimplePageHeader title="Investment Solutions" description="Grow your wealth with our expert investment strategies." className="mb-12" color="from-orange-500 to-orange-700" />
+    <div className="container mx-auto space-y-6 px-4 sm:px-6 lg:px-8">
+      <SimplePageHeader title="Investment Solutions" description="Grow your wealth with our expert investment strategies." className="mb-0" color="from-orange-500 to-orange-700" />
+
+      {/* Gray divider to separate sections */}
+      <div className="sm:max-w-5xl sm:mx-auto my-2">
+        <div className="h-px w-3/4 sm:w-2/3 md:w-1/2 mx-auto bg-gray-200 dark:bg-gray-800" />
+      </div>
 
       {/* Investment Calculator */}
       <div id="investment-calculator" className="scroll-mt-28 sm:scroll-mt-32">

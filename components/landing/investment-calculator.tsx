@@ -14,12 +14,12 @@ export default function InvestmentCalculator() {
   };
 
   return (
-    <div className="container mx-auto space-y-8 px-4 sm:px-6 lg:px-8">
+    <div className="container mx-auto space-y-8 px-4 sm:px-6 lg:px-8 font-sans">
       <div className="text-center">
-        <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
+        <h2 className="text-3xl sm:text-4xl font-bold font-serif tracking-tight text-gray-900 dark:text-white">
           Investment Calculator
         </h2>
-        <p className="mt-3 text-base sm:text-lg leading-7 text-gray-600 dark:text-gray-300">
+        <p className="mt-2 text-base sm:text-lg leading-7 text-gray-600 dark:text-gray-300">
           Estimate your returns for SIP, Lump Sum, and SWP with beautiful visuals.
         </p>
       </div>
