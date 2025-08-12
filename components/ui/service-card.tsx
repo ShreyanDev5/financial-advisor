@@ -112,7 +112,7 @@ export function ServiceCard({
             </div>
           </div>
           {pricing && (
-            <div className="mb-2">
+            <div className="mb-2 text-center">
               <span className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium text-emerald-700 border-emerald-200 bg-emerald-50/70">
                 {pricing}
               </span>
