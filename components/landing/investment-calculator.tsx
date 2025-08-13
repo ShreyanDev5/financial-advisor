@@ -29,28 +29,27 @@ export default function InvestmentCalculator() {
           type="single"
           value={investmentType}
           onValueChange={(val) => val && handleInvestmentTypeChange(val)}
-          className="bg-muted/60 backdrop-blur supports-[backdrop-filter]:bg-muted/40 rounded-full p-1 border shadow-sm"
+          className="bg-muted/60 backdrop-blur supports-[backdrop-filter]:bg-muted/40 rounded-full p-1 border shadow-sm sm:p-1.5"
           variant="outline"
-          size="lg"
         >
           <ToggleGroupItem
             value="sip"
             aria-label="SIP"
-            className="rounded-full data-[state=on]:bg-gradient-to-r data-[state=on]:from-orange-500 data-[state=on]:to-red-500 data-[state=on]:text-white data-[state=on]:shadow-lg data-[state=on]:ring-1 data-[state=on]:ring-black/10"
+            className="rounded-full data-[state=on]:bg-gradient-to-r data-[state=on]:from-orange-500 data-[state=on]:to-red-500 data-[state=on]:text-white data-[state=on]:shadow-lg data-[state=on]:ring-1 data-[state=on]:ring-black/10 h-9 px-3 min-w-9 sm:h-11 sm:px-5 sm:min-w-11"
           >
             <Coins className="mr-2 h-4 w-4" /> SIP
           </ToggleGroupItem>
           <ToggleGroupItem
             value="lumpsum"
             aria-label="Lump Sum"
-            className="rounded-full data-[state=on]:bg-gradient-to-r data-[state=on]:from-orange-500 data-[state=on]:to-red-500 data-[state=on]:text-white data-[state=on]:shadow-lg data-[state=on]:ring-1 data-[state=on]:ring-black/10"
+            className="rounded-full data-[state=on]:bg-gradient-to-r data-[state=on]:from-orange-500 data-[state=on]:to-red-500 data-[state=on]:text-white data-[state=on]:shadow-lg data-[state=on]:ring-1 data-[state=on]:ring-black/10 h-9 px-3 min-w-9 sm:h-11 sm:px-5 sm:min-w-11"
           >
             <LineChartIcon className="mr-2 h-4 w-4" /> Lump Sum
           </ToggleGroupItem>
           <ToggleGroupItem
             value="swp"
             aria-label="SWP"
-            className="rounded-full data-[state=on]:bg-gradient-to-r data-[state=on]:from-orange-500 data-[state=on]:to-red-500 data-[state=on]:text-white data-[state=on]:shadow-lg data-[state=on]:ring-1 data-[state=on]:ring-black/10"
+            className="rounded-full data-[state=on]:bg-gradient-to-r data-[state=on]:from-orange-500 data-[state=on]:to-red-500 data-[state=on]:text-white data-[state=on]:shadow-lg data-[state=on]:ring-1 data-[state=on]:ring-black/10 h-9 px-3 min-w-9 sm:h-11 sm:px-5 sm:min-w-11"
           >
             <Wallet className="mr-2 h-4 w-4" /> SWP
           </ToggleGroupItem>
