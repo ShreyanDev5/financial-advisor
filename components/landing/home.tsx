@@ -174,7 +174,7 @@ export default function HomeContent() {
         <div className="space-y-2 mb-8">
           <h2 className="text-3xl sm:text-4xl font-bold font-serif leading-tight">Begin Your Journey to Financial Freedom</h2>
           <p className="text-base sm:text-lg text-gray-600 max-w-4xl mx-auto mb-8 text-pretty">
-            Let's turn your goals into a clear, confident plan.
+            Let&apos;s turn your goals into a clear, confident plan.
           </p>
         </div>
         <a
