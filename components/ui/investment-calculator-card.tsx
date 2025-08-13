@@ -107,9 +107,9 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
   const hasChartData = chartData.some((d) => Number(d.value) > 0);
   const investedValue = Math.max(0, Number(chartData.find((d) => d.key === "invested")?.value || 0));
   const returnsValue = Math.max(0, Number(chartData.find((d) => d.key === "gains")?.value || 0));
-  const donutSize = 320;
-  const r = 96; // (outer 120 + inner 72) / 2
-  const strokeWidth = 48; // outer - inner
+  const donutSize = 240; // Reduced size for mobile
+  const r = 72; // Adjusted radius for smaller donut ( (outer 96 + inner 48) / 2 )
+  const strokeWidth = 48; // outer - inner (keeping the same thickness ratio)
   const circumference = 2 * Math.PI * r;
 
   return (
@@ -119,21 +119,21 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="space-y-8 ml-8">
+          <div className="space-y-8 md:ml-8">
             {investmentType === "sip" && (
               <div className="space-y-2">
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                   <Label htmlFor="investmentAmount">Monthly Investment (₹)</Label>
-                  <Input id="investmentAmount" inputMode="numeric" value={investmentAmount} onChange={(e) => setInvestmentAmount(e.target.value)} className="w-36" />
+                  <Input id="investmentAmount" inputMode="numeric" value={investmentAmount} onChange={(e) => setInvestmentAmount(e.target.value)} className="w-full sm:w-36" />
                 </div>
                 <Slider value={[Number(investmentAmount) || 0]} onValueChange={([v]) => setInvestmentAmount(String(Math.round(v)))} min={500} max={200000} step={500} />
               </div>
             )}
             {investmentType === "lumpsum" && (
               <div className="space-y-2">
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                   <Label htmlFor="totalInvestment">Total Investment (₹)</Label>
-                  <Input id="totalInvestment" inputMode="numeric" value={totalInvestment} onChange={(e) => setTotalInvestment(e.target.value)} className="w-36" />
+                  <Input id="totalInvestment" inputMode="numeric" value={totalInvestment} onChange={(e) => setTotalInvestment(e.target.value)} className="w-full sm:w-36" />
                 </div>
                 <Slider value={[Number(totalInvestment) || 0]} onValueChange={([v]) => setTotalInvestment(String(Math.round(v)))} min={10000} max={5000000} step={10000} />
               </div>
@@ -141,32 +141,32 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
             {investmentType === "swp" && (
               <>
                 <div className="space-y-2">
-                  <div className="flex items-center justify-between">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                     <Label htmlFor="totalInvestment">Total Investment (₹)</Label>
-                    <Input id="totalInvestment" inputMode="numeric" value={totalInvestment} onChange={(e) => setTotalInvestment(e.target.value)} className="w-36" />
+                    <Input id="totalInvestment" inputMode="numeric" value={totalInvestment} onChange={(e) => setTotalInvestment(e.target.value)} className="w-full sm:w-36" />
                   </div>
                   <Slider value={[Number(totalInvestment) || 0]} onValueChange={([v]) => setTotalInvestment(String(Math.round(v)))} min={10000} max={5000000} step={10000} />
                 </div>
                 <div className="space-y-2">
-                  <div className="flex items-center justify-between">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                     <Label htmlFor="withdrawalAmount">Monthly Withdrawal (₹)</Label>
-                    <Input id="withdrawalAmount" inputMode="numeric" value={withdrawalAmount} onChange={(e) => setWithdrawalAmount(e.target.value)} className="w-36" />
+                    <Input id="withdrawalAmount" inputMode="numeric" value={withdrawalAmount} onChange={(e) => setWithdrawalAmount(e.target.value)} className="w-full sm:w-36" />
                   </div>
                   <Slider value={[Number(withdrawalAmount) || 0]} onValueChange={([v]) => setWithdrawalAmount(String(Math.round(v)))} min={1000} max={200000} step={500} />
                 </div>
               </>
             )}
             <div className="space-y-2">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <Label htmlFor="expectedReturnRate">Expected Return Rate (% p.a.)</Label>
-                <Input id="expectedReturnRate" inputMode="numeric" value={expectedReturnRate} onChange={(e) => setExpectedReturnRate(e.target.value)} className="w-24" />
+                <Input id="expectedReturnRate" inputMode="numeric" value={expectedReturnRate} onChange={(e) => setExpectedReturnRate(e.target.value)} className="w-full sm:w-24" />
               </div>
               <Slider value={[Number(expectedReturnRate) || 0]} onValueChange={([v]) => setExpectedReturnRate(String(v))} min={1} max={24} step={0.5} />
             </div>
             <div className="space-y-2 mb-6">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <Label htmlFor="timePeriod">Time Period (Years)</Label>
-                <Input id="timePeriod" inputMode="numeric" value={timePeriod} onChange={(e) => setTimePeriod(e.target.value)} className="w-24" />
+                <Input id="timePeriod" inputMode="numeric" value={timePeriod} onChange={(e) => setTimePeriod(e.target.value)} className="w-full sm:w-24" />
               </div>
               <Slider value={[Number(timePeriod) || 0]} onValueChange={([v]) => setTimePeriod(String(v))} min={1} max={40} step={1} />
             </div>
@@ -229,13 +229,14 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
           <div className="flex flex-col gap-6">
             <div className="w-full flex justify-center overflow-visible" suppressHydrationWarning>
               {!isMounted ? (
-                <div className="h-[320px] w-full max-w-[320px] animate-pulse rounded-lg bg-muted/30" />
+                <div className="h-[240px] w-full max-w-[240px] md:h-[320px] md:max-w-[320px] animate-pulse rounded-lg bg-muted/30" />
               ) : hasChartData ? (
                 <div className="mt-2 sm:mt-3 flex flex-col items-center">
                 <svg
                   width={donutSize}
                   height={donutSize}
                   viewBox={`0 0 ${donutSize} ${donutSize}`}
+                  className="w-60 h-60 md:w-80 md:h-80"
                   role="img"
                   aria-label="Donut chart"
                 >
@@ -280,7 +281,7 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
                   })()}
                   {/* Center label removed per requirement */}
                 </svg>
-                <div className="mt-3 flex items-center justify-center gap-6 text-sm">
+                <div className="mt-3 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 text-sm">
                   <div className="flex items-center gap-2">
                     <span className="inline-block h-2.5 w-2.5 rounded-sm" style={{ backgroundColor: investedColor }} />
                     <span className="text-muted-foreground">Invested</span>
@@ -294,7 +295,7 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
                 </div>
                 </div>
               ) : (
-                <div className="h-[320px] w-full max-w-[320px] flex items-center justify-center rounded-lg border text-sm text-muted-foreground">
+                <div className="h-[240px] w-full max-w-[240px] md:h-[320px] md:max-w-[320px] flex items-center justify-center rounded-lg border text-sm text-muted-foreground">
                   Adjust inputs to see the chart
                 </div>
               )}
