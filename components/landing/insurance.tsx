@@ -102,7 +102,7 @@ export default function InsuranceContent() {
 
   return (
     <div className="container mx-auto space-y-8 px-4 sm:px-6 lg:px-8">
-      <SimplePageHeader title="Insurance Services" description="Comprehensive protection for your peace of mind" className="mb-12" color="from-blue-600 to-purple-600" />
+      <SimplePageHeader title="Insurance Services" description="Comprehensive protection for your peace of mind" className="mb-12 [&>h1]:text-4xl sm:[&>h1]:text-6xl" color="from-blue-600 to-purple-600" />
 
       {/* Health Insurance */}
       <div id="star-health-and-care-insurance" className="scroll-mt-28 sm:scroll-mt-32">

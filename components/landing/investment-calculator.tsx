@@ -19,7 +19,7 @@ export default function InvestmentCalculator() {
         <h2 className="text-2xl sm:text-4xl font-bold font-serif tracking-tight text-gray-900 dark:text-white">
           Investment Calculator
         </h2>
-        <p className="mt-2 text-base sm:text-lg leading-7 text-gray-600 dark:text-gray-300">
+        <p className="mt-2 text-sm sm:text-base leading-7 text-gray-600 dark:text-gray-300">
           Estimate your returns for SIP, Lump Sum, and SWP with beautiful visuals.
         </p>
       </div>
