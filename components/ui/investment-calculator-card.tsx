@@ -118,13 +118,13 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
         <CardTitle className="text-center text-xl font-bold">{investmentType.toUpperCase()} Calculator</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="space-y-8 md:ml-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+          <div className="space-y-6 sm:space-y-8 md:ml-0">
             {investmentType === "sip" && (
               <div className="space-y-2">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                  <Label htmlFor="investmentAmount">Monthly Investment (₹)</Label>
-                  <Input id="investmentAmount" inputMode="numeric" value={investmentAmount} onChange={(e) => setInvestmentAmount(e.target.value)} className="w-full sm:w-36" />
+                  <Label htmlFor="investmentAmount" className="text-sm sm:text-base">Monthly Investment (₹)</Label>
+                  <Input id="investmentAmount" inputMode="numeric" value={investmentAmount} onChange={(e) => setInvestmentAmount(e.target.value)} className="w-full sm:w-36 md:w-40" />
                 </div>
                 <Slider value={[Number(investmentAmount) || 0]} onValueChange={([v]) => setInvestmentAmount(String(Math.round(v)))} min={500} max={200000} step={500} />
               </div>
@@ -132,8 +132,8 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
             {investmentType === "lumpsum" && (
               <div className="space-y-2">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                  <Label htmlFor="totalInvestment">Total Investment (₹)</Label>
-                  <Input id="totalInvestment" inputMode="numeric" value={totalInvestment} onChange={(e) => setTotalInvestment(e.target.value)} className="w-full sm:w-36" />
+                  <Label htmlFor="totalInvestment" className="text-sm sm:text-base">Total Investment (₹)</Label>
+                  <Input id="totalInvestment" inputMode="numeric" value={totalInvestment} onChange={(e) => setTotalInvestment(e.target.value)} className="w-full sm:w-36 md:w-40" />
                 </div>
                 <Slider value={[Number(totalInvestment) || 0]} onValueChange={([v]) => setTotalInvestment(String(Math.round(v)))} min={10000} max={5000000} step={10000} />
               </div>
@@ -142,15 +142,15 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
               <>
                 <div className="space-y-2">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                    <Label htmlFor="totalInvestment">Total Investment (₹)</Label>
-                    <Input id="totalInvestment" inputMode="numeric" value={totalInvestment} onChange={(e) => setTotalInvestment(e.target.value)} className="w-full sm:w-36" />
+                    <Label htmlFor="totalInvestment" className="text-sm sm:text-base">Total Investment (₹)</Label>
+                    <Input id="totalInvestment" inputMode="numeric" value={totalInvestment} onChange={(e) => setTotalInvestment(e.target.value)} className="w-full sm:w-36 md:w-40" />
                   </div>
                   <Slider value={[Number(totalInvestment) || 0]} onValueChange={([v]) => setTotalInvestment(String(Math.round(v)))} min={10000} max={5000000} step={10000} />
                 </div>
                 <div className="space-y-2">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                    <Label htmlFor="withdrawalAmount">Monthly Withdrawal (₹)</Label>
-                    <Input id="withdrawalAmount" inputMode="numeric" value={withdrawalAmount} onChange={(e) => setWithdrawalAmount(e.target.value)} className="w-full sm:w-36" />
+                    <Label htmlFor="withdrawalAmount" className="text-sm sm:text-base">Monthly Withdrawal (₹)</Label>
+                    <Input id="withdrawalAmount" inputMode="numeric" value={withdrawalAmount} onChange={(e) => setWithdrawalAmount(e.target.value)} className="w-full sm:w-36 md:w-40" />
                   </div>
                   <Slider value={[Number(withdrawalAmount) || 0]} onValueChange={([v]) => setWithdrawalAmount(String(Math.round(v)))} min={1000} max={200000} step={500} />
                 </div>
@@ -158,15 +158,15 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
             )}
             <div className="space-y-2">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                <Label htmlFor="expectedReturnRate">Expected Return Rate (% p.a.)</Label>
-                <Input id="expectedReturnRate" inputMode="numeric" value={expectedReturnRate} onChange={(e) => setExpectedReturnRate(e.target.value)} className="w-full sm:w-24" />
+                <Label htmlFor="expectedReturnRate" className="text-sm sm:text-base">Expected Return Rate (% p.a.)</Label>
+                <Input id="expectedReturnRate" inputMode="numeric" value={expectedReturnRate} onChange={(e) => setExpectedReturnRate(e.target.value)} className="w-full sm:w-24 md:w-28" />
               </div>
               <Slider value={[Number(expectedReturnRate) || 0]} onValueChange={([v]) => setExpectedReturnRate(String(v))} min={1} max={24} step={0.5} />
             </div>
             <div className="space-y-2 mb-6">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                <Label htmlFor="timePeriod">Time Period (Years)</Label>
-                <Input id="timePeriod" inputMode="numeric" value={timePeriod} onChange={(e) => setTimePeriod(e.target.value)} className="w-full sm:w-24" />
+                <Label htmlFor="timePeriod" className="text-sm sm:text-base">Time Period (Years)</Label>
+                <Input id="timePeriod" inputMode="numeric" value={timePeriod} onChange={(e) => setTimePeriod(e.target.value)} className="w-full sm:w-24 md:w-28" />
               </div>
               <Slider value={[Number(timePeriod) || 0]} onValueChange={([v]) => setTimePeriod(String(v))} min={1} max={40} step={1} />
             </div>
@@ -174,55 +174,10 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
             <div className="h-2" />
 
             {calculatedResult && (
-              <div className="flex flex-col gap-4 mt-2">
-                {investmentType === 'sip' && (
-                  <>
-                    <div className="flex justify-between items-center p-3 rounded-lg border">
-                      <p className="text-sm text-muted-foreground">Invested</p>
-                      <p className="text-base font-semibold">₹{formatAmount(calculatedResult.totalInvested)}</p>
-                    </div>
-                    <div className="flex justify-between items-center p-3 rounded-lg border">
-                      <p className="text-sm text-muted-foreground">Returns</p>
-                      <p className="text-base font-semibold">₹{formatAmount(calculatedResult.wealthGained)}</p>
-                    </div>
-                    <div className="flex justify-between items-center p-3 rounded-lg border bg-primary/10">
-                      <p className="text-sm text-primary">Future Value</p>
-                      <p className="text-lg font-bold text-primary">₹{formatAmount(calculatedResult.futureValue)}</p>
-                    </div>
-                  </>
-                )}
-                {investmentType === 'lumpsum' && (
-                  <>
-                    <div className="flex justify-between items-center p-3 rounded-lg border">
-                      <p className="text-sm text-muted-foreground">Invested</p>
-                      <p className="text-base font-semibold">₹{formatAmount(calculatedResult.totalInvested)}</p>
-                    </div>
-                    <div className="flex justify-between items-center p-3 rounded-lg border">
-                      <p className="text-sm text-muted-foreground">Returns</p>
-                      <p className="text-base font-semibold">₹{formatAmount(calculatedResult.wealthGained)}</p>
-                    </div>
-                    <div className="flex justify-between items-center p-3 rounded-lg border bg-primary/10">
-                      <p className="text-sm text-primary">Future Value</p>
-                      <p className="text-lg font-bold text-primary">₹{formatAmount(calculatedResult.futureValue)}</p>
-                    </div>
-                  </>
-                )}
-                {investmentType === 'swp' && (
-                  <>
-                    <div className="flex justify-between items-center p-3 rounded-lg border">
-                      <p className="text-sm text-muted-foreground">Invested</p>
-                      <p className="text-base font-semibold">₹{formatAmount(calculatedResult.totalInvested)}</p>
-                    </div>
-                    <div className="flex justify-between items-center p-3 rounded-lg border">
-                      <p className="text-sm text-muted-foreground">Withdrawn</p>
-                      <p className="text-base font-semibold">₹{formatAmount(calculatedResult.totalWithdrawn)}</p>
-                    </div>
-                    <div className="flex justify-between items-center p-3 rounded-lg border bg-primary/10">
-                      <p className="text-sm text-primary">Final Balance</p>
-                      <p className="text-lg font-bold text-primary">₹{formatAmount(calculatedResult.finalBalance)}</p>
-                    </div>
-                  </>
-                )}
+              <div className="mt-2">
+                <div className="text-center text-sm text-muted-foreground hidden">
+                  Adjust the inputs to see how they affect your returns
+                </div>
               </div>
             )}
           </div>
@@ -231,7 +186,7 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
               {!isMounted ? (
                 <div className="h-[240px] w-full max-w-[240px] md:h-[320px] md:max-w-[320px] animate-pulse rounded-lg bg-muted/30" />
               ) : hasChartData ? (
-                <div className="mt-2 sm:mt-3 flex flex-col items-center">
+                <div className="mt-2 sm:mt-3 flex flex-col items-center w-full px-2">
                 <svg
                   width={donutSize}
                   height={donutSize}
@@ -281,7 +236,7 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
                   })()}
                   {/* Center label removed per requirement */}
                 </svg>
-                <div className="mt-3 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 text-sm">
+                <div className="mt-3 flex flex-col items-center justify-center gap-2 sm:gap-3 text-sm">
                   <div className="flex items-center gap-2">
                     <span className="inline-block h-2.5 w-2.5 rounded-sm" style={{ backgroundColor: investedColor }} />
                     <span className="text-muted-foreground">Invested</span>
@@ -292,6 +247,21 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
                     <span className="text-muted-foreground">Returns</span>
                     <span className="font-semibold" style={{ color: gainsColor }}>₹{formatAmount(returnsValue)}</span>
                   </div>
+                  {calculatedResult && (
+                    <div className="flex items-center gap-2 pt-3 mt-3 border-t border-muted text-base">
+                      <span className="inline-block h-2.5 w-2.5 rounded-sm bg-primary" />
+                      <span className="text-primary font-medium">
+                        {investmentType === 'swp' ? 'Final Balance' : 'Future Value'}
+                      </span>
+                      <span className="font-bold text-primary text-lg">
+                        ₹{formatAmount(
+                          investmentType === 'sip' ? calculatedResult.futureValue :
+                          investmentType === 'lumpsum' ? calculatedResult.futureValue :
+                          calculatedResult.finalBalance
+                        )}
+                      </span>
+                    </div>
+                  )}
                 </div>
                 </div>
               ) : (
