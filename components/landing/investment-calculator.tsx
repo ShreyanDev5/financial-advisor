@@ -14,8 +14,8 @@ export default function InvestmentCalculator() {
   };
 
   return (
-    <div className="container mx-auto space-y-8 px-4 sm:px-6 lg:px-8 font-sans">
-      <div className="text-center">
+    <div className="container mx-auto space-y-8 px-0 sm:px-6 lg:px-8 font-sans">
+      <div className="text-center px-4 sm:px-0">
         <h2 className="text-2xl sm:text-4xl font-bold font-serif tracking-tight text-gray-900 dark:text-white">
           Investment Calculator
         </h2>
@@ -24,7 +24,7 @@ export default function InvestmentCalculator() {
         </p>
       </div>
 
-      <div className="flex justify-center">
+      <div className="flex justify-center px-4 sm:px-0">
         <ToggleGroup
           type="single"
           value={investmentType}
@@ -56,7 +56,9 @@ export default function InvestmentCalculator() {
         </ToggleGroup>
       </div>
 
-      <InvestmentCalculatorCard investmentType={investmentType} key={investmentType} />
+      <div className="px-4 sm:px-0">
+        <InvestmentCalculatorCard investmentType={investmentType} key={investmentType} />
+      </div>
     </div>
   );
 }
