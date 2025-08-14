@@ -119,7 +119,7 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-          <div className="space-y-6 sm:space-y-8 md:ml-0">
+          <div className="space-y-6 sm:space-y-8 md:ml-4">
             {investmentType === "sip" && (
               <div className="space-y-2">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
@@ -181,7 +181,7 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
               </div>
             )}
           </div>
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-6 -mt-8">
             <div className="w-full flex justify-center overflow-visible" suppressHydrationWarning>
               {!isMounted ? (
                 <div className="h-[240px] w-full max-w-[240px] md:h-[320px] md:max-w-[320px] animate-pulse rounded-lg bg-muted/30" />
@@ -236,24 +236,59 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
                   })()}
                   {/* Center label removed per requirement */}
                 </svg>
-                <div className="mt-3 flex flex-col items-center justify-center gap-2 sm:gap-3 text-sm">
-                  <div className="flex items-center gap-2">
-                    <span className="inline-block h-2.5 w-2.5 rounded-sm" style={{ backgroundColor: investedColor }} />
-                    <span className="text-muted-foreground">Invested</span>
+                {/* Desktop View */}
+                <div className="hidden md:flex items-center justify-center gap-4 sm:gap-6 text-sm">
+                  <div className="flex flex-col gap-2 sm:gap-3">
+                    <div className="flex items-center gap-2">
+                      <span className="inline-block h-2.5 w-2.5 rounded-sm" style={{ backgroundColor: investedColor }} />
+                      <span className="text-muted-foreground">Invested</span>
+                      <span className="font-semibold" style={{ color: investedColor }}>₹{formatAmount(investedValue)}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="inline-block h-2.5 w-2.5 rounded-sm" style={{ backgroundColor: gainsColor }} />
+                      <span className="text-muted-foreground">Returns</span>
+                      <span className="font-semibold" style={{ color: gainsColor }}>₹{formatAmount(returnsValue)}</span>
+                    </div>
+                  </div>
+
+                  <div className="text-5xl font-thin text-muted-foreground">{`}`}</div>
+
+                  {calculatedResult && (
+                    <div className="flex flex-col items-start">
+                      <div className="flex items-center gap-2">
+                        <span className="text-primary font-medium">
+                          {investmentType === 'swp' ? 'Final Balance' : 'Future Value'}
+                        </span>
+                      </div>
+                      <span className="font-bold text-primary text-xl">
+                        ₹{formatAmount(
+                          investmentType === 'sip' ? calculatedResult.futureValue :
+                          investmentType === 'lumpsum' ? calculatedResult.futureValue :
+                          calculatedResult.finalBalance
+                        )}
+                      </span>
+                    </div>
+                  )}
+                </div>
+
+                {/* Mobile View */}
+                <div className="flex flex-col items-center justify-center gap-2 sm:gap-3 text-sm md:hidden">
+                  <div className="flex flex-col items-center gap-2">
+                    <span className="text-muted-foreground">Invested Amount</span>
                     <span className="font-semibold" style={{ color: investedColor }}>₹{formatAmount(investedValue)}</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <span className="inline-block h-2.5 w-2.5 rounded-sm" style={{ backgroundColor: gainsColor }} />
-                    <span className="text-muted-foreground">Returns</span>
+                  <div className="text-2xl font-thin text-muted-foreground">+</div>
+                  <div className="flex flex-col items-center gap-2">
+                    <span className="text-muted-foreground">Total Returns</span>
                     <span className="font-semibold" style={{ color: gainsColor }}>₹{formatAmount(returnsValue)}</span>
                   </div>
+                  <hr className="w-full my-2 border-muted" />
                   {calculatedResult && (
-                    <div className="flex items-center gap-2 pt-3 mt-3 border-t border-muted text-base">
-                      <span className="inline-block h-2.5 w-2.5 rounded-sm bg-primary" />
+                    <div className="flex flex-col items-center">
                       <span className="text-primary font-medium">
                         {investmentType === 'swp' ? 'Final Balance' : 'Future Value'}
                       </span>
-                      <span className="font-bold text-primary text-lg">
+                      <span className="font-bold text-primary text-xl">
                         ₹{formatAmount(
                           investmentType === 'sip' ? calculatedResult.futureValue :
                           investmentType === 'lumpsum' ? calculatedResult.futureValue :
