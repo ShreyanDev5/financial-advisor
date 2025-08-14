@@ -317,6 +317,7 @@ export default function DocumentsContent() {
             ctaText="Apply Now"
             colorScheme={service.colorScheme}
             delay={index * 50}
+            animation="elegant-fade"
             whatsAppMessage={`Hi Monotosh, I'm interested in ${service.title}. Please help me apply.`}
           />
         );
@@ -341,6 +342,7 @@ export default function DocumentsContent() {
             ctaText="Get Started"
             colorScheme={service.colorScheme}
             delay={documentServices.length * 50 + index * 50}
+            animation="elegant-fade"
             whatsAppMessage={`Hi Monotosh, I'm interested in ${service.title}. Please help me get started.`}
           />
         );

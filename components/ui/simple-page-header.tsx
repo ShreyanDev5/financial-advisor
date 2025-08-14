@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 export function SimplePageHeader({ title, description, color = 'blue-600 to-purple-600', className }: { title: string; description: string; color?: string, className?: string }) {
   return (
     <AnimatedSection
-      animation="fade-up"
+      animation="elegant-fade"
       delay={0}
       duration={400}
       className={cn("text-center pt-4 pb-2 sm:pt-6 sm:pb-4", className)}

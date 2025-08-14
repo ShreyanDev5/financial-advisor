@@ -117,7 +117,8 @@ export default function InsuranceContent() {
           icon={Heart}
           ctaText="Get Started"
           colorScheme="emerald"
-          delay={100}
+          delay={0}
+          animation="elegant-fade"
           whatsAppMessage={`Hi Monotosh, I'm interested in ${healthInsuranceServices.title}. Please help me get started.`}
         />
       </div>
@@ -136,7 +137,8 @@ export default function InsuranceContent() {
           icon={service.icon}
           ctaText="Get Started"
           colorScheme={service.colorScheme}
-          delay={200 + index * 100}
+          delay={50 + index * 50}
+          animation="elegant-fade"
           whatsAppMessage={`Hi Monotosh, I'm interested in ${service.title}. Please help me get started.`}
         />
       ))}

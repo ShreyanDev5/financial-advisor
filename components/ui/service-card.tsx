@@ -15,6 +15,7 @@ interface ServiceCardProps {
   icon: React.ElementType;
   ctaText?: string;
   delay?: number;
+  animation?: "fade-up" | "fade-in" | "slide-left" | "slide-right" | "scale-in" | "elegant-fade";
   colorScheme?: string;
   className?: string;
   whatsAppMessage?: string;
@@ -31,6 +32,7 @@ export function ServiceCard({
   icon: Icon,
   ctaText = "Get Started",
   delay = 0,
+  animation = "fade-up",
   colorScheme = "teal",
   className = "",
   whatsAppMessage,
@@ -95,7 +97,7 @@ export function ServiceCard({
   }, [whatsAppMessage, whatsAppNumber, title]);
 
   return (
-    <AnimatedSection animation="fade-up" delay={delay} duration={500}>
+    <AnimatedSection animation={animation} delay={delay} duration={500}>
       <div className="relative">
         <div className={`relative bg-white rounded-2xl shadow-medium border border-gray-100 overflow-hidden sm:text-center ${className}`}>
           <div className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${accentGradient} rounded-t-2xl`} />

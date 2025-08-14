@@ -67,7 +67,8 @@ export default function InvestContent() {
           icon={TrendingUp}
           ctaText="Start Investing"
           colorScheme="blue"
-          delay={100}
+          delay={0}
+          animation="elegant-fade"
           whatsAppMessage={`Hi Monotosh, I'm interested in ${mutualFundServices.title}. I'd like to start investing.`}
         />
       </div>

@@ -21,8 +21,8 @@ export function useIntersectionObserver(options = {}): [React.MutableRefObject<H
         }
       },
       {
-        threshold: 0.05, // Reduced threshold for faster triggering
-        rootMargin: "100px 0px", // Increased root margin for earlier triggering
+        threshold: 0.01, // Even lower threshold for faster triggering
+        rootMargin: "120px 0px", // Increased root margin for earlier triggering
         ...options,
       }
     );
