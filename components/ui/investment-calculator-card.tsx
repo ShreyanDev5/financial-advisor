@@ -238,6 +238,8 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
                 </svg>
                 {/* Add minimal spacing for mobile screens */}
                 <div className="md:hidden h-2"></div>
+                {/* Add small spacing for desktop screens */}
+                <div className="hidden md:block h-4"></div>
                 {/* Desktop View */}
                 <div className="hidden md:flex items-center justify-center gap-4 sm:gap-6 text-base">
                   <div className="flex flex-col gap-2 sm:gap-3">

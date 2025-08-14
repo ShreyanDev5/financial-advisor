@@ -44,7 +44,7 @@ export default function InvestmentCalculator() {
             <ToggleGroupItem
               value="lumpsum"
               aria-label="Lump Sum"
-              className="rounded-full data-[state=on]:bg-gradient-to-r data-[state=on]:from-orange-500 data-[state=on]:to-red-500 data-[state=on]:text-white data-[state=on]:shadow-lg data-[state=on]:ring-1 data-[state=on]:ring-black/10 h-9 px-4 min-w-[6rem] sm:h-11 sm:px-5 sm:min-w-11"
+              className="rounded-full data-[state=on]:bg-gradient-to-r data-[state=on]:from-orange-500 data-[state=on]:to-red-500 data-[state=on]:text-white data-[state=on]:shadow-lg data-[state=on]:ring-1 data-[state=on]:ring-black/10 h-9 px-4 min-w-[6rem] sm:h-11 sm:px-5 sm:min-w-11 leading-tight"
             >
               <LineChartIcon className="mr-2 h-4 w-4" /> Lump Sum
             </ToggleGroupItem>
