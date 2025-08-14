@@ -121,54 +121,54 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           <div className="space-y-6 sm:space-y-8 md:ml-4">
             {investmentType === "sip" && (
-              <div className="space-y-2">
+              <div className="space-y-2 sm:space-y-2">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                   <Label htmlFor="investmentAmount" className="text-sm sm:text-base">Monthly Investment (₹)</Label>
                   <Input id="investmentAmount" inputMode="numeric" value={investmentAmount} onChange={(e) => setInvestmentAmount(e.target.value)} className="w-full sm:w-36 md:w-40" />
                 </div>
-                <Slider value={[Number(investmentAmount) || 0]} onValueChange={([v]) => setInvestmentAmount(String(Math.round(v)))} min={500} max={200000} step={500} />
+                <Slider value={[Number(investmentAmount) || 0]} onValueChange={([v]) => setInvestmentAmount(String(Math.round(v)))} min={500} max={200000} step={500} className="[&>span:first-child]:h-2 [&>span:first-child]:rounded-full [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:shadow-md" />
               </div>
             )}
             {investmentType === "lumpsum" && (
-              <div className="space-y-2">
+              <div className="space-y-2 sm:space-y-2">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                   <Label htmlFor="totalInvestment" className="text-sm sm:text-base">Total Investment (₹)</Label>
                   <Input id="totalInvestment" inputMode="numeric" value={totalInvestment} onChange={(e) => setTotalInvestment(e.target.value)} className="w-full sm:w-36 md:w-40" />
                 </div>
-                <Slider value={[Number(totalInvestment) || 0]} onValueChange={([v]) => setTotalInvestment(String(Math.round(v)))} min={10000} max={5000000} step={10000} />
+                <Slider value={[Number(totalInvestment) || 0]} onValueChange={([v]) => setTotalInvestment(String(Math.round(v)))} min={10000} max={5000000} step={10000} className="[&>span:first-child]:h-2 [&>span:first-child]:rounded-full [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:shadow-md" />
               </div>
             )}
             {investmentType === "swp" && (
               <>
-                <div className="space-y-2">
+                <div className="space-y-2 sm:space-y-2">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                     <Label htmlFor="totalInvestment" className="text-sm sm:text-base">Total Investment (₹)</Label>
                     <Input id="totalInvestment" inputMode="numeric" value={totalInvestment} onChange={(e) => setTotalInvestment(e.target.value)} className="w-full sm:w-36 md:w-40" />
                   </div>
-                  <Slider value={[Number(totalInvestment) || 0]} onValueChange={([v]) => setTotalInvestment(String(Math.round(v)))} min={10000} max={5000000} step={10000} />
+                  <Slider value={[Number(totalInvestment) || 0]} onValueChange={([v]) => setTotalInvestment(String(Math.round(v)))} min={10000} max={5000000} step={10000} className="[&>span:first-child]:h-2 [&>span:first-child]:rounded-full [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:shadow-md" />
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-2 sm:space-y-2">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                     <Label htmlFor="withdrawalAmount" className="text-sm sm:text-base">Monthly Withdrawal (₹)</Label>
                     <Input id="withdrawalAmount" inputMode="numeric" value={withdrawalAmount} onChange={(e) => setWithdrawalAmount(e.target.value)} className="w-full sm:w-36 md:w-40" />
                   </div>
-                  <Slider value={[Number(withdrawalAmount) || 0]} onValueChange={([v]) => setWithdrawalAmount(String(Math.round(v)))} min={1000} max={200000} step={500} />
+                  <Slider value={[Number(withdrawalAmount) || 0]} onValueChange={([v]) => setWithdrawalAmount(String(Math.round(v)))} min={1000} max={200000} step={500} className="[&>span:first-child]:h-2 [&>span:first-child]:rounded-full [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:shadow-md" />
                 </div>
               </>
             )}
-            <div className="space-y-2">
+            <div className="space-y-2 sm:space-y-2">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <Label htmlFor="expectedReturnRate" className="text-sm sm:text-base">Expected Return Rate (% p.a.)</Label>
                 <Input id="expectedReturnRate" inputMode="numeric" value={expectedReturnRate} onChange={(e) => setExpectedReturnRate(e.target.value)} className="w-full sm:w-24 md:w-28" />
               </div>
-              <Slider value={[Number(expectedReturnRate) || 0]} onValueChange={([v]) => setExpectedReturnRate(String(v))} min={1} max={24} step={0.5} />
+              <Slider value={[Number(expectedReturnRate) || 0]} onValueChange={([v]) => setExpectedReturnRate(String(v))} min={1} max={24} step={0.5} className="[&>span:first-child]:h-2 [&>span:first-child]:rounded-full [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:shadow-md" />
             </div>
-            <div className="space-y-2 mb-6">
+            <div className="space-y-2 sm:space-y-2 mb-6">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <Label htmlFor="timePeriod" className="text-sm sm:text-base">Time Period (Years)</Label>
                 <Input id="timePeriod" inputMode="numeric" value={timePeriod} onChange={(e) => setTimePeriod(e.target.value)} className="w-full sm:w-24 md:w-28" />
               </div>
-              <Slider value={[Number(timePeriod) || 0]} onValueChange={([v]) => setTimePeriod(String(v))} min={1} max={40} step={1} />
+              <Slider value={[Number(timePeriod) || 0]} onValueChange={([v]) => setTimePeriod(String(v))} min={1} max={40} step={1} className="[&>span:first-child]:h-2 [&>span:first-child]:rounded-full [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:shadow-md" />
             </div>
 
             <div className="h-2" />
