@@ -8,7 +8,7 @@ export default function DocumentsContent() {
   const documentServices = [
     {
       title: "PAN Card Services",
-      description: "New PAN card applications and corrections with fast processing and doorstep delivery.",
+      description: "New PAN card applications and corrections with fast processing from India's leading financial services provider.",
       benefits: [
         "New PAN card application",
         "PAN card corrections and updates",
@@ -37,7 +37,7 @@ export default function DocumentsContent() {
     },
     {
       title: "Voter ID Services",
-      description: "Voter ID card registration and corrections for Indian citizens above 18 years.",
+      description: "Voter ID card registration and corrections for Indian citizens above 18 years from a trusted service provider.",
       benefits: [
         "New voter registration",
         "Voter ID corrections",
@@ -66,7 +66,7 @@ export default function DocumentsContent() {
     },
     {
       title: "Aadhaar Card Services",
-      description: "Aadhaar enrollment and update services with biometric verification.",
+      description: "Aadhaar enrollment and update services with biometric verification from India's leading service provider.",
       benefits: [
         "New Aadhaar enrollment",
         "Aadhaar updates and corrections",
@@ -95,7 +95,7 @@ export default function DocumentsContent() {
     },
     {
       title: "Ration Card Services",
-      description: "Ration card application for accessing subsidized food grains under PDS.",
+      description: "Ration card application for accessing subsidized food grains under PDS from a trusted government service provider.",
       benefits: [
         "New ration card application",
         "Ration card corrections",
@@ -125,7 +125,7 @@ export default function DocumentsContent() {
     },
     {
       title: "Driving License & Motor Vehicle Services",
-      description: "Complete driving license and vehicle registration services with RTO assistance.",
+      description: "Complete driving license and vehicle registration services with RTO assistance from India's leading service provider.",
       benefits: [
         "Learner's license application",
         "Permanent driving license",
@@ -155,7 +155,7 @@ export default function DocumentsContent() {
     },
     {
       title: "Birth Certificate Services",
-      description: "Birth certificate registration and corrections for legal documentation.",
+      description: "Birth certificate registration and corrections for legal documentation from a trusted government service provider.",
       benefits: [
         "Birth registration services",
         "Birth certificate corrections",
@@ -184,7 +184,7 @@ export default function DocumentsContent() {
     },
     {
       title: "Trade License Services",
-      description: "Trade license registration for businesses and commercial establishments.",
+      description: "Trade license registration for businesses and commercial establishments from a trusted government service provider.",
       benefits: [
         "New trade license application",
         "License renewal services",
@@ -217,7 +217,7 @@ export default function DocumentsContent() {
   const taxServices = [
     {
       title: "Income Tax Filing",
-      description: "Professional income tax return filing services for individuals and businesses.",
+      description: "Professional income tax return filing services for individuals and businesses from a trusted financial advisor.",
       benefits: [
         "ITR filing for all categories",
         "Tax planning and optimization",
@@ -247,7 +247,7 @@ export default function DocumentsContent() {
     },
     {
       title: "Professional Tax Services",
-      description: "Professional tax registration and compliance for employees and professionals.",
+      description: "Professional tax registration and compliance for employees and professionals from a trusted service provider.",
       benefits: [
         "Professional tax registration",
         "Monthly return filing",
@@ -270,7 +270,7 @@ export default function DocumentsContent() {
     },
     {
       title: "Agreement Services",
-      description: "Legal agreement drafting and documentation services for various purposes.",
+      description: "Legal agreement drafting and documentation services for various purposes from a trusted legal service provider.",
       benefits: [
         "Rental agreement drafting",
         "Partnership agreements",

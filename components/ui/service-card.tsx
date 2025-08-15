@@ -121,14 +121,14 @@ export function ServiceCard({
             </div>
           )}
 
-          <p className="text-base sm:text-lg text-gray-600 mb-6 leading-relaxed mt-[-0.5rem] sm:max-w-2xl mx-auto text-center text-pretty">{description}</p>
+          <p className="text-sm sm:text-base text-gray-600 mb-5 leading-snug mt-[-0.25rem] sm:max-w-2xl mx-auto text-center">{description}</p>
 
           <div className="flex flex-col sm:flex-row justify-center gap-3">
             <a
               href={waHref}
               target="_blank"
               rel="noopener noreferrer"
-              className={`w-full sm:w-80 px-6 py-3 min-h-11 ${colorClasses.button} text-white rounded-lg font-semibold transition-all duration-200 text-center`}
+              className={`w-full sm:w-80 px-5 py-2.5 min-h-10 ${colorClasses.button} text-white rounded-lg font-semibold transition-all duration-200 text-center text-sm sm:text-base`}
               aria-label={`${ctaText} via WhatsApp`}
             >
               {ctaText}

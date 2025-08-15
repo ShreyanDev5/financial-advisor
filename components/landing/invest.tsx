@@ -8,8 +8,7 @@ import InvestmentCalculator from "@/components/landing/investment-calculator";
 export default function InvestContent() {
   const mutualFundServices = {
     title: "Licensed Mutual Fund Advisor",
-    description:
-      "Professional mutual fund advisory services with AMFI certification to help you build wealth through systematic investments.",
+    description: "Professional mutual fund advisory services with AMFI certification from a trusted financial advisor.",
     benefits: [
       "AMFI certified advisory services",
       "Personalized portfolio management",

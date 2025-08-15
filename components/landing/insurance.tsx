@@ -8,8 +8,7 @@ import { SimplePageHeader } from "@/components/ui/simple-page-header";
 export default function InsuranceContent() {
   const healthInsuranceServices = {
     title: "Star Health and Care Insurance",
-    description:
-      "Comprehensive health insurance solutions from Star Health, one of India's leading health insurance providers.",
+    description: "Comprehensive health insurance from Star Health, a leading provider in India.",
     benefits: [
       "Cashless treatment at 14,000+ network hospitals",
       "Coverage for pre and post hospitalization expenses",
@@ -39,8 +38,7 @@ export default function InsuranceContent() {
   const vehicleInsuranceServices = [
     {
       title: "Two-Wheeler Insurance",
-      description:
-        "Comprehensive insurance coverage for your motorcycle or scooter with third-party and own damage protection.",
+      description: "Comprehensive insurance coverage for your motorcycle or scooter from a leading provider in India.",
       benefits: [
         "Third-party liability coverage (mandatory)",
         "Own damage coverage for accidents, theft, fire",
@@ -70,7 +68,7 @@ export default function InsuranceContent() {
     },
     {
       title: "Four-Wheeler Insurance",
-      description: "Complete car insurance protection with comprehensive coverage options and add-on benefits.",
+      description: "Complete car insurance protection with comprehensive coverage options from a leading provider in India.",
       benefits: [
         "Comprehensive coverage for car damage",
         "Third-party liability protection",
