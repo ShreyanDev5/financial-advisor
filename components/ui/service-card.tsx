@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo } from "react";
-import { CheckCircle, FileText, UserRoundCheck } from "lucide-react";
+import { Banknote, CheckCircle, FileText, UserRoundCheck } from "lucide-react";
 import { AnimatedSection } from "./animated-section";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
@@ -193,9 +193,16 @@ export function ServiceCard({
 
             {pricing && (
               <AccordionItem value="pricing" className="border-b-0">
-                <AccordionTrigger className="text-slate-900">Pricing</AccordionTrigger>
+                <AccordionTrigger className="text-slate-900">
+                  Pricing
+                </AccordionTrigger>
                 <AccordionContent>
-                  <p className="text-gray-700">{pricing}</p>
+                  <ul className="grid gap-2 text-left">
+                    <li className="flex items-start gap-2 text-gray-700">
+                      <Banknote className={`w-4 h-4 ${colorClasses.icon} mt-1 flex-shrink-0`} />
+                      <span>{pricing}</span>
+                    </li>
+                  </ul>
                 </AccordionContent>
               </AccordionItem>
             )}
