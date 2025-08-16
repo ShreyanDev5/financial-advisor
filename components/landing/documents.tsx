@@ -1,6 +1,6 @@
 'use client';
 
-import { CreditCard, UserCheck, FileCheck, Building, Car, Baby, Briefcase, Calculator, FileText, ScrollText } from "lucide-react";
+import { CreditCard, UserCheck, FileCheck, Building, Car, Baby, Briefcase, Calculator, FileText, ScrollText, ShieldCheck, BookUser, Stamp, Landmark, Handshake, Receipt, Search, UserPlus, HeartHandshake } from "lucide-react";
 import { ServiceCard } from "@/components/ui/service-card";
 import { SimplePageHeader } from "@/components/ui/simple-page-header";
 
@@ -8,303 +8,317 @@ export default function DocumentsContent() {
   const documentServices = [
     {
       title: "PAN Card Services",
-      description: "New PAN card applications and corrections with fast processing from India's leading financial services provider.",
+      description: "New PAN, e-PAN, Corrections, Re-issue of Lost Card, Aadhaar-PAN Linking.",
       benefits: [
-        "New PAN card application",
-        "PAN card corrections and updates",
-        "Duplicate PAN card issuance",
-        "Online application tracking",
-        "Doorstep delivery available",
-        "Expert assistance throughout",
+        "New PAN, e-PAN, Corrections, Re-issue of Lost Card, Aadhaar-PAN Linking.",
       ],
       documents: [
-        "Identity proof (Aadhaar, Passport, Voter ID)",
-        "Address proof (Utility bills, Aadhaar)",
-        "Date of birth proof",
-        "Passport size photographs",
-        "Form 49A (for new) or 49AA (for corrections)",
+        "Individual: Aadhaar Card, proof of address, two passport-size photos.",
+        "Organization: Registration certificate, ID of the authorized person.",
       ],
       process: [
-        "Document verification and form filling",
-        "Online application submission",
-        "Payment of processing fees",
-        "Acknowledgment receipt generation",
-        "PAN card delivery within 15-20 days",
+        "Select the required service.",
+        "Fill out the application form.",
+        "Submit the necessary documents.",
+        "Receive your e-PAN, followed by the physical card by post.",
       ],
-      pricing: "₹107 for new application",
+      pricing: "New PAN (Individual): ₹250, e-PAN + Physical Card: ₹300, PAN Correction: ₹250 (+ ₹50 for each additional correction), Lost PAN Re-issue: ₹250, Aadhaar-PAN Linking: ₹1,150, Organization/Company PAN: ₹550",
       icon: CreditCard,
       colorScheme: "purple",
     },
     {
-      title: "Voter ID Services",
-      description: "Voter ID card registration and corrections for Indian citizens above 18 years from a trusted service provider.",
+      title: "Aadhaar Card Services",
+      description: "New Enrolment, Address/Mobile/Name Updates, PVC Card, e-Aadhaar Download.",
       benefits: [
-        "New voter registration",
-        "Voter ID corrections",
-        "Address change in voter list",
-        "Duplicate voter ID issuance",
-        "Online status tracking",
-        "Complete documentation support",
+        "New Enrolment, Address/Mobile/Name Updates, PVC Card, e-Aadhaar Download.",
       ],
       documents: [
-        "Age proof (Birth certificate, Passport)",
-        "Address proof (Utility bills, Aadhaar)",
-        "Identity proof (Aadhaar, PAN)",
-        "Passport size photographs",
-        "Form 6 (new registration) or Form 8 (corrections)",
+        "Mobile number linked to Aadhaar (for OTP-based updates).",
+        "Proof of Identity (PAN, Voter ID, Passport).",
+        "Proof of Address (Utility Bill, Bank Statement).",
+        "Birth Certificate for new enrolments.",
       ],
       process: [
-        "Eligibility verification",
-        "Form filling and documentation",
-        "Online application submission",
-        "Field verification by officials",
-        "Voter ID card issuance",
+        "Book an appointment if biometrics are required.",
+        "Complete the application form for the desired service.",
+        "Attend the appointment for fingerprint, iris scan, and photo capture.",
+        "Track status with your enrolment number and download the e-Aadhaar upon approval.",
       ],
-      pricing: "Free of cost",
+      pricing: "New Aadhaar Enrolment: ₹200, Address Update: ₹250, Any Correction: ₹250 (+ ₹50 for each additional correction), Aadhaar PVC Card: ₹100, Download + Lamination: ₹60",
       icon: UserCheck,
       colorScheme: "blue",
     },
     {
-      title: "Aadhaar Card Services",
-      description: "Aadhaar enrollment and update services with biometric verification from India's leading service provider.",
+      title: "Voter ID Card Services",
+      description: "New Card Application, Corrections, Address Change, Aadhaar/Mobile Linking.",
       benefits: [
-        "New Aadhaar enrollment",
-        "Aadhaar updates and corrections",
-        "Mobile number and email updates",
-        "Address change services",
-        "Biometric updates",
-        "Aadhaar PVC card ordering",
+        "New Card Application, Corrections, Address Change, Aadhaar/Mobile Linking.",
       ],
       documents: [
-        "Proof of Identity (POI)",
-        "Proof of Address (POA)",
-        "Date of birth proof (POB)",
-        "Relationship proof (for children)",
-        "Existing Aadhaar (for updates)",
+        "Aadhaar card with a linked mobile number.",
+        "PAN or Ration Card.",
+        "Recent passport-size photo.",
       ],
       process: [
-        "Document verification",
-        "Biometric data capture",
-        "Demographic data entry",
-        "Application submission",
-        "Aadhaar generation within 90 days",
+        "Start the online application with a ₹100 advance payment.",
+        "Complete the form and upload the required documents.",
+        "Track your application with the acknowledgement number.",
+        "Once approved, download the e-Voter ID or receive the physical card.",
       ],
-      pricing: "₹50 for new enrollment",
+      pricing: "New Voter Card: ₹200 (₹100 advance is non-refundable if rejected), Aadhaar or Mobile Linking: ₹50, Address Change/Correction: ₹200 (+ ₹50 for each additional correction), Download + Lamination: ₹100",
       icon: FileCheck,
       colorScheme: "orange",
     },
     {
       title: "Ration Card Services",
-      description: "Ration card application for accessing subsidized food grains under PDS from a trusted government service provider.",
+      description: "New Card Application, Add/Remove Member, Corrections, Aadhaar/Mobile Linking, Dealer Change.",
       benefits: [
-        "New ration card application",
-        "Ration card corrections",
-        "Addition/deletion of family members",
-        "Duplicate ration card issuance",
-        "Category change applications",
-        "Complete application support",
+        "New Card Application, Add/Remove Member, Corrections, Aadhaar/Mobile Linking, Dealer Change.",
       ],
       documents: [
-        "Family income certificate",
-        "Address proof documents",
-        "Identity proof of all members",
-        "Aadhaar cards of family members",
-        "Bank account details",
-        "Passport size photographs",
+        "Aadhaar card with a linked mobile number for all relevant family members.",
+        "Birth certificate for children.",
+        "Proof of family head and relationships.",
+        "Income and residential certificates (for new family creation).",
       ],
       process: [
-        "Eligibility assessment",
-        "Application form completion",
-        "Document submission",
-        "Verification by officials",
-        "Ration card issuance",
+        "Choose the required service and complete the online form.",
+        "Upload all supporting documents.",
+        "Check the status after approximately 20 days using your application reference.",
+        "Download the e-Ration card upon approval.",
       ],
-      pricing: "₹15 application fee",
+      pricing: "New Ration Card: ₹250, Aadhaar or Mobile Linking: ₹50, Address/Dealer Change: ₹200 / ₹150, Correction: ₹200 (+ ₹50 per extra category), New Family Creation: ₹300 per person.",
       icon: Building,
       colorScheme: "emerald",
     },
     {
-      title: "Driving License & Motor Vehicle Services",
-      description: "Complete driving license and vehicle registration services with RTO assistance from India's leading service provider.",
-      benefits: [
-        "Learner's license application",
-        "Permanent driving license",
-        "License renewal services",
-        "Vehicle registration",
-        "RC transfer services",
-        "NOC and other RTO services",
-      ],
+      title: "Birth Certificate Services",
+      description: "New Application, Corrections, Download & Lamination.",
+      benefits: ["New Application, Corrections, Download & Lamination."],
       documents: [
-        "Age proof documents",
-        "Address proof documents",
-        "Medical certificate (if required)",
-        "Passport size photographs",
-        "Previous license (for renewal)",
-        "Vehicle documents (for registration)",
+        "New Application: Birth proof from the hospital, parents' Aadhaar/Voter cards, Form-1 attested by Panchayat/Councilor.",
+        "Correction: Existing birth certificate, child's and parents' ID proofs.",
       ],
       process: [
-        "Document verification",
-        "Online application submission",
-        "Test scheduling (if required)",
-        "Fee payment",
-        "License/RC issuance",
+        "Fill out the online application or correction form.",
+        "Upload hospital proof and supporting ID documents.",
+        "Track the application with the acknowledgement number and download upon approval.",
       ],
-      pricing: "₹200 for learner's license",
+      pricing: "New Birth Certificate: ₹500, Correction of Certificate: ₹500, Download + Lamination: ₹150",
+      icon: Baby,
+      colorScheme: "purple",
+    },
+  ];
+
+  const drivingLicenceServices = [
+    {
+      title: "New Driving Licence",
+      description: "Legally drive two, three, four-wheelers, or commercial vehicles. Support with booking, mock tests, and RTO visits.",
+      benefits: ["Legally drive two, three, four-wheelers, or commercial vehicles. Support with booking, mock tests, and RTO visits."],
+      documents: ["Aadhaar Card (mandatory), Voter ID, blood group details, fitness certificate (if age > 40), passport-size photos."],
+      process: [
+        "Choose the vehicle category.",
+        "Complete the application and upload documents.",
+        "Book a driving test date.",
+        "Attend the RTO for the learner and final driving tests.",
+        "Receive your driving licence upon passing.",
+      ],
+      pricing: "Two-Wheeler: ₹2,500, Four-Wheeler: ₹3,000, Two + Four Wheeler: ₹4,800, Commercial/Heavy Vehicle: ₹4,100",
       icon: Car,
       colorScheme: "blue",
     },
     {
-      title: "Birth Certificate Services",
-      description: "Birth certificate registration and corrections for legal documentation from a trusted government service provider.",
-      benefits: [
-        "Birth registration services",
-        "Birth certificate corrections",
-        "Duplicate certificate issuance",
-        "Late registration assistance",
-        "Online application support",
-        "Fast processing available",
-      ],
-      documents: [
-        "Hospital discharge summary",
-        "Parents' identity proof",
-        "Parents' address proof",
-        "Marriage certificate of parents",
-        "Affidavit (for late registration)",
-      ],
+      title: "Licence Renewal, Corrections & Duplicates",
+      description: "Renewal, Name/Address/DOB Correction, Duplicate/Lost Licence Replacement.",
+      benefits: ["Renewal, Name/Address/DOB Correction, Duplicate/Lost Licence Replacement."],
+      documents: ["Original driving licence, Aadhaar, Voter ID, photos. For lost licences, an FIR is required."],
       process: [
-        "Document collection and verification",
-        "Application form completion",
-        "Submission to registrar office",
-        "Verification process",
-        "Certificate issuance",
+        "Apply for the specific service online or at the RTO.",
+        "Submit required documents (and FIR/affidavit where needed).",
+        "A driving re-test is mandatory if the licence has been expired for over one year.",
+        "Receive the updated or duplicate licence.",
       ],
-      pricing: "₹50 for registration",
-      icon: Baby,
-      colorScheme: "purple",
-    },
-    {
-      title: "Trade License Services",
-      description: "Trade license registration for businesses and commercial establishments from a trusted government service provider.",
-      benefits: [
-        "New trade license application",
-        "License renewal services",
-        "License modifications",
-        "NOC assistance",
-        "Compliance support",
-        "Expert guidance throughout",
-      ],
-      documents: [
-        "Business registration documents",
-        "Property ownership/rental agreement",
-        "Identity and address proof",
-        "NOC from fire department",
-        "Pollution clearance certificate",
-        "Partnership deed (if applicable)",
-      ],
-      process: [
-        "Business eligibility assessment",
-        "Documentation preparation",
-        "Application submission",
-        "Inspection by authorities",
-        "License issuance",
-      ],
-      pricing: "Varies by business type",
-      icon: Briefcase,
+      pricing: "Renewal (Private Vehicle): ₹1,800 (plus fines if expired), Name Correction: ₹2,550 (includes newspaper ad + affidavit), Address/DOB Correction: ₹1,850 (includes affidavit), Lost Licence Replacement: ₹2,550 (includes Lalbazar report + affidavit)",
+      icon: UserPlus,
       colorScheme: "orange",
     },
   ];
 
-  const taxServices = [
+  const vehicleRegistrationServices = [
     {
-      title: "Income Tax Filing",
-      description: "Professional income tax return filing services for individuals and businesses from a trusted financial advisor.",
-      benefits: [
-        "ITR filing for all categories",
-        "Tax planning and optimization",
-        "Refund processing assistance",
-        "Notice handling support",
-        "TDS return filing",
-        "Expert tax consultation",
-      ],
-      documents: [
-        "Form 16/16A (salary/other income)",
-        "Bank statements",
-        "Investment proofs",
-        "Property documents",
-        "Business books (for business income)",
-        "Previous year ITR",
-      ],
+      title: "Ownership (Name) Transfer",
+      description: "Legally transfer vehicle ownership from seller to buyer.",
+      benefits: ["Legally transfer vehicle ownership from seller to buyer."],
+      documents: ["Original RC, insurance, PUC, buyer & seller IDs, signed Forms 29 & 30, NOC from financier (if under loan)."],
       process: [
-        "Income and investment analysis",
-        "Tax calculation and planning",
-        "ITR preparation and review",
-        "Online filing and verification",
-        "Acknowledgment and refund tracking",
+        "Complete and sign Forms 29 & 30.",
+        "Submit all required documents to the RTO.",
+        "Pay the transfer fee and await processing.",
+        "A new RC is issued in the buyer's name.",
       ],
-      pricing: "₹500 onwards",
-      icon: Calculator,
+      pricing: "Two-Wheeler (Example): Approx. ₹4,500. Note: Fees for larger vehicles may vary.",
+      icon: Handshake,
       colorScheme: "emerald",
     },
     {
-      title: "Professional Tax Services",
-      description: "Professional tax registration and compliance for employees and professionals from a trusted service provider.",
-      benefits: [
-        "Professional tax registration",
-        "Monthly return filing",
-        "Compliance management",
-        "Penalty avoidance",
-        "Expert consultation",
-        "Timely reminders",
-      ],
-      documents: ["Employment certificate", "Salary certificate", "PAN card", "Aadhaar card", "Bank account details"],
+      title: "Other Vehicle Services",
+      description: "RC / Smart Card Issuance, MV Road Tax Payment, Certificate of Fitness (CF), Fine / Penalty Payment.",
+      benefits: ["RC / Smart Card Issuance, MV Road Tax Payment, Certificate of Fitness (CF), Fine / Penalty Payment."],
+      documents: [],
+      process: [],
+      pricing: "RC / Smart Card Issuance: Approx. ₹1,000, MV Road Tax Payment: Admin fees range from ₹150 to ₹750 (plus actual tax amount), Certificate of Fitness (CF): Approx. ₹3,500 (for 2-wheelers, others may vary), Fine / Penalty Payment: Varies by offence.",
+      icon: Receipt,
+      colorScheme: "red",
+    },
+  ];
+
+  const businessAndLegalServices = [
+    {
+      title: "Trade License",
+      description: "Obtain legal permission to operate your business at a specified location. Required for compliance and other permits.",
+      benefits: ["Obtain legal permission to operate your business at a specified location. Required for compliance and other permits."],
+      documents: ["Identity proof (Aadhaar, PAN), property tax receipt or rent agreement, contact details."],
       process: [
-        "Registration with authorities",
-        "Monthly tax calculation",
-        "Return preparation and filing",
-        "Payment processing",
-        "Compliance monitoring",
+        "Complete the new registration or renewal application.",
+        "Attach all required documents.",
+        "We submit the application and follow up until approval.",
+        "Receive your trade licence certificate.",
       ],
-      pricing: "₹200 per month",
-      icon: FileText,
-      colorScheme: "blue",
+      pricing: "New Registration: Panchayat/Municipality (₹500), Corporation (₹1,000). Renewal: Panchayat/Municipality (₹300), Corporation (₹500). Note: Government fees are separate and vary by business type.",
+      icon: Briefcase,
+      colorScheme: "orange",
     },
     {
-      title: "Agreement Services",
-      description: "Legal agreement drafting and documentation services for various purposes from a trusted legal service provider.",
-      benefits: [
-        "Rental agreement drafting",
-        "Partnership agreements",
-        "Service agreements",
-        "Employment contracts",
-        "Legal consultation",
-        "Stamp paper arrangements",
-      ],
-      documents: [
-        "Party identification documents",
-        "Property documents (if applicable)",
-        "Terms and conditions",
-        "Witness details",
-        "Stamp paper",
-      ],
+      title: "Agreements & Affidavits",
+      description: "Professionally drafted, legally valid documents prepared by experienced lawyers.",
+      benefits: ["Rent agreements, business agreements, sale agreements, judicial and non-judicial affidavits."],
+      documents: [],
       process: [
-        "Requirement understanding",
-        "Agreement drafting",
-        "Review and modifications",
-        "Stamp paper execution",
-        "Registration (if required)",
+        "Share the document type and details of the parties involved.",
+        "A draft is prepared for your review.",
+        "The final document is signed and attested (notary or magistrate).",
       ],
-      pricing: "₹1,000 onwards",
+      pricing: "Fees vary based on document complexity and attestation requirements. Please contact us for a firm quote.",
       icon: ScrollText,
       colorScheme: "purple",
     },
+    {
+      title: "Professional Tax (P.Tax)",
+      description: "Ensure compliance with state-level tax for professionals and businesses to avoid penalties.",
+      benefits: ["Ensure compliance with state-level tax for professionals and businesses to avoid penalties."],
+      documents: [],
+      process: [
+        "Determine applicability based on your state and income slab.",
+        "Register on the state's professional tax portal.",
+        "File returns and pay tax by the due dates.",
+      ],
+      pricing: "Monthly income ₹10,001–₹15,000: ₹110/month. Monthly income ₹15,001–₹25,000: ₹130/month. Monthly income ₹25,001–₹40,000: ₹150/month. Monthly income above ₹40,001: ₹200/month. Note: Slabs and rates vary by state.",
+      icon: FileText,
+      colorScheme: "blue",
+    },
   ];
+
+  const incomeTaxFilingServices = [
+    {
+      title: "Income Tax Filing Services",
+      description: "CA-guided filing for accuracy, including TDS and AIS review.",
+      benefits: [
+        "Compliance: File returns on time to avoid penalties.",
+        "Loan & Credit Support: ITRs are crucial for loan and credit card applications.",
+        "Expert Guidance: CA-guided filing for accuracy, including TDS and AIS review.",
+        "Custom Plans: Packages for salaried individuals, business owners, and investors.",
+      ],
+      documents: [
+        "PAN and Aadhaar Card.",
+        "Bank statements for the financial year (April–March).",
+        "Form 16 (for salaried), Form 26AS, and TDS certificates.",
+        "Details of capital gains from shares or mutual funds.",
+        "Books of accounts (for businesses).",
+      ],
+      process: [
+        "Choose a Plan: Select the plan that matches your income profile.",
+        "Upload Documents: Submit all required documents securely.",
+        "Review: Our tax specialist reviews your documents and requests any clarifications.",
+        "Filing: We prepare the tax computation and file your return electronically.",
+        "Delivery: You receive the filed ITR copy and acknowledgement.",
+      ],
+      pricing: "Salary Income Plan: Starts at ₹699. Capital Gain Plan: Starts at ₹999. Normal Plan (Small Business): Starts at ₹1,699. Standard Plan (Salaried + Business): Starts at ₹2,599. Premium Plan (Complex Filing): Starts at ₹4,999. Note: Prices are indicative. Final cost may vary based on complexity and transaction volume. Bank reconciliation is charged separately.",
+      icon: Calculator,
+      colorScheme: "emerald",
+    },
+  ];
+
+  const passportServices = [
+    {
+      title: "Passport Services (Online OTP-Based Application)",
+      description: "Convenient Application, Flexible Scheduling, Multiple Service Options.",
+      benefits: [
+        "Convenient Application: Fully online process with secure OTP-based verification.",
+        "Flexible Scheduling: Choose your own interview and appointment date at your convenience.",
+        "Multiple Service Options: Available for new passports (36 or 60 pages), renewals, and re-issuance in case of loss.",
+      ],
+      documents: [
+        "A. For a New Passport (Adult): Aadhaar Card (must be linked with a mobile number for OTP), One additional ID from the following: Voter ID, Ration Card, PAN Card, Birth Certificate, Parents’ Aadhaar and Voter ID, School Certificate, Marriage Certificate (if applicable).",
+        "B. For Passport Renewal: A copy of your old passport.",
+        "C. For a Lost Passport: Proof of current address, Proof of date of birth, Identity proof, Original First Information Report (FIR) copy from the police, Self-attested photocopy of the first two and last two pages of the old passport (if available), An affidavit on Annexure F or L explaining how and where the passport was lost.",
+      ],
+      process: [
+        "Apply Online: Start your application on the official passport portal using OTP-based authentication.",
+        "Upload & Select: Upload the required documents and choose the service you need (new, renewal, or lost case).",
+        "Pay Fees: Complete the payment online.",
+        "Schedule Appointment: Book an appointment slot that works for you.",
+        "Visit Kendra: Go to the Passport Seva Kendra on your scheduled date with all your original documents for verification.",
+        "Verification & Issuance: The passport will be issued or renewed after a successful police verification (if required).",
+      ],
+      pricing: "New Passport (36 pages): ₹2,100, New Passport (60 pages): ₹2,650, Renewal: ₹2,200, Lost Passport Re-issuance: ₹3,500",
+      icon: BookUser,
+      colorScheme: "red",
+    },
+  ];
+
+  const marriageRegistrationServices = [
+    {
+      title: "Marriage Registration Services",
+      description: "Legal Recognition, Official Proof, Legal Security.",
+      benefits: [
+        "Legal Recognition: Officially registers your marriage under the Marriage Act.",
+        "Official Proof: The marriage certificate is accepted as valid proof for visas, banking, and government schemes.",
+        "Legal Security: Protects the legal rights of both spouses.",
+      ],
+      documents: [
+        "Aadhaar Card for both the bride and groom.",
+        "Address proof for both individuals.",
+        "Proof of date of birth (Birth Certificate, School Certificate, or Passport).",
+        "Passport-size photographs of both individuals.",
+        "Marriage invitation card (if available).",
+        "Two witnesses, each with valid ID and address proof.",
+      ],
+      process: [
+        "Submit Application: File an application for marriage registration, either at the registrar’s office or through an online portal if available.",
+        "Provide Documents: Submit all necessary documents and photographs.",
+        "Verification: Officials will verify the identity of the couple and the witness details.",
+        "Issuance: The marriage certificate is issued after the couple signs in front of the registrar.",
+      ],
+      pricing: "Marriage Registration Fee: Starts at ₹3,000. Note: Final charges may vary depending on state rules and any additional legal or administrative fees.",
+      icon: HeartHandshake,
+      colorScheme: "teal",
+    },
+  ];
+
+  const SectionHeader = ({ title }: { title: string }) => (
+    <div className="text-center my-8">
+      <h2 className="text-3xl font-bold text-slate-900">{title}</h2>
+      <div className="h-1 w-24 bg-purple-600 mx-auto mt-2" />
+    </div>
+  );
 
   return (
     <div className="container mx-auto space-y-8 px-4 sm:px-6 lg:px-8">
       <SimplePageHeader title="Document Management" description="Securely manage your financial documents with ease." className="mb-12 [&>h1]:text-4xl sm:[&>h1]:text-6xl" color="from-purple-600 to-violet-600" />
 
-            {documentServices.map((service, index) => {
-        const card = (
+      <SectionHeader title="Document Services" />
+      {documentServices.map((service, index) => (
+        <div key={index} id={service.title.toLowerCase().replace(/\s+/g, '-')} className="scroll-mt-28 sm:scroll-mt-32">
           <ServiceCard
             className="sm:max-w-5xl sm:mx-auto"
             title={service.title}
@@ -320,16 +334,54 @@ export default function DocumentsContent() {
             animation="elegant-fade"
             whatsAppMessage={`Hi Monotosh, I'm interested in ${service.title}. Please help me apply.`}
           />
-        );
-        return service.title === "PAN Card Services" ? (
-          <div id="pan-card-services" className="scroll-mt-28 sm:scroll-mt-32" key={index}>{card}</div>
-        ) : (
-          <div key={index}>{card}</div>
-        );
-      })}
+        </div>
+      ))}
 
-            {taxServices.map((service, index) => {
-        const card = (
+      <SectionHeader title="Driving Licence Services" />
+      {drivingLicenceServices.map((service, index) => (
+        <div key={index} id={service.title.toLowerCase().replace(/\s+/g, '-')} className="scroll-mt-28 sm:scroll-mt-32">
+          <ServiceCard
+            className="sm:max-w-5xl sm:mx-auto"
+            title={service.title}
+            description={service.description}
+            benefits={service.benefits}
+            documents={service.documents}
+            process={service.process}
+            pricing={service.pricing}
+            icon={service.icon}
+            ctaText="Apply Now"
+            colorScheme={service.colorScheme}
+            delay={index * 50}
+            animation="elegant-fade"
+            whatsAppMessage={`Hi Monotosh, I'm interested in ${service.title}. Please help me apply.`}
+          />
+        </div>
+      ))}
+
+      <SectionHeader title="Vehicle Registration Services" />
+      {vehicleRegistrationServices.map((service, index) => (
+        <div key={index} id={service.title.toLowerCase().replace(/\s+/g, '-')} className="scroll-mt-28 sm:scroll-mt-32">
+          <ServiceCard
+            className="sm:max-w-5xl sm:mx-auto"
+            title={service.title}
+            description={service.description}
+            benefits={service.benefits}
+            documents={service.documents}
+            process={service.process}
+            pricing={service.pricing}
+            icon={service.icon}
+            ctaText="Apply Now"
+            colorScheme={service.colorScheme}
+            delay={index * 50}
+            animation="elegant-fade"
+            whatsAppMessage={`Hi Monotosh, I'm interested in ${service.title}. Please help me apply.`}
+          />
+        </div>
+      ))}
+
+      <SectionHeader title="Business & Legal Services" />
+      {businessAndLegalServices.map((service, index) => (
+        <div key={index} id={service.title.toLowerCase().replace(/\s+/g, '-')} className="scroll-mt-28 sm:scroll-mt-32">
           <ServiceCard
             className="sm:max-w-5xl sm:mx-auto"
             title={service.title}
@@ -341,17 +393,75 @@ export default function DocumentsContent() {
             icon={service.icon}
             ctaText="Get Started"
             colorScheme={service.colorScheme}
-            delay={documentServices.length * 50 + index * 50}
+            delay={index * 50}
             animation="elegant-fade"
             whatsAppMessage={`Hi Monotosh, I'm interested in ${service.title}. Please help me get started.`}
           />
-        );
-        return service.title === "Income Tax Filing" ? (
-          <div id="income-tax-filing" className="scroll-mt-28 sm:scroll-mt-32" key={index}>{card}</div>
-        ) : (
-          <div key={index}>{card}</div>
-        );
-      })}
+        </div>
+      ))}
+
+      <SectionHeader title="Income Tax Filing Services" />
+      {incomeTaxFilingServices.map((service, index) => (
+        <div key={index} id={service.title.toLowerCase().replace(/\s+/g, '-')} className="scroll-mt-28 sm:scroll-mt-32">
+          <ServiceCard
+            className="sm:max-w-5xl sm:mx-auto"
+            title={service.title}
+            description={service.description}
+            benefits={service.benefits}
+            documents={service.documents}
+            process={service.process}
+            pricing={service.pricing}
+            icon={service.icon}
+            ctaText="Get Started"
+            colorScheme={service.colorScheme}
+            delay={index * 50}
+            animation="elegant-fade"
+            whatsAppMessage={`Hi Monotosh, I'm interested in ${service.title}. Please help me get started.`}
+          />
+        </div>
+      ))}
+
+      <SectionHeader title="Passport Services" />
+      {passportServices.map((service, index) => (
+        <div key={index} id={service.title.toLowerCase().replace(/\s+/g, '-')} className="scroll-mt-28 sm:scroll-mt-32">
+          <ServiceCard
+            className="sm:max-w-5xl sm:mx-auto"
+            title={service.title}
+            description={service.description}
+            benefits={service.benefits}
+            documents={service.documents}
+            process={service.process}
+            pricing={service.pricing}
+            icon={service.icon}
+            ctaText="Apply Now"
+            colorScheme={service.colorScheme}
+            delay={index * 50}
+            animation="elegant-fade"
+            whatsAppMessage={`Hi Monotosh, I'm interested in ${service.title}. Please help me apply.`}
+          />
+        </div>
+      ))}
+
+      <SectionHeader title="Marriage Registration Services" />
+      {marriageRegistrationServices.map((service, index) => (
+        <div key={index} id={service.title.toLowerCase().replace(/\s+/g, '-')} className="scroll-mt-28 sm:scroll-mt-32">
+          <ServiceCard
+            className="sm:max-w-5xl sm:mx-auto"
+            title={service.title}
+            description={service.description}
+            benefits={service.benefits}
+            documents={service.documents}
+            process={service.process}
+            pricing={service.pricing}
+            icon={service.icon}
+            ctaText="Get Started"
+            colorScheme={service.colorScheme}
+            delay={index * 50}
+            animation="elegant-fade"
+            whatsAppMessage={`Hi Monotosh, I'm interested in ${service.title}. Please help me get started.`}
+          />
+        </div>
+      ))}
     </div>
   );
 }
