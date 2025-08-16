@@ -305,9 +305,14 @@ export default function DocumentsContent() {
     },
   ];
 
-  const SectionHeader = ({ title }: { title: string }) => (
+  const SectionHeader = ({ title, showDivider = true }: { title: string, showDivider?: boolean }) => (
     <div className="text-center my-8">
-      <h2 className="text-3xl font-bold text-slate-900">{title}</h2>
+      {showDivider && (
+        <div className="sm:max-w-5xl sm:mx-auto my-2">
+          <div className="h-px w-3/4 sm:w-2/3 md:w-1/2 mx-auto bg-gray-200 dark:bg-gray-800" />
+        </div>
+      )}
+      <h2 className="text-4xl font-bold text-slate-900 font-serif">{title}</h2>
       <div className="h-1 w-24 bg-purple-600 mx-auto mt-2" />
     </div>
   );
@@ -316,7 +321,9 @@ export default function DocumentsContent() {
     <div className="container mx-auto space-y-8 px-4 sm:px-6 lg:px-8">
       <SimplePageHeader title="Document Management" description="Securely manage your financial documents with ease." className="mb-12 [&>h1]:text-4xl sm:[&>h1]:text-6xl" color="from-purple-600 to-violet-600" />
 
-      <SectionHeader title="Document Services" />
+      <div className="-mt-8">
+        <SectionHeader title="Document Services" showDivider={true} />
+      </div>
       {documentServices.map((service, index) => (
         <div key={index} id={service.title.toLowerCase().replace(/\s+/g, '-')} className="scroll-mt-28 sm:scroll-mt-32">
           <ServiceCard
@@ -337,7 +344,7 @@ export default function DocumentsContent() {
         </div>
       ))}
 
-      <SectionHeader title="Driving Licence Services" />
+      <SectionHeader title="Driving Licence Services" showDivider={false} />
       {drivingLicenceServices.map((service, index) => (
         <div key={index} id={service.title.toLowerCase().replace(/\s+/g, '-')} className="scroll-mt-28 sm:scroll-mt-32">
           <ServiceCard
@@ -358,7 +365,7 @@ export default function DocumentsContent() {
         </div>
       ))}
 
-      <SectionHeader title="Vehicle Registration Services" />
+      <SectionHeader title="Vehicle Registration Services" showDivider={false} />
       {vehicleRegistrationServices.map((service, index) => (
         <div key={index} id={service.title.toLowerCase().replace(/\s+/g, '-')} className="scroll-mt-28 sm:scroll-mt-32">
           <ServiceCard
@@ -379,7 +386,7 @@ export default function DocumentsContent() {
         </div>
       ))}
 
-      <SectionHeader title="Business & Legal Services" />
+      <SectionHeader title="Business & Legal Services" showDivider={false} />
       {businessAndLegalServices.map((service, index) => (
         <div key={index} id={service.title.toLowerCase().replace(/\s+/g, '-')} className="scroll-mt-28 sm:scroll-mt-32">
           <ServiceCard
@@ -400,7 +407,7 @@ export default function DocumentsContent() {
         </div>
       ))}
 
-      <SectionHeader title="Income Tax Filing Services" />
+      <SectionHeader title="Income Tax Filing Services" showDivider={false} />
       {incomeTaxFilingServices.map((service, index) => (
         <div key={index} id={service.title.toLowerCase().replace(/\s+/g, '-')} className="scroll-mt-28 sm:scroll-mt-32">
           <ServiceCard
@@ -421,7 +428,7 @@ export default function DocumentsContent() {
         </div>
       ))}
 
-      <SectionHeader title="Passport Services" />
+      <SectionHeader title="Passport Services" showDivider={false} />
       {passportServices.map((service, index) => (
         <div key={index} id={service.title.toLowerCase().replace(/\s+/g, '-')} className="scroll-mt-28 sm:scroll-mt-32">
           <ServiceCard
@@ -442,7 +449,7 @@ export default function DocumentsContent() {
         </div>
       ))}
 
-      <SectionHeader title="Marriage Registration Services" />
+      <SectionHeader title="Marriage Registration Services" showDivider={false} />
       {marriageRegistrationServices.map((service, index) => (
         <div key={index} id={service.title.toLowerCase().replace(/\s+/g, '-')} className="scroll-mt-28 sm:scroll-mt-32">
           <ServiceCard
