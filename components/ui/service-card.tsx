@@ -55,50 +55,50 @@ export function ServiceCard({
       teal: {
         text: "text-teal-500",
         bgSoft: "bg-teal-50/30",
-        button: "bg-teal-500",
+        button: "bg-teal-500 hover:bg-teal-600",
         icon: "text-teal-500",
         borderSoft: "border-teal-200",
-        tabActive: "data-[state=active]:bg-teal-50 data-[state=active]:text-teal-600",
+        tabActive: "data-[state=active]:bg-teal-100/80 data-[state=active]:text-teal-700 data-[state=active]:shadow-sm",
       },
       emerald: {
         text: "text-emerald-500",
         bgSoft: "bg-emerald-50/30",
-        button: "bg-emerald-500",
+        button: "bg-emerald-500 hover:bg-emerald-600",
         icon: "text-emerald-500",
         borderSoft: "border-emerald-200",
-        tabActive: "data-[state=active]:bg-emerald-50 data-[state=active]:text-emerald-600",
+        tabActive: "data-[state=active]:bg-emerald-100/80 data-[state=active]:text-emerald-700 data-[state=active]:shadow-sm",
       },
       blue: {
         text: "text-blue-500",
         bgSoft: "bg-blue-50/30",
-        button: "bg-blue-500",
+        button: "bg-blue-500 hover:bg-blue-600",
         icon: "text-blue-500",
         borderSoft: "border-blue-200",
-        tabActive: "data-[state=active]:bg-blue-50 data-[state=active]:text-blue-600",
+        tabActive: "data-[state=active]:bg-blue-100/80 data-[state=active]:text-blue-700 data-[state=active]:shadow-sm",
       },
       purple: {
         text: "text-purple-500",
         bgSoft: "bg-purple-50/30",
-        button: "bg-purple-500",
+        button: "bg-purple-500 hover:bg-purple-600",
         icon: "text-purple-500",
         borderSoft: "border-purple-200",
-        tabActive: "data-[state=active]:bg-purple-50 data-[state=active]:text-purple-600",
+        tabActive: "data-[state=active]:bg-purple-100/80 data-[state=active]:text-purple-700 data-[state=active]:shadow-sm",
       },
       orange: {
         text: "text-orange-500",
         bgSoft: "bg-orange-50/30",
-        button: "bg-orange-500",
+        button: "bg-orange-500 hover:bg-orange-600",
         icon: "text-orange-500",
         borderSoft: "border-orange-200",
-        tabActive: "data-[state=active]:bg-orange-50 data-[state=active]:text-orange-600",
+        tabActive: "data-[state=active]:bg-orange-100/80 data-[state=active]:text-orange-700 data-[state=active]:shadow-sm",
       },
       red: {
         text: "text-red-500",
         bgSoft: "bg-red-50/30",
-        button: "bg-red-500",
+        button: "bg-red-500 hover:bg-red-600",
         icon: "text-red-500",
         borderSoft: "border-red-200",
-        tabActive: "data-[state=active]:bg-red-50 data-[state=active]:text-red-600",
+        tabActive: "data-[state=active]:bg-red-100/80 data-[state=active]:text-red-700 data-[state=active]:shadow-sm",
       },
     };
     return map[colorScheme] || map.teal;
@@ -112,11 +112,18 @@ export function ServiceCard({
 
   const hasTabs = (documents && documents.length > 0) || (process && process.length > 0) || (costs && costs.length > 0);
 
+  const getDefaultTab = () => {
+    if (documents && documents.length > 0) return "documents";
+    if (process && process.length > 0) return "process";
+    if (costs && costs.length > 0) return "costs";
+    return "";
+  };
+
   return (
     <AnimatedSection animation={animation} delay={delay} duration={500}>
       <div className="relative">
-        <div className={`relative bg-white rounded-2xl shadow-medium border border-gray-100 overflow-hidden ${className}`}>
-          <div className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${accentGradient} rounded-t-2xl`} />
+        <div className={`relative bg-white rounded-2xl shadow-lg border border-gray-100/80 overflow-hidden ${className}`}>
+          <div className={`absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r ${accentGradient} rounded-t-2xl`} />
           <div className="p-6 text-center">
             <div className={`inline-flex items-center justify-center gap-4 mb-4 ${colorClasses.text}`}>
               <div
@@ -131,11 +138,11 @@ export function ServiceCard({
             <p className="text-base text-gray-600 mb-6 max-w-2xl mx-auto">{description}</p>
 
             {benefits && benefits.length > 0 && (
-              <div className="mb-6 text-left bg-gray-50/80 p-4 rounded-lg border border-gray-200/80">
-                <h4 className={`text-lg font-semibold mb-3 ${colorClasses.text}`}>Key Benefits</h4>
-                <ul className="grid gap-2 md:grid-cols-2 md:gap-x-4 md:gap-y-2">
+              <div className="mb-6 text-left bg-gray-50/70 p-4 rounded-lg border border-gray-200/70">
+                <h4 className={`text-lg font-semibold mb-3 ${colorClasses.text} text-center`}>Key Benefits</h4>
+                <ul className="grid gap-2 md:grid-cols-2 md:gap-x-6 md:gap-y-2.5">
                   {benefits.map((benefit, index) => (
-                    <li key={index} className="flex items-start gap-2 text-gray-700">
+                    <li key={index} className="flex items-start gap-2.5 text-gray-700">
                       <CheckCircle className={`w-4 h-4 ${colorClasses.icon} mt-1 flex-shrink-0`} />
                       <span>{benefit}</span>
                     </li>
@@ -148,7 +155,7 @@ export function ServiceCard({
               href={waHref}
               target="_blank"
               rel="noopener noreferrer"
-              className={`w-full sm:w-auto inline-flex items-center justify-center px-8 py-3 ${colorClasses.button} text-white rounded-lg font-semibold transition-all duration-200 text-base`}
+              className={`w-full sm:w-auto inline-flex items-center justify-center px-8 py-3 ${colorClasses.button} text-white rounded-lg font-semibold transition-all duration-300 text-base shadow-md hover:shadow-lg transform hover:-translate-y-0.5`}
               aria-label={`${ctaText} via WhatsApp`}
             >
               {ctaText}
@@ -156,19 +163,19 @@ export function ServiceCard({
           </div>
 
           {hasTabs && (
-            <div className="px-6 pb-6 border-t border-gray-100">
-              <Tabs defaultValue="documents" className="w-full max-w-3xl mx-auto pt-4">
-                <TabsList className="grid w-full grid-cols-3 bg-gray-100/80">
-                  {documents && documents.length > 0 && <TabsTrigger value="documents" className={colorClasses.tabActive}>Documents</TabsTrigger>}
-                  {process && process.length > 0 && <TabsTrigger value="process" className={colorClasses.tabActive}>Process</TabsTrigger>}
-                  {costs && costs.length > 0 && <TabsTrigger value="costs" className={colorClasses.tabActive}>Costs</TabsTrigger>}
+            <div className="px-6 pb-6 border-t border-gray-200/80 bg-gray-50/50">
+              <Tabs defaultValue={getDefaultTab()} className="w-full max-w-3xl mx-auto pt-5">
+                <TabsList className="grid w-full grid-cols-3 bg-gray-200/70 p-1 h-auto rounded-lg">
+                  {documents && documents.length > 0 && <TabsTrigger value="documents" className={`rounded-md text-gray-600 ${colorClasses.tabActive}`}>Documents</TabsTrigger>}
+                  {process && process.length > 0 && <TabsTrigger value="process" className={`rounded-md text-gray-600 ${colorClasses.tabActive}`}>Process</TabsTrigger>}
+                  {costs && costs.length > 0 && <TabsTrigger value="costs" className={`rounded-md text-gray-600 ${colorClasses.tabActive}`}>Costs</TabsTrigger>}
                 </TabsList>
 
                 {documents && documents.length > 0 && (
-                  <TabsContent value="documents" className="pt-4">
-                    <ul className="grid gap-2 md:grid-cols-2 md:gap-3 text-left">
+                  <TabsContent value="documents" className="pt-4 text-left">
+                    <ul className="grid gap-2 md:grid-cols-2 md:gap-x-6 md:gap-y-2.5">
                       {documents.map((doc, index) => (
-                        <li key={index} className="flex items-start gap-2 text-gray-700">
+                        <li key={index} className="flex items-start gap-2.5 text-gray-700">
                           <FileText className={`w-4 h-4 ${colorClasses.icon} mt-1 flex-shrink-0`} />
                           <span>{doc}</span>
                         </li>
@@ -178,10 +185,10 @@ export function ServiceCard({
                 )}
 
                 {process && process.length > 0 && (
-                  <TabsContent value="process" className="pt-4">
-                    <ul className="grid gap-2 md:grid-cols-2 md:gap-3 text-left">
+                  <TabsContent value="process" className="pt-4 text-left">
+                    <ul className="grid gap-2 md:grid-cols-2 md:gap-x-6 md:gap-y-2.5">
                       {process.map((step, index) => (
-                        <li key={index} className="flex items-start gap-2 text-gray-700">
+                        <li key={index} className="flex items-start gap-2.5 text-gray-700">
                           <UserRoundCheck className={`w-4 h-4 ${colorClasses.icon} mt-1 flex-shrink-0`} />
                           <span>{step}</span>
                         </li>
@@ -191,10 +198,10 @@ export function ServiceCard({
                 )}
 
                 {costs && costs.length > 0 && (
-                  <TabsContent value="costs" className="pt-4">
-                    <ul className="grid gap-2 text-left">
+                  <TabsContent value="costs" className="pt-4 text-left">
+                    <ul className="grid gap-2">
                       {costs.map((cost, index) => (
-                        <li key={index} className="flex items-start gap-2 text-gray-700">
+                        <li key={index} className="flex items-start gap-2.5 text-gray-700">
                           <Banknote className={`w-4 h-4 ${colorClasses.icon} mt-1 flex-shrink-0`} />
                           <span>{cost}</span>
                         </li>
