@@ -306,7 +306,7 @@ export default function DocumentsContent() {
   ];
 
   const SectionHeader = ({ title, showDivider = true }: { title: string, showDivider?: boolean }) => (
-    <div className="text-center my-8">
+    <div className="text-center my-4">
       {showDivider && (
         <div className="sm:max-w-5xl sm:mx-auto my-2">
           <div className="h-px w-3/4 sm:w-2/3 md:w-1/2 mx-auto bg-gray-200 dark:bg-gray-800" />
@@ -319,9 +319,9 @@ export default function DocumentsContent() {
 
   return (
     <div className="container mx-auto space-y-8 px-4 sm:px-6 lg:px-8">
-      <SimplePageHeader title="Document Management" description="Securely manage your financial documents with ease." className="mb-12 [&>h1]:text-4xl sm:[&>h1]:text-6xl" color="from-purple-600 to-violet-600" />
+      <SimplePageHeader title="Document Management" description="Securely manage your financial documents with ease." className="mb-8 [&>h1]:text-4xl sm:[&>h1]:text-6xl" color="from-purple-600 to-violet-600" />
 
-      <div className="-mt-8">
+      <div className="-mt-4">
         <SectionHeader title="Document Services" showDivider={true} />
       </div>
       {documentServices.map((service, index) => (
