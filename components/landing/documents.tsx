@@ -22,7 +22,7 @@ export default function DocumentsContent() {
         "Submit the necessary documents.",
         "Receive your e-PAN, followed by the physical card by post.",
       ],
-      pricing: "New PAN (Individual): ₹250, e-PAN + Physical Card: ₹300, PAN Correction: ₹250 (+ ₹50 for each additional correction), Lost PAN Re-issue: ₹250, Aadhaar-PAN Linking: ₹1,150, Organization/Company PAN: ₹550",
+      costs: ["New PAN (Individual): ₹250, e-PAN + Physical Card: ₹300, PAN Correction: ₹250 (+ ₹50 for each additional correction), Lost PAN Re-issue: ₹250, Aadhaar-PAN Linking: ₹1,150, Organization/Company PAN: ₹550"],
       icon: CreditCard,
       colorScheme: "purple",
     },
@@ -44,7 +44,7 @@ export default function DocumentsContent() {
         "Attend the appointment for fingerprint, iris scan, and photo capture.",
         "Track status with your enrolment number and download the e-Aadhaar upon approval.",
       ],
-      pricing: "New Aadhaar Enrolment: ₹200, Address Update: ₹250, Any Correction: ₹250 (+ ₹50 for each additional correction), Aadhaar PVC Card: ₹100, Download + Lamination: ₹60",
+      costs: ["New Aadhaar Enrolment: ₹200, Address Update: ₹250, Any Correction: ₹250 (+ ₹50 for each additional correction), Aadhaar PVC Card: ₹100, Download + Lamination: ₹60"],
       icon: UserCheck,
       colorScheme: "blue",
     },
@@ -65,7 +65,7 @@ export default function DocumentsContent() {
         "Track your application with the acknowledgement number.",
         "Once approved, download the e-Voter ID or receive the physical card.",
       ],
-      pricing: "New Voter Card: ₹200 (₹100 advance is non-refundable if rejected), Aadhaar or Mobile Linking: ₹50, Address Change/Correction: ₹200 (+ ₹50 for each additional correction), Download + Lamination: ₹100",
+      costs: ["New Voter Card: ₹200 (₹100 advance is non-refundable if rejected), Aadhaar or Mobile Linking: ₹50, Address Change/Correction: ₹200 (+ ₹50 for each additional correction), Download + Lamination: ₹100"],
       icon: FileCheck,
       colorScheme: "orange",
     },
@@ -87,7 +87,7 @@ export default function DocumentsContent() {
         "Check the status after approximately 20 days using your application reference.",
         "Download the e-Ration card upon approval.",
       ],
-      pricing: "New Ration Card: ₹250, Aadhaar or Mobile Linking: ₹50, Address/Dealer Change: ₹200 / ₹150, Correction: ₹200 (+ ₹50 per extra category), New Family Creation: ₹300 per person.",
+      costs: ["New Ration Card: ₹250, Aadhaar or Mobile Linking: ₹50, Address/Dealer Change: ₹200 / ₹150, Correction: ₹200 (+ ₹50 per extra category), New Family Creation: ₹300 per person."],
       icon: Building,
       colorScheme: "emerald",
     },
@@ -104,7 +104,7 @@ export default function DocumentsContent() {
         "Upload hospital proof and supporting ID documents.",
         "Track the application with the acknowledgement number and download upon approval.",
       ],
-      pricing: "New Birth Certificate: ₹500, Correction of Certificate: ₹500, Download + Lamination: ₹150",
+      costs: ["New Birth Certificate: ₹500, Correction of Certificate: ₹500, Download + Lamination: ₹150"],
       icon: Baby,
       colorScheme: "purple",
     },
@@ -123,7 +123,7 @@ export default function DocumentsContent() {
         "Attend the RTO for the learner and final driving tests.",
         "Receive your driving licence upon passing.",
       ],
-      pricing: "Two-Wheeler: ₹2,500, Four-Wheeler: ₹3,000, Two + Four Wheeler: ₹4,800, Commercial/Heavy Vehicle: ₹4,100",
+      costs: ["Two-Wheeler: ₹2,500, Four-Wheeler: ₹3,000, Two + Four Wheeler: ₹4,800, Commercial/Heavy Vehicle: ₹4,100"],
       icon: Car,
       colorScheme: "blue",
     },
@@ -138,7 +138,7 @@ export default function DocumentsContent() {
         "A driving re-test is mandatory if the licence has been expired for over one year.",
         "Receive the updated or duplicate licence.",
       ],
-      pricing: "Renewal (Private Vehicle): ₹1,800 (plus fines if expired), Name Correction: ₹2,550 (includes newspaper ad + affidavit), Address/DOB Correction: ₹1,850 (includes affidavit), Lost Licence Replacement: ₹2,550 (includes Lalbazar report + affidavit)",
+      costs: ["Renewal (Private Vehicle): ₹1,800 (plus fines if expired), Name Correction: ₹2,550 (includes newspaper ad + affidavit), Address/DOB Correction: ₹1,850 (includes affidavit), Lost Licence Replacement: ₹2,550 (includes Lalbazar report + affidavit)"],
       icon: UserPlus,
       colorScheme: "orange",
     },
@@ -156,7 +156,7 @@ export default function DocumentsContent() {
         "Pay the transfer fee and await processing.",
         "A new RC is issued in the buyer's name.",
       ],
-      pricing: "Two-Wheeler (Example): Approx. ₹4,500. Note: Fees for larger vehicles may vary.",
+      costs: ["Two-Wheeler (Example): Approx. ₹4,500. Note: Fees for larger vehicles may vary."],
       icon: Handshake,
       colorScheme: "emerald",
     },
@@ -166,7 +166,7 @@ export default function DocumentsContent() {
       benefits: ["RC / Smart Card Issuance, MV Road Tax Payment, Certificate of Fitness (CF), Fine / Penalty Payment."],
       documents: [],
       process: [],
-      pricing: "RC / Smart Card Issuance: Approx. ₹1,000, MV Road Tax Payment: Admin fees range from ₹150 to ₹750 (plus actual tax amount), Certificate of Fitness (CF): Approx. ₹3,500 (for 2-wheelers, others may vary), Fine / Penalty Payment: Varies by offence.",
+      costs: ["RC / Smart Card Issuance: Approx. ₹1,000, MV Road Tax Payment: Admin fees range from ₹150 to ₹750 (plus actual tax amount), Certificate of Fitness (CF): Approx. ₹3,500 (for 2-wheelers, others may vary), Fine / Penalty Payment: Varies by offence."],
       icon: Receipt,
       colorScheme: "red",
     },
@@ -184,7 +184,7 @@ export default function DocumentsContent() {
         "We submit the application and follow up until approval.",
         "Receive your trade licence certificate.",
       ],
-      pricing: "New Registration: Panchayat/Municipality (₹500), Corporation (₹1,000). Renewal: Panchayat/Municipality (₹300), Corporation (₹500). Note: Government fees are separate and vary by business type.",
+      costs: ["New Registration: Panchayat/Municipality (₹500), Corporation (₹1,000). Renewal: Panchayat/Municipality (₹300), Corporation (₹500). Note: Government fees are separate and vary by business type."],
       icon: Briefcase,
       colorScheme: "orange",
     },
@@ -198,7 +198,7 @@ export default function DocumentsContent() {
         "A draft is prepared for your review.",
         "The final document is signed and attested (notary or magistrate).",
       ],
-      pricing: "Fees vary based on document complexity and attestation requirements. Please contact us for a firm quote.",
+      costs: ["Fees vary based on document complexity and attestation requirements. Please contact us for a firm quote."],
       icon: ScrollText,
       colorScheme: "purple",
     },
@@ -212,7 +212,7 @@ export default function DocumentsContent() {
         "Register on the state's professional tax portal.",
         "File returns and pay tax by the due dates.",
       ],
-      pricing: "Monthly income ₹10,001–₹15,000: ₹110/month. Monthly income ₹15,001–₹25,000: ₹130/month. Monthly income ₹25,001–₹40,000: ₹150/month. Monthly income above ₹40,001: ₹200/month. Note: Slabs and rates vary by state.",
+      costs: ["Monthly income ₹10,001–₹15,000: ₹110/month. Monthly income ₹15,001–₹25,000: ₹130/month. Monthly income ₹25,001–₹40,000: ₹150/month. Monthly income above ₹40,001: ₹200/month. Note: Slabs and rates vary by state."],
       icon: FileText,
       colorScheme: "blue",
     },
@@ -242,7 +242,7 @@ export default function DocumentsContent() {
         "Filing: We prepare the tax computation and file your return electronically.",
         "Delivery: You receive the filed ITR copy and acknowledgement.",
       ],
-      pricing: "Salary Income Plan: Starts at ₹699. Capital Gain Plan: Starts at ₹999. Normal Plan (Small Business): Starts at ₹1,699. Standard Plan (Salaried + Business): Starts at ₹2,599. Premium Plan (Complex Filing): Starts at ₹4,999. Note: Prices are indicative. Final cost may vary based on complexity and transaction volume. Bank reconciliation is charged separately.",
+      costs: ["Salary Income Plan: Starts at ₹699. Capital Gain Plan: Starts at ₹999. Normal Plan (Small Business): Starts at ₹1,699. Standard Plan (Salaried + Business): Starts at ₹2,599. Premium Plan (Complex Filing): Starts at ₹4,999. Note: Prices are indicative. Final cost may vary based on complexity and transaction volume. Bank reconciliation is charged separately."],
       icon: Calculator,
       colorScheme: "emerald",
     },
@@ -270,7 +270,7 @@ export default function DocumentsContent() {
         "Visit Kendra: Go to the Passport Seva Kendra on your scheduled date with all your original documents for verification.",
         "Verification & Issuance: The passport will be issued or renewed after a successful police verification (if required).",
       ],
-      pricing: "New Passport (36 pages): ₹2,100, New Passport (60 pages): ₹2,650, Renewal: ₹2,200, Lost Passport Re-issuance: ₹3,500",
+      costs: ["New Passport (36 pages): ₹2,100, New Passport (60 pages): ₹2,650, Renewal: ₹2,200, Lost Passport Re-issuance: ₹3,500"],
       icon: BookUser,
       colorScheme: "red",
     },
@@ -299,7 +299,7 @@ export default function DocumentsContent() {
         "Verification: Officials will verify the identity of the couple and the witness details.",
         "Issuance: The marriage certificate is issued after the couple signs in front of the registrar.",
       ],
-      pricing: "Marriage Registration Fee: Starts at ₹3,000. Note: Final charges may vary depending on state rules and any additional legal or administrative fees.",
+      costs: ["Marriage Registration Fee: Starts at ₹3,000. Note: Final charges may vary depending on state rules and any additional legal or administrative fees."],
       icon: HeartHandshake,
       colorScheme: "teal",
     },
@@ -326,7 +326,7 @@ export default function DocumentsContent() {
             benefits={service.benefits}
             documents={service.documents}
             process={service.process}
-            pricing={service.pricing}
+            costs={service.costs}
             icon={service.icon}
             ctaText="Apply Now"
             colorScheme={service.colorScheme}
@@ -347,7 +347,7 @@ export default function DocumentsContent() {
             benefits={service.benefits}
             documents={service.documents}
             process={service.process}
-            pricing={service.pricing}
+            costs={service.costs}
             icon={service.icon}
             ctaText="Apply Now"
             colorScheme={service.colorScheme}
@@ -368,7 +368,7 @@ export default function DocumentsContent() {
             benefits={service.benefits}
             documents={service.documents}
             process={service.process}
-            pricing={service.pricing}
+            costs={service.costs}
             icon={service.icon}
             ctaText="Apply Now"
             colorScheme={service.colorScheme}
@@ -389,7 +389,7 @@ export default function DocumentsContent() {
             benefits={service.benefits}
             documents={service.documents}
             process={service.process}
-            pricing={service.pricing}
+            costs={service.costs}
             icon={service.icon}
             ctaText="Get Started"
             colorScheme={service.colorScheme}
@@ -410,7 +410,7 @@ export default function DocumentsContent() {
             benefits={service.benefits}
             documents={service.documents}
             process={service.process}
-            pricing={service.pricing}
+            costs={service.costs}
             icon={service.icon}
             ctaText="Get Started"
             colorScheme={service.colorScheme}
@@ -431,7 +431,7 @@ export default function DocumentsContent() {
             benefits={service.benefits}
             documents={service.documents}
             process={service.process}
-            pricing={service.pricing}
+            costs={service.costs}
             icon={service.icon}
             ctaText="Apply Now"
             colorScheme={service.colorScheme}
@@ -452,7 +452,7 @@ export default function DocumentsContent() {
             benefits={service.benefits}
             documents={service.documents}
             process={service.process}
-            pricing={service.pricing}
+            costs={service.costs}
             icon={service.icon}
             ctaText="Get Started"
             colorScheme={service.colorScheme}

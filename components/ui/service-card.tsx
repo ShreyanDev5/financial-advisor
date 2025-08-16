@@ -11,7 +11,6 @@ interface ServiceCardProps {
   benefits: string[];
   documents: string[];
   process: string[];
-  pricing?: string;
   costs?: string[];
   icon: React.ElementType;
   ctaText?: string;
@@ -29,7 +28,6 @@ export function ServiceCard({
   benefits,
   documents,
   process,
-  pricing,
   costs,
   icon: Icon,
   ctaText = "Get Started",
@@ -123,13 +121,6 @@ export function ServiceCard({
               <h3 className="text-xl sm:text-2xl font-bold font-serif text-slate-900 mb-0 break-words">{title}</h3>
             </div>
           </div>
-          {pricing && (
-            <div className="mb-2 text-center">
-              <span className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium text-emerald-700 border-emerald-200 bg-emerald-50/70">
-                {pricing}
-              </span>
-            </div>
-          )}
 
           <p className="text-sm sm:text-base text-gray-600 mb-5 leading-snug mt-[-0.25rem] sm:max-w-2xl mx-auto text-center">{description}</p>
 
@@ -201,21 +192,6 @@ export function ServiceCard({
               </AccordionItem>
             )}
 
-            {pricing && (
-              <AccordionItem value="pricing" className="border-b-0">
-                <AccordionTrigger className="text-slate-900">
-                  Pricing Guide
-                </AccordionTrigger>
-                <AccordionContent>
-                  <ul className="grid gap-2 text-left">
-                    <li className="flex items-start gap-2 text-gray-700">
-                      <Banknote className={`w-4 h-4 ${colorClasses.icon} mt-1 flex-shrink-0`} />
-                      <span>{pricing}</span>
-                    </li>
-                  </ul>
-                </AccordionContent>
-              </AccordionItem>
-            )}
             {costs && costs.length > 0 && (
               <AccordionItem value="costs" className="border-b-0">
                 <AccordionTrigger className="text-slate-900">

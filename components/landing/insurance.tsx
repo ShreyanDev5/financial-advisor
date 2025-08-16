@@ -28,7 +28,7 @@ export default function InsuranceContent() {
         "Policy Issuance: Receive your official policy document and ID card in soft copy.",
         "Claims: For claims, notify the insurer, submit hospital and claim documents, and follow the cashless or reimbursement process.",
       ],
-      pricing: "Premiums vary based on age, sum insured, family size, and location. Individual Plans: Typically range from ₹5,000 to ₹20,000 per year (approx). Family Floater Plans: Typically range from ₹10,000 to ₹50,000 per year (approx). Note: These are indicative ranges. Please use a premium calculator for an exact quote.",
+      costs: ["Premiums vary based on age, sum insured, family size, and location. Individual Plans: Typically range from ₹5,000 to ₹20,000 per year (approx). Family Floater Plans: Typically range from ₹10,000 to ₹50,000 per year (approx). Note: These are indicative ranges. Please use a premium calculator for an exact quote."],
       icon: Heart,
       colorScheme: "emerald",
     },
@@ -52,7 +52,7 @@ export default function InsuranceContent() {
         "Payment & Policy: Pay the premium to receive your policy document instantly.",
         "Claims: Intimate the insurer, allow for inspection if needed, and use a network garage for cashless repairs or claim reimbursement.",
       ],
-      pricing: "Third-Party Only: Rates are regulated by IRDAI, typically starting from ₹1,300 to ₹3,000 per year. Comprehensive: Varies based on the bike's Insured Declared Value (IDV), model, and age. Annual premiums commonly range from ₹1,500 to ₹6,000. Note: These are indicative ranges. Please use a premium calculator for an exact quote.",
+      costs: ["Third-Party Only: Rates are regulated by IRDAI, typically starting from ₹1,300 to ₹3,000 per year. Comprehensive: Varies based on the bike's Insured Declared Value (IDV), model, and age. Annual premiums commonly range from ₹1,500 to ₹6,000. Note: These are indicative ranges. Please use a premium calculator for an exact quote."],
       icon: Bike,
       colorScheme: "blue",
     },
@@ -77,7 +77,7 @@ export default function InsuranceContent() {
         "Payment & Policy: Pay the premium to receive your e-policy.",
         "Claims: Inform the insurer, get the vehicle assessed, and use a network garage for cashless service or claim reimbursement.",
       ],
-      pricing: "Third-Party Only: Rates are IRDAI-regulated based on engine capacity (e.g., up to 1000cc ≈ ₹2,000–₹3,000/year). Comprehensive: Depends on IDV, model, NCB, and add-ons. Indicative annual ranges: Hatchback (₹7k–₹15k), Sedan (₹10k–₹20k), SUV (₹15k–₹30k). Note: These are indicative ranges. Please use a premium calculator for an exact quote.",
+      costs: ["Third-Party Only: Rates are IRDAI-regulated based on engine capacity (e.g., up to 1000cc ≈ ₹2,000–₹3,000/year). Comprehensive: Depends on IDV, model, NCB, and add-ons. Indicative annual ranges: Hatchback (₹7k–₹15k), Sedan (₹10k–₹20k), SUV (₹15k–₹30k). Note: These are indicative ranges. Please use a premium calculator for an exact quote."],
       icon: Car,
       colorScheme: "purple",
     },
@@ -101,7 +101,7 @@ export default function InsuranceContent() {
         "Payment & Policy: Pay the first premium to get your policy issued.",
         "Claims: The nominee files a claim with the death certificate and policy documents for processing.",
       ],
-      pricing: "Premiums are determined by your age, health, gender, sum assured, policy term, and product type. Term plans offer the highest coverage for the lowest premium, while Endowment and ULIP plans have higher premiums as they include a savings or investment component.",
+      costs: ["Premiums are determined by your age, health, gender, sum assured, policy term, and product type. Term plans offer the highest coverage for the lowest premium, while Endowment and ULIP plans have higher premiums as they include a savings or investment component."],
       icon: ShieldCheck,
       colorScheme: "red",
     },
@@ -120,7 +120,7 @@ export default function InsuranceContent() {
             benefits={service.benefits}
             documents={service.documents}
             process={service.process}
-            pricing={service.pricing}
+            costs={service.costs}
             icon={service.icon}
             ctaText="Get Started"
             colorScheme={service.colorScheme}
