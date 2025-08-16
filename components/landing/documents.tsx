@@ -308,7 +308,7 @@ export default function DocumentsContent() {
   const SectionHeader = ({ title, showDivider = true }: { title: string, showDivider?: boolean }) => (
     <div className="text-center my-4">
       {showDivider && (
-        <div className="sm:max-w-5xl sm:mx-auto mb-4">
+        <div className="sm:max-w-5xl sm:mx-auto mb-4 lg:mb-8">
           <div className="h-px w-3/4 sm:w-2/3 md:w-1/2 mx-auto bg-gray-200 dark:bg-gray-800" />
         </div>
       )}
