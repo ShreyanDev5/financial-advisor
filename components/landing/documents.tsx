@@ -312,7 +312,7 @@ export default function DocumentsContent() {
           <div className="h-px w-3/4 sm:w-2/3 md:w-1/2 mx-auto bg-gray-200 dark:bg-gray-800" />
         </div>
       )}
-      <h2 className="text-4xl font-bold text-slate-900 font-serif">{title}</h2>
+      <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 font-serif">{title}</h2>
       <div className="h-1 w-24 bg-purple-600 mx-auto mt-2" />
     </div>
   );
