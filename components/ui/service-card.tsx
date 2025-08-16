@@ -139,7 +139,7 @@ export function ServiceCard({
             {benefits && benefits.length > 0 && (
               <div className="mb-6 text-left bg-gray-50/70 p-4 rounded-lg border border-gray-200/70">
                 <h4 className={`text-lg font-semibold mb-3 ${colorClasses.text} text-center`}>Key Benefits</h4>
-                <ul className="grid gap-2 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-2.5">
+                <ul className={`grid gap-2 ${benefits.length > 1 ? 'sm:grid-cols-2 sm:gap-x-6 sm:gap-y-2.5' : ''}`}>
                   {benefits.map((benefit, index) => (
                     <li key={index} className="flex items-start gap-2.5 text-gray-700">
                       <CheckCircle className={`w-4 h-4 ${colorClasses.icon} mt-1 flex-shrink-0`} />
