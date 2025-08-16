@@ -3,7 +3,7 @@
 import { useMemo } from "react";
 import { Banknote, CheckCircle, FileText, UserRoundCheck } from "lucide-react";
 import { AnimatedSection } from "./animated-section";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 interface ServiceCardProps {
   title: string;
@@ -51,13 +51,14 @@ export function ServiceCard({
   }, [colorScheme]);
 
   const colorClasses = useMemo(() => {
-    const map: Record<string, { text: string; bgSoft: string; button: string; icon: string; borderSoft: string }> = {
+    const map: Record<string, { text: string; bgSoft: string; button: string; icon: string; borderSoft: string; tabActive: string }> = {
       teal: {
         text: "text-teal-500",
         bgSoft: "bg-teal-50/30",
         button: "bg-teal-500",
         icon: "text-teal-500",
         borderSoft: "border-teal-200",
+        tabActive: "data-[state=active]:bg-teal-50 data-[state=active]:text-teal-600",
       },
       emerald: {
         text: "text-emerald-500",
@@ -65,6 +66,7 @@ export function ServiceCard({
         button: "bg-emerald-500",
         icon: "text-emerald-500",
         borderSoft: "border-emerald-200",
+        tabActive: "data-[state=active]:bg-emerald-50 data-[state=active]:text-emerald-600",
       },
       blue: {
         text: "text-blue-500",
@@ -72,6 +74,7 @@ export function ServiceCard({
         button: "bg-blue-500",
         icon: "text-blue-500",
         borderSoft: "border-blue-200",
+        tabActive: "data-[state=active]:bg-blue-50 data-[state=active]:text-blue-600",
       },
       purple: {
         text: "text-purple-500",
@@ -79,6 +82,7 @@ export function ServiceCard({
         button: "bg-purple-500",
         icon: "text-purple-500",
         borderSoft: "border-purple-200",
+        tabActive: "data-[state=active]:bg-purple-50 data-[state=active]:text-purple-600",
       },
       orange: {
         text: "text-orange-500",
@@ -86,6 +90,7 @@ export function ServiceCard({
         button: "bg-orange-500",
         icon: "text-orange-500",
         borderSoft: "border-orange-200",
+        tabActive: "data-[state=active]:bg-orange-50 data-[state=active]:text-orange-600",
       },
       red: {
         text: "text-red-500",
@@ -93,6 +98,7 @@ export function ServiceCard({
         button: "bg-red-500",
         icon: "text-red-500",
         borderSoft: "border-red-200",
+        tabActive: "data-[state=active]:bg-red-50 data-[state=active]:text-red-600",
       },
     };
     return map[colorScheme] || map.teal;
@@ -104,114 +110,102 @@ export function ServiceCard({
     return `https://wa.me/${whatsAppNumber}?text=${encoded}`;
   }, [whatsAppMessage, whatsAppNumber, title]);
 
+  const hasTabs = (documents && documents.length > 0) || (process && process.length > 0) || (costs && costs.length > 0);
+
   return (
     <AnimatedSection animation={animation} delay={delay} duration={500}>
       <div className="relative">
-        <div className={`relative bg-white rounded-2xl shadow-medium border border-gray-100 overflow-hidden sm:text-center ${className}`}>
+        <div className={`relative bg-white rounded-2xl shadow-medium border border-gray-100 overflow-hidden ${className}`}>
           <div className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${accentGradient} rounded-t-2xl`} />
-        <div className="p-6">
-          <div className={`flex flex-col sm:flex-row items-center justify-center gap-3 mb-4 ${colorClasses.text}`}>
-            <div
-              className={`w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center ${colorClasses.bgSoft} border ${colorClasses.borderSoft}`}
-              style={{ boxShadow: "inset 0 1px 6px rgba(0,0,0,0.04)" }}
-            >
-              <Icon className={`w-6 h-6 sm:w-8 sm:h-8`} />
+          <div className="p-6 text-center">
+            <div className={`inline-flex items-center justify-center gap-4 mb-4 ${colorClasses.text}`}>
+              <div
+                className={`w-16 h-16 rounded-2xl flex items-center justify-center ${colorClasses.bgSoft} border ${colorClasses.borderSoft}`}
+                style={{ boxShadow: "inset 0 1px 6px rgba(0,0,0,0.04)" }}
+              >
+                <Icon className="w-8 h-8" />
+              </div>
+              <h3 className="text-2xl font-bold font-serif text-slate-900 text-left break-words">{title}</h3>
             </div>
-            <div className="text-center sm:text-left">
-              <h3 className="text-xl sm:text-2xl font-bold font-serif text-slate-900 mb-0 break-words">{title}</h3>
-            </div>
-          </div>
 
-          <p className="text-sm sm:text-base text-gray-600 mb-5 leading-snug mt-[-0.25rem] sm:max-w-2xl mx-auto text-center">{description}</p>
+            <p className="text-base text-gray-600 mb-6 max-w-2xl mx-auto">{description}</p>
 
-          <div className="flex flex-col sm:flex-row justify-center gap-3">
+            {benefits && benefits.length > 0 && (
+              <div className="mb-6 text-left bg-gray-50/80 p-4 rounded-lg border border-gray-200/80">
+                <h4 className={`text-lg font-semibold mb-3 ${colorClasses.text}`}>Key Benefits</h4>
+                <ul className="grid gap-2 md:grid-cols-2 md:gap-x-4 md:gap-y-2">
+                  {benefits.map((benefit, index) => (
+                    <li key={index} className="flex items-start gap-2 text-gray-700">
+                      <CheckCircle className={`w-4 h-4 ${colorClasses.icon} mt-1 flex-shrink-0`} />
+                      <span>{benefit}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
             <a
               href={waHref}
               target="_blank"
               rel="noopener noreferrer"
-              className={`w-full sm:w-80 px-5 py-2.5 min-h-10 ${colorClasses.button} text-white rounded-lg font-semibold transition-all duration-200 text-center text-sm sm:text-base`}
+              className={`w-full sm:w-auto inline-flex items-center justify-center px-8 py-3 ${colorClasses.button} text-white rounded-lg font-semibold transition-all duration-200 text-base`}
               aria-label={`${ctaText} via WhatsApp`}
             >
               {ctaText}
             </a>
           </div>
+
+          {hasTabs && (
+            <div className="px-6 pb-6 border-t border-gray-100">
+              <Tabs defaultValue="documents" className="w-full max-w-3xl mx-auto pt-4">
+                <TabsList className="grid w-full grid-cols-3 bg-gray-100/80">
+                  {documents && documents.length > 0 && <TabsTrigger value="documents" className={colorClasses.tabActive}>Documents</TabsTrigger>}
+                  {process && process.length > 0 && <TabsTrigger value="process" className={colorClasses.tabActive}>Process</TabsTrigger>}
+                  {costs && costs.length > 0 && <TabsTrigger value="costs" className={colorClasses.tabActive}>Costs</TabsTrigger>}
+                </TabsList>
+
+                {documents && documents.length > 0 && (
+                  <TabsContent value="documents" className="pt-4">
+                    <ul className="grid gap-2 md:grid-cols-2 md:gap-3 text-left">
+                      {documents.map((doc, index) => (
+                        <li key={index} className="flex items-start gap-2 text-gray-700">
+                          <FileText className={`w-4 h-4 ${colorClasses.icon} mt-1 flex-shrink-0`} />
+                          <span>{doc}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </TabsContent>
+                )}
+
+                {process && process.length > 0 && (
+                  <TabsContent value="process" className="pt-4">
+                    <ul className="grid gap-2 md:grid-cols-2 md:gap-3 text-left">
+                      {process.map((step, index) => (
+                        <li key={index} className="flex items-start gap-2 text-gray-700">
+                          <UserRoundCheck className={`w-4 h-4 ${colorClasses.icon} mt-1 flex-shrink-0`} />
+                          <span>{step}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </TabsContent>
+                )}
+
+                {costs && costs.length > 0 && (
+                  <TabsContent value="costs" className="pt-4">
+                    <ul className="grid gap-2 text-left">
+                      {costs.map((cost, index) => (
+                        <li key={index} className="flex items-start gap-2 text-gray-700">
+                          <Banknote className={`w-4 h-4 ${colorClasses.icon} mt-1 flex-shrink-0`} />
+                          <span>{cost}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </TabsContent>
+                )}
+              </Tabs>
+            </div>
+          )}
         </div>
-        <div className="px-6 pb-6 border-t border-gray-100">
-          <Accordion type="multiple" defaultValue={[benefits?.length ? "benefits" : ""]} className="w-full max-w-3xl mx-auto">
-            {benefits && benefits.length > 0 && (
-              <AccordionItem value="benefits" className="border-b-0">
-                <AccordionTrigger className="text-slate-900">
-                  Key Benefits ({benefits.length})
-                </AccordionTrigger>
-                <AccordionContent>
-                  <ul className="grid gap-2 md:grid-cols-2 md:gap-3 text-left">
-                    {benefits.map((benefit, index) => (
-                      <li key={index} className="flex items-start gap-2 text-gray-700">
-                        <CheckCircle className={`w-4 h-4 ${colorClasses.icon} mt-1 flex-shrink-0`} />
-                        <span>{benefit}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </AccordionContent>
-              </AccordionItem>
-            )}
-
-            {documents && documents.length > 0 && (
-              <AccordionItem value="documents" className="border-b-0">
-                <AccordionTrigger className="text-slate-900">
-                  Documents Required ({documents.length})
-                </AccordionTrigger>
-                <AccordionContent>
-                  <ul className="grid gap-2 md:grid-cols-2 md:gap-3 text-left">
-                    {documents.map((doc, index) => (
-                      <li key={index} className="flex items-start gap-2 text-gray-700">
-                        <FileText className={`w-4 h-4 ${colorClasses.icon} mt-1 flex-shrink-0`} />
-                        <span>{doc}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </AccordionContent>
-              </AccordionItem>
-            )}
-
-            {process && process.length > 0 && (
-              <AccordionItem value="process" className="border-b-0">
-                <AccordionTrigger className="text-slate-900">
-                  Process ({process.length})
-                </AccordionTrigger>
-                <AccordionContent>
-                  <ul className="grid gap-2 md:grid-cols-2 md:gap-3 text-left">
-                    {process.map((step, index) => (
-                      <li key={index} className="flex items-start gap-2 text-gray-700">
-                        <UserRoundCheck className={`w-4 h-4 ${colorClasses.icon} mt-1 flex-shrink-0`} />
-                        <span>{step}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </AccordionContent>
-              </AccordionItem>
-            )}
-
-            {costs && costs.length > 0 && (
-              <AccordionItem value="costs" className="border-b-0">
-                <AccordionTrigger className="text-slate-900">
-                  Costs & Considerations
-                </AccordionTrigger>
-                <AccordionContent>
-                  <ul className="grid gap-2 text-left">
-                    {costs.map((cost, index) => (
-                      <li key={index} className="flex items-start gap-2 text-gray-700">
-                        <Banknote className={`w-4 h-4 ${colorClasses.icon} mt-1 flex-shrink-0`} />
-                        <span>{cost}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </AccordionContent>
-              </AccordionItem>
-            )}
-          </Accordion>
-        </div>
-      </div>
       </div>
     </AnimatedSection>
   );
