@@ -11,7 +11,8 @@ interface ServiceCardProps {
   benefits: string[];
   documents: string[];
   process: string[];
-  pricing: string;
+  pricing?: string;
+  costs?: string[];
   icon: React.ElementType;
   ctaText?: string;
   delay?: number;
@@ -29,6 +30,7 @@ export function ServiceCard({
   documents,
   process,
   pricing,
+  costs,
   icon: Icon,
   ctaText = "Get Started",
   delay = 0,
@@ -45,6 +47,7 @@ export function ServiceCard({
       blue: "from-blue-400/70 via-indigo-400/70 to-blue-600/70",
       purple: "from-purple-400/70 via-violet-400/70 to-purple-600/70",
       orange: "from-orange-400/70 via-amber-400/70 to-orange-600/70",
+      red: "from-red-400/70 via-rose-400/70 to-red-600/70",
     };
     return map[colorScheme] || map.teal;
   }, [colorScheme]);
@@ -85,6 +88,13 @@ export function ServiceCard({
         button: "bg-orange-500",
         icon: "text-orange-500",
         borderSoft: "border-orange-200",
+      },
+      red: {
+        text: "text-red-500",
+        bgSoft: "bg-red-50/30",
+        button: "bg-red-500",
+        icon: "text-red-500",
+        borderSoft: "border-red-200",
       },
     };
     return map[colorScheme] || map.teal;
@@ -194,7 +204,7 @@ export function ServiceCard({
             {pricing && (
               <AccordionItem value="pricing" className="border-b-0">
                 <AccordionTrigger className="text-slate-900">
-                  Pricing
+                  Pricing Guide
                 </AccordionTrigger>
                 <AccordionContent>
                   <ul className="grid gap-2 text-left">
@@ -202,6 +212,23 @@ export function ServiceCard({
                       <Banknote className={`w-4 h-4 ${colorClasses.icon} mt-1 flex-shrink-0`} />
                       <span>{pricing}</span>
                     </li>
+                  </ul>
+                </AccordionContent>
+              </AccordionItem>
+            )}
+            {costs && costs.length > 0 && (
+              <AccordionItem value="costs" className="border-b-0">
+                <AccordionTrigger className="text-slate-900">
+                  Costs & Considerations
+                </AccordionTrigger>
+                <AccordionContent>
+                  <ul className="grid gap-2 text-left">
+                    {costs.map((cost, index) => (
+                      <li key={index} className="flex items-start gap-2 text-gray-700">
+                        <Banknote className={`w-4 h-4 ${colorClasses.icon} mt-1 flex-shrink-0`} />
+                        <span>{cost}</span>
+                      </li>
+                    ))}
                   </ul>
                 </AccordionContent>
               </AccordionItem>

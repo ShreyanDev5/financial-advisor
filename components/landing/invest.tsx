@@ -7,36 +7,34 @@ import InvestmentCalculator from "@/components/landing/investment-calculator";
 
 export default function InvestContent() {
   const mutualFundServices = {
-    title: "Licensed Mutual Fund Advisor",
-    description: "Professional mutual fund advisory services with AMFI certification from a trusted financial advisor.",
+    title: "Mutual Funds",
+    description: "Professional mutual fund advisory services.",
     benefits: [
-      "AMFI certified advisory services",
-      "Personalized portfolio management",
-      "SIP and lump sum investment options",
-      "Regular portfolio review and rebalancing",
-      "Tax-efficient investment strategies",
-      "Goal-based financial planning",
-      "Direct mutual fund investments",
-      "No hidden charges or commissions",
+      "Professional Management: Your money is managed by expert fund managers.",
+      "Diversification: Spreads investment across multiple stocks or government bonds to reduce risk.",
+      "Accessibility: Start with small amounts via Systematic Investment Plans (SIPs), Systematic Withdrawal Plans (SWPs), or Lumpsum investments (from ₹500 to ₹1 Cr and above).",
+      "Liquidity: Easily buy or sell units on business days.",
     ],
     documents: [
-      "PAN Card (mandatory)",
-      "Aadhaar Card",
-      "Bank account details",
-      "Cancelled cheque",
-      "Income proof",
-      "KYC documents",
-      "Passport size photographs",
+      "PAN Card.",
+      "Aadhaar Card for KYC (Know Your Customer) verification.",
+      "Mother's Name.",
+      "Nominee's Aadhaar.",
+      "Live Photo / Digital Signature.",
+      "Email Address & Mobile Number.",
+      "Bank details or a cancelled cheque.",
     ],
     process: [
-      "Financial goal assessment",
-      "Risk profiling and investment capacity analysis",
-      "Portfolio recommendation based on goals",
-      "KYC completion and documentation",
-      "Investment execution and monitoring",
-      "Regular review and rebalancing",
+      "Complete KYC: A one-time verification process using your PAN and Aadhaar.",
+      "Select Fund: Choose a fund category (Equity, Debt, Hybrid, Index) that matches your risk appetite and investment horizon.",
+      "Invest: Invest a lump sum amount or start an SIP/SWP.",
+      "Monitor: Track your investment performance through Net Asset Value (NAV) updates.",
     ],
-    pricing: "SIP starts from ₹500/month",
+    costs: [
+      "Expense Ratio (TER): An annual fee charged by the fund for management and operational costs, disclosed in fund documents.",
+      "Exit Load: A fee charged if you redeem your investment before a specified period (typically within one year).",
+      "Taxation: Capital gains tax (either long-term or short-term) applies to profits and varies based on the fund type (equity/debt) and holding period.",
+    ],
   };
 
   return (
@@ -54,7 +52,7 @@ export default function InvestContent() {
       </div>
 
       {/* Mutual Fund Advisory */}
-      <div id="licensed-mutual-fund-advisor" className="scroll-mt-28 sm:scroll-mt-32">
+      <div id="mutual-funds" className="scroll-mt-28 sm:scroll-mt-32">
         <ServiceCard
           className="sm:max-w-5xl sm:mx-auto"
           title={mutualFundServices.title}
@@ -62,7 +60,7 @@ export default function InvestContent() {
           benefits={mutualFundServices.benefits}
           documents={mutualFundServices.documents}
           process={mutualFundServices.process}
-          pricing={mutualFundServices.pricing}
+          costs={mutualFundServices.costs}
           icon={TrendingUp}
           ctaText="Start Investing"
           colorScheme="blue"
