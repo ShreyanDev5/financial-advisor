@@ -125,22 +125,21 @@ export function ServiceCard({
         <div className={`relative bg-white rounded-2xl shadow-lg border border-gray-100/80 overflow-hidden ${className}`}>
           <div className={`absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r ${accentGradient} rounded-t-2xl`} />
           <div className="p-6 text-center">
-            <div className={`inline-flex items-center justify-center gap-4 mb-4 ${colorClasses.text}`}>
+            <div className={`flex flex-col sm:flex-row items-center justify-center gap-4 mb-4 ${colorClasses.text}`}>
               <div
-                className={`w-16 h-16 rounded-2xl flex items-center justify-center ${colorClasses.bgSoft} border ${colorClasses.borderSoft}`}
-                style={{ boxShadow: "inset 0 1px 6px rgba(0,0,0,0.04)" }}
+                className={`w-16 h-16 rounded-2xl flex items-center justify-center ${colorClasses.bgSoft} border ${colorClasses.borderSoft} flex-shrink-0`}
               >
                 <Icon className="w-8 h-8" />
               </div>
-              <h3 className="text-2xl font-bold font-serif text-slate-900 text-left break-words">{title}</h3>
+              <h3 className="text-xl sm:text-2xl font-bold font-serif text-slate-900 text-center sm:text-left break-words">{title}</h3>
             </div>
 
-            <p className="text-base text-gray-600 mb-6 max-w-2xl mx-auto">{description}</p>
+            <p className="text-sm sm:text-base text-gray-600 mb-6 max-w-2xl mx-auto">{description}</p>
 
             {benefits && benefits.length > 0 && (
               <div className="mb-6 text-left bg-gray-50/70 p-4 rounded-lg border border-gray-200/70">
                 <h4 className={`text-lg font-semibold mb-3 ${colorClasses.text} text-center`}>Key Benefits</h4>
-                <ul className="grid gap-2 md:grid-cols-2 md:gap-x-6 md:gap-y-2.5">
+                <ul className="grid gap-2 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-2.5">
                   {benefits.map((benefit, index) => (
                     <li key={index} className="flex items-start gap-2.5 text-gray-700">
                       <CheckCircle className={`w-4 h-4 ${colorClasses.icon} mt-1 flex-shrink-0`} />
@@ -165,7 +164,7 @@ export function ServiceCard({
           {hasTabs && (
             <div className="px-6 pb-6 border-t border-gray-200/80 bg-gray-50/50">
               <Tabs defaultValue={getDefaultTab()} className="w-full max-w-3xl mx-auto pt-5">
-                <TabsList className="grid w-full grid-cols-3 bg-gray-200/70 p-1 h-auto rounded-lg">
+                <TabsList className="grid w-full grid-cols-3 bg-gray-200/70 p-1 h-auto rounded-lg sm:flex sm:flex-wrap">
                   {documents && documents.length > 0 && <TabsTrigger value="documents" className={`rounded-md text-gray-600 ${colorClasses.tabActive}`}>Documents</TabsTrigger>}
                   {process && process.length > 0 && <TabsTrigger value="process" className={`rounded-md text-gray-600 ${colorClasses.tabActive}`}>Process</TabsTrigger>}
                   {costs && costs.length > 0 && <TabsTrigger value="costs" className={`rounded-md text-gray-600 ${colorClasses.tabActive}`}>Costs</TabsTrigger>}
@@ -173,7 +172,7 @@ export function ServiceCard({
 
                 {documents && documents.length > 0 && (
                   <TabsContent value="documents" className="pt-4 text-left">
-                    <ul className="grid gap-2 md:grid-cols-2 md:gap-x-6 md:gap-y-2.5">
+                    <ul className="grid gap-2 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-2.5">
                       {documents.map((doc, index) => (
                         <li key={index} className="flex items-start gap-2.5 text-gray-700">
                           <FileText className={`w-4 h-4 ${colorClasses.icon} mt-1 flex-shrink-0`} />
@@ -186,7 +185,7 @@ export function ServiceCard({
 
                 {process && process.length > 0 && (
                   <TabsContent value="process" className="pt-4 text-left">
-                    <ul className="grid gap-2 md:grid-cols-2 md:gap-x-6 md:gap-y-2.5">
+                    <ul className="grid gap-2 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-2.5">
                       {process.map((step, index) => (
                         <li key={index} className="flex items-start gap-2.5 text-gray-700">
                           <UserRoundCheck className={`w-4 h-4 ${colorClasses.icon} mt-1 flex-shrink-0`} />
