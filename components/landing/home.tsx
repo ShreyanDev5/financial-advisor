@@ -71,7 +71,7 @@ export default function HomeContent() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           <StatCard
             title="Happy Clients"
-            value="1,250+"
+            value="700+"
             icon={Users}
             description="Satisfied clients across the country."
             iconBgColor="bg-blue-100"
