@@ -5,10 +5,10 @@ import {
   Users,
   Award,
   TrendingUp,
-  Star,
   Heart,
   CreditCard,
   Calculator,
+  ClipboardList,
 } from "lucide-react";
 import { StatCard } from "@/components/ui/stat-card";
 import { AnimatedSection } from "@/components/ui/animated-section";
@@ -81,26 +81,26 @@ export default function HomeContent() {
           <StatCard
             title="Services Offered"
             value="20+"
-            icon={Award}
+            icon={ClipboardList}
             description="Wide range of financial services."
             iconBgColor="bg-emerald-100"
             iconTextColor="text-emerald-600"
             className="bg-gradient-to-br from-emerald-50 to-emerald-100 border-emerald-200 shadow-lg"
           />
           <StatCard
-            title="Growth Rate"
-            value="15%"
-            icon={TrendingUp}
-            description="Annual growth in client investments."
+            title="Years of Experience"
+            value="18+"
+            icon={Award}
+            description="In the financial advisory field."
             iconBgColor="bg-purple-100"
             iconTextColor="text-purple-600"
             className="bg-gradient-to-br from-purple-50 to-purple-100 border-purple-200 shadow-lg"
           />
           <StatCard
-            title="Client Rating"
-            value="4.9/5"
-            icon={Star}
-            description="Average rating from our clients."
+            title="AUM"
+            value="1CR+"
+            icon={TrendingUp}
+            description="As of December 2025."
             iconBgColor="bg-orange-100"
             iconTextColor="text-orange-600"
             className="bg-gradient-to-br from-orange-50 to-orange-100 border-orange-200 shadow-lg"

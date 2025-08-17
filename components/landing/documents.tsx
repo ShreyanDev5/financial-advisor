@@ -1,6 +1,6 @@
 'use client';
 
-import { CreditCard, UserCheck, FileCheck, Building, Car, Baby, Briefcase, Calculator, FileText, ScrollText, ShieldCheck, BookUser, Stamp, Landmark, Handshake, Receipt, Search, UserPlus, HeartHandshake } from "lucide-react";
+import { CreditCard, UserCheck, FileCheck, Building, Car, Baby, Briefcase, Calculator, FileText, ScrollText, BookUser, Handshake, Receipt, UserPlus, HeartHandshake } from "lucide-react";
 import { ServiceCard } from "@/components/ui/service-card";
 import { SimplePageHeader } from "@/components/ui/simple-page-header";
 
