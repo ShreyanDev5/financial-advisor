@@ -164,8 +164,8 @@ export default function HomeContent() {
           />
         </div>
       </AnimatedSection>
-      <div className="w-4/5 sm:w-2/3 md:w-1/2 mx-auto">
-        <div className="h-px w-full bg-gray-200 dark:bg-gray-800" />
+      <div className="w-4/5 sm:w-2/3 md:w-1/2 mx-auto my-6 sm:my-8">
+        <div className="h-px w-full bg-gray-100/30 dark:bg-gray-800/20" />
       </div>
       <AnimatedSection className="bg-white/50 backdrop-blur-2xl p-6 sm:p-16 rounded-2xl text-center border-4 border-emerald-600 shadow-strong mx-4 sm:mx-16 cta-section-spacing mb-24 sm:mb-32">
         <div className="space-y-2 mb-8">
