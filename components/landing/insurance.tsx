@@ -80,7 +80,7 @@ export default function InsuranceContent() {
       colorScheme: "purple",
     },
     {
-      title: "Life Insurance Corporation of India (LIC)",
+      title: "Life Insurance",
       description: "Secure your family's future with a range of life insurance products from LIC.",
       benefits: [
         "Financial security for your family.",
