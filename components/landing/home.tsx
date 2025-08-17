@@ -34,7 +34,7 @@ export default function HomeContent() {
       iconColor: "text-green-500",
       borderColor: "border-green-500/20",
       hoverColor: "hover:bg-green-500/20",
-      href: "/invest#licensed-mutual-fund-advisor",
+      href: "/invest#mutual-funds",
     },
     {
       title: "PAN Card",
@@ -52,7 +52,7 @@ export default function HomeContent() {
       iconColor: "text-indigo-500",
       borderColor: "border-indigo-500/20",
       hoverColor: "hover:bg-indigo-500/20",
-      href: "/documents#income-tax-filing",
+      href: "/documents#income-tax-filing-services",
     },
   ];
 
