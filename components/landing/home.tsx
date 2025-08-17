@@ -112,9 +112,9 @@ export default function HomeContent() {
       </div>
       <AnimatedSection className="text-center">
         <div className="space-y-2 mb-8">
-          <h2 className="text-3xl sm:text-4xl font-bold font-serif">Our Most In-Demand Services</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold font-serif">Core Services</h2>
           <p className="text-base sm:text-lg text-gray-600 max-w-4xl mx-auto px-4 sm:px-0">
-            Explore the trusted financial solutions our clients count on.
+            Practical financial solutions that deliver results.
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mx-4 sm:mx-16">
@@ -141,9 +141,9 @@ export default function HomeContent() {
       </div>
       <AnimatedSection className="text-center mb-12 sm:mb-16">
         <div className="space-y-2 mb-8">
-          <h2 className="text-3xl sm:text-4xl font-bold font-serif">What Our Clients Say About Us</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold font-serif">Client Stories</h2>
           <p className="text-base sm:text-lg text-gray-600">
-            Discover how we’ve helped others achieve lasting financial confidence.
+            Real outcomes from real plans.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10 mx-4 sm:mx-0">
@@ -172,9 +172,9 @@ export default function HomeContent() {
       </div>
       <AnimatedSection className="bg-white/50 backdrop-blur-2xl p-6 sm:p-16 rounded-2xl text-center border-4 border-emerald-600 shadow-strong mx-4 sm:mx-16 cta-section-spacing mb-24 sm:mb-32">
         <div className="space-y-2 mb-8">
-          <h2 className="text-3xl sm:text-4xl font-bold font-serif leading-tight">Begin Your Journey to Financial Freedom</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold font-serif leading-tight">Start Your Financial Plan</h2>
           <p className="text-base sm:text-lg text-gray-600 max-w-4xl mx-auto mb-8 text-pretty">
-            Let&apos;s turn your goals into a clear, confident plan.
+            Set goals. Get a clear path. Stay on track.
           </p>
         </div>
         <a
