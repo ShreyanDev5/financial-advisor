@@ -77,7 +77,7 @@ export default function DocumentsContent() {
   const drivingLicenceServices = [
     {
       title: "New Driving Licence",
-      description: "Legally drive two, three, four-wheelers, or commercial vehicles. Support with booking, mock tests, and RTO visits.",
+      description: "Hassle-free driving license services with bookings, mock tests, and RTO support.",
       benefits: ["Drive 2, 3, 4-wheelers, or commercial vehicles. Includes booking, mock tests, and RTO support."],
       documents: ["Aadhaar (mandatory), Voter ID, blood group, fitness certificate (>40 years), photos."],
       process: ["Choose vehicle, complete application, upload documents. Book and attend learner/final RTO tests. Receive licence."],
@@ -196,7 +196,7 @@ export default function DocumentsContent() {
   const marriageRegistrationServices = [
     {
       title: "Marriage Registration Services",
-      description: "Legal Recognition, Official Proof, Legal Security.",
+      description: "Seamless marriage registration with legal recognition and official proof.",
       benefits: ["Official legal recognition of marriage. Valid proof for visas, banking, etc. Protects legal rights of spouses."],
       documents: [
         "Aadhaar, address proof, DOB proof for couple.",

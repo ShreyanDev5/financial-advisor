@@ -8,7 +8,7 @@ import InvestmentCalculator from "@/components/landing/investment-calculator";
 export default function InvestContent() {
   const mutualFundServices = {
     title: "Mutual Funds",
-    description: "Professional mutual fund advisory services.",
+    description: "Expert guidance to grow your wealth with mutual funds.",
     benefits: [
       "Expert fund management.",
       "Risk reduction through diversification.",
