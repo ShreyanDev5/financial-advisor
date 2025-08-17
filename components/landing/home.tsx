@@ -80,7 +80,7 @@ export default function HomeContent() {
           />
           <StatCard
             title="Services Offered"
-            value="25+"
+            value="20+"
             icon={Award}
             description="Wide range of financial services."
             iconBgColor="bg-emerald-100"
