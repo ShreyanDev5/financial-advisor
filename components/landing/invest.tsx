@@ -36,7 +36,7 @@ export default function InvestContent() {
 
   return (
     <div className="container mx-auto space-y-6 px-4 sm:px-6 lg:px-8">
-      <SimplePageHeader title="Investment Solutions" description="Grow your wealth with our expert investment strategies." className="mb-0 [&>h1]:text-4xl sm:[&>h1]:text-6xl" color="from-orange-500 to-orange-700" />
+      <SimplePageHeader title="Investments" description="Grow your wealth, intelligently." className="mb-0 [&>h1]:text-4xl sm:[&>h1]:text-6xl" color="from-orange-500 to-orange-700" />
 
       {/* Gray divider to separate sections */}
       <div className="sm:max-w-5xl sm:mx-auto my-2">

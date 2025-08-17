@@ -225,7 +225,7 @@ export default function DocumentsContent() {
 
   return (
     <div className="container mx-auto space-y-8 px-4 sm:px-6 lg:px-8">
-      <SimplePageHeader title="Document Management" description="Securely manage your financial documents with ease." className="mb-8 [&>h1]:text-4xl sm:[&>h1]:text-6xl" color="from-purple-600 to-violet-600" />
+      <SimplePageHeader title="Documents" description="We simplify the application process for Aadhaar, PAN, and more." className="mb-8 [&>h1]:text-4xl sm:[&>h1]:text-6xl" color="from-purple-600 to-violet-600" />
 
       <div className="-mt-4">
         <SectionHeader title="Document Services" showDivider={true} />
