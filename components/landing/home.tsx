@@ -59,10 +59,10 @@ export default function HomeContent() {
   return (
     <div className="pb-0 space-y-12 sm:space-y-16">
       <PageHeader
-        title="Take Control of Your Wealth"
-                  description={
+        title="Build Your Wealth"
+        description={
           <>
-            Partner with <span className="underline-wavy font-medium">Monotosh Sardar</span> for personalized financial guidance and lasting peace of mind.
+            Personalized guidance from <span className="underline-wavy font-medium">Monotosh Sardar</span> for lasting peace of mind.
           </>
         }
         color="emerald-600 to-green-600"
