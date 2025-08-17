@@ -181,7 +181,7 @@ export default function HomeContent() {
           className="inline-block"
           aria-label="Contact us on WhatsApp"
         >
-          <Button size="lg" className="xl:h-12 xl:px-10" variant="gradient-emerald">Contact Us</Button>
+          <Button size="lg" className="xl:h-12 xl:px-10 transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-0.5" variant="gradient-emerald">Contact Us</Button>
         </a>
       </AnimatedSection>
     </div>
