@@ -141,7 +141,7 @@ export default function InsuranceContent() {
             colorScheme={service.colorScheme}
             delay={50 + index * 50}
             animation="elegant-fade"
-            whatsAppMessage={`Hi Monotosh, I'm interested in ${service.title}. Please help me get started.`}
+            whatsAppMessage={`Hi Monotosh, I'm interested in ${service.title.toLowerCase()}. Could you please help me understand the coverage options and premium details?`}
           />
         </div>
       ))}

@@ -63,7 +63,7 @@ export default function InvestContent() {
           colorScheme="blue"
           delay={0}
           animation="elegant-fade"
-          whatsAppMessage={`Hi Monotosh, I'm interested in ${mutualFundServices.title}. I'd like to start investing.`}
+          whatsAppMessage={`Hi Monotosh, I'm interested in mutual funds and would like to start investing. Could you please help me understand the options based on my risk profile?`}
         />
       </div>
     </div>

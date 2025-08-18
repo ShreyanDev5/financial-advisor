@@ -411,7 +411,7 @@ export default function DocumentsContent() {
             colorScheme={service.colorScheme}
             delay={index * 50}
             animation="elegant-fade"
-            whatsAppMessage={`Hi Monotosh, I'm interested in ${service.title}. Please help me apply.`}
+            whatsAppMessage={`Hi Monotosh, I'd like to apply for a PAN card. Could you please help me understand the required documents and process?`}
           />
         </div>
       ))}
@@ -434,7 +434,7 @@ export default function DocumentsContent() {
             colorScheme={service.colorScheme}
             delay={index * 50}
             animation="elegant-fade"
-            whatsAppMessage={`Hi Monotosh, I'm interested in ${service.title}. Please help me apply.`}
+            whatsAppMessage={`Hi Monotosh, I'd like to apply for a driving licence. Could you please help me understand the requirements and process?`}
           />
         </div>
       ))}
@@ -457,7 +457,7 @@ export default function DocumentsContent() {
             colorScheme={service.colorScheme}
             delay={index * 50}
             animation="elegant-fade"
-            whatsAppMessage={`Hi Monotosh, I'm interested in ${service.title}. Please help me apply.`}
+            whatsAppMessage={`Hi Monotosh, I need help with vehicle registration services. Could you please guide me through the process?`}
           />
         </div>
       ))}
@@ -480,7 +480,7 @@ export default function DocumentsContent() {
             colorScheme={service.colorScheme}
             delay={index * 50}
             animation="elegant-fade"
-            whatsAppMessage={`Hi Monotosh, I'm interested in ${service.title}. Please help me get started.`}
+            whatsAppMessage={`Hi Monotosh, I need help with ${service.title.toLowerCase()}. Could you please provide more information about the process and requirements?`}
           />
         </div>
       ))}
@@ -503,7 +503,7 @@ export default function DocumentsContent() {
             colorScheme={service.colorScheme}
             delay={index * 50}
             animation="elegant-fade"
-            whatsAppMessage={`Hi Monotosh, I'm interested in ${service.title}. Please help me get started.`}
+            whatsAppMessage={`Hi Monotosh, I'd like assistance with income tax filing. Could you please help me understand the process and required documents?`}
           />
         </div>
       ))}
@@ -526,7 +526,7 @@ export default function DocumentsContent() {
             colorScheme={service.colorScheme}
             delay={index * 50}
             animation="elegant-fade"
-            whatsAppMessage={`Hi Monotosh, I'm interested in ${service.title}. Please help me apply.`}
+            whatsAppMessage={`Hi Monotosh, I need help with passport services. Could you please guide me through the application process?`}
           />
         </div>
       ))}
@@ -549,7 +549,7 @@ export default function DocumentsContent() {
             colorScheme={service.colorScheme}
             delay={index * 50}
             animation="elegant-fade"
-            whatsAppMessage={`Hi Monotosh, I'm interested in ${service.title}. Please help me get started.`}
+            whatsAppMessage={`Hi Monotosh, I'd like information about marriage registration services. Could you please explain the requirements and process?`}
           />
         </div>
       ))}
