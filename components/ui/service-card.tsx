@@ -172,7 +172,7 @@ export function ServiceCard({
 
                 {documents && documents.length > 0 && (
                   <TabsContent value="documents" className="pt-4 text-left">
-                    <ul className="grid gap-2 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-2.5">
+                    <ul className={`grid gap-2 ${documents.length > 1 ? 'sm:grid-cols-2 sm:gap-x-6 sm:gap-y-2.5' : ''}`}>
                       {documents.map((doc, index) => (
                         <li key={index} className="flex items-start gap-2.5 text-gray-700">
                           <FileText className={`w-4 h-4 ${colorClasses.icon} mt-1 flex-shrink-0`} />
@@ -185,7 +185,7 @@ export function ServiceCard({
 
                 {process && process.length > 0 && (
                   <TabsContent value="process" className="pt-4 text-left">
-                    <ul className="grid gap-2 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-2.5">
+                    <ul className={`grid gap-2 ${process.length > 1 ? 'sm:grid-cols-2 sm:gap-x-6 sm:gap-y-2.5' : ''}`}>
                       {process.map((step, index) => (
                         <li key={index} className="flex items-start gap-2.5 text-gray-700">
                           <UserRoundCheck className={`w-4 h-4 ${colorClasses.icon} mt-1 flex-shrink-0`} />
@@ -198,7 +198,7 @@ export function ServiceCard({
 
                 {costs && costs.length > 0 && (
                   <TabsContent value="costs" className="pt-4 text-left">
-                    <ul className="grid gap-2">
+                    <ul className={`grid gap-2 ${costs.length > 1 ? 'sm:grid-cols-2 sm:gap-x-6 sm:gap-y-2.5' : ''}`}>
                       {costs.map((cost, index) => (
                         <li key={index} className="flex items-start gap-2.5 text-gray-700">
                           <Banknote className={`w-4 h-4 ${colorClasses.icon} mt-1 flex-shrink-0`} />
