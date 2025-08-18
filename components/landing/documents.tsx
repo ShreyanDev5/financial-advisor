@@ -1,6 +1,6 @@
 'use client';
 
-import { CreditCard, UserCheck, FileCheck, Building, Car, Baby, Briefcase, Calculator, FileText, ScrollText, BookUser, Handshake, Receipt, UserPlus, HeartHandshake } from "lucide-react";
+import { CreditCard, UserCheck, FileCheck, Building, Car, Baby, Briefcase, Calculator, FileText, ScrollText, BookUser, Handshake, Receipt, UserPlus, HeartHandshake, Coins } from "lucide-react";
 import { ServiceCard } from "@/components/ui/service-card";
 import { SimplePageHeader } from "@/components/ui/simple-page-header";
 
@@ -28,7 +28,7 @@ export default function DocumentsContent() {
         "Aadhaar Link: ₹1,150",
         "Organization PAN: ₹550"
       ],
-      icon: CreditCard,
+      icon: FileText,
       colorScheme: "purple",
     },
     {
@@ -104,7 +104,7 @@ export default function DocumentsContent() {
         "Correction: ₹200+", 
         "New Family: ₹300/person"
       ],
-      icon: Building,
+      icon: FileText,
       colorScheme: "emerald",
     },
     {
@@ -181,7 +181,7 @@ export default function DocumentsContent() {
         "Address/DOB Correction: ₹1,850 (includes affidavit)",
         "Lost Licence: ₹2,550 (includes report/affidavit)"
       ],
-      icon: UserPlus,
+      icon: Car,
       colorScheme: "orange",
     },
   ];
@@ -224,7 +224,7 @@ export default function DocumentsContent() {
         "CF (2-wheeler): ~₹3,500",
         "Fines vary by violation"
       ],
-      icon: Receipt,
+      icon: FileText,
       colorScheme: "red",
     },
   ];
@@ -283,7 +283,7 @@ export default function DocumentsContent() {
         "Monthly tax: ₹110 (₹10-15k income), ₹130 (₹15-25k), ₹150 (₹25-40k), ₹200 (>₹40k)",
         "Rates vary by state"
       ],
-      icon: FileText,
+      icon: Coins,
       colorScheme: "blue",
     },
   ];
