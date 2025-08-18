@@ -42,7 +42,7 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
       if (isNaN(monthlyInvestment) || isNaN(annualRate) || isNaN(years)) return null;
       const monthlyRate = annualRate / 12;
       const months = years * 12;
-      const futureValue = monthlyInvestment * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate) * (1 + monthlyRate);
+      const futureValue = monthlyInvestment * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate);
       const totalInvested = monthlyInvestment * months;
       const wealthGained = futureValue - totalInvested;
       return { totalInvested, wealthGained, futureValue };
@@ -250,7 +250,7 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
                     </div>
                     <div className="flex items-center gap-2">
                       <span className="inline-block h-2.5 w-2.5 rounded-sm" style={{ backgroundColor: gainsColor }} />
-                      <span className="text-muted-foreground">Returns</span>
+                      <span className="text-muted-foreground">{investmentType === "swp" ? "Withdrawal" : "Returns"}</span>
                       <span className="font-semibold" style={{ color: gainsColor }}>₹{formatAmount(returnsValue)}</span>
                     </div>
                   </div>
@@ -288,7 +288,7 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
                   <div className="flex flex-col">
                     <div className="flex items-center gap-2">
                       <span className="inline-block h-2.5 w-2.5 rounded-sm" style={{ backgroundColor: gainsColor }} />
-                      <span className="text-muted-foreground">Returns</span>
+                      <span className="text-muted-foreground">{investmentType === "swp" ? "Withdrawal" : "Returns"}</span>
                       <span className="font-semibold" style={{ color: gainsColor }}>₹{formatAmount(returnsValue)}</span>
                     </div>
                   </div>
