@@ -9,6 +9,7 @@ import {
   CreditCard,
   Calculator,
   ClipboardList,
+  FileText,
 } from "lucide-react";
 import { StatCard } from "@/components/ui/stat-card";
 import { AnimatedSection } from "@/components/ui/animated-section";
@@ -38,7 +39,7 @@ export default function HomeContent() {
     },
     {
       title: "PAN Card",
-      icon: CreditCard,
+      icon: FileText,
       color: "bg-blue-500/10",
       iconColor: "text-blue-500",
       borderColor: "border-blue-500/20",
