@@ -28,7 +28,12 @@ export default function InsuranceContent() {
         "Receive policy and ID card.",
         "Notify insurer and submit documents for claims.",
       ],
-      costs: ["Premiums vary by age, sum insured, and family size. Individual plans: ₹5k-₹20k/year. Family plans: ₹10k-₹50k/year. (Indicative ranges, use calculator for exact quote)."],
+      costs: [
+        "Premiums vary by age, sum insured, and family size", 
+        "Individual plans: ₹5k-₹20k/year", 
+        "Family plans: ₹10k-₹50k/year", 
+        "(Indicative ranges - use calculator for exact quote)"
+      ],
       icon: Heart,
       colorScheme: "emerald",
     },
@@ -51,7 +56,11 @@ export default function InsuranceContent() {
         "Pay premium for instant policy.",
         "For claims, contact insurer for inspection and cashless repair.",
       ],
-      costs: ["Third-Party: ₹1.3k-₹3k/year (IRDAI regulated). Comprehensive: ₹1.5k-₹6k/year (based on IDV, model, age). (Indicative ranges, use calculator for exact quote)."],
+      costs: [
+        "Third-Party: ₹1.3k-₹3k/year (IRDAI regulated)", 
+        "Comprehensive: ₹1.5k-₹6k/year (based on IDV, model, age)", 
+        "(Indicative ranges - use calculator for exact quote)"
+      ],
       icon: Bike,
       colorScheme: "blue",
     },
@@ -75,7 +84,11 @@ export default function InsuranceContent() {
         "Pay premium for e-policy.",
         "For claims, contact insurer for assessment and cashless service.",
       ],
-      costs: ["Third-Party: From ₹2k-₹3k/year (by engine size). Comprehensive: Hatchback (₹7k-₹15k), Sedan (₹10k-₹20k), SUV (₹15k-₹30k). (Based on IDV, model, NCB; indicative ranges)."],
+      costs: [
+        "Third-Party: From ₹2k-₹3k/year (by engine size)", 
+        "Comprehensive: Hatchback (₹7k-₹15k), Sedan (₹10k-₹20k), SUV (₹15k-₹30k)", 
+        "(Based on IDV, model, NCB - indicative ranges)"
+      ],
       icon: Car,
       colorScheme: "purple",
     },
@@ -99,7 +112,11 @@ export default function InsuranceContent() {
         "Pay premium to issue policy.",
         "Nominee files claim with death certificate.",
       ],
-      costs: ["Premiums depend on age, health, sum assured, and plan type. Term plans are most affordable; Endowment/ULIPs include savings, costing more."],
+      costs: [
+        "Premiums depend on age, health, sum assured, and plan type", 
+        "Term plans are most affordable", 
+        "Endowment/ULIPs include savings, costing more"
+      ],
       icon: ShieldCheck,
       colorScheme: "red",
     },
