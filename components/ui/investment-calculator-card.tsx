@@ -324,17 +324,17 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
                       <span 
                         className="font-bold text-primary text-2xl md:text-xl lg:text-2xl truncate"
                         style={{ 
-                          fontSize: `clamp(1rem, ${Math.max(1.5, 2 - ((formatLargeNumber(
-                            investmentType === 'sip' ? calculatedResult.futureValue || 0 :
-                            investmentType === 'lumpsum' ? calculatedResult.futureValue || 0 :
-                            calculatedResult.finalBalance || 0
-                          ).length - 10) * 0.1))}rem, 2rem)` 
+                          fontSize: `clamp(1rem, ${Math.max(1.5, 2 - (
+                            ((investmentType === 'sip' && calculatedResult?.futureValue) || 
+                            (investmentType === 'lumpsum' && calculatedResult?.futureValue) || 
+                            (investmentType === 'swp' && calculatedResult?.finalBalance) || 0
+                          ).toString().length - 10) * 0.1)}rem, 2rem)` 
                         }}
                       >
                         {formatLargeNumber(
-                          investmentType === 'sip' ? calculatedResult.futureValue || 0 :
-                          investmentType === 'lumpsum' ? calculatedResult.futureValue || 0 :
-                          calculatedResult.finalBalance || 0
+                          investmentType === 'sip' ? calculatedResult?.futureValue || 0 :
+                          investmentType === 'lumpsum' ? calculatedResult?.futureValue || 0 :
+                          calculatedResult?.finalBalance || 0
                         )}
                       </span>
                     </div>
@@ -367,17 +367,17 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
                       <span 
                         className="font-bold text-primary text-xl truncate"
                         style={{ 
-                          fontSize: `clamp(1rem, ${Math.max(1.25, 1.5 - ((formatLargeNumber(
-                            investmentType === 'sip' ? calculatedResult.futureValue || 0 :
-                            investmentType === 'lumpsum' ? calculatedResult.futureValue || 0 :
-                            calculatedResult.finalBalance || 0
-                          ).length - 10) * 0.1))}rem, 1.5rem)` 
+                          fontSize: `clamp(1rem, ${Math.max(1.25, 1.5 - (
+                            ((investmentType === 'sip' && calculatedResult?.futureValue) || 
+                            (investmentType === 'lumpsum' && calculatedResult?.futureValue) || 
+                            (investmentType === 'swp' && calculatedResult?.finalBalance) || 0
+                          ).toString().length - 10) * 0.1)}rem, 1.5rem)` 
                         }}
                       >
                         {formatLargeNumber(
-                          investmentType === 'sip' ? calculatedResult.futureValue || 0 :
-                          investmentType === 'lumpsum' ? calculatedResult.futureValue || 0 :
-                          calculatedResult.finalBalance || 0
+                          investmentType === 'sip' ? calculatedResult?.futureValue || 0 :
+                          investmentType === 'lumpsum' ? calculatedResult?.futureValue || 0 :
+                          calculatedResult?.finalBalance || 0
                         )}
                       </span>
                     </div>
