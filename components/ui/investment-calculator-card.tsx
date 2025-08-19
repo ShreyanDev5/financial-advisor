@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { FormattedInput } from "@/components/ui/formatted-input";
 import { Slider } from "@/components/ui/slider";
+import { formatLargeNumber } from "@/lib/format-large-number.js";
 
 type CalculatedResult = {
   totalInvested: number;
@@ -303,12 +304,12 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
                     <div className="flex items-center gap-2">
                       <span className="inline-block h-2.5 w-2.5 rounded-sm" style={{ backgroundColor: investedColor }} />
                       <span className="text-muted-foreground">Invested</span>
-                      <span className="font-semibold" style={{ color: investedColor }}>₹{formatAmount(investedValue)}</span>
+                      <span className="font-semibold" style={{ color: investedColor }}>{formatLargeNumber(investedValue)}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <span className="inline-block h-2.5 w-2.5 rounded-sm" style={{ backgroundColor: gainsColor }} />
                       <span className="text-muted-foreground">{investmentType === "swp" ? "Withdrawal" : "Returns"}</span>
-                      <span className="font-semibold" style={{ color: gainsColor }}>₹{formatAmount(investmentType === "swp" ? (calculatedResult?.totalWithdrawn || 0) : returnsValue)}</span>
+                      <span className="font-semibold" style={{ color: gainsColor }}>{formatLargeNumber(investmentType === "swp" ? (calculatedResult?.totalWithdrawn || 0) : returnsValue)}</span>
                     </div>
                   </div>
 
@@ -321,11 +322,20 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
                           {investmentType === 'swp' ? 'Final Balance' : 'Future Value'}
                         </span>
                       </div>
-                      <span className="font-bold text-primary text-2xl">
-                        ₹{formatAmount(
-                          investmentType === 'sip' ? calculatedResult.futureValue :
-                          investmentType === 'lumpsum' ? calculatedResult.futureValue :
-                          calculatedResult.finalBalance
+                      <span 
+                        className="font-bold text-primary text-2xl md:text-xl lg:text-2xl truncate"
+                        style={{ 
+                          fontSize: `clamp(1rem, ${Math.max(1.5, 2 - ((formatLargeNumber(
+                            investmentType === 'sip' ? calculatedResult.futureValue || 0 :
+                            investmentType === 'lumpsum' ? calculatedResult.futureValue || 0 :
+                            calculatedResult.finalBalance || 0
+                          ).length - 10) * 0.1))}rem, 2rem)` 
+                        }}
+                      >
+                        {formatLargeNumber(
+                          investmentType === 'sip' ? calculatedResult.futureValue || 0 :
+                          investmentType === 'lumpsum' ? calculatedResult.futureValue || 0 :
+                          calculatedResult.finalBalance || 0
                         )}
                       </span>
                     </div>
@@ -338,7 +348,7 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
                     <div className="flex items-center gap-2">
                       <span className="inline-block h-2.5 w-2.5 rounded-sm" style={{ backgroundColor: investedColor }} />
                       <span className="text-muted-foreground">Invested</span>
-                      <span className="font-semibold" style={{ color: investedColor }}>₹{formatAmount(investedValue)}</span>
+                      <span className="font-semibold" style={{ color: investedColor }}>{formatLargeNumber(investedValue)}</span>
                     </div>
                   </div>
                   <div className="text-2xl font-thin text-muted-foreground my-0">+</div>
@@ -346,7 +356,7 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
                     <div className="flex items-center gap-2">
                       <span className="inline-block h-2.5 w-2.5 rounded-sm" style={{ backgroundColor: gainsColor }} />
                       <span className="text-muted-foreground">{investmentType === "swp" ? "Withdrawal" : "Returns"}</span>
-                      <span className="font-semibold" style={{ color: gainsColor }}>₹{formatAmount(investmentType === "swp" ? (calculatedResult?.totalWithdrawn || 0) : returnsValue)}</span>
+                      <span className="font-semibold" style={{ color: gainsColor }}>{formatLargeNumber(investmentType === "swp" ? (calculatedResult?.totalWithdrawn || 0) : returnsValue)}</span>
                     </div>
                   </div>
                   <hr className="w-full my-2 border-muted" />
@@ -355,11 +365,20 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
                       <span className="text-primary font-medium">
                         {investmentType === 'swp' ? 'Final Balance' : 'Future Value'}
                       </span>
-                      <span className="font-bold text-primary text-xl">
-                        ₹{formatAmount(
-                          investmentType === 'sip' ? calculatedResult.futureValue :
-                          investmentType === 'lumpsum' ? calculatedResult.futureValue :
-                          calculatedResult.finalBalance
+                      <span 
+                        className="font-bold text-primary text-xl truncate"
+                        style={{ 
+                          fontSize: `clamp(1rem, ${Math.max(1.25, 1.5 - ((formatLargeNumber(
+                            investmentType === 'sip' ? calculatedResult.futureValue || 0 :
+                            investmentType === 'lumpsum' ? calculatedResult.futureValue || 0 :
+                            calculatedResult.finalBalance || 0
+                          ).length - 10) * 0.1))}rem, 1.5rem)` 
+                        }}
+                      >
+                        {formatLargeNumber(
+                          investmentType === 'sip' ? calculatedResult.futureValue || 0 :
+                          investmentType === 'lumpsum' ? calculatedResult.futureValue || 0 :
+                          calculatedResult.finalBalance || 0
                         )}
                       </span>
                     </div>
