@@ -411,7 +411,17 @@ export default function DocumentsContent() {
             colorScheme={service.colorScheme}
             delay={index * 50}
             animation="elegant-fade"
-            whatsAppMessage={`Hi Monotosh, I'd like to apply for a PAN card. Could you please help me understand the required documents and process?`}
+            whatsAppMessage={
+              service.title === "Aadhaar Card Services" 
+                ? `Hi Monotosh, I'd like to apply for an Aadhaar card. Could you please help me understand the required documents and process?`
+                : service.title === "Voter ID Card Services"
+                ? `Hi Monotosh, I'd like to apply for a Voter ID card. Could you please help me understand the required documents and process?`
+                : service.title === "Ration Card Services"
+                ? `Hi Monotosh, I'd like to apply for a Ration card. Could you please help me understand the required documents and process?`
+                : service.title === "Birth Certificate Services"
+                ? `Hi Monotosh, I'd like to apply for a Birth certificate. Could you please help me understand the required documents and process?`
+                : `Hi Monotosh, I'd like to apply for a PAN card. Could you please help me understand the required documents and process?`
+            }
           />
         </div>
       ))}
@@ -434,7 +444,11 @@ export default function DocumentsContent() {
             colorScheme={service.colorScheme}
             delay={index * 50}
             animation="elegant-fade"
-            whatsAppMessage={`Hi Monotosh, I'd like to apply for a driving licence. Could you please help me understand the requirements and process?`}
+            whatsAppMessage={
+              service.title === "Licence Renewal, Corrections & Duplicates"
+                ? `Hi Monotosh, I need help with licence renewal, corrections, or duplicates. Could you please guide me through the process?`
+                : `Hi Monotosh, I'd like to apply for a driving licence. Could you please help me understand the requirements and process?`
+            }
           />
         </div>
       ))}
