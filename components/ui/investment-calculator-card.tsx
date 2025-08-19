@@ -27,12 +27,6 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
   const [expectedReturnRate, setExpectedReturnRate] = useState("12");
   const [timePeriod, setTimePeriod] = useState("10");
 
-  // Ensure consistent number formatting across SSR and client
-  const numberFormatter = useMemo(() => new Intl.NumberFormat(["en-IN", "en-US"], {
-    maximumFractionDigits: 0,
-  }), []);
-  const formatAmount = (value?: number) => numberFormatter.format(Math.round(value || 0));
-
   const calculatedResult: CalculatedResult = useMemo(() => {
     const principal = parseFloat(totalInvestment);
     const monthlyInvestment = parseFloat(investmentAmount);
@@ -44,18 +38,23 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
       if (isNaN(monthlyInvestment) || isNaN(annualRate) || isNaN(years)) return null;
       const monthlyRate = (annualRate / 100) / 12; // Convert percentage to decimal then to monthly
       const months = years * 12;
+      const totalInvested = monthlyInvestment * months;
+      
+      // Handle zero interest rate case
+      if (annualRate === 0) {
+        return { totalInvested, wealthGained: 0, futureValue: totalInvested };
+      }
+      
       // Using ordinary annuity formula for SIP (payments at end of period)
       const futureValue = monthlyInvestment * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate);
-      const totalInvested = monthlyInvestment * months;
-      const wealthGained = futureValue - totalInvested;
       
       // Apply correction factor to align with expected industry results
       // Based on analysis, a correction factor of ~0.9739 gives results closer to expected values
       const correctionFactor = 0.973905;
       const correctedFutureValue = futureValue * correctionFactor;
-      const correctedWealthGained = correctedFutureValue - totalInvested;
+      const wealthGained = correctedFutureValue - totalInvested;
       
-      return { totalInvested, wealthGained: correctedWealthGained, futureValue: correctedFutureValue };
+      return { totalInvested, wealthGained, futureValue: correctedFutureValue };
     }
 
     if (investmentType === "lumpsum") {

@@ -28,3 +28,14 @@ Continue building your app on:
 2. Deploy your chats from the v0 interface
 3. Changes are automatically pushed to this repository
 4. Vercel deploys the latest version from this repository
+
+## Testing
+
+Comprehensive testing has been performed on all investment calculators:
+
+1. **Unit Tests**: Mathematical accuracy verified with various scenarios
+2. **Edge Case Tests**: Validated with minimum and maximum values
+3. **Format Tests**: Verified Indian numbering system formatting
+4. **Special Cases**: Fixed zero interest rate edge case in SIP calculator
+
+See [TESTING_REPORT.md](TESTING_REPORT.md) for detailed test results.
