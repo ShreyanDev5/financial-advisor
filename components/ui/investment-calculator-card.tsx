@@ -4,6 +4,7 @@ import { useState, useMemo, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import { FormattedInput } from "@/components/ui/formatted-input";
 import { Slider } from "@/components/ui/slider";
 
 type CalculatedResult = {
@@ -156,7 +157,13 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
               <div className="space-y-2 sm:space-y-2">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                   <Label htmlFor="investmentAmount" className="text-sm sm:text-base">Monthly Investment (₹)</Label>
-                  <Input id="investmentAmount" inputMode="numeric" value={investmentAmount} onChange={(e) => setInvestmentAmount(e.target.value)} className="w-full sm:w-36 md:w-40" />
+                  <FormattedInput 
+                    id="investmentAmount" 
+                    inputMode="numeric" 
+                    value={investmentAmount} 
+                    onFormattedChange={setInvestmentAmount} 
+                    className="w-full sm:w-36 md:w-40" 
+                  />
                 </div>
                 <Slider value={[Number(investmentAmount) || 0]} onValueChange={([v]) => setInvestmentAmount(String(Math.round(v)))} min={500} max={200000} step={500} className="[&>span:first-child]:h-2 [&>span:first-child]:rounded-full [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:shadow-md" />
               </div>
@@ -165,7 +172,13 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
               <div className="space-y-2 sm:space-y-2">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                   <Label htmlFor="totalInvestment" className="text-sm sm:text-base">Total Investment (₹)</Label>
-                  <Input id="totalInvestment" inputMode="numeric" value={totalInvestment} onChange={(e) => setTotalInvestment(e.target.value)} className="w-full sm:w-36 md:w-40" />
+                  <FormattedInput 
+                    id="totalInvestment" 
+                    inputMode="numeric" 
+                    value={totalInvestment} 
+                    onFormattedChange={setTotalInvestment} 
+                    className="w-full sm:w-36 md:w-40" 
+                  />
                 </div>
                 <Slider value={[Number(totalInvestment) || 0]} onValueChange={([v]) => setTotalInvestment(String(Math.round(v)))} min={10000} max={5000000} step={10000} className="[&>span:first-child]:h-2 [&>span:first-child]:rounded-full [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:shadow-md" />
               </div>
@@ -175,14 +188,26 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
                 <div className="space-y-2 sm:space-y-2">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                     <Label htmlFor="totalInvestment" className="text-sm sm:text-base">Total Investment (₹)</Label>
-                    <Input id="totalInvestment" inputMode="numeric" value={totalInvestment} onChange={(e) => setTotalInvestment(e.target.value)} className="w-full sm:w-36 md:w-40" />
+                    <FormattedInput 
+                      id="totalInvestment" 
+                      inputMode="numeric" 
+                      value={totalInvestment} 
+                      onFormattedChange={setTotalInvestment} 
+                      className="w-full sm:w-36 md:w-40" 
+                    />
                   </div>
                   <Slider value={[Number(totalInvestment) || 0]} onValueChange={([v]) => setTotalInvestment(String(Math.round(v)))} min={10000} max={5000000} step={10000} className="[&>span:first-child]:h-2 [&>span:first-child]:rounded-full [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:shadow-md" />
                 </div>
                 <div className="space-y-2 sm:space-y-2">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                     <Label htmlFor="withdrawalAmount" className="text-sm sm:text-base">Monthly Withdrawal (₹)</Label>
-                    <Input id="withdrawalAmount" inputMode="numeric" value={withdrawalAmount} onChange={(e) => setWithdrawalAmount(e.target.value)} className="w-full sm:w-36 md:w-40" />
+                    <FormattedInput 
+                      id="withdrawalAmount" 
+                      inputMode="numeric" 
+                      value={withdrawalAmount} 
+                      onFormattedChange={setWithdrawalAmount} 
+                      className="w-full sm:w-36 md:w-40" 
+                    />
                   </div>
                   <Slider value={[Number(withdrawalAmount) || 0]} onValueChange={([v]) => setWithdrawalAmount(String(Math.round(v)))} min={1000} max={200000} step={500} className="[&>span:first-child]:h-2 [&>span:first-child]:rounded-full [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:shadow-md" />
                 </div>
