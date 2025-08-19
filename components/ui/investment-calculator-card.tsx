@@ -165,7 +165,7 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
                     className="w-full sm:w-36 md:w-40" 
                   />
                 </div>
-                <Slider value={[Number(investmentAmount) || 0]} onValueChange={([v]) => setInvestmentAmount(String(Math.round(v)))} min={500} max={200000} step={500} className="[&>span:first-child]:h-2 [&>span:first-child]:rounded-full [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:shadow-md" />
+                <Slider value={[Number(investmentAmount) || 0]} onValueChange={([v]) => setInvestmentAmount(String(Math.round(v)))} min={500} max={1000000} step={500} className="[&>span:first-child]:h-2 [&>span:first-child]:rounded-full [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:shadow-md" />
               </div>
             )}
             {investmentType === "lumpsum" && (
@@ -180,7 +180,7 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
                     className="w-full sm:w-36 md:w-40" 
                   />
                 </div>
-                <Slider value={[Number(totalInvestment) || 0]} onValueChange={([v]) => setTotalInvestment(String(Math.round(v)))} min={10000} max={5000000} step={10000} className="[&>span:first-child]:h-2 [&>span:first-child]:rounded-full [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:shadow-md" />
+                <Slider value={[Number(totalInvestment) || 0]} onValueChange={([v]) => setTotalInvestment(String(Math.round(v)))} min={500} max={10000000} step={10000} className="[&>span:first-child]:h-2 [&>span:first-child]:rounded-full [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:shadow-md" />
               </div>
             )}
             {investmentType === "swp" && (
@@ -196,7 +196,7 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
                       className="w-full sm:w-36 md:w-40" 
                     />
                   </div>
-                  <Slider value={[Number(totalInvestment) || 0]} onValueChange={([v]) => setTotalInvestment(String(Math.round(v)))} min={10000} max={5000000} step={10000} className="[&>span:first-child]:h-2 [&>span:first-child]:rounded-full [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:shadow-md" />
+                  <Slider value={[Number(totalInvestment) || 0]} onValueChange={([v]) => setTotalInvestment(String(Math.round(v)))} min={10000} max={10000000} step={10000} className="[&>span:first-child]:h-2 [&>span:first-child]:rounded-full [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:shadow-md" />
                 </div>
                 <div className="space-y-2 sm:space-y-2">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
@@ -209,7 +209,7 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
                       className="w-full sm:w-36 md:w-40" 
                     />
                   </div>
-                  <Slider value={[Number(withdrawalAmount) || 0]} onValueChange={([v]) => setWithdrawalAmount(String(Math.round(v)))} min={1000} max={200000} step={500} className="[&>span:first-child]:h-2 [&>span:first-child]:rounded-full [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:shadow-md" />
+                  <Slider value={[Number(withdrawalAmount) || 0]} onValueChange={([v]) => setWithdrawalAmount(String(Math.round(v)))} min={500} max={1000000} step={500} className="[&>span:first-child]:h-2 [&>span:first-child]:rounded-full [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:shadow-md" />
                 </div>
               </>
             )}
@@ -218,7 +218,7 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
                 <Label htmlFor="expectedReturnRate" className="text-sm sm:text-base">Expected Return Rate (% p.a.)</Label>
                 <Input id="expectedReturnRate" inputMode="numeric" value={expectedReturnRate} onChange={(e) => setExpectedReturnRate(e.target.value)} className="w-full sm:w-24 md:w-28" />
               </div>
-              <Slider value={[Number(expectedReturnRate) || 0]} onValueChange={([v]) => setExpectedReturnRate(String(v))} min={1} max={24} step={0.5} className="[&>span:first-child]:h-2 [&>span:first-child]:rounded-full [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:shadow-md" />
+              <Slider value={[Number(expectedReturnRate) || 0]} onValueChange={([v]) => setExpectedReturnRate(String(v))} min={1} max={30} step={0.5} className="[&>span:first-child]:h-2 [&>span:first-child]:rounded-full [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:shadow-md" />
             </div>
             <div className="space-y-2 sm:space-y-2 mb-6">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
