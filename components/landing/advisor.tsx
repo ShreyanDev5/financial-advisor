@@ -13,6 +13,16 @@ interface AdvisorInfo {
 }
 
 export function AdvisorSection({ advisor }: { advisor: AdvisorInfo }) {
+  // Format phone number for WhatsApp link (international format)
+  const formatWhatsAppNumber = (phone: string) => {
+    // Remove spaces and add country code prefix
+    const cleanPhone = phone.replace(/\s/g, '');
+    // If it doesn't already start with country code, add it
+    return cleanPhone.startsWith('91') ? cleanPhone : `91${cleanPhone}`;
+  };
+
+  const whatsAppNumber = formatWhatsAppNumber(advisor.phone);
+
   return (
     <div className="container mx-auto px-4 py-12 sm:py-16">
       <div className="text-center mb-12">
@@ -49,7 +59,16 @@ export function AdvisorSection({ advisor }: { advisor: AdvisorInfo }) {
                     </div>
                     <div>
                       <p className="text-sm text-gray-500">Phone</p>
-                      <p className="font-medium">{advisor.phone}</p>
+                      <p className="font-medium">
+                        <a 
+                          href={`https://wa.me/${whatsAppNumber}`} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-emerald-600 hover:text-emerald-700 hover:underline"
+                        >
+                          {advisor.phone}
+                        </a>
+                      </p>
                     </div>
                   </div>
 
@@ -59,7 +78,14 @@ export function AdvisorSection({ advisor }: { advisor: AdvisorInfo }) {
                     </div>
                     <div>
                       <p className="text-sm text-gray-500">Email</p>
-                      <p className="font-medium">{advisor.email}</p>
+                      <p className="font-medium">
+                        <a 
+                          href={`mailto:${advisor.email}`} 
+                          className="text-emerald-600 hover:text-emerald-700 hover:underline"
+                        >
+                          {advisor.email}
+                        </a>
+                      </p>
                     </div>
                   </div>
 
@@ -88,9 +114,9 @@ export default function Advisor() {
   const advisorData: AdvisorInfo = {
     name: "Monotosh Sardar",
     profession: "Certified Financial Planner",
-    phone: "+91 98364 72260",
-    email: "monotosh@example.com",
-    address: "Kolkata, West Bengal, India"
+    phone: "98364 72260",
+    email: "moni22rick@gmail.com",
+    address: "Budge Budge, Kolkata, West Bengal, India"
   };
 
   return <AdvisorSection advisor={advisorData} />;
