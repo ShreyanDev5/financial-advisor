@@ -51,21 +51,22 @@ export function AdvisorSection({ advisor }: { advisor: AdvisorInfo }) {
               </div>
 
               {/* Content with improved spacing and balance */}
-              <div className="flex-1 text-center md:text-left w-full pr-6">
+              <div className="flex-1 text-center md:text-left w-full pr-0 md:pr-6">
                 <div className="space-y-6">
                   <div>
                     <h3 className="text-2xl sm:text-3xl font-bold font-serif text-gray-800">{advisor.name}</h3>
                     <p className="text-base sm:text-lg text-emerald-600 mt-1">{advisor.profession}</p>
                   </div>
 
-                  <div className="space-y-4 max-w-md md:mx-0">
-                    <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4">
-                      <div className="bg-emerald-100 p-3 rounded-xl flex-shrink-0">
+                  <div className="space-y-5 max-w-md md:mx-0">
+                    {/* Phone Information */}
+                    <div className="flex items-start gap-4">
+                      <div className="bg-emerald-100 p-3 rounded-xl flex-shrink-0 mt-1">
                         <Phone className="w-5 h-5 text-emerald-600" />
                       </div>
-                      <div className="text-left">
-                        <p className="text-sm text-gray-500">Phone</p>
-                        <p className="font-medium">
+                      <div className="text-left flex-1">
+                        <p className="text-xs sm:text-sm text-gray-500 uppercase tracking-wide font-medium">Phone</p>
+                        <p className="font-medium text-sm sm:text-base mt-1">
                           <a 
                             href={`https://wa.me/${whatsAppNumber}`} 
                             target="_blank" 
@@ -78,13 +79,14 @@ export function AdvisorSection({ advisor }: { advisor: AdvisorInfo }) {
                       </div>
                     </div>
 
-                    <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4">
-                      <div className="bg-emerald-100 p-3 rounded-xl flex-shrink-0">
+                    {/* Email Information */}
+                    <div className="flex items-start gap-4">
+                      <div className="bg-emerald-100 p-3 rounded-xl flex-shrink-0 mt-1">
                         <Mail className="w-5 h-5 text-emerald-600" />
                       </div>
-                      <div className="text-left">
-                        <p className="text-sm text-gray-500">Email</p>
-                        <p className="font-medium">
+                      <div className="text-left flex-1">
+                        <p className="text-xs sm:text-sm text-gray-500 uppercase tracking-wide font-medium">Email</p>
+                        <p className="font-medium text-sm sm:text-base mt-1">
                           <a 
                             href={`mailto:${advisor.email}`} 
                             className="text-emerald-600 hover:text-emerald-700 hover:underline transition-colors"
@@ -95,13 +97,16 @@ export function AdvisorSection({ advisor }: { advisor: AdvisorInfo }) {
                       </div>
                     </div>
 
-                    <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4">
-                      <div className="bg-emerald-100 p-3 rounded-xl flex-shrink-0">
+                    {/* Address Information */}
+                    <div className="flex items-start gap-4">
+                      <div className="bg-emerald-100 p-3 rounded-xl flex-shrink-0 mt-1">
                         <MapPin className="w-5 h-5 text-emerald-600" />
                       </div>
-                      <div className="text-left">
-                        <p className="text-sm text-gray-500">Address</p>
-                        <p className="font-medium max-w-xs">{advisor.address}</p>
+                      <div className="text-left flex-1">
+                        <p className="text-xs sm:text-sm text-gray-500 uppercase tracking-wide font-medium">Address</p>
+                        <p className="font-medium text-sm sm:text-base mt-1">
+                          {advisor.address}
+                        </p>
                       </div>
                     </div>
                   </div>
