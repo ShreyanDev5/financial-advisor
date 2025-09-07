@@ -58,10 +58,10 @@ export function AdvisorSection({ advisor }: { advisor: AdvisorInfo }) {
                     <p className="text-base sm:text-lg text-emerald-600 mt-1">{advisor.profession}</p>
                   </div>
 
-                  <div className="space-y-5 max-w-md md:mx-0">
+                  <div className="space-y-4 max-w-md md:mx-0">
                     {/* Phone Information */}
-                    <div className="flex items-start gap-4">
-                      <div className="bg-emerald-100 p-3 rounded-xl flex-shrink-0 mt-1">
+                    <div className="flex items-start gap-4 group">
+                      <div className="bg-emerald-100 p-3 rounded-xl flex-shrink-0 mt-1 transition-all duration-300 group-hover:bg-emerald-200 group-hover:scale-105">
                         <Phone className="w-5 h-5 text-emerald-600" />
                       </div>
                       <div className="text-left flex-1">
@@ -80,8 +80,8 @@ export function AdvisorSection({ advisor }: { advisor: AdvisorInfo }) {
                     </div>
 
                     {/* Email Information */}
-                    <div className="flex items-start gap-4">
-                      <div className="bg-emerald-100 p-3 rounded-xl flex-shrink-0 mt-1">
+                    <div className="flex items-start gap-4 group">
+                      <div className="bg-emerald-100 p-3 rounded-xl flex-shrink-0 mt-1 transition-all duration-300 group-hover:bg-emerald-200 group-hover:scale-105">
                         <Mail className="w-5 h-5 text-emerald-600" />
                       </div>
                       <div className="text-left flex-1">
@@ -98,8 +98,8 @@ export function AdvisorSection({ advisor }: { advisor: AdvisorInfo }) {
                     </div>
 
                     {/* Address Information */}
-                    <div className="flex items-start gap-4">
-                      <div className="bg-emerald-100 p-3 rounded-xl flex-shrink-0 mt-1">
+                    <div className="flex items-start gap-4 group">
+                      <div className="bg-emerald-100 p-3 rounded-xl flex-shrink-0 mt-1 transition-all duration-300 group-hover:bg-emerald-200 group-hover:scale-105">
                         <MapPin className="w-5 h-5 text-emerald-600" />
                       </div>
                       <div className="text-left flex-1">
