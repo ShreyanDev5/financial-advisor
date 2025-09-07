@@ -26,7 +26,7 @@ export function AdvisorSection({ advisor }: { advisor: AdvisorInfo }) {
   return (
     <div className="container mx-auto px-4 py-6 sm:py-8">
       <div className="text-center mb-6 sm:mb-8">
-        <h2 className="text-3xl sm:text-4xl font-bold font-serif mb-4">About Your Financial Advisor</h2>
+        <h2 className="text-3xl sm:text-4xl font-bold font-serif mb-4">Meet Your Advisor</h2>
         <div className="w-24 h-1 bg-gradient-to-r from-emerald-500 to-green-600 mx-auto rounded-full"></div>
       </div>
 
