@@ -38,7 +38,7 @@ export function AdvisorSection({ advisor }: { advisor: AdvisorInfo }) {
           <CardContent className="p-6 sm:p-8">
             <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-center md:items-start">
               {/* Image container with better positioning and spacing */}
-              <div className="relative flex-shrink-0">
+              <div className="relative flex-shrink-0 md:mt-2">
                 <div className="relative w-44 h-52 sm:w-52 sm:h-60 rounded-2xl overflow-hidden shadow-lg border-4 border-white/80">
                   <Image
                     src="/advisor_profile-pic.jpg"
