@@ -52,24 +52,29 @@ export default function Footer() {
 
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-2xl border-t border-white/20 safe-area-pb z-50 shadow-2xl">
-      <div className="flex items-center justify-around py-2 px-4" role="tablist" aria-label="Primary navigation">
-        {tabs.map((tab) => {
+      <div className="flex items-center justify-between py-2 px-0" role="tablist" aria-label="Primary navigation">
+        {tabs.map((tab, index) => {
           const Icon = tab.icon;
           const isActive = (pathname === '/' && tab.id === 'home') || pathname === tab.href;
           const tabColors = getTabColors(tab.colorScheme as 'emerald' | 'blue' | 'orange' | 'purple' | 'teal', isActive);
+          
+          // Add increased padding to first and last items for proper distance from edges
+          const isFirstItem = index === 0;
+          const isLastItem = index === tabs.length - 1;
+          const paddingClass = isFirstItem ? "pl-3 sm:pl-4" : isLastItem ? "pr-3 sm:pr-4" : "px-0.5 sm:px-1";
 
           return (
             <Link href={tab.href} key={tab.id} className={`
-                flex flex-col items-center gap-1 py-2 px-3 rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white
+                flex flex-col items-center gap-0.5 py-1.5 ${paddingClass} sm:py-2 rounded-lg sm:rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white
                 transition-all duration-200 ease-out
                 transform hover:scale-105 active:scale-95
                 touch-manipulation select-none transform-gpu
                 ${tabColors.bg}
               `} role="tab" aria-selected={isActive} aria-label={tab.label}>
-              <div className={`p-2 rounded-xl transition-all duration-200 transform-gpu ${tabColors.button} min-w-11 min-h-11 flex items-center justify-center`}>
-                <Icon className="w-5 h-5" aria-hidden="true" />
+              <div className={`p-3 sm:p-3.5 rounded-lg sm:rounded-xl transition-all duration-200 transform-gpu ${tabColors.button} min-w-11 min-h-11 sm:min-w-12 sm:min-h-12 flex items-center justify-center`}>
+                <Icon className="w-6 h-6 sm:w-6.5 sm:h-6.5" aria-hidden="true" />
               </div>
-              <span className={`text-xs font-medium transition-colors duration-200 ${tabColors.text}`}>
+              <span className={`text-[10px] sm:text-sm font-medium transition-colors duration-200 ${tabColors.text}`}>
                 {tab.label}
               </span>
             </Link>
