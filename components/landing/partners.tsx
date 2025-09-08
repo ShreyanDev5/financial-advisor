@@ -19,7 +19,7 @@ const partnerLogos = [
 
 const Partners = ({ className }: { className?: string }) => {
     return (
-        <section className={`pt-20 sm:pt-28 pb-16 ${className}`}>
+        <section className={`pt-12 sm:pt-16 pb-16 ${className}`}>
             <div className="container px-4 md:px-6">
                 <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
                     <div className="space-y-2">

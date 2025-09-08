@@ -147,7 +147,7 @@ export default function HomeContent() {
       <div className="w-3/5 sm:w-1/2 md:w-1/3 mx-auto">
         <div className="h-px w-full bg-gray-200 dark:bg-gray-800" />
       </div>
-      <AnimatedSection className="text-center mb-24 sm:mb-32">
+      <AnimatedSection className="text-center mb-16 sm:mb-24">
         <div className="space-y-2 mb-8">
           <h2 className="text-3xl sm:text-4xl font-bold font-serif">Client Stories</h2>
           <p className="text-base sm:text-lg text-gray-600">
@@ -172,7 +172,7 @@ export default function HomeContent() {
           />
         </div>
       </AnimatedSection>
-      <AnimatedSection className="bg-white/50 backdrop-blur-2xl p-6 sm:p-16 rounded-2xl text-center border-4 border-emerald-600 shadow-strong mx-4 sm:mx-16 cta-section-spacing mb-24 sm:mb-32">
+      <AnimatedSection className="bg-white/50 backdrop-blur-2xl p-6 sm:p-16 rounded-2xl text-center border-4 border-emerald-600 shadow-strong mx-4 sm:mx-16">
         <div className="space-y-2 mb-8">
           <h2 className="text-3xl sm:text-4xl font-bold font-serif leading-tight">Start Your Financial Plan</h2>
           <p className="text-base sm:text-lg text-gray-600 max-w-4xl mx-auto mb-8 text-pretty">
