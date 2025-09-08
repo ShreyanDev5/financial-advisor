@@ -49,25 +49,25 @@ export default function Footer() {
 
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-lg border-t border-gray-200/60 z-50">
-      <div className="flex justify-around items-center py-2 px-2" role="tablist" aria-label="Primary navigation">
+      <div className="flex justify-around items-center py-1 px-1" role="tablist" aria-label="Primary navigation">
         {tabs.map((tab) => {
           const Icon = tab.icon;
-          const isActive = (pathname === '/' && tab.id === 'home') || pathname.startsWith(tab.href);
+          const isActive = pathname === tab.href;
           const tabColors = getTabColors(tab.colorScheme as 'emerald' | 'blue' | 'orange' | 'purple' | 'teal', isActive);
 
           return (
             <Link href={tab.href} key={tab.id} className={`
-                flex flex-col items-center justify-center gap-1 p-2 rounded-lg
+                flex flex-col items-center justify-center gap-0.5 p-1 rounded-lg
                 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-emerald-500
                 transition-all duration-200 ease-in-out
                 transform active:scale-95
                 w-1/5
                 ${tabColors.bg}
               `} role="tab" aria-selected={isActive} aria-label={tab.label}>
-              <div className={`p-3 rounded-full transition-all duration-200 ${tabColors.button}`}>
-                <Icon className="w-6 h-6" aria-hidden="true" />
+              <div className={`p-2.5 rounded-full transition-all duration-200 ${tabColors.button}`}>
+                <Icon className="w-5 h-5" aria-hidden="true" />
               </div>
-              <span className={`text-xs font-medium transition-colors duration-200 ${tabColors.text}`}>
+              <span className={`text-[11px] font-medium transition-colors duration-200 ${tabColors.text}`}>
                 {tab.label}
               </span>
             </Link>
