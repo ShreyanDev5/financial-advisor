@@ -147,7 +147,7 @@ export default function HomeContent() {
       <div className="w-3/5 sm:w-1/2 md:w-1/3 mx-auto">
         <div className="h-px w-full bg-gray-200 dark:bg-gray-800" />
       </div>
-      <AnimatedSection className="text-center mb-16 sm:mb-24">
+      <AnimatedSection className="text-center mb-24 sm:mb-32">
         <div className="space-y-2 mb-8">
           <h2 className="text-3xl sm:text-4xl font-bold font-serif">Client Stories</h2>
           <p className="text-base sm:text-lg text-gray-600">
