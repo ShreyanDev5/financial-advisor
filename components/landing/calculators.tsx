@@ -10,7 +10,7 @@ export default function CalculatorsContent() {
         title="Financial Calculators" 
         description="Estimate your returns and plan your financial future with our easy-to-use calculators."
         className="mb-0 [&>h1]:text-4xl sm:[&>h1]:text-6xl" 
-        color="from-emerald-500 to-teal-700" 
+        color="from-teal-500 to-emerald-500" 
       />
 
       {/* Gray divider to separate sections */}
