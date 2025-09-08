@@ -1,6 +1,6 @@
 "use client";
 
-import { Home, Shield, TrendingUp, FileText } from "lucide-react";
+import { Home, Shield, TrendingUp, FileText, Calculator } from "lucide-react";
 import { useCallback } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -13,9 +13,10 @@ export default function Footer() {
     { id: "insurance", href: "/insurance", label: "Insurance", icon: Shield, colorScheme: "blue" },
     { id: "invest", href: "/invest", label: "Invest", icon: TrendingUp, colorScheme: "orange" },
     { id: "documents", href: "/documents", label: "Documents", icon: FileText, colorScheme: "purple" },
+    { id: "calculators", href: "/calculators", label: "Calculators", icon: Calculator, colorScheme: "teal" },
   ];
 
-  const getTabColors = useCallback((colorScheme: 'emerald' | 'blue' | 'orange' | 'purple', isActive: boolean) => {
+  const getTabColors = useCallback((colorScheme: 'emerald' | 'blue' | 'orange' | 'purple' | 'teal', isActive: boolean) => {
     const colors = {
       emerald: {
         bg: isActive ? "bg-gradient-to-br from-emerald-50 to-teal-50" : "",
@@ -35,6 +36,11 @@ export default function Footer() {
         button: isActive ? "bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg" : "text-gray-400",
         text: isActive ? "text-orange-600" : "text-gray-400",
       },
+      teal: {
+        bg: isActive ? "bg-gradient-to-br from-teal-50 to-emerald-50" : "",
+        button: isActive ? "bg-gradient-to-r from-teal-500 to-emerald-500 text-white shadow-lg" : "text-gray-400",
+        text: isActive ? "text-teal-600" : "text-gray-400",
+      },
       purple: {
         bg: isActive ? "bg-gradient-to-br from-purple-50 to-violet-50" : "",
         button: isActive ? "bg-gradient-to-r from-purple-500 to-violet-500 text-white shadow-lg" : "text-gray-400",
@@ -50,7 +56,7 @@ export default function Footer() {
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = (pathname === '/' && tab.id === 'home') || pathname === tab.href;
-          const tabColors = getTabColors(tab.colorScheme as 'emerald' | 'blue' | 'orange' | 'purple', isActive);
+          const tabColors = getTabColors(tab.colorScheme as 'emerald' | 'blue' | 'orange' | 'purple' | 'teal', isActive);
 
           return (
             <Link href={tab.href} key={tab.id} className={`

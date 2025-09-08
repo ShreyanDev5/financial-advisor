@@ -3,7 +3,6 @@
 import { TrendingUp } from "lucide-react";
 import { ServiceCard } from "@/components/ui/service-card";
 import { SimplePageHeader } from "@/components/ui/simple-page-header";
-import InvestmentCalculator from "@/components/landing/investment-calculator";
 
 export default function InvestContent() {
   const mutualFundServices = {
@@ -41,11 +40,6 @@ export default function InvestContent() {
       {/* Gray divider to separate sections */}
       <div className="sm:max-w-5xl sm:mx-auto my-2">
         <div className="h-px w-3/4 sm:w-2/3 md:w-1/2 mx-auto bg-gray-200 dark:bg-gray-800" />
-      </div>
-
-      {/* Investment Calculator */}
-      <div id="investment-calculator" className="scroll-mt-28 sm:scroll-mt-32">
-        <InvestmentCalculator />
       </div>
 
       {/* Mutual Fund Advisory */}

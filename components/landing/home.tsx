@@ -7,7 +7,6 @@ import {
   TrendingUp,
   Heart,
   CreditCard,
-  Calculator,
   ClipboardList,
   FileText,
 } from "lucide-react";
@@ -49,7 +48,7 @@ export default function HomeContent() {
     },
     {
       title: "Tax Filing",
-      icon: Calculator,
+      icon: ClipboardList,
       color: "bg-indigo-500/10",
       iconColor: "text-indigo-500",
       borderColor: "border-indigo-500/20",
