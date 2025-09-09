@@ -33,6 +33,14 @@ export default function CalculatorsContent() {
 
       {/* Child Education Calculator */}
       <div id="child-education-calculator" className="scroll-mt-28 sm:scroll-mt-32">
+        <div className="text-center px-2 sm:px-0 mb-6">
+          <h2 className="text-2xl sm:text-4xl font-bold font-serif tracking-tight text-gray-900 dark:text-white">
+            Children Education Planner
+          </h2>
+          <p className="mt-2 text-sm sm:text-base leading-5 sm:leading-7 text-gray-600 dark:text-gray-300">
+            How much do you need to save monthly to fund your child&apos;s education? Calculate the amount using our Children Education Planner.
+          </p>
+        </div>
         <ChildEducationCalculator />
       </div>
 
