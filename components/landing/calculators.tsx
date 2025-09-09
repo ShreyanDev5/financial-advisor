@@ -38,7 +38,7 @@ export default function CalculatorsContent() {
             Children Education Planner
           </h2>
           <p className="mt-2 text-sm sm:text-base leading-5 sm:leading-7 text-gray-600 dark:text-gray-300">
-            How much do you need to save monthly to fund your child&apos;s education? Calculate the amount using our Children Education Planner.
+            Plan your child&apos;s education expenses and calculate monthly savings needed.
           </p>
         </div>
         <ChildEducationCalculator />
