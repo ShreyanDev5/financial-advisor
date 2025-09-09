@@ -49,25 +49,27 @@ export default function IncomePlanningCalculator() {
     // Calculate annual expenses at retirement
     const annualExpensesAtRetirement = futureMonthlyExpenses * 12;
     
-    // Calculate retirement corpus needed using the present value of a growing annuity formula
+    // Calculate retirement corpus needed using the present value of a growing annuity due formula
     // This accounts for expenses growing at the inflation rate during retirement
-    // PV = PMT / (r - g) * [1 - ((1 + g) / (1 + r))^n]
+    // PV = PMT / (r - g) * [1 - ((1 + g) / (1 + r))^n] * (1 + r)
     // Where PMT = initial annual expenses, r = return rate, g = growth rate, n = years
+    // The (1 + r) factor accounts for withdrawals at the beginning of each period (annuity due)
     const growthRate = inflation / 100; // Growth rate of expenses during retirement (inflation)
     const discountRate = expectedReturnRate / 100; // Discount rate (expected return)
     
     let retirementCorpus;
     if (Math.abs(discountRate - growthRate) < 0.0001) {
       // If rates are nearly equal, use the simplified formula to avoid division by zero
-      retirementCorpus = annualExpensesAtRetirement * yearsInRetirement / (1 + discountRate);
+      retirementCorpus = annualExpensesAtRetirement * yearsInRetirement;
     } else {
-      // Present value of growing annuity formula
+      // Present value of growing annuity due formula (payments at beginning of period)
       retirementCorpus = annualExpensesAtRetirement / (discountRate - growthRate) * 
-        (1 - Math.pow((1 + growthRate) / (1 + discountRate), yearsInRetirement));
+        (1 - Math.pow((1 + growthRate) / (1 + discountRate), yearsInRetirement)) * (1 + discountRate);
     }
     
     // Calculate monthly savings required to reach corpus
-    // Using future value of ordinary annuity formula: PMT = FV * r / [(1 + r)^n - 1]
+    // Using future value of annuity due formula: PMT = FV * r / [((1 + r)^n - 1) * (1 + r)]
+    // This accounts for savings at the beginning of each period (annuity due)
     const monthlyRate = expectedReturnRate / 100 / 12;
     const numberOfMonths = yearsUntilRetirement * 12;
     
@@ -76,8 +78,8 @@ export default function IncomePlanningCalculator() {
       // If expected return is 0, simple division
       monthlySavingsRequired = retirementCorpus / numberOfMonths;
     } else {
-      // Future value of ordinary annuity formula (payments at end of period)
-      monthlySavingsRequired = retirementCorpus * monthlyRate / (Math.pow(1 + monthlyRate, numberOfMonths) - 1);
+      // Future value of annuity due formula (payments at beginning of period)
+      monthlySavingsRequired = retirementCorpus * monthlyRate / ((Math.pow(1 + monthlyRate, numberOfMonths) - 1) * (1 + monthlyRate));
     }
     
     return {
