@@ -51,6 +51,14 @@ export default function CalculatorsContent() {
 
       {/* Income Planning Calculator */}
       <div id="income-planning-calculator" className="scroll-mt-28 sm:scroll-mt-32">
+        <div className="text-center px-2 sm:px-0 mb-6">
+          <h2 className="text-2xl sm:text-4xl font-bold font-serif tracking-tight text-gray-900 dark:text-white">
+            Retirement Planning
+          </h2>
+          <p className="mt-2 text-sm sm:text-base leading-5 sm:leading-7 text-gray-600 dark:text-gray-300">
+            Wish to live happily post retirement? Calculate the investment amount required for the same using our Retirement Planning Assistant.
+          </p>
+        </div>
         <IncomePlanningCalculator />
       </div>
 
