@@ -141,16 +141,38 @@ export default function ChildEducationCalculator() {
           </div>
 
           {/* Payment Tenure Options */}
-          <div className="space-y-2">
-            <Label className="text-sm sm:text-base">Payment Tenure</Label>
-            <RadioGroup value={paymentTenure} onValueChange={setPaymentTenure} className="flex flex-col space-y-2">
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="10" id="tenure-10" />
-                <Label htmlFor="tenure-10">Pay for 10 years</Label>
+          <div className="space-y-3">
+            <Label className="text-sm sm:text-base font-medium text-foreground/80">Payment Tenure</Label>
+            <RadioGroup 
+              value={paymentTenure} 
+              onValueChange={setPaymentTenure} 
+              className="grid grid-cols-2 gap-3 sm:flex sm:flex-row"
+            >
+              <div className="flex items-center">
+                <RadioGroupItem 
+                  value="10" 
+                  id="tenure-10" 
+                  className="peer sr-only" 
+                />
+                <Label 
+                  htmlFor="tenure-10"
+                  className="flex-1 text-center py-3 px-4 rounded-xl border-2 border-input bg-background peer-data-[state=checked]:border-primary peer-data-[state=checked]:bg-primary peer-data-[state=checked]:text-primary-foreground peer-data-[state=checked]:shadow-[0_4px_12px_rgba(34,197,94,0.3)] transition-all duration-300 cursor-pointer"
+                >
+                  <span className="font-medium">10 Years</span>
+                </Label>
               </div>
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="15" id="tenure-15" />
-                <Label htmlFor="tenure-15">Pay for 15 years</Label>
+              <div className="flex items-center">
+                <RadioGroupItem 
+                  value="15" 
+                  id="tenure-15" 
+                  className="peer sr-only" 
+                />
+                <Label 
+                  htmlFor="tenure-15"
+                  className="flex-1 text-center py-3 px-4 rounded-xl border-2 border-input bg-background peer-data-[state=checked]:border-primary peer-data-[state=checked]:bg-primary peer-data-[state=checked]:text-primary-foreground peer-data-[state=checked]:shadow-[0_4px_12px_rgba(34,197,94,0.3)] transition-all duration-300 cursor-pointer"
+                >
+                  <span className="font-medium">15 Years</span>
+                </Label>
               </div>
             </RadioGroup>
           </div>
@@ -158,7 +180,7 @@ export default function ChildEducationCalculator() {
           {/* Calculate Button */}
           <Button 
             onClick={handleCalculate} 
-            className="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 text-white shadow-lg hover:from-emerald-600 hover:to-emerald-700 transition-all duration-300 ease-in-out"
+            className="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 text-white shadow-lg hover:from-emerald-500 hover:to-emerald-600 active:from-emerald-700 active:to-emerald-800 transition-all duration-300 ease-in-out"
             disabled={!childName || !monthlySavings}
           >
             Calculate Education Plan
@@ -198,7 +220,7 @@ export default function ChildEducationCalculator() {
               {/* Share Button */}
               <Button 
                 onClick={handleShare} 
-                className="w-full mt-6 bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-lg hover:from-green-600 hover:to-emerald-700 transition-all duration-300 ease-in-out"
+                className="w-full mt-6 bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-lg hover:from-green-500 hover:to-emerald-600 active:from-green-700 active:to-emerald-800 transition-all duration-300 ease-in-out"
               >
                 Share Results via WhatsApp
               </Button>
