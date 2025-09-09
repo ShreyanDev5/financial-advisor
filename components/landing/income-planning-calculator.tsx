@@ -46,27 +46,28 @@ export default function IncomePlanningCalculator() {
     // Calculate future monthly expenses at retirement (considering inflation)
     const futureMonthlyExpenses = expenses * Math.pow(1 + inflation / 100, yearsUntilRetirement);
     
-    // Calculate retirement corpus needed (using present value of annuity formula)
-    // Assuming a safe withdrawal rate approach where corpus = annual expenses / withdrawal rate
-    // Using 4% rule as a base but adjusting for expected return
+    // Calculate annual expenses at retirement
     const annualExpensesAtRetirement = futureMonthlyExpenses * 12;
     
-    // Calculate retirement corpus needed using the present value of annuity formula
-    // PV = PMT * [1 - (1 + r)^-n] / r
-    // Where PMT = annual expenses, r = discount rate, n = number of years
-    const discountRate = expectedReturnRate / 100;
-    let retirementCorpus;
+    // Calculate retirement corpus needed using the present value of a growing annuity formula
+    // This accounts for expenses growing at the inflation rate during retirement
+    // PV = PMT / (r - g) * [1 - ((1 + g) / (1 + r))^n]
+    // Where PMT = initial annual expenses, r = return rate, g = growth rate, n = years
+    const growthRate = inflation / 100; // Growth rate of expenses during retirement (inflation)
+    const discountRate = expectedReturnRate / 100; // Discount rate (expected return)
     
-    if (discountRate === 0) {
-      // If expected return is 0, simple multiplication
-      retirementCorpus = annualExpensesAtRetirement * yearsInRetirement;
+    let retirementCorpus;
+    if (Math.abs(discountRate - growthRate) < 0.0001) {
+      // If rates are nearly equal, use the simplified formula to avoid division by zero
+      retirementCorpus = annualExpensesAtRetirement * yearsInRetirement / (1 + discountRate);
     } else {
-      // Present value of annuity formula
-      retirementCorpus = annualExpensesAtRetirement * (1 - Math.pow(1 + discountRate, -yearsInRetirement)) / discountRate;
+      // Present value of growing annuity formula
+      retirementCorpus = annualExpensesAtRetirement / (discountRate - growthRate) * 
+        (1 - Math.pow((1 + growthRate) / (1 + discountRate), yearsInRetirement));
     }
     
     // Calculate monthly savings required to reach corpus
-    // Using future value of annuity formula: PMT = FV * r / [(1 + r)^n - 1]
+    // Using future value of ordinary annuity formula: PMT = FV * r / [(1 + r)^n - 1]
     const monthlyRate = expectedReturnRate / 100 / 12;
     const numberOfMonths = yearsUntilRetirement * 12;
     
@@ -75,7 +76,7 @@ export default function IncomePlanningCalculator() {
       // If expected return is 0, simple division
       monthlySavingsRequired = retirementCorpus / numberOfMonths;
     } else {
-      // Future value of ordinary annuity formula
+      // Future value of ordinary annuity formula (payments at end of period)
       monthlySavingsRequired = retirementCorpus * monthlyRate / (Math.pow(1 + monthlyRate, numberOfMonths) - 1);
     }
     
@@ -145,7 +146,7 @@ export default function IncomePlanningCalculator() {
               id="name" 
               value={name} 
               onChange={(e) => setName(e.target.value)} 
-              placeholder="e.g., Arjun"
+              placeholder="e.g., Arjun Sharma"
               className="w-full border-indigo-200 focus:border-indigo-400 focus:ring-indigo-300"
             />
           </div>
@@ -160,7 +161,7 @@ export default function IncomePlanningCalculator() {
                 value={currentAge} 
                 onFormattedChange={setCurrentAge} 
                 className="w-full border-indigo-200 focus:border-indigo-400 focus:ring-indigo-300" 
-                placeholder="e.g., 30"
+                placeholder="e.g., 35 years"
               />
             </div>
             
@@ -172,7 +173,7 @@ export default function IncomePlanningCalculator() {
                 value={retirementAge} 
                 onFormattedChange={setRetirementAge} 
                 className="w-full border-indigo-200 focus:border-indigo-400 focus:ring-indigo-300" 
-                placeholder="e.g., 60"
+                placeholder="e.g., 60 years"
               />
             </div>
             
@@ -184,7 +185,7 @@ export default function IncomePlanningCalculator() {
                 value={lifeExpectancy} 
                 onFormattedChange={setLifeExpectancy} 
                 className="w-full border-indigo-200 focus:border-indigo-400 focus:ring-indigo-300" 
-                placeholder="e.g., 85"
+                placeholder="e.g., 85 years"
               />
             </div>
           </div>
@@ -198,37 +199,37 @@ export default function IncomePlanningCalculator() {
               value={monthlyExpenses} 
               onFormattedChange={setMonthlyExpenses} 
               className="w-full border-indigo-200 focus:border-indigo-400 focus:ring-indigo-300" 
-              placeholder="e.g., 50000"
+              placeholder="e.g., ₹50,000 per month"
             />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="inflationRate" className="text-sm sm:text-base text-indigo-700">Expected Inflation Rate (per annum) (%)</Label>
+              <Label htmlFor="retirementInflationRate" className="text-sm sm:text-base text-indigo-700">Expected Inflation Rate (% p.a.)</Label>
               <FormattedInput 
-                id="inflationRate" 
+                id="retirementInflationRate" 
                 inputMode="decimal" 
                 value={inflationRate} 
                 onFormattedChange={setInflationRate} 
                 className="w-full border-indigo-200 focus:border-indigo-400 focus:ring-indigo-300" 
-                placeholder="e.g., 6"
+                placeholder="e.g., 6% per year"
               />
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="expectedReturn" className="text-sm sm:text-base text-indigo-700">Expected Rate of Return (per annum) (%)</Label>
+              <Label htmlFor="retirementExpectedReturn" className="text-sm sm:text-base text-indigo-700">Expected Rate of Return (% p.a.)</Label>
               <FormattedInput 
-                id="expectedReturn" 
+                id="retirementExpectedReturn" 
                 inputMode="decimal" 
                 value={expectedReturn} 
                 onFormattedChange={setExpectedReturn} 
                 className="w-full border-indigo-200 focus:border-indigo-400 focus:ring-indigo-300" 
-                placeholder="e.g., 10"
+                placeholder="e.g., 10% per year"
               />
             </div>
           </div>
 
-          {/* Error Message */}
+          {/* Error Messages */}
           {currentAge && retirementAge && parseInt(retirementAge) <= parseInt(currentAge) && (
             <div className="text-red-500 text-sm text-center">
               Retirement age must be greater than current age.
@@ -278,6 +279,12 @@ export default function IncomePlanningCalculator() {
                 
                 <div className="text-xs sm:text-sm text-indigo-600 mt-2 text-center">
                   You need to invest &#8377;{formatLargeNumber(calculationResults.monthlySavingsRequired).replace('₹', '')} every month for the next {calculationResults.yearsUntilRetirement} years to build a retirement corpus of &#8377;{formatLargeNumber(calculationResults.retirementCorpus).replace('₹', '')}.
+                </div>
+                
+                <div className="text-xs sm:text-sm text-indigo-600/80 mt-2 text-center">
+                  Based on your current monthly expenses of &#8377;{formatLargeNumber(parseFloat(monthlyExpenses)).replace('₹', '')}, 
+                  which will grow to &#8377;{formatLargeNumber(calculationResults.futureMonthlyExpenses).replace('₹', '')} by retirement 
+                  considering {inflationRate}% p.a. inflation.
                 </div>
               </div>
               

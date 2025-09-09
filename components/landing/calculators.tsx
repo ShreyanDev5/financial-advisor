@@ -56,7 +56,7 @@ export default function CalculatorsContent() {
             Retirement Planning
           </h2>
           <p className="mt-2 text-sm sm:text-base leading-5 sm:leading-7 text-gray-600 dark:text-gray-300">
-            Wish to live happily post retirement? Calculate the investment amount required for the same using our Retirement Planning Assistant.
+            Secure your future—estimate the investment needed with our Retirement Planning Assistant.
           </p>
         </div>
         <IncomePlanningCalculator />
