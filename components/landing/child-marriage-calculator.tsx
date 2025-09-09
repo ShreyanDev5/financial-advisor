@@ -260,6 +260,12 @@ export default function ChildMarriageCalculator() {
                   </span>
                 </div>
                 
+                <div className="flex items-center justify-center my-2">
+                  <div className="text-xs font-medium text-rose-600 bg-rose-50 px-3 py-1 rounded-full border border-rose-200">
+                    OR
+                  </div>
+                </div>
+                
                 <div className="flex flex-col sm:flex-row justify-between items-center gap-2 p-3 bg-white/50 rounded-md border border-rose-100">
                   <span className="font-medium text-sm sm:text-base text-rose-700">
                     💼 Lump Sum Investment Required
@@ -270,8 +276,13 @@ export default function ChildMarriageCalculator() {
                 </div>
                 
                 {calculationResults.sipInvestment > 0 ? (
-                  <div className="text-xs sm:text-sm text-rose-600 mt-2 text-center">
-                    You need to invest &#8377;{formatLargeNumber(calculationResults.sipInvestment).replace('₹', '')} every month for the next {calculationResults.yearsUntilMarriage} years to meet your child&apos;s marriage goal.
+                  <div className="space-y-2 mt-2">
+                    <div className="text-xs sm:text-sm text-rose-600 text-center">
+                      You need to invest &#8377;{formatLargeNumber(calculationResults.sipInvestment).replace('₹', '')} every month for the next {calculationResults.yearsUntilMarriage} years to meet your child&apos;s marriage goal.
+                    </div>
+                    <div className="text-xs sm:text-sm text-rose-600 text-center">
+                      <strong>OR</strong> make a one-time investment of &#8377;{formatLargeNumber(calculationResults.lumpSumInvestment).replace('₹', '')} today.
+                    </div>
                   </div>
                 ) : (
                   <div className="text-xs sm:text-sm text-rose-600 mt-2 text-center">
