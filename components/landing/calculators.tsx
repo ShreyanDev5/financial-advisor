@@ -3,6 +3,8 @@
 import { SimplePageHeader } from "@/components/ui/simple-page-header";
 import InvestmentCalculator from "@/components/landing/investment-calculator";
 import ChildEducationCalculator from "@/components/landing/child-education-calculator";
+import ChildMarriageCalculator from "@/components/landing/child-marriage-calculator";
+import IncomePlanningCalculator from "@/components/landing/income-planning-calculator";
 
 export default function CalculatorsContent() {
   return (
@@ -32,6 +34,26 @@ export default function CalculatorsContent() {
       {/* Child Education Calculator */}
       <div id="child-education-calculator" className="scroll-mt-28 sm:scroll-mt-32">
         <ChildEducationCalculator />
+      </div>
+
+      {/* Gray divider to separate sections */}
+      <div className="sm:max-w-5xl sm:mx-auto my-2">
+        <div className="h-px w-3/4 sm:w-2/3 md:w-1/2 mx-auto bg-gray-200 dark:bg-gray-800" />
+      </div>
+
+      {/* Income Planning Calculator */}
+      <div id="income-planning-calculator" className="scroll-mt-28 sm:scroll-mt-32">
+        <IncomePlanningCalculator />
+      </div>
+
+      {/* Gray divider to separate sections */}
+      <div className="sm:max-w-5xl sm:mx-auto my-2">
+        <div className="h-px w-3/4 sm:w-2/3 md:w-1/2 mx-auto bg-gray-200 dark:bg-gray-800" />
+      </div>
+
+      {/* Child Marriage Calculator */}
+      <div id="child-marriage-calculator" className="scroll-mt-28 sm:scroll-mt-32">
+        <ChildMarriageCalculator />
       </div>
     </div>
   );
