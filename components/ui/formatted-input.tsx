@@ -2,7 +2,7 @@
 
 import { Input } from "@/components/ui/input";
 import { formatWithCommas, removeCommas } from "@/lib/number-formatting";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 interface FormattedInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   onFormattedChange?: (value: string) => void;

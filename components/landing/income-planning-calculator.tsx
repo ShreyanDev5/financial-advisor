@@ -208,11 +208,11 @@ export default function IncomePlanningCalculator() {
               <div className="flex items-center">
                 <RadioGroupItem 
                   value="15" 
-                  id="tenure-15" 
+                  id="income-tenure-15" 
                   className="peer sr-only" 
                 />
                 <Label 
-                  htmlFor="tenure-15"
+                  htmlFor="income-tenure-15"
                   className="flex-1 text-center py-3 px-4 rounded-xl border-2 border-indigo-200 bg-indigo-50 peer-data-[state=checked]:border-indigo-500 peer-data-[state=checked]:bg-indigo-500 peer-data-[state=checked]:text-white peer-data-[state=checked]:shadow-[0_4px_12px_rgba(99,102,241,0.3)] transition-all duration-300 cursor-pointer"
                 >
                   <span className="font-medium">15 Years</span>
@@ -221,11 +221,11 @@ export default function IncomePlanningCalculator() {
               <div className="flex items-center">
                 <RadioGroupItem 
                   value="20" 
-                  id="tenure-20" 
+                  id="income-tenure-20" 
                   className="peer sr-only" 
                 />
                 <Label 
-                  htmlFor="tenure-20"
+                  htmlFor="income-tenure-20"
                   className="flex-1 text-center py-3 px-4 rounded-xl border-2 border-indigo-200 bg-indigo-50 peer-data-[state=checked]:border-indigo-500 peer-data-[state=checked]:bg-indigo-500 peer-data-[state=checked]:text-white peer-data-[state=checked]:shadow-[0_4px_12px_rgba(99,102,241,0.3)] transition-all duration-300 cursor-pointer"
                 >
                   <span className="font-medium">20 Years</span>
@@ -234,11 +234,11 @@ export default function IncomePlanningCalculator() {
               <div className="flex items-center">
                 <RadioGroupItem 
                   value="25" 
-                  id="tenure-25" 
+                  id="income-tenure-25" 
                   className="peer sr-only" 
                 />
                 <Label 
-                  htmlFor="tenure-25"
+                  htmlFor="income-tenure-25"
                   className="flex-1 text-center py-3 px-4 rounded-xl border-2 border-indigo-200 bg-indigo-50 peer-data-[state=checked]:border-indigo-500 peer-data-[state=checked]:bg-indigo-500 peer-data-[state=checked]:text-white peer-data-[state=checked]:shadow-[0_4px_12px_rgba(99,102,241,0.3)] transition-all duration-300 cursor-pointer"
                 >
                   <span className="font-medium">25 Years</span>
@@ -258,11 +258,11 @@ export default function IncomePlanningCalculator() {
               <div className="flex items-center">
                 <RadioGroupItem 
                   value="conservative" 
-                  id="investment-conservative" 
+                  id="income-investment-conservative" 
                   className="peer sr-only" 
                 />
                 <Label 
-                  htmlFor="investment-conservative"
+                  htmlFor="income-investment-conservative"
                   className="flex-1 text-center py-3 px-4 rounded-xl border-2 border-indigo-200 bg-indigo-50 peer-data-[state=checked]:border-indigo-500 peer-data-[state=checked]:bg-indigo-500 peer-data-[state=checked]:text-white peer-data-[state=checked]:shadow-[0_4px_12px_rgba(99,102,241,0.3)] transition-all duration-300 cursor-pointer"
                 >
                   <span className="font-medium">Conservative (7%)</span>
@@ -271,11 +271,11 @@ export default function IncomePlanningCalculator() {
               <div className="flex items-center">
                 <RadioGroupItem 
                   value="balanced" 
-                  id="investment-balanced" 
+                  id="income-investment-balanced" 
                   className="peer sr-only" 
                 />
                 <Label 
-                  htmlFor="investment-balanced"
+                  htmlFor="income-investment-balanced"
                   className="flex-1 text-center py-3 px-4 rounded-xl border-2 border-indigo-200 bg-indigo-50 peer-data-[state=checked]:border-indigo-500 peer-data-[state=checked]:bg-indigo-500 peer-data-[state=checked]:text-white peer-data-[state=checked]:shadow-[0_4px_12px_rgba(99,102,241,0.3)] transition-all duration-300 cursor-pointer"
                 >
                   <span className="font-medium">Balanced (10%)</span>
@@ -284,11 +284,11 @@ export default function IncomePlanningCalculator() {
               <div className="flex items-center">
                 <RadioGroupItem 
                   value="aggressive" 
-                  id="investment-aggressive" 
+                  id="income-investment-aggressive" 
                   className="peer sr-only" 
                 />
                 <Label 
-                  htmlFor="investment-aggressive"
+                  htmlFor="income-investment-aggressive"
                   className="flex-1 text-center py-3 px-4 rounded-xl border-2 border-indigo-200 bg-indigo-50 peer-data-[state=checked]:border-indigo-500 peer-data-[state=checked]:bg-indigo-500 peer-data-[state=checked]:text-white peer-data-[state=checked]:shadow-[0_4px_12px_rgba(99,102,241,0.3)] transition-all duration-300 cursor-pointer"
                 >
                   <span className="font-medium">Aggressive (12%)</span>

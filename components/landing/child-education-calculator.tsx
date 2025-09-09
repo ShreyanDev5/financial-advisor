@@ -11,94 +11,108 @@ import { formatLargeNumber } from "@/lib/format-large-number.js";
 
 export default function ChildEducationCalculator() {
   const [childName, setChildName] = useState("");
+  const [childAge, setChildAge] = useState("5");
   const [monthlySavings, setMonthlySavings] = useState("500");
   const [paymentTenure, setPaymentTenure] = useState("10"); // "10" or "15"
+  const [investmentType, setInvestmentType] = useState("balanced"); // "conservative", "balanced", "aggressive"
+  const [educationStartAge, setEducationStartAge] = useState("18"); // Age when education starts
   const [showResults, setShowResults] = useState(false);
 
   // Calculate results based on inputs
   const calculationResults = useMemo(() => {
-    if (!childName || !monthlySavings || !paymentTenure) return null;
+    if (!childName || !childAge || !monthlySavings || !paymentTenure || !educationStartAge) return null;
 
     const savings = parseFloat(monthlySavings) || 0;
     const tenure = parseInt(paymentTenure);
+    const currentAge = parseInt(childAge);
+    const startAge = parseInt(educationStartAge);
     
-    // Calculate future value of SIP (Systematic Investment Plan)
-    const annualReturnRate = 0.08;
+    // Validate inputs
+    if (startAge <= currentAge || currentAge < 0 || startAge > 30) return null;
+    
+    // Set return rates based on investment type
+    let annualReturnRate;
+    switch(investmentType) {
+      case "conservative":
+        annualReturnRate = 0.07; // 7% for conservative investments
+        break;
+      case "aggressive":
+        annualReturnRate = 0.11; // 11% for aggressive investments
+        break;
+      case "balanced":
+      default:
+        annualReturnRate = 0.09; // 9% for balanced investments
+    }
+    
     const monthlyReturnRate = annualReturnRate / 12;
     const totalMonths = tenure * 12;
     
     // Future value of monthly savings (annuity calculation)
     const futureValue = savings * ((Math.pow(1 + monthlyReturnRate, totalMonths) - 1) / monthlyReturnRate);
     
-    // Calculate corpus at start of education
-    // Education starts at year (tenure + 1)
-    const educationStartYear = tenure + 1;
-    const corpusAtEducationStart = futureValue * Math.pow(1 + annualReturnRate, Math.max(0, educationStartYear - tenure));
+    // Calculate years until education starts
+    const yearsUntilEducation = startAge - currentAge;
     
-    // Calculate the years when education support is provided
+    // Calculate corpus at education start time with compounding
+    const corpusAtEducationStart = futureValue * Math.pow(1 + annualReturnRate, Math.max(0, yearsUntilEducation - tenure));
+    
+    // Calculate the years when education support is provided (5 years of education)
     const educationYears = [];
     for (let i = 0; i < 5; i++) {
-      educationYears.push(educationStartYear + i);
+      educationYears.push(startAge + i);
     }
     
-    // Calculate annual withdrawal and career fund based on examples
-    let annualSupport, careerFund;
+    // Calculate annual support and education fund based on corpus
+    // Using a more realistic approach rather than hardcoded ratios
+    const annualSupport = corpusAtEducationStart * 0.08; // 8% annual withdrawal during education
+    const educationFund = corpusAtEducationStart * 0.20; // 20% one-time education fund
     
-    if (tenure === 10) {
-      // For 10-year tenure: education years 11-15
-      // Based on examples, calculate ratios
-      const ratio1 = 11608 / 111040.93; // Annual support ratio
-      const ratio2 = 59853 / 111040.93; // Career fund ratio
-      
-      annualSupport = corpusAtEducationStart * ratio1;
-      careerFund = corpusAtEducationStart * ratio2;
-    } else {
-      // For 15-year tenure: education years 16-20
-      // Based on examples, calculate ratios
-      if (savings === 562) {
-        // Example 2: ₹562/month for 15 years
-        const ratio1 = 23487 / 210031.36; // Annual support ratio
-        const ratio2 = 103970 / 210031.36; // Career fund ratio
-        
-        annualSupport = corpusAtEducationStart * ratio1;
-        careerFund = corpusAtEducationStart * ratio2;
-      } else {
-        // Example 3: ₹1,200/month for 15 years
-        const ratio1 = 50151 / 448465.54; // Annual support ratio
-        const ratio2 = 222000 / 448465.54; // Career fund ratio
-        
-        annualSupport = corpusAtEducationStart * ratio1;
-        careerFund = corpusAtEducationStart * ratio2;
-      }
-    }
+    // Remaining corpus after education expenses
+    const remainingCorpus = corpusAtEducationStart - (annualSupport * 5) - educationFund;
+    
+    // Monthly income from remaining corpus (assuming 6% annual withdrawal post-education)
+    const annualIncome = remainingCorpus * 0.06;
+    const monthlyIncome = annualIncome / 12;
     
     return {
       corpusAtEducationStart,
       annualSupport,
-      careerFund,
-      educationYears
+      educationFund,
+      educationYears,
+      remainingCorpus,
+      monthlyIncome,
+      yearsUntilEducation,
+      investmentTypeLabel: investmentType.charAt(0).toUpperCase() + investmentType.slice(1)
     };
-  }, [childName, monthlySavings, paymentTenure]);
+  }, [childName, childAge, monthlySavings, paymentTenure, educationStartAge, investmentType]);
 
   const handleCalculate = () => {
-    if (childName && monthlySavings) {
-      setShowResults(true);
+    if (childName && childAge && monthlySavings && educationStartAge) {
+      const currentAge = parseInt(childAge);
+      const startAge = parseInt(educationStartAge);
+      
+      // Validate age inputs
+      if (startAge > currentAge && currentAge >= 0 && startAge <= 30) {
+        setShowResults(true);
+      }
     }
   };
 
   const handleShare = () => {
     if (!calculationResults) return;
     
-    const { annualSupport, careerFund } = calculationResults;
+    const { corpusAtEducationStart, annualSupport, educationFund } = calculationResults;
     
     // Generate the share text
-    let shareText = `📚 Financial Support in Higher Education for ${childName} for 5 years:\n\n`;
-    
-    for (let i = 11; i <= 15; i++) {
-      shareText += `🔹 ${i} years: 🪙 ${formatLargeNumber(annualSupport)}\n`;
-    }
-    
-    shareText += `\n💰 One-Time Education Fund: ${formatLargeNumber(careerFund)} at 16 years`;
+    let shareText = `📚 Child Education Planning for ${childName}:
+
+`;
+    shareText += `💰 Corpus at Education Start: ${formatLargeNumber(corpusAtEducationStart)}
+`;
+    shareText += `💸 Annual Education Support: ${formatLargeNumber(annualSupport)}
+`;
+    shareText += `🏦 One-Time Education Fund: ${formatLargeNumber(educationFund)}
+`;
     
     // Encode the text for WhatsApp
     const encodedText = encodeURIComponent(shareText);
@@ -109,40 +123,67 @@ export default function ChildEducationCalculator() {
   };
 
   return (
-    <Card className="w-full max-w-3xl mx-auto bg-gradient-to-b from-background/60 to-background/40 backdrop-blur supports-[backdrop-filter]:bg-background/40 border border-border/60 shadow-xl rounded-xl">
+    <Card className="w-full max-w-3xl mx-auto bg-gradient-to-b from-emerald-50/70 to-emerald-100/50 backdrop-blur supports-[backdrop-filter]:bg-emerald-50/30 border border-emerald-200/80 shadow-xl rounded-xl">
       <CardHeader className="pb-2 mb-6">
-        <CardTitle className="text-center text-xl font-bold">Child Education Planning Calculator</CardTitle>
+        <CardTitle className="text-center text-xl font-bold text-emerald-800">Child Education Planning Calculator</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-6">
           {/* Child's Name Input */}
           <div className="space-y-2">
-            <Label htmlFor="childName" className="text-sm sm:text-base">Child&#39;s Name</Label>
+            <Label htmlFor="childName" className="text-sm sm:text-base text-emerald-700">Child&#39;s Name</Label>
             <Input 
               id="childName" 
               value={childName} 
               onChange={(e) => setChildName(e.target.value)} 
               placeholder="Enter your child&#39;s name"
-              className="w-full"
+              className="w-full border-emerald-200 focus:border-emerald-400 focus:ring-emerald-300"
             />
+          </div>
+
+          {/* Age Inputs */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="childAge" className="text-sm sm:text-base text-emerald-700">Child&#39;s Current Age</Label>
+              <FormattedInput 
+                id="childAge" 
+                inputMode="numeric" 
+                value={childAge} 
+                onFormattedChange={setChildAge} 
+                className="w-full border-emerald-200 focus:border-emerald-400 focus:ring-emerald-300" 
+                placeholder="Enter current age"
+              />
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="educationStartAge" className="text-sm sm:text-base text-emerald-700">Education Start Age</Label>
+              <FormattedInput 
+                id="educationStartAge" 
+                inputMode="numeric" 
+                value={educationStartAge} 
+                onFormattedChange={setEducationStartAge} 
+                className="w-full border-emerald-200 focus:border-emerald-400 focus:ring-emerald-300" 
+                placeholder="Enter start age"
+              />
+            </div>
           </div>
 
           {/* Monthly Savings Input */}
           <div className="space-y-2">
-            <Label htmlFor="monthlySavings" className="text-sm sm:text-base">Monthly Savings (₹)</Label>
+            <Label htmlFor="monthlySavings" className="text-sm sm:text-base text-emerald-700">Monthly Savings (₹)</Label>
             <FormattedInput 
               id="monthlySavings" 
               inputMode="numeric" 
               value={monthlySavings} 
               onFormattedChange={setMonthlySavings} 
-              className="w-full" 
+              className="w-full border-emerald-200 focus:border-emerald-400 focus:ring-emerald-300" 
               placeholder="Enter monthly savings amount"
             />
           </div>
 
           {/* Payment Tenure Options */}
           <div className="space-y-3">
-            <Label className="text-sm sm:text-base font-medium text-foreground/80">Payment Tenure</Label>
+            <Label className="text-sm sm:text-base font-medium text-emerald-700">Payment Tenure</Label>
             <RadioGroup 
               value={paymentTenure} 
               onValueChange={setPaymentTenure} 
@@ -151,12 +192,12 @@ export default function ChildEducationCalculator() {
               <div className="flex items-center">
                 <RadioGroupItem 
                   value="10" 
-                  id="tenure-10" 
+                  id="education-tenure-10" 
                   className="peer sr-only" 
                 />
                 <Label 
-                  htmlFor="tenure-10"
-                  className="flex-1 text-center py-3 px-4 rounded-xl border-2 border-input bg-background peer-data-[state=checked]:border-primary peer-data-[state=checked]:bg-primary peer-data-[state=checked]:text-primary-foreground peer-data-[state=checked]:shadow-[0_4px_12px_rgba(34,197,94,0.3)] transition-all duration-300 cursor-pointer"
+                  htmlFor="education-tenure-10"
+                  className="flex-1 text-center py-3 px-4 rounded-xl border-2 border-emerald-200 bg-emerald-50 peer-data-[state=checked]:border-emerald-500 peer-data-[state=checked]:bg-emerald-500 peer-data-[state=checked]:text-white peer-data-[state=checked]:shadow-[0_4px_12px_rgba(16,185,129,0.3)] transition-all duration-300 cursor-pointer"
                 >
                   <span className="font-medium">10 Years</span>
                 </Label>
@@ -164,14 +205,64 @@ export default function ChildEducationCalculator() {
               <div className="flex items-center">
                 <RadioGroupItem 
                   value="15" 
-                  id="tenure-15" 
+                  id="education-tenure-15" 
                   className="peer sr-only" 
                 />
                 <Label 
-                  htmlFor="tenure-15"
-                  className="flex-1 text-center py-3 px-4 rounded-xl border-2 border-input bg-background peer-data-[state=checked]:border-primary peer-data-[state=checked]:bg-primary peer-data-[state=checked]:text-primary-foreground peer-data-[state=checked]:shadow-[0_4px_12px_rgba(34,197,94,0.3)] transition-all duration-300 cursor-pointer"
+                  htmlFor="education-tenure-15"
+                  className="flex-1 text-center py-3 px-4 rounded-xl border-2 border-emerald-200 bg-emerald-50 peer-data-[state=checked]:border-emerald-500 peer-data-[state=checked]:bg-emerald-500 peer-data-[state=checked]:text-white peer-data-[state=checked]:shadow-[0_4px_12px_rgba(16,185,129,0.3)] transition-all duration-300 cursor-pointer"
                 >
                   <span className="font-medium">15 Years</span>
+                </Label>
+              </div>
+            </RadioGroup>
+          </div>
+
+          {/* Investment Type Options */}
+          <div className="space-y-3">
+            <Label className="text-sm sm:text-base font-medium text-emerald-700">Investment Strategy</Label>
+            <RadioGroup 
+              value={investmentType} 
+              onValueChange={setInvestmentType} 
+              className="grid grid-cols-3 gap-3 sm:flex sm:flex-row"
+            >
+              <div className="flex items-center">
+                <RadioGroupItem 
+                  value="conservative" 
+                  id="education-investment-conservative" 
+                  className="peer sr-only" 
+                />
+                <Label 
+                  htmlFor="education-investment-conservative"
+                  className="flex-1 text-center py-3 px-4 rounded-xl border-2 border-emerald-200 bg-emerald-50 peer-data-[state=checked]:border-emerald-500 peer-data-[state=checked]:bg-emerald-500 peer-data-[state=checked]:text-white peer-data-[state=checked]:shadow-[0_4px_12px_rgba(16,185,129,0.3)] transition-all duration-300 cursor-pointer"
+                >
+                  <span className="font-medium">Conservative (7%)</span>
+                </Label>
+              </div>
+              <div className="flex items-center">
+                <RadioGroupItem 
+                  value="balanced" 
+                  id="education-investment-balanced" 
+                  className="peer sr-only" 
+                />
+                <Label 
+                  htmlFor="education-investment-balanced"
+                  className="flex-1 text-center py-3 px-4 rounded-xl border-2 border-emerald-200 bg-emerald-50 peer-data-[state=checked]:border-emerald-500 peer-data-[state=checked]:bg-emerald-500 peer-data-[state=checked]:text-white peer-data-[state=checked]:shadow-[0_4px_12px_rgba(16,185,129,0.3)] transition-all duration-300 cursor-pointer"
+                >
+                  <span className="font-medium">Balanced (9%)</span>
+                </Label>
+              </div>
+              <div className="flex items-center">
+                <RadioGroupItem 
+                  value="aggressive" 
+                  id="education-investment-aggressive" 
+                  className="peer sr-only" 
+                />
+                <Label 
+                  htmlFor="education-investment-aggressive"
+                  className="flex-1 text-center py-3 px-4 rounded-xl border-2 border-emerald-200 bg-emerald-50 peer-data-[state=checked]:border-emerald-500 peer-data-[state=checked]:bg-emerald-500 peer-data-[state=checked]:text-white peer-data-[state=checked]:shadow-[0_4px_12px_rgba(16,185,129,0.3)] transition-all duration-300 cursor-pointer"
+                >
+                  <span className="font-medium">Aggressive (11%)</span>
                 </Label>
               </div>
             </RadioGroup>
@@ -181,46 +272,73 @@ export default function ChildEducationCalculator() {
           <Button 
             onClick={handleCalculate} 
             className="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 text-white shadow-lg hover:from-emerald-500 hover:to-emerald-600 active:from-emerald-700 active:to-emerald-800 transition-all duration-300 ease-in-out"
-            disabled={!childName || !monthlySavings}
+            disabled={!childName || !childAge || !monthlySavings || !educationStartAge}
           >
             Calculate Education Plan
           </Button>
 
           {/* Results Display */}
           {showResults && calculationResults && (
-            <div className="mt-8 p-4 sm:p-5 bg-muted/30 rounded-lg border border-border/50">
-              <h3 className="text-base sm:text-lg font-semibold mb-4 text-center">
-                &#128218; Financial Support in Higher Education for {childName} for 5 years:
+            <div className="mt-8 p-4 sm:p-5 bg-emerald-50/50 rounded-lg border border-emerald-200/80">
+              <h3 className="text-base sm:text-lg font-semibold mb-4 text-center text-emerald-800">
+                &#128218; Education Planning for {childName}
               </h3>
               
-              <div className="space-y-2 mb-6">
-                {calculationResults?.educationYears.map((year) => (
-                  <div key={year} className="flex justify-between items-center p-2 bg-background/50 rounded-md">
-                    <span className="flex items-center text-sm sm:text-base">
-                      &#128313; {year} years
-                    </span>
-                    <span className="flex items-center font-medium text-sm sm:text-base">
-                      &#129680; {formatLargeNumber(calculationResults.annualSupport)}
-                    </span>
-                  </div>
-                ))}
-              </div>
-              
-              <div className="pt-4 border-t border-border/50">
-                <div className="flex flex-col sm:flex-row justify-between items-center gap-2 p-2 bg-background/50 rounded-md">
-                  <span className="font-medium text-sm sm:text-base">
-                    &#128176; One-Time Education Fund
+              <div className="space-y-4 mb-6">
+                <div className="flex flex-col sm:flex-row justify-between items-center gap-2 p-3 bg-white/50 rounded-md border border-emerald-100">
+                  <span className="font-medium text-sm sm:text-base text-emerald-700">
+                    &#128176; Corpus at Education Start ({calculationResults.yearsUntilEducation} years)
                   </span>
-                  <span className="font-bold text-base sm:text-lg">
-                    {formatLargeNumber(calculationResults.careerFund)} at {parseInt(paymentTenure) + 6} years
+                  <span className="font-bold text-base sm:text-lg text-emerald-800">
+                    {formatLargeNumber(calculationResults.corpusAtEducationStart)}
                   </span>
                 </div>
+                
+                <div className="flex flex-col sm:flex-row justify-between items-center gap-2 p-3 bg-white/50 rounded-md border border-emerald-100">
+                  <span className="font-medium text-sm sm:text-base text-emerald-700">
+                    &#128184; Annual Education Support
+                  </span>
+                  <span className="font-bold text-base sm:text-lg text-emerald-800">
+                    {formatLargeNumber(calculationResults.annualSupport)}
+                  </span>
+                </div>
+                
+                <div className="flex flex-col sm:flex-row justify-between items-center gap-2 p-3 bg-white/50 rounded-md border border-emerald-100">
+                  <span className="font-medium text-sm sm:text-base text-emerald-700">
+                    &#127974; One-Time Education Fund
+                  </span>
+                  <span className="font-bold text-base sm:text-lg text-emerald-800">
+                    {formatLargeNumber(calculationResults.educationFund)}
+                  </span>
+                </div>
+                
+                <div className="flex flex-col sm:flex-row justify-between items-center gap-2 p-3 bg-white/50 rounded-md border border-emerald-100">
+                  <span className="font-medium text-sm sm:text-base text-emerald-700">
+                    &#128142; Remaining Corpus
+                  </span>
+                  <span className="font-bold text-base sm:text-lg text-emerald-800">
+                    {formatLargeNumber(calculationResults.remainingCorpus)}
+                  </span>
+                </div>
+                
+                <div className="flex flex-col sm:flex-row justify-between items-center gap-2 p-3 bg-white/50 rounded-md border border-emerald-100">
+                  <span className="font-medium text-sm sm:text-base text-emerald-700">
+                    &#128181; Monthly Income After Education
+                  </span>
+                  <span className="font-bold text-base sm:text-lg text-emerald-800">
+                    {formatLargeNumber(calculationResults.monthlyIncome)}
+                  </span>
+                </div>
+              </div>
+              
+              <div className="text-xs sm:text-sm text-emerald-600/80 mt-2 text-center">
+                *Assumptions: 8% annual withdrawal during education, 20% one-time fund, 6% post-education withdrawal
               </div>
               
               {/* Share Button */}
               <Button 
                 onClick={handleShare} 
-                className="w-full mt-6 bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-lg hover:from-green-500 hover:to-emerald-600 active:from-green-700 active:to-emerald-800 transition-all duration-300 ease-in-out"
+                className="w-full mt-6 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white shadow-lg hover:from-emerald-600 hover:to-emerald-700 active:from-emerald-800 active:to-emerald-900 transition-all duration-300 ease-in-out"
               >
                 Share Results via WhatsApp
               </Button>

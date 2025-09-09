@@ -128,12 +128,12 @@ export default function ChildMarriageCalculator() {
         <div className="space-y-6">
           {/* Child's Name Input */}
           <div className="space-y-2">
-            <Label htmlFor="childName" className="text-sm sm:text-base text-rose-700">Child's Name</Label>
+            <Label htmlFor="childName" className="text-sm sm:text-base text-rose-700">Child&apos;s Name</Label>
             <Input 
               id="childName" 
               value={childName} 
               onChange={(e) => setChildName(e.target.value)} 
-              placeholder="Enter your child's name"
+              placeholder="Enter your child&apos;s name"
               className="w-full border-rose-200 focus:border-rose-400 focus:ring-rose-300"
             />
           </div>
@@ -141,7 +141,7 @@ export default function ChildMarriageCalculator() {
           {/* Age Inputs */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="currentAge" className="text-sm sm:text-base text-rose-700">Child's Current Age</Label>
+              <Label htmlFor="currentAge" className="text-sm sm:text-base text-rose-700">Child&apos;s Current Age</Label>
               <FormattedInput 
                 id="currentAge" 
                 inputMode="numeric" 
@@ -189,11 +189,11 @@ export default function ChildMarriageCalculator() {
               <div className="flex items-center">
                 <RadioGroupItem 
                   value="10" 
-                  id="tenure-10" 
+                  id="marriage-tenure-10" 
                   className="peer sr-only" 
                 />
                 <Label 
-                  htmlFor="tenure-10"
+                  htmlFor="marriage-tenure-10"
                   className="flex-1 text-center py-3 px-4 rounded-xl border-2 border-rose-200 bg-rose-50 peer-data-[state=checked]:border-rose-500 peer-data-[state=checked]:bg-rose-500 peer-data-[state=checked]:text-white peer-data-[state=checked]:shadow-[0_4px_12px_rgba(244,114,182,0.3)] transition-all duration-300 cursor-pointer"
                 >
                   <span className="font-medium">10 Years</span>
@@ -202,11 +202,11 @@ export default function ChildMarriageCalculator() {
               <div className="flex items-center">
                 <RadioGroupItem 
                   value="15" 
-                  id="tenure-15" 
+                  id="marriage-tenure-15" 
                   className="peer sr-only" 
                 />
                 <Label 
-                  htmlFor="tenure-15"
+                  htmlFor="marriage-tenure-15"
                   className="flex-1 text-center py-3 px-4 rounded-xl border-2 border-rose-200 bg-rose-50 peer-data-[state=checked]:border-rose-500 peer-data-[state=checked]:bg-rose-500 peer-data-[state=checked]:text-white peer-data-[state=checked]:shadow-[0_4px_12px_rgba(244,114,182,0.3)] transition-all duration-300 cursor-pointer"
                 >
                   <span className="font-medium">15 Years</span>
@@ -215,11 +215,11 @@ export default function ChildMarriageCalculator() {
               <div className="flex items-center">
                 <RadioGroupItem 
                   value="20" 
-                  id="tenure-20" 
+                  id="marriage-tenure-20" 
                   className="peer sr-only" 
                 />
                 <Label 
-                  htmlFor="tenure-20"
+                  htmlFor="marriage-tenure-20"
                   className="flex-1 text-center py-3 px-4 rounded-xl border-2 border-rose-200 bg-rose-50 peer-data-[state=checked]:border-rose-500 peer-data-[state=checked]:bg-rose-500 peer-data-[state=checked]:text-white peer-data-[state=checked]:shadow-[0_4px_12px_rgba(244,114,182,0.3)] transition-all duration-300 cursor-pointer"
                 >
                   <span className="font-medium">20 Years</span>
@@ -239,40 +239,40 @@ export default function ChildMarriageCalculator() {
               <div className="flex items-center">
                 <RadioGroupItem 
                   value="conservative" 
-                  id="investment-conservative" 
+                  id="marriage-investment-conservative" 
                   className="peer sr-only" 
                 />
                 <Label 
-                  htmlFor="investment-conservative"
+                  htmlFor="marriage-investment-conservative"
                   className="flex-1 text-center py-3 px-4 rounded-xl border-2 border-rose-200 bg-rose-50 peer-data-[state=checked]:border-rose-500 peer-data-[state=checked]:bg-rose-500 peer-data-[state=checked]:text-white peer-data-[state=checked]:shadow-[0_4px_12px_rgba(244,114,182,0.3)] transition-all duration-300 cursor-pointer"
                 >
-                  <span className="font-medium">Conservative (6%)</span>
+                  <span className="font-medium">Conservative &#40;6%&#41;</span>
                 </Label>
               </div>
               <div className="flex items-center">
                 <RadioGroupItem 
                   value="balanced" 
-                  id="investment-balanced" 
+                  id="marriage-investment-balanced" 
                   className="peer sr-only" 
                 />
                 <Label 
-                  htmlFor="investment-balanced"
+                  htmlFor="marriage-investment-balanced"
                   className="flex-1 text-center py-3 px-4 rounded-xl border-2 border-rose-200 bg-rose-50 peer-data-[state=checked]:border-rose-500 peer-data-[state=checked]:bg-rose-500 peer-data-[state=checked]:text-white peer-data-[state=checked]:shadow-[0_4px_12px_rgba(244,114,182,0.3)] transition-all duration-300 cursor-pointer"
                 >
-                  <span className="font-medium">Balanced (9%)</span>
+                  <span className="font-medium">Balanced &#40;9%&#41;</span>
                 </Label>
               </div>
               <div className="flex items-center">
                 <RadioGroupItem 
                   value="aggressive" 
-                  id="investment-aggressive" 
+                  id="marriage-investment-aggressive" 
                   className="peer sr-only" 
                 />
                 <Label 
-                  htmlFor="investment-aggressive"
+                  htmlFor="marriage-investment-aggressive"
                   className="flex-1 text-center py-3 px-4 rounded-xl border-2 border-rose-200 bg-rose-50 peer-data-[state=checked]:border-rose-500 peer-data-[state=checked]:bg-rose-500 peer-data-[state=checked]:text-white peer-data-[state=checked]:shadow-[0_4px_12px_rgba(244,114,182,0.3)] transition-all duration-300 cursor-pointer"
                 >
-                  <span className="font-medium">Aggressive (12%)</span>
+                  <span className="font-medium">Aggressive &#40;12%&#41;</span>
                 </Label>
               </div>
             </RadioGroup>

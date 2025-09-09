@@ -6,7 +6,6 @@ import {
   Award,
   TrendingUp,
   Heart,
-  CreditCard,
   ClipboardList,
   FileText,
 } from "lucide-react";
