@@ -98,7 +98,7 @@ export default function ChildEducationCalculator() {
       shareText += `🔹 ${i} years: 🪙 ${formatLargeNumber(annualSupport)}\n`;
     }
     
-    shareText += `\n💰 One-time Career Support Fund: ${formatLargeNumber(careerFund)} at 16 years`;
+    shareText += `\n💰 One-Time Education Fund: ${formatLargeNumber(careerFund)} at 16 years`;
     
     // Encode the text for WhatsApp
     const encodedText = encodeURIComponent(shareText);
@@ -178,7 +178,7 @@ export default function ChildEducationCalculator() {
                       &#128313; {year} years
                     </span>
                     <span className="flex items-center font-medium text-sm sm:text-base">
-                      &#129449; {formatLargeNumber(calculationResults.annualSupport)}
+                      &#129680; {formatLargeNumber(calculationResults.annualSupport)}
                     </span>
                   </div>
                 ))}
@@ -187,7 +187,7 @@ export default function ChildEducationCalculator() {
               <div className="pt-4 border-t border-border/50">
                 <div className="flex flex-col sm:flex-row justify-between items-center gap-2 p-2 bg-background/50 rounded-md">
                   <span className="font-medium text-sm sm:text-base">
-                    &#128176; One-time Career Support Fund
+                    &#128176; One-Time Education Fund
                   </span>
                   <span className="font-bold text-base sm:text-lg">
                     {formatLargeNumber(calculationResults.careerFund)} at {parseInt(paymentTenure) + 6} years
