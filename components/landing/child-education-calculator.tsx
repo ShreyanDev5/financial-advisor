@@ -4,8 +4,7 @@ import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Coins, Wallet } from "lucide-react";
-import ChildEducationSipCalculator from "./child-education-sip-calculator";
-import ChildEducationSipSwpCalculator from "./child-education-sip-swp-calculator";
+import { ChildEducationCalculatorCard } from "@/components/ui/child-education-calculator-card";
 
 interface ChildEducationCalculatorWrapperProps {
   className?: string;
@@ -84,12 +83,8 @@ export default function ChildEducationCalculator({
       <CardContent>
         <div className="space-y-6">
           {/* Calculator Content */}
-          <div className="mt-4">
-            {effectiveCalculatorType === "sip" ? (
-              <ChildEducationSipCalculator />
-            ) : (
-              <ChildEducationSipSwpCalculator />
-            )}
+          <div className="mt-4 min-h-[420px] w-full">
+            <ChildEducationCalculatorCard calculatorType={effectiveCalculatorType} key={effectiveCalculatorType} />
           </div>
         </div>
       </CardContent>

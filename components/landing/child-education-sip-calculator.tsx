@@ -170,7 +170,7 @@ export default function ChildEducationSipCalculator() {
   };
 
   return (
-    <div className="space-y-6 min-h-[420px]">
+    <div className="space-y-6 min-h-[420px] w-full">
       {/* Child's Name Input */}
       <div className="space-y-2">
         <Label htmlFor="childName" className="text-sm sm:text-base text-emerald-700">Child's Name</Label>
@@ -264,7 +264,7 @@ export default function ChildEducationSipCalculator() {
       {/* Calculate Button */}
       <Button 
         onClick={handleCalculate} 
-        className="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 text-white shadow-lg hover:from-emerald-500 hover:to-emerald-600 active:from-emerald-700 active:to-emerald-800 transition-all duration-300 ease-in-out"
+        className="w-full py-3 text-sm bg-gradient-to-r from-emerald-500 to-emerald-600 text-white shadow-lg hover:from-emerald-500 hover:to-emerald-600 active:from-emerald-700 active:to-emerald-800 transition-all duration-300 ease-in-out"
         disabled={!childName || !childAge || !educationStartAge || !presentCost || !inflationRate || !expectedReturn}
       >
         Calculate Education Plan
@@ -291,7 +291,7 @@ export default function ChildEducationSipCalculator() {
           {/* Share Button */}
           <Button 
             onClick={handleShare} 
-            className="w-full mt-4 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white shadow-lg hover:from-emerald-600 hover:to-emerald-700 active:from-emerald-800 active:to-emerald-900 transition-all duration-300 ease-in-out"
+            className="w-full py-3 text-sm mt-4 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white shadow-lg hover:from-emerald-600 hover:to-emerald-700 active:from-emerald-800 active:to-emerald-900 transition-all duration-300 ease-in-out"
           >
             Share Results via WhatsApp
           </Button>

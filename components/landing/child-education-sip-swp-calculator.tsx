@@ -92,9 +92,6 @@ export default function ChildEducationSipSwpCalculator() {
     
     return (
       <div className="space-y-4">
-        <h3 className="text-base sm:text-lg font-semibold mb-4 text-center text-emerald-800">
-          📚 Higher Education Financial Support for {childName}
-        </h3>
         
         <div className="space-y-3">
           {[...Array(educationYears)].map((_, i) => (
@@ -149,7 +146,7 @@ export default function ChildEducationSipSwpCalculator() {
   };
 
   return (
-    <div className="space-y-6 min-h-[420px] w-full">
+    <div className="space-y-6 min-h-[420px] w-full max-w-3xl mx-auto">
       {/* Child's Name Input */}
       <div className="space-y-2">
         <Label htmlFor="childName" className="text-sm text-emerald-700">Child&apos;s Name</Label>
@@ -214,6 +211,10 @@ export default function ChildEducationSipSwpCalculator() {
       {/* Results Display */}
       {showResults && calculationResults && (
         <div className="mt-8 p-4 sm:p-5 bg-emerald-50/50 rounded-lg border border-emerald-200/80">
+          <h3 className="text-base sm:text-lg font-semibold mb-4 text-center text-emerald-800">
+            📚 Higher Education Financial Support for {childName}
+          </h3>
+          
           <div className="space-y-4 mb-6">
             {renderResults()}
           </div>

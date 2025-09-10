@@ -42,7 +42,8 @@ export default function IncomePlanningCalculator() {
     if (isNaN(current) || isNaN(retirement) || isNaN(expectancy) || 
         isNaN(expenses) || isNaN(inflation) || isNaN(expectedReturnRate)) return null;
     
-    if (retirement <= current || current < 18 || retirement > 80 || 
+    // More reasonable validation limits
+    if (retirement <= current || current < 15 || retirement > 100 || 
         expectancy <= retirement || expenses <= 0 || inflation < 0 || expectedReturnRate < 0) return null;
     
     // Calculate years until retirement
@@ -112,8 +113,8 @@ export default function IncomePlanningCalculator() {
       if (isNaN(current) || isNaN(retirement) || isNaN(expectancy) || 
           isNaN(expenses) || isNaN(inflation) || isNaN(expectedReturnRate)) return;
       
-      // Validate age inputs
-      if (retirement > current && current >= 18 && retirement <= 80 && 
+      // Validate age inputs with more reasonable limits
+      if (retirement > current && current >= 15 && retirement <= 100 && 
           expectancy > retirement && expenses > 0 && inflation >= 0 && expectedReturnRate >= 0) {
         setShowResults(true);
       }
@@ -283,6 +284,36 @@ export default function IncomePlanningCalculator() {
           </div>
 
           {/* Error Messages */}
+          {currentAge && parseInt(currentAge) < 15 && (
+            <div className="text-red-500 text-sm text-center">
+              Current age must be at least 15 years.
+            </div>
+          )}
+          
+          {retirementAge && parseInt(retirementAge) > 100 && (
+            <div className="text-red-500 text-sm text-center">
+              Retirement age must be at most 100 years.
+            </div>
+          )}
+          
+          {monthlyExpenses && parseFloat(monthlyExpenses) <= 0 && (
+            <div className="text-red-500 text-sm text-center">
+              Monthly expenses must be greater than 0.
+            </div>
+          )}
+          
+          {inflationRate && parseFloat(inflationRate) < 0 && (
+            <div className="text-red-500 text-sm text-center">
+              Inflation rate cannot be negative.
+            </div>
+          )}
+          
+          {expectedReturn && parseFloat(expectedReturn) < 0 && (
+            <div className="text-red-500 text-sm text-center">
+              Expected return rate cannot be negative.
+            </div>
+          )}
+          
           {currentAge && retirementAge && parseInt(retirementAge) <= parseInt(currentAge) && (
             <div className="text-red-500 text-sm text-center">
               Retirement age must be greater than current age.
