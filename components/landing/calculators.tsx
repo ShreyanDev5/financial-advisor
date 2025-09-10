@@ -1,8 +1,9 @@
 'use client';
 
+import { useState } from "react";
 import { SimplePageHeader } from "@/components/ui/simple-page-header";
 import InvestmentCalculator from "@/components/landing/investment-calculator";
-import ChildEducationCalculator from "@/components/landing/child-education-calculator";
+import { ChildEducationCalculatorWithToggle } from "@/components/landing/child-education-calculator";
 import ChildMarriageCalculator from "@/components/landing/child-marriage-calculator";
 import IncomePlanningCalculator from "@/components/landing/income-planning-calculator";
 
@@ -41,7 +42,9 @@ export default function CalculatorsContent() {
             Plan your child&apos;s education expenses and calculate monthly savings needed.
           </p>
         </div>
-        <ChildEducationCalculator />
+        <div className="flex justify-center px-2 sm:px-0">
+          <ChildEducationCalculatorWithToggle />
+        </div>
       </div>
 
       {/* Gray divider to separate sections */}
