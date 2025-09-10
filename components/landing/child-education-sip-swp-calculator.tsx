@@ -183,20 +183,20 @@ export default function ChildEducationSipSwpCalculator() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <button
             onClick={() => setPaymentDuration("10")}
-            className={`py-3 px-4 rounded-lg border transition-all w-full ${
+            className={`py-2 px-3 rounded-lg border transition-all w-full text-sm font-medium ${
               paymentDuration === "10"
-                ? "bg-emerald-500 text-white border-emerald-600 shadow-md"
-                : "bg-white text-emerald-700 border-emerald-200 hover:bg-emerald-50"
+                ? "bg-blue-500 text-white border-blue-600 shadow-md"
+                : "bg-white text-blue-700 border-blue-200 hover:bg-blue-50"
             }`}
           >
             Pay for 10 years
           </button>
           <button
             onClick={() => setPaymentDuration("15")}
-            className={`py-3 px-4 rounded-lg border transition-all w-full ${
+            className={`py-2 px-3 rounded-lg border transition-all w-full text-sm font-medium ${
               paymentDuration === "15"
-                ? "bg-emerald-500 text-white border-emerald-600 shadow-md"
-                : "bg-white text-emerald-700 border-emerald-200 hover:bg-emerald-50"
+                ? "bg-blue-500 text-white border-blue-600 shadow-md"
+                : "bg-white text-blue-700 border-blue-200 hover:bg-blue-50"
             }`}
           >
             Pay for 15 years

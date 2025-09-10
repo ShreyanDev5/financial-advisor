@@ -22,6 +22,11 @@ const config = {
     "bg-emerald-50/50",
     "bg-blue-50/50",
     "bg-purple-50/50",
+    "bg-blue-500",
+    "border-blue-600",
+    "border-blue-200",
+    "bg-blue-50",
+    "text-blue-700",
   ],
   theme: {
     container: {

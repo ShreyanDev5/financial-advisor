@@ -79,7 +79,7 @@ export default function ChildEducationCalculator({
   return (
     <Card className="w-full max-w-3xl mx-auto bg-gradient-to-b from-emerald-50/70 to-emerald-100/50 backdrop-blur supports-[backdrop-filter]:bg-emerald-50/30 border border-emerald-200/80 shadow-xl rounded-xl">
       <CardHeader className="pb-2 mb-6">
-        <CardTitle className="text-center text-xl font-bold text-emerald-800">Child Education Planner 🎓</CardTitle>
+        <CardTitle className="text-center text-xl font-bold text-emerald-800">Child Education Planning Calculator 🎓</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-6">
