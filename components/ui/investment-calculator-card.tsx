@@ -140,9 +140,9 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
   const hasChartData = chartData.some((d) => Number(d.value) > 0);
   const investedValue = Math.max(0, Number(chartData.find((d) => d.key === "invested")?.value || 0));
   const returnsValue = Math.max(0, Number(chartData.find((d) => d.key === "gains")?.value || 0));
-  const donutSize = 240; // Reduced size for mobile
-  const r = 72; // Adjusted radius for smaller donut ( (outer 96 + inner 48) / 2 )
-  const strokeWidth = 48; // outer - inner (keeping the same thickness ratio)
+  const donutSize = 260; // Slightly increased size for better mobile readability
+  const r = 78; // Adjusted radius for larger donut ( (outer 104 + inner 52) / 2 )
+  const strokeWidth = 52; // outer - inner (keeping the same thickness ratio)
   const circumference = 2 * Math.PI * r;
 
   return (
@@ -155,7 +155,7 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
           <div className="space-y-6 sm:space-y-8">
             {investmentType === "sip" && (
               <div className="space-y-2 sm:space-y-2">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 px-4 md:px-8 max-w-[90%] mx-auto">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 px-4 md:px-8 w-full mx-auto">
                   <Label htmlFor="investmentAmount" className="text-sm sm:text-base w-full sm:w-1/2">Monthly Investment (₹)</Label>
                   <FormattedInput 
                     id="investmentAmount" 
@@ -165,14 +165,14 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
                     className="w-full sm:w-1/3" 
                   />
                 </div>
-                <div className="px-4 md:px-8"> {/* Increased lateral spacing */}
-                  <Slider value={[Number(investmentAmount) || 0]} onValueChange={([v]) => setInvestmentAmount(String(Math.round(v)))} min={500} max={1000000} step={500} className="[&>span:first-child]:h-2 [&>span:first-child]:rounded-full [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:shadow-md mx-auto max-w-[90%]" /> {/* Reduced width with max-w-[90%] */}
+                <div className="px-2 md:px-8"> {/* Increased lateral spacing */}
+                  <Slider value={[Number(investmentAmount) || 0]} onValueChange={([v]) => setInvestmentAmount(String(Math.round(v)))} min={500} max={1000000} step={500} className="[&>span:first-child]:h-2 [&>span:first-child]:rounded-full [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:shadow-md mx-auto w-[calc(100%-1rem)]" /> {/* Increased width to almost full width minus margins */}
                 </div>
               </div>
             )}
             {investmentType === "lumpsum" && (
               <div className="space-y-2 sm:space-y-2">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 px-4 md:px-8 max-w-[90%] mx-auto">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 px-4 md:px-8 w-full mx-auto">
                   <Label htmlFor="totalInvestment" className="text-sm sm:text-base w-full sm:w-1/2">Total Investment (₹)</Label>
                   <FormattedInput 
                     id="totalInvestment" 
@@ -182,15 +182,15 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
                     className="w-full sm:w-1/3" 
                   />
                 </div>
-                <div className="px-4 md:px-8"> {/* Increased lateral spacing */}
-                  <Slider value={[Number(totalInvestment) || 0]} onValueChange={([v]) => setTotalInvestment(String(Math.round(v)))} min={500} max={10000000} step={10000} className="[&>span:first-child]:h-2 [&>span:first-child]:rounded-full [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:shadow-md mx-auto max-w-[90%]" /> {/* Reduced width with max-w-[90%] */}
+                <div className="px-2 md:px-8"> {/* Increased lateral spacing */}
+                  <Slider value={[Number(totalInvestment) || 0]} onValueChange={([v]) => setTotalInvestment(String(Math.round(v)))} min={500} max={10000000} step={10000} className="[&>span:first-child]:h-2 [&>span:first-child]:rounded-full [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:shadow-md mx-auto w-[calc(100%-1rem)]" /> {/* Increased width to almost full width minus margins */}
                 </div>
               </div>
             )}
             {investmentType === "swp" && (
               <>
                 <div className="space-y-2 sm:space-y-2">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 px-4 md:px-8 max-w-[90%] mx-auto">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 px-4 md:px-8 w-full mx-auto">
                     <Label htmlFor="totalInvestment" className="text-sm sm:text-base w-full sm:w-1/2">Total Investment (₹)</Label>
                     <FormattedInput 
                       id="totalInvestment" 
@@ -200,12 +200,12 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
                       className="w-full sm:w-1/3" 
                     />
                   </div>
-                  <div className="px-4 md:px-8"> {/* Increased lateral spacing */}
-                    <Slider value={[Number(totalInvestment) || 0]} onValueChange={([v]) => setTotalInvestment(String(Math.round(v)))} min={10000} max={10000000} step={10000} className="[&>span:first-child]:h-2 [&>span:first-child]:rounded-full [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:shadow-md mx-auto max-w-[90%]" /> {/* Reduced width with max-w-[90%] */}
+                  <div className="px-2 md:px-8"> {/* Increased lateral spacing */}
+                    <Slider value={[Number(totalInvestment) || 0]} onValueChange={([v]) => setTotalInvestment(String(Math.round(v)))} min={10000} max={10000000} step={10000} className="[&>span:first-child]:h-2 [&>span:first-child]:rounded-full [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:shadow-md mx-auto w-[calc(100%-1rem)]" /> {/* Increased width to almost full width minus margins */}
                   </div>
                 </div>
                 <div className="space-y-2 sm:space-y-2">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 px-4 md:px-8 max-w-[90%] mx-auto">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 px-4 md:px-8 w-full mx-auto">
                     <Label htmlFor="withdrawalAmount" className="text-sm sm:text-base w-full sm:w-1/2">Monthly Withdrawal (₹)</Label>
                     <FormattedInput 
                       id="withdrawalAmount" 
@@ -215,42 +215,42 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
                       className="w-full sm:w-1/3" 
                     />
                   </div>
-                  <div className="px-4 md:px-8"> {/* Increased lateral spacing */}
-                    <Slider value={[Number(withdrawalAmount) || 0]} onValueChange={([v]) => setWithdrawalAmount(String(Math.round(v)))} min={500} max={1000000} step={500} className="[&>span:first-child]:h-2 [&>span:first-child]:rounded-full [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:shadow-md mx-auto max-w-[90%]" /> {/* Reduced width with max-w-[90%] */}
+                  <div className="px-2 md:px-8"> {/* Increased lateral spacing */}
+                    <Slider value={[Number(withdrawalAmount) || 0]} onValueChange={([v]) => setWithdrawalAmount(String(Math.round(v)))} min={500} max={1000000} step={500} className="[&>span:first-child]:h-2 [&>span:first-child]:rounded-full [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:shadow-md mx-auto w-[calc(100%-1rem)]" /> {/* Increased width to almost full width minus margins */}
                   </div>
                 </div>
               </>
             )}
             <div className="space-y-2 sm:space-y-2">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 px-4 md:px-8 max-w-[90%] mx-auto">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 px-4 md:px-8 w-full mx-auto">
                 <Label htmlFor="expectedReturnRate" className="text-sm sm:text-base w-full sm:w-1/2">Expected Return Rate (% p.a.)</Label>
                 <Input id="expectedReturnRate" inputMode="numeric" value={expectedReturnRate} onChange={(e) => setExpectedReturnRate(e.target.value)} className="w-full sm:w-1/3" />
               </div>
-              <div className="px-4 md:px-8"> {/* Increased lateral spacing */}
-                <Slider value={[Number(expectedReturnRate) || 0]} onValueChange={([v]) => setExpectedReturnRate(String(v))} min={1} max={30} step={0.5} className="[&>span:first-child]:h-2 [&>span:first-child]:rounded-full [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:shadow-md mx-auto max-w-[90%]" /> {/* Reduced width with max-w-[90%] */}
+              <div className="px-2 md:px-8"> {/* Increased lateral spacing */}
+                <Slider value={[Number(expectedReturnRate) || 0]} onValueChange={([v]) => setExpectedReturnRate(String(v))} min={1} max={30} step={0.5} className="[&>span:first-child]:h-2 [&>span:first-child]:rounded-full [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:shadow-md mx-auto w-[calc(100%-1rem)]" /> {/* Increased width to almost full width minus margins */}
               </div>
             </div>
             <div className="space-y-2 sm:space-y-2 mb-6">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 px-4 md:px-8 max-w-[90%] mx-auto">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 px-4 md:px-8 w-full mx-auto">
                 <Label htmlFor="timePeriod" className="text-sm sm:text-base w-full sm:w-1/2">Time Period (Years)</Label>
                 <Input id="timePeriod" inputMode="numeric" value={timePeriod} onChange={(e) => setTimePeriod(e.target.value)} className="w-full sm:w-1/3" />
               </div>
-              <div className="px-4 md:px-8"> {/* Increased lateral spacing */}
-                <Slider value={[Number(timePeriod) || 0]} onValueChange={([v]) => setTimePeriod(String(v))} min={1} max={40} step={1} className="[&>span:first-child]:h-2 [&>span:first-child]:rounded-full [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:shadow-md mx-auto max-w-[90%]" /> {/* Reduced width with max-w-[90%] */}
+              <div className="px-2 md:px-8"> {/* Increased lateral spacing */}
+                <Slider value={[Number(timePeriod) || 0]} onValueChange={([v]) => setTimePeriod(String(v))} min={1} max={40} step={1} className="[&>span:first-child]:h-2 [&>span:first-child]:rounded-full [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:shadow-md mx-auto w-[calc(100%-1rem)]" /> {/* Increased width to almost full width minus margins */}
               </div>
             </div>
 
             {/* Moved the pie chart to the bottom of the input sliders */}
             <div className="w-full flex justify-center overflow-visible" suppressHydrationWarning>
               {!isMounted ? (
-                <div className="h-[240px] w-full max-w-[240px] md:h-[320px] md:max-w-[320px] animate-pulse rounded-lg bg-muted/30" />
+                <div className="h-[260px] w-full max-w-[260px] md:h-[320px] md:max-w-[320px] animate-pulse rounded-lg bg-muted/30" />
               ) : hasChartData ? (
                 <div className="mt-2 sm:mt-3 flex flex-col items-center w-full px-2">
                 <svg
                   width={donutSize}
                   height={donutSize}
                   viewBox={`0 0 ${donutSize} ${donutSize}`}
-                  className="w-60 h-60 md:w-80 md:h-80"
+                  className="w-64 h-64 md:w-80 md:h-80"
                   role="img"
                   aria-label="Donut chart"
                 >
@@ -300,37 +300,37 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
                 {/* Add small spacing for desktop screens */}
                 <div className="hidden md:block h-4"></div>
                 {/* Desktop View */}
-                <div className="hidden md:flex items-center justify-center gap-4 sm:gap-6 text-base">
-                  <div className="flex flex-col gap-2 sm:gap-3">
-                    <div className="flex items-center gap-2">
-                      <span className="inline-block h-2.5 w-2.5 rounded-sm" style={{ backgroundColor: investedColor }} />
-                      <span className="text-muted-foreground">Invested</span>
-                      <span className="font-semibold" style={{ color: investedColor }}>{formatLargeNumber(investedValue)}</span>
+                <div className="hidden md:flex items-center justify-center gap-6 text-base">
+                  <div className="flex flex-col gap-3">
+                    <div className="flex items-center gap-3">
+                      <span className="inline-block h-3 w-3 rounded-sm" style={{ backgroundColor: investedColor }} />
+                      <span className="text-muted-foreground font-medium">Invested</span>
+                      <span className="font-bold" style={{ color: investedColor, fontSize: '1.1rem' }}>{formatLargeNumber(investedValue)}</span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <span className="inline-block h-2.5 w-2.5 rounded-sm" style={{ backgroundColor: gainsColor }} />
-                      <span className="text-muted-foreground">{investmentType === "swp" ? "Withdrawal" : "Returns"}</span>
-                      <span className="font-semibold" style={{ color: gainsColor }}>{formatLargeNumber(investmentType === "swp" ? (calculatedResult?.totalWithdrawn || 0) : returnsValue)}</span>
+                    <div className="flex items-center gap-3">
+                      <span className="inline-block h-3 w-3 rounded-sm" style={{ backgroundColor: gainsColor }} />
+                      <span className="text-muted-foreground font-medium">{investmentType === "swp" ? "Withdrawal" : "Returns"}</span>
+                      <span className="font-bold" style={{ color: gainsColor, fontSize: '1.1rem' }}>{formatLargeNumber(investmentType === "swp" ? (calculatedResult?.totalWithdrawn || 0) : returnsValue)}</span>
                     </div>
                   </div>
 
-                  <div className="text-6xl font-thin text-muted-foreground">{'{'}</div>
+                  <div className="text-7xl font-thin text-muted-foreground self-start pt-2">{'{'}</div>
 
                   {calculatedResult && (
-                    <div className="flex flex-col items-start">
+                    <div className="flex flex-col items-start pt-1">
                       <div className="flex items-center gap-2">
-                        <span className="text-primary font-medium">
+                        <span className="text-primary font-medium text-lg">
                           {investmentType === 'swp' ? 'Final Balance' : 'Future Value'}
                         </span>
                       </div>
                       <span 
-                        className="font-bold text-primary text-2xl md:text-xl lg:text-2xl truncate"
+                        className="font-bold text-primary truncate"
                         style={{ 
-                          fontSize: `clamp(1rem, ${Math.max(1.5, 2 - (
+                          fontSize: `clamp(1.25rem, ${Math.max(1.75, 2.25 - (
                             ((investmentType === 'sip' && calculatedResult?.futureValue) || 
                             (investmentType === 'lumpsum' && calculatedResult?.futureValue) || 
                             (investmentType === 'swp' && calculatedResult?.finalBalance) || 0
-                          ).toString().length - 10) * 0.1)}rem, 2rem)` 
+                          ).toString().length - 10) * 0.1)}rem, 2.25rem)` 
                         }}
                       >
                         {formatLargeNumber(
@@ -344,36 +344,36 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
                 </div>
 
                 {/* Mobile View */}
-                <div className="flex flex-col items-center justify-center gap-0 text-sm md:hidden">
+                <div className="flex flex-col items-center justify-center gap-0 text-base md:hidden">
                   <div className="flex flex-col">
-                    <div className="flex items-center gap-2">
-                      <span className="inline-block h-2.5 w-2.5 rounded-sm" style={{ backgroundColor: investedColor }} />
-                      <span className="text-muted-foreground">Invested</span>
-                      <span className="font-semibold" style={{ color: investedColor }}>{formatLargeNumber(investedValue)}</span>
+                    <div className="flex items-center gap-3">
+                      <span className="inline-block h-3 w-3 rounded-sm" style={{ backgroundColor: investedColor }} />
+                      <span className="text-muted-foreground font-medium">Invested</span>
+                      <span className="font-bold" style={{ color: investedColor, fontSize: '1.1rem' }}>{formatLargeNumber(investedValue)}</span>
                     </div>
                   </div>
-                  <div className="text-2xl font-thin text-muted-foreground my-0">+</div>
+                  <div className="text-3xl font-thin text-muted-foreground my-1">+</div>
                   <div className="flex flex-col">
-                    <div className="flex items-center gap-2">
-                      <span className="inline-block h-2.5 w-2.5 rounded-sm" style={{ backgroundColor: gainsColor }} />
-                      <span className="text-muted-foreground">{investmentType === "swp" ? "Withdrawal" : "Returns"}</span>
-                      <span className="font-semibold" style={{ color: gainsColor }}>{formatLargeNumber(investmentType === "swp" ? (calculatedResult?.totalWithdrawn || 0) : returnsValue)}</span>
+                    <div className="flex items-center gap-3">
+                      <span className="inline-block h-3 w-3 rounded-sm" style={{ backgroundColor: gainsColor }} />
+                      <span className="text-muted-foreground font-medium">{investmentType === "swp" ? "Withdrawal" : "Returns"}</span>
+                      <span className="font-bold" style={{ color: gainsColor, fontSize: '1.1rem' }}>{formatLargeNumber(investmentType === "swp" ? (calculatedResult?.totalWithdrawn || 0) : returnsValue)}</span>
                     </div>
                   </div>
-                  <hr className="w-full my-2 border-muted" />
+                  <hr className="w-full my-3 border-muted" />
                   {calculatedResult && (
                     <div className="flex flex-col items-center">
-                      <span className="text-primary font-medium">
+                      <span className="text-primary font-medium text-lg">
                         {investmentType === 'swp' ? 'Final Balance' : 'Future Value'}
                       </span>
                       <span 
-                        className="font-bold text-primary text-xl truncate"
+                        className="font-bold text-primary truncate"
                         style={{ 
-                          fontSize: `clamp(1rem, ${Math.max(1.25, 1.5 - (
+                          fontSize: `clamp(1.25rem, ${Math.max(1.5, 1.75 - (
                             ((investmentType === 'sip' && calculatedResult?.futureValue) || 
                             (investmentType === 'lumpsum' && calculatedResult?.futureValue) || 
                             (investmentType === 'swp' && calculatedResult?.finalBalance) || 0
-                          ).toString().length - 10) * 0.1)}rem, 1.5rem)` 
+                          ).toString().length - 10) * 0.1)}rem, 1.75rem)` 
                         }}
                       >
                         {formatLargeNumber(
@@ -387,7 +387,7 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
                 </div>
                 </div>
               ) : (
-                <div className="h-[240px] w-full max-w-[240px] md:h-[320px] md:max-w-[320px] flex items-center justify-center rounded-lg border text-sm text-muted-foreground">
+                <div className="h-[260px] w-full max-w-[260px] md:h-[320px] md:max-w-[320px] flex items-center justify-center rounded-lg border text-sm text-muted-foreground">
                   Adjust inputs to see the chart
                 </div>
               )}

@@ -16,7 +16,7 @@ export default function InvestmentCalculator() {
 
   return (
     <AnimatedSection animation="elegant-fade" delay={50} duration={400}>
-      <div className="container mx-auto space-y-8 px-0 sm:px-6 lg:px-8 font-sans -mx-2 sm:mx-0">
+      <div className="container mx-auto space-y-8 px-0 sm:px-6 lg:px-8 font-sans">
         <div className="text-center px-2 sm:px-0">
           <h2 className="text-2xl sm:text-4xl font-bold font-serif tracking-tight text-gray-900 dark:text-white">
             Investment Calculator
@@ -37,21 +37,21 @@ export default function InvestmentCalculator() {
             <ToggleGroupItem
               value="sip"
               aria-label="SIP"
-              className="rounded-full data-[state=on]:bg-gradient-to-r data-[state=on]:from-orange-500 data-[state=on]:to-red-500 data-[state=on]:text-white data-[state=on]:shadow-lg data-[state=on]:ring-1 data-[state=on]:ring-black/10 h-10 px-4 py-2 min-w-[4.5rem] sm:h-11 sm:px-5 sm:min-w-11"
+              className="rounded-full data-[state=on]:bg-gradient-to-r data-[state=on]:from-orange-500 data-[state=on]:to-red-500 data-[state=on]:text-white data-[state=on]:shadow-lg data-[state=on]:ring-1 data-[state=on]:ring-black/10 h-10 px-4 py-2 min-w-[4.5rem] sm:h-11 sm:px-5 sm:min-w-11 touch-manipulation"
             >
               <Coins className="mr-2 h-4 w-4" /> SIP
             </ToggleGroupItem>
             <ToggleGroupItem
               value="lumpsum"
               aria-label="Lump Sum"
-              className="rounded-full data-[state=on]:bg-gradient-to-r data-[state=on]:from-orange-500 data-[state=on]:to-red-500 data-[state=on]:text-white data-[state=on]:shadow-lg data-[state=on]:ring-1 data-[state=on]:ring-black/10 h-10 px-4 py-2 min-w-[6rem] sm:h-11 sm:px-5 sm:min-w-11"
+              className="rounded-full data-[state=on]:bg-gradient-to-r data-[state=on]:from-orange-500 data-[state=on]:to-red-500 data-[state=on]:text-white data-[state=on]:shadow-lg data-[state=on]:ring-1 data-[state=on]:ring-black/10 h-10 px-4 py-2 min-w-[6rem] sm:h-11 sm:px-5 sm:min-w-11 touch-manipulation"
             >
               <LineChartIcon className="mr-2 h-4 w-4" /> Lump Sum
             </ToggleGroupItem>
             <ToggleGroupItem
               value="swp"
               aria-label="SWP"
-              className="rounded-full data-[state=on]:bg-gradient-to-r data-[state=on]:from-orange-500 data-[state=on]:to-red-500 data-[state=on]:text-white data-[state=on]:shadow-lg data-[state=on]:ring-1 data-[state=on]:ring-black/10 h-10 px-4 py-2 min-w-[4.5rem] sm:h-11 sm:px-5 sm:min-w-11"
+              className="rounded-full data-[state=on]:bg-gradient-to-r data-[state=on]:from-orange-500 data-[state=on]:to-red-500 data-[state=on]:text-white data-[state=on]:shadow-lg data-[state=on]:ring-1 data-[state=on]:ring-black/10 h-10 px-4 py-2 min-w-[4.5rem] sm:h-11 sm:px-5 sm:min-w-11 touch-manipulation"
             >
               <Wallet className="mr-2 h-4 w-4" /> SWP
             </ToggleGroupItem>
