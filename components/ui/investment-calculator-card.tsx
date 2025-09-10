@@ -146,13 +146,13 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
   const circumference = 2 * Math.PI * r;
 
   return (
-    <Card className="w-full max-w-5xl mx-auto bg-gradient-to-b from-background/60 to-background/40 backdrop-blur supports-[backdrop-filter]:bg-background/40 border border-border/60 shadow-xl rounded-xl">
+    <Card className="w-full max-w-3xl mx-auto bg-gradient-to-b from-background/60 to-background/40 backdrop-blur supports-[backdrop-filter]:bg-background/40 border border-border/60 shadow-xl rounded-xl">
       <CardHeader className="pb-2 mb-6">
         <CardTitle className="text-center text-xl font-bold">{investmentType.toUpperCase()} Calculator</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-          <div className="space-y-6 sm:space-y-8 md:ml-4">
+        <div className="grid grid-cols-1 gap-6 sm:gap-8">
+          <div className="space-y-6 sm:space-y-8">
             {investmentType === "sip" && (
               <div className="space-y-2 sm:space-y-2">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
@@ -228,17 +228,7 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
               <Slider value={[Number(timePeriod) || 0]} onValueChange={([v]) => setTimePeriod(String(v))} min={1} max={40} step={1} className="[&>span:first-child]:h-2 [&>span:first-child]:rounded-full [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:shadow-md" />
             </div>
 
-            <div className="h-2" />
-
-            {calculatedResult && (
-              <div className="mt-2">
-                <div className="text-center text-sm text-muted-foreground hidden">
-                  Adjust the inputs to see how they affect your returns
-                </div>
-              </div>
-            )}
-          </div>
-          <div className="flex flex-col gap-6 -mt-8">
+            {/* Moved the pie chart to the bottom of the input sliders */}
             <div className="w-full flex justify-center overflow-visible" suppressHydrationWarning>
               {!isMounted ? (
                 <div className="h-[240px] w-full max-w-[240px] md:h-[320px] md:max-w-[320px] animate-pulse rounded-lg bg-muted/30" />
@@ -390,6 +380,16 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
                 </div>
               )}
             </div>
+
+            <div className="h-2" />
+
+            {calculatedResult && (
+              <div className="mt-2">
+                <div className="text-center text-sm text-muted-foreground hidden">
+                  Adjust the inputs to see how they affect your returns
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </CardContent>
