@@ -5,9 +5,15 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { FormattedInput } from "@/components/ui/formatted-input";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Button } from "@/components/ui/button";
 import { formatLargeNumber } from "@/lib/format-large-number.js";
+
+// Define the type for calculation results
+interface CalculationResults {
+  projectedCost: number;
+  monthlyInvestment: number;
+  yearsUntilEducation: number;
+}
 
 export default function ChildEducationCalculator() {
   const [childName, setChildName] = useState("");
@@ -20,7 +26,7 @@ export default function ChildEducationCalculator() {
   const [showResults, setShowResults] = useState(false);
 
   // Calculate results based on inputs
-  const calculationResults = useMemo(() => {
+  const calculationResults = useMemo<CalculationResults | null>(() => {
     if (!childName || !childAge || !educationStartAge || !presentCost || !inflationRate || !expectedReturn) return null;
 
     const currentAge = parseInt(childAge);
@@ -97,6 +103,53 @@ export default function ChildEducationCalculator() {
         setShowResults(true);
       }
     }
+  };
+
+  const renderResults = () => {
+    // Type guard to ensure calculationResults is not null
+    if (!calculationResults) return null;
+    
+    // Use non-null assertion since we've already checked
+    const { monthlyInvestment, yearsUntilEducation, projectedCost } = calculationResults!;
+    
+    return (
+      <>
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-2 p-3 bg-white/50 rounded-md border border-emerald-100">
+          <span className="font-medium text-sm sm:text-base text-emerald-700">
+            💰 Projected Cost of Education after {yearsUntilEducation} years
+          </span>
+          <span className="font-bold text-base sm:text-lg text-emerald-800">
+            {formatLargeNumber(projectedCost)}
+          </span>
+        </div>
+        
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-2 p-3 bg-white/50 rounded-md border border-emerald-100">
+          <span className="font-medium text-sm sm:text-base text-emerald-700">
+            💸 Monthly Investment Required
+          </span>
+          <span className="font-bold text-base sm:text-lg text-emerald-800">
+            {formatLargeNumber(monthlyInvestment)}
+          </span>
+        </div>
+        
+        {monthlyInvestment > 0 ? (
+          <div className="bg-emerald-100/50 p-3 rounded-md border border-emerald-200">
+            <div className="text-xs sm:text-sm text-emerald-700 text-center font-medium">
+              You need to invest ₹{formatLargeNumber(monthlyInvestment)?.replace('₹', '')} every month for the next {yearsUntilEducation} years to meet your child&#39;s education goal.
+            </div>
+            <div className="text-xs sm:text-sm text-emerald-600/80 mt-2 text-center">
+              *Calculations consider an inflation rate of {inflationRate}% p.a. and an expected return of {expectedReturn}% p.a.
+            </div>
+          </div>
+        ) : (
+          <div className="bg-emerald-100/50 p-3 rounded-md border border-emerald-200 text-center">
+            <div className="text-xs sm:text-sm text-emerald-700">
+              Great! Your current savings are sufficient to meet your child&#39;s education goal.
+            </div>
+          </div>
+        )}
+      </>
+    );
   };
 
   const handleShare = () => {
@@ -242,40 +295,7 @@ export default function ChildEducationCalculator() {
               </h3>
               
               <div className="space-y-4 mb-6">
-                <div className="flex flex-col sm:flex-row justify-between items-center gap-2 p-3 bg-white/50 rounded-md border border-emerald-100">
-                  <span className="font-medium text-sm sm:text-base text-emerald-700">
-                    💰 Projected Cost of Education after {calculationResults.yearsUntilEducation} years
-                  </span>
-                  <span className="font-bold text-base sm:text-lg text-emerald-800">
-                    {formatLargeNumber(calculationResults.projectedCost)}
-                  </span>
-                </div>
-                
-                <div className="flex flex-col sm:flex-row justify-between items-center gap-2 p-3 bg-white/50 rounded-md border border-emerald-100">
-                  <span className="font-medium text-sm sm:text-base text-emerald-700">
-                    💸 Monthly Investment Required
-                  </span>
-                  <span className="font-bold text-base sm:text-lg text-emerald-800">
-                    {formatLargeNumber(calculationResults.monthlyInvestment)}
-                  </span>
-                </div>
-                
-                {calculationResults.monthlyInvestment > 0 ? (
-                  <div className="bg-emerald-100/50 p-3 rounded-md border border-emerald-200">
-                    <div className="text-xs sm:text-sm text-emerald-700 text-center font-medium">
-                      You need to invest ₹{formatLargeNumber(calculationResults.monthlyInvestment).replace('₹', '')} every month for the next {calculationResults.yearsUntilEducation} years to meet your child's education goal.
-                    </div>
-                    <div className="text-xs sm:text-sm text-emerald-600/80 mt-2 text-center">
-                      *Calculations consider an inflation rate of {inflationRate}% p.a. and an expected return of {expectedReturn}% p.a.
-                    </div>
-                  </div>
-                ) : (
-                  <div className="bg-emerald-100/50 p-3 rounded-md border border-emerald-200 text-center">
-                    <div className="text-xs sm:text-sm text-emerald-700">
-                      Great! Your current savings are sufficient to meet your child's education goal.
-                    </div>
-                  </div>
-                )}
+                {renderResults()}
               </div>
               
               {/* Share Button */}

@@ -5,9 +5,17 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { FormattedInput } from "@/components/ui/formatted-input";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Button } from "@/components/ui/button";
 import { formatLargeNumber } from "@/lib/format-large-number.js";
+
+// Define the type for calculation results
+interface CalculationResults {
+  retirementCorpus: number;
+  monthlySavingsRequired: number;
+  yearsUntilRetirement: number;
+  yearsInRetirement: number;
+  futureMonthlyExpenses: number;
+}
 
 export default function IncomePlanningCalculator() {
   const [name, setName] = useState("");
@@ -20,7 +28,7 @@ export default function IncomePlanningCalculator() {
   const [showResults, setShowResults] = useState(false);
 
   // Calculate results based on inputs
-  const calculationResults = useMemo(() => {
+  const calculationResults = useMemo<CalculationResults | null>(() => {
     if (!name || !currentAge || !retirementAge || !lifeExpectancy || !monthlyExpenses || !inflationRate || !expectedReturn) return null;
 
     const current = parseInt(currentAge);
@@ -110,6 +118,49 @@ export default function IncomePlanningCalculator() {
         setShowResults(true);
       }
     }
+  };
+
+  const renderResults = () => {
+    // Type guard to ensure calculationResults is not null
+    if (!calculationResults) return null;
+    
+    // Use non-null assertion since we've already checked
+    const { retirementCorpus, monthlySavingsRequired, yearsUntilRetirement, futureMonthlyExpenses } = calculationResults!;
+    
+    return (
+      <>
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-2 p-3 bg-white/50 rounded-md border border-indigo-100">
+          <span className="font-medium text-sm sm:text-base text-indigo-700">
+            💰 Retirement Corpus Needed
+          </span>
+          <span className="font-bold text-base sm:text-lg text-indigo-800">
+            {formatLargeNumber(retirementCorpus)}
+          </span>
+        </div>
+        
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-2 p-3 bg-white/50 rounded-md border border-indigo-100">
+          <span className="font-medium text-sm sm:text-base text-indigo-700">
+            💸 Monthly Savings Required
+          </span>
+          <span className="font-bold text-base sm:text-lg text-indigo-800">
+            {formatLargeNumber(monthlySavingsRequired)}
+          </span>
+        </div>
+        
+        <div className="bg-indigo-100/50 p-3 rounded-md border border-indigo-200">
+          <div className="text-xs sm:text-sm text-indigo-700 text-center font-medium">
+            You need to invest ₹{formatLargeNumber(monthlySavingsRequired)?.replace('₹', '')} every month for the next {yearsUntilRetirement} years to build a retirement corpus of ₹{formatLargeNumber(retirementCorpus)?.replace('₹', '')}.
+          </div>
+          <div className="text-xs sm:text-sm text-indigo-600/80 mt-2 text-center">
+            Based on your current monthly expenses of ₹{formatLargeNumber(parseFloat(monthlyExpenses))?.replace('₹', '')}, 
+            you&#39;ll need ₹{formatLargeNumber(futureMonthlyExpenses)?.replace('₹', '')} per month at retirement 
+            (considering an inflation rate of {inflationRate}% p.a.). 
+            With an expected return of {expectedReturn}% p.a., your corpus will generate 
+            ₹{formatLargeNumber(futureMonthlyExpenses)?.replace('₹', '')} per month.
+          </div>
+        </div>
+      </>
+    );
   };
 
   const handleShare = () => {
@@ -257,47 +308,17 @@ export default function IncomePlanningCalculator() {
           {showResults && calculationResults && (
             <div className="mt-8 p-4 sm:p-5 bg-indigo-50/50 rounded-lg border border-indigo-200/80">
               <h3 className="text-base sm:text-lg font-semibold mb-4 text-center text-indigo-800">
-                🏖️ Retirement Planning for {name}
+                🏦 Income Planning for {name}
               </h3>
               
               <div className="space-y-4 mb-6">
-                <div className="flex flex-col sm:flex-row justify-between items-center gap-2 p-3 bg-white/50 rounded-md border border-indigo-100">
-                  <span className="font-medium text-sm sm:text-base text-indigo-700">
-                    🏦 Retirement Corpus Needed
-                  </span>
-                  <span className="font-bold text-base sm:text-lg text-indigo-800">
-                    {formatLargeNumber(calculationResults.retirementCorpus)}
-                  </span>
-                </div>
-                
-                <div className="flex flex-col sm:flex-row justify-between items-center gap-2 p-3 bg-white/50 rounded-md border border-indigo-100">
-                  <span className="font-medium text-sm sm:text-base text-indigo-700">
-                    💰 Monthly Savings Required
-                  </span>
-                  <span className="font-bold text-base sm:text-lg text-indigo-800">
-                    {formatLargeNumber(calculationResults.monthlySavingsRequired)}
-                  </span>
-                </div>
-                
-                <div className="bg-indigo-100/50 p-3 rounded-md border border-indigo-200">
-                  <div className="text-xs sm:text-sm text-indigo-700 text-center font-medium">
-                    You need to invest ₹{formatLargeNumber(calculationResults.monthlySavingsRequired).replace('₹', '')} every month for the next {calculationResults.yearsUntilRetirement} years to build a retirement corpus of ₹{formatLargeNumber(calculationResults.retirementCorpus).replace('₹', '')}.
-                  </div>
-                  <div className="text-xs sm:text-sm text-indigo-600/80 mt-2 text-center">
-                    Based on your current monthly expenses of ₹{formatLargeNumber(parseFloat(monthlyExpenses)).replace('₹', '')}, 
-                    which will grow to ₹{formatLargeNumber(calculationResults.futureMonthlyExpenses).replace('₹', '')} by retirement 
-                    considering {inflationRate}% p.a. inflation.
-                  </div>
-                  <div className="text-xs sm:text-sm text-indigo-600/80 mt-2 text-center">
-                    *Calculations consider an inflation rate of {inflationRate}% p.a. and an expected return of {expectedReturn}% p.a.
-                  </div>
-                </div>
+                {renderResults()}
               </div>
               
               {/* Share Button */}
               <Button 
                 onClick={handleShare} 
-                className="w-full mt-4 bg-gradient-to-r from-indigo-600 to-indigo-700 text-white shadow-lg hover:from-indigo-600 hover:to-indigo-700 active:from-indigo-800 active:to-indigo-900 transition-all duration-300 ease-in-out"
+                className="w-full mt-4 bg-gradient-to-r from-indigo-500 to-indigo-600 text-white shadow-lg hover:from-indigo-500 hover:to-indigo-600 active:from-indigo-700 active:to-indigo-800 transition-all duration-300 ease-in-out"
               >
                 Share Results via WhatsApp
               </Button>

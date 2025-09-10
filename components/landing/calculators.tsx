@@ -74,7 +74,7 @@ export default function CalculatorsContent() {
             Marriage Expense Planner
           </h2>
           <p className="mt-2 text-sm sm:text-base leading-5 sm:leading-7 text-gray-600 dark:text-gray-300">
-            Plan your child's future wedding expenses with our specialized calculator.
+            Plan your child&#39;s future wedding expenses with our specialized calculator.
           </p>
         </div>
         <ChildMarriageCalculator />

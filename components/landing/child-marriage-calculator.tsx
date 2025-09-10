@@ -5,9 +5,16 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { FormattedInput } from "@/components/ui/formatted-input";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Button } from "@/components/ui/button";
 import { formatLargeNumber } from "@/lib/format-large-number.js";
+
+// Define the type for calculation results
+interface CalculationResults {
+  futureCostOfMarriage: number;
+  sipInvestment: number;
+  lumpSumInvestment: number;
+  yearsUntilMarriage: number;
+}
 
 export default function ChildMarriageCalculator() {
   const [childName, setChildName] = useState("");
@@ -20,7 +27,7 @@ export default function ChildMarriageCalculator() {
   const [showResults, setShowResults] = useState(false);
 
   // Calculate results based on inputs
-  const calculationResults = useMemo(() => {
+  const calculationResults = useMemo<CalculationResults | null>(() => {
     if (!childName || !currentAge || !marriageAge || !estimatedExpenditure || !inflationRate || !amountSaved || !expectedReturn) return null;
 
     const childCurrentAge = parseInt(currentAge);
@@ -100,6 +107,65 @@ export default function ChildMarriageCalculator() {
         setShowResults(true);
       }
     }
+  };
+
+  const renderResults = () => {
+    // Type guard to ensure calculationResults is not null
+    if (!calculationResults) return null;
+    
+    // Use non-null assertion since we've already checked
+    const { futureCostOfMarriage, sipInvestment, lumpSumInvestment, yearsUntilMarriage } = calculationResults!;
+    
+    return (
+      <>
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-2 p-3 bg-white/50 rounded-md border border-rose-100">
+          <span className="font-medium text-sm sm:text-base text-rose-700">
+            💰 Projected Cost of Marriage after {yearsUntilMarriage} years
+          </span>
+          <span className="font-bold text-base sm:text-lg text-rose-800">
+            {formatLargeNumber(futureCostOfMarriage)}
+          </span>
+        </div>
+        
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-2 p-3 bg-white/50 rounded-md border border-rose-100">
+          <span className="font-medium text-sm sm:text-base text-rose-700">
+            💸 Monthly SIP Investment Required
+          </span>
+          <span className="font-bold text-base sm:text-lg text-rose-800">
+            {formatLargeNumber(sipInvestment)}
+          </span>
+        </div>
+        
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-2 p-3 bg-white/50 rounded-md border border-rose-100">
+          <span className="font-medium text-sm sm:text-base text-rose-700">
+            💰 One-time Lump Sum Investment Required
+          </span>
+          <span className="font-bold text-base sm:text-lg text-rose-800">
+            {formatLargeNumber(lumpSumInvestment)}
+          </span>
+        </div>
+        
+        {sipInvestment > 0 ? (
+          <div className="bg-rose-100/50 p-3 rounded-md border border-rose-200">
+            <div className="text-xs sm:text-sm text-rose-700 text-center font-medium">
+              You need to invest ₹{formatLargeNumber(sipInvestment)?.replace('₹', '')} every month for the next {yearsUntilMarriage} years to meet your child&#39;s marriage goal.
+            </div>
+            <div className="text-xs sm:text-sm text-rose-700 text-center font-medium mt-1">
+              OR make a one-time investment of ₹{formatLargeNumber(lumpSumInvestment)?.replace('₹', '')} today.
+            </div>
+            <div className="text-xs sm:text-sm text-rose-600/80 mt-2 text-center">
+              *Calculations consider an inflation rate of {inflationRate}% p.a. and an expected return of {expectedReturn}% p.a.
+            </div>
+          </div>
+        ) : (
+          <div className="bg-rose-100/50 p-3 rounded-md border border-rose-200 text-center">
+            <div className="text-xs sm:text-sm text-rose-700">
+              Great! Your current savings are sufficient to meet your child&#39;s marriage goal.
+            </div>
+          </div>
+        )}
+      </>
+    );
   };
 
   const handleShare = () => {
@@ -242,64 +308,13 @@ export default function ChildMarriageCalculator() {
               </h3>
               
               <div className="space-y-4 mb-6">
-                <div className="flex flex-col sm:flex-row justify-between items-center gap-2 p-3 bg-white/50 rounded-md border border-rose-100">
-                  <span className="font-medium text-sm sm:text-base text-rose-700">
-                    💒 Future Cost of Marriage after {calculationResults.yearsUntilMarriage} years
-                  </span>
-                  <span className="font-bold text-base sm:text-lg text-rose-800">
-                    {formatLargeNumber(calculationResults.futureCostOfMarriage)}
-                  </span>
-                </div>
-                
-                <div className="flex flex-col sm:flex-row justify-between items-center gap-2 p-3 bg-white/50 rounded-md border border-rose-100">
-                  <span className="font-medium text-sm sm:text-base text-rose-700">
-                    🔁 SIP Investment Required
-                  </span>
-                  <span className="font-bold text-base sm:text-lg text-rose-800">
-                    {formatLargeNumber(calculationResults.sipInvestment)}
-                  </span>
-                </div>
-                
-                <div className="flex items-center justify-center my-2">
-                  <div className="text-xs font-medium text-rose-600 bg-rose-50 px-3 py-1 rounded-full border border-rose-200">
-                    OR
-                  </div>
-                </div>
-                
-                <div className="flex flex-col sm:flex-row justify-between items-center gap-2 p-3 bg-white/50 rounded-md border border-rose-100">
-                  <span className="font-medium text-sm sm:text-base text-rose-700">
-                    💼 Lump Sum Investment Required
-                  </span>
-                  <span className="font-bold text-base sm:text-lg text-rose-800">
-                    {formatLargeNumber(calculationResults.lumpSumInvestment)}
-                  </span>
-                </div>
-                
-                {calculationResults.sipInvestment > 0 ? (
-                  <div className="bg-rose-100/50 p-3 rounded-md border border-rose-200">
-                    <div className="text-xs sm:text-sm text-rose-700 text-center font-medium">
-                      You need to invest ₹{formatLargeNumber(calculationResults.sipInvestment).replace('₹', '')} every month for the next {calculationResults.yearsUntilMarriage} years to meet your child's marriage goal.
-                    </div>
-                    <div className="text-xs sm:text-sm text-rose-700 text-center font-medium mt-1">
-                      OR make a one-time investment of ₹{formatLargeNumber(calculationResults.lumpSumInvestment).replace('₹', '')} today.
-                    </div>
-                    <div className="text-xs sm:text-sm text-rose-600/80 mt-2 text-center">
-                      *Calculations consider an inflation rate of {inflationRate}% p.a. and an expected return of {expectedReturn}% p.a.
-                    </div>
-                  </div>
-                ) : (
-                  <div className="bg-rose-100/50 p-3 rounded-md border border-rose-200 text-center">
-                    <div className="text-xs sm:text-sm text-rose-700">
-                      Great! Your current savings are sufficient to meet your child's marriage goal.
-                    </div>
-                  </div>
-                )}
+                {renderResults()}
               </div>
               
               {/* Share Button */}
               <Button 
                 onClick={handleShare} 
-                className="w-full mt-6 bg-gradient-to-r from-rose-600 to-rose-700 text-white shadow-lg hover:from-rose-600 hover:to-rose-700 active:from-rose-800 active:to-rose-900 transition-all duration-300 ease-in-out"
+                className="w-full mt-4 bg-gradient-to-r from-rose-500 to-rose-600 text-white shadow-lg hover:from-rose-500 hover:to-rose-600 active:from-rose-700 active:to-rose-800 transition-all duration-300 ease-in-out"
               >
                 Share Results via WhatsApp
               </Button>
