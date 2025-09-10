@@ -92,7 +92,7 @@ export default function ChildEducationSipSwpCalculator() {
     
     return (
       <div className="space-y-4">
-        <div className="bg-emerald-100/50 p-4 rounded-md border border-emerald-200">
+        <div className="p-4 rounded-md">
           <h3 className="text-base sm:text-lg font-semibold mb-3 text-center text-emerald-800">
             📚 Higher Education Financial Support for {childName}
           </h3>
