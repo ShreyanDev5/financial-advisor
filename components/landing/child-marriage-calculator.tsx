@@ -276,23 +276,24 @@ export default function ChildMarriageCalculator() {
                 </div>
                 
                 {calculationResults.sipInvestment > 0 ? (
-                  <div className="space-y-2 mt-2">
-                    <div className="text-xs sm:text-sm text-rose-600 text-center">
-                      You need to invest &#8377;{formatLargeNumber(calculationResults.sipInvestment).replace('₹', '')} every month for the next {calculationResults.yearsUntilMarriage} years to meet your child&apos;s marriage goal.
+                  <div className="bg-rose-100/50 p-3 rounded-md border border-rose-200">
+                    <div className="text-xs sm:text-sm text-rose-700 text-center font-medium">
+                      You need to invest ₹{formatLargeNumber(calculationResults.sipInvestment).replace('₹', '')} every month for the next {calculationResults.yearsUntilMarriage} years to meet your child's marriage goal.
                     </div>
-                    <div className="text-xs sm:text-sm text-rose-600 text-center">
-                      <strong>OR</strong> make a one-time investment of &#8377;{formatLargeNumber(calculationResults.lumpSumInvestment).replace('₹', '')} today.
+                    <div className="text-xs sm:text-sm text-rose-700 text-center font-medium mt-1">
+                      OR make a one-time investment of ₹{formatLargeNumber(calculationResults.lumpSumInvestment).replace('₹', '')} today.
+                    </div>
+                    <div className="text-xs sm:text-sm text-rose-600/80 mt-2 text-center">
+                      *Calculations consider an inflation rate of {inflationRate}% p.a. and an expected return of {expectedReturn}% p.a.
                     </div>
                   </div>
                 ) : (
-                  <div className="text-xs sm:text-sm text-rose-600 mt-2 text-center">
-                    Great! Your current savings are sufficient to meet your child&apos;s marriage goal.
+                  <div className="bg-rose-100/50 p-3 rounded-md border border-rose-200 text-center">
+                    <div className="text-xs sm:text-sm text-rose-700">
+                      Great! Your current savings are sufficient to meet your child's marriage goal.
+                    </div>
                   </div>
                 )}
-              </div>
-              
-              <div className="text-xs sm:text-sm text-rose-600/80 mt-2 text-center">
-                *Calculations consider an inflation rate of {inflationRate}% p.a. and an expected return of {expectedReturn}% p.a.
               </div>
               
               {/* Share Button */}
