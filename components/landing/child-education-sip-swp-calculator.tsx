@@ -20,10 +20,11 @@ export default function ChildEducationSipSwpCalculator() {
   const [childName, setChildName] = useState("");
   const [monthlySavings, setMonthlySavings] = useState("");
   const [paymentDuration, setPaymentDuration] = useState<"10" | "15">("10");
+  const [showResults, setShowResults] = useState(false);
   
   // Calculate results based on inputs - hardcoding the example values for exact matches
   const calculationResults = useMemo<CalculationResults | null>(() => {
-    if (!childName || !monthlySavings) return null;
+    if (!childName || !monthlySavings || !showResults) return null;
 
     const monthlyAmount = parseFloat(monthlySavings) || 0;
     
@@ -71,10 +72,15 @@ export default function ChildEducationSipSwpCalculator() {
       educationYears,
       finalYear
     };
-  }, [childName, monthlySavings, paymentDuration]);
+  }, [childName, monthlySavings, paymentDuration, showResults]);
 
   const handleCalculate = () => {
-    // Calculation is done via useMemo
+    if (childName && monthlySavings) {
+      const monthlyAmount = parseFloat(monthlySavings);
+      if (!isNaN(monthlyAmount) && monthlyAmount > 0) {
+        setShowResults(true);
+      }
+    }
   };
 
   const renderResults = () => {
@@ -174,10 +180,10 @@ export default function ChildEducationSipSwpCalculator() {
       {/* Payment Duration Options */}
       <div className="space-y-2">
         <Label className="text-sm sm:text-base text-emerald-700">Payment Duration</Label>
-        <div className="flex gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <button
             onClick={() => setPaymentDuration("10")}
-            className={`flex-1 py-3 px-4 rounded-lg border transition-all ${
+            className={`py-3 px-4 rounded-lg border transition-all w-full ${
               paymentDuration === "10"
                 ? "bg-emerald-500 text-white border-emerald-600 shadow-md"
                 : "bg-white text-emerald-700 border-emerald-200 hover:bg-emerald-50"
@@ -187,7 +193,7 @@ export default function ChildEducationSipSwpCalculator() {
           </button>
           <button
             onClick={() => setPaymentDuration("15")}
-            className={`flex-1 py-3 px-4 rounded-lg border transition-all ${
+            className={`py-3 px-4 rounded-lg border transition-all w-full ${
               paymentDuration === "15"
                 ? "bg-emerald-500 text-white border-emerald-600 shadow-md"
                 : "bg-white text-emerald-700 border-emerald-200 hover:bg-emerald-50"
@@ -208,8 +214,8 @@ export default function ChildEducationSipSwpCalculator() {
       </Button>
 
       {/* Results Display */}
-      {calculationResults && (
-        <div className="mt-8">
+      {showResults && calculationResults && (
+        <div className="mt-8 p-4 sm:p-5 bg-emerald-50/50 rounded-lg border border-emerald-200/80">
           <h3 className="text-base sm:text-lg font-semibold mb-4 text-center text-emerald-800">
             🎓 Child Education Funding Plan with Withdrawals for {childName}
           </h3>
