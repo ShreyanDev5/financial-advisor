@@ -151,7 +151,7 @@ export default function ChildEducationSipSwpCalculator() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 min-h-[420px]">
       {/* Child's Name Input */}
       <div className="space-y-2">
         <Label htmlFor="childName" className="text-sm sm:text-base text-emerald-700">Child&apos;s Name</Label>
