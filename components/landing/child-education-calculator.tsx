@@ -105,12 +105,12 @@ export default function ChildEducationCalculator() {
     const { projectedCost, monthlyInvestment } = calculationResults;
     
     // Generate the share text
-    let shareText = `📚 Child Education Planning for ${childName}:
+    let shareText = `🎓 Child Education Planning for ${childName}:
 
 `;
     shareText += `💰 Projected Cost of Education: ${formatLargeNumber(projectedCost)}
 `;
-    shareText += `💸 Monthly Investment Required: ${formatLargeNumber(monthlyInvestment)}
+    shareText += `💰 Monthly Investment Required: ${formatLargeNumber(monthlyInvestment)}
 `;
     
     // Encode the text for WhatsApp
@@ -124,7 +124,7 @@ export default function ChildEducationCalculator() {
   return (
     <Card className="w-full max-w-3xl mx-auto bg-gradient-to-b from-emerald-50/70 to-emerald-100/50 backdrop-blur supports-[backdrop-filter]:bg-emerald-50/30 border border-emerald-200/80 shadow-xl rounded-xl">
       <CardHeader className="pb-2 mb-6">
-        <CardTitle className="text-center text-xl font-bold text-emerald-800">Child Education Planning Calculator</CardTitle>
+        <CardTitle className="text-center text-xl font-bold text-emerald-800">Child Education Planning Calculator 🎓</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-6">
@@ -238,13 +238,13 @@ export default function ChildEducationCalculator() {
           {showResults && calculationResults && (
             <div className="mt-8 p-4 sm:p-5 bg-emerald-50/50 rounded-lg border border-emerald-200/80">
               <h3 className="text-base sm:text-lg font-semibold mb-4 text-center text-emerald-800">
-                &#128218; Education Planning for {childName}
+                🎓 Education Planning for {childName}
               </h3>
               
               <div className="space-y-4 mb-6">
                 <div className="flex flex-col sm:flex-row justify-between items-center gap-2 p-3 bg-white/50 rounded-md border border-emerald-100">
                   <span className="font-medium text-sm sm:text-base text-emerald-700">
-                    &#128176; Projected Cost of Education after {calculationResults.yearsUntilEducation} years
+                    💰 Projected Cost of Education after {calculationResults.yearsUntilEducation} years
                   </span>
                   <span className="font-bold text-base sm:text-lg text-emerald-800">
                     {formatLargeNumber(calculationResults.projectedCost)}
@@ -253,7 +253,7 @@ export default function ChildEducationCalculator() {
                 
                 <div className="flex flex-col sm:flex-row justify-between items-center gap-2 p-3 bg-white/50 rounded-md border border-emerald-100">
                   <span className="font-medium text-sm sm:text-base text-emerald-700">
-                    &#128184; Monthly Investment Required
+                    💸 Monthly Investment Required
                   </span>
                   <span className="font-bold text-base sm:text-lg text-emerald-800">
                     {formatLargeNumber(calculationResults.monthlyInvestment)}
@@ -261,24 +261,27 @@ export default function ChildEducationCalculator() {
                 </div>
                 
                 {calculationResults.monthlyInvestment > 0 ? (
-                  <div className="text-xs sm:text-sm text-emerald-600 mt-2 text-center">
-                    You need to invest &#8377;{formatLargeNumber(calculationResults.monthlyInvestment).replace('₹', '')} every month for the next {calculationResults.yearsUntilEducation} years to meet your child&apos;s education goal.
+                  <div className="bg-emerald-100/50 p-3 rounded-md border border-emerald-200">
+                    <div className="text-xs sm:text-sm text-emerald-700 text-center font-medium">
+                      You need to invest ₹{formatLargeNumber(calculationResults.monthlyInvestment).replace('₹', '')} every month for the next {calculationResults.yearsUntilEducation} years to meet your child's education goal.
+                    </div>
+                    <div className="text-xs sm:text-sm text-emerald-600/80 mt-2 text-center">
+                      *Calculations consider an inflation rate of {inflationRate}% p.a. and an expected return of {expectedReturn}% p.a.
+                    </div>
                   </div>
                 ) : (
-                  <div className="text-xs sm:text-sm text-emerald-600 mt-2 text-center">
-                    Great! Your current savings are sufficient to meet your child&apos;s education goal.
+                  <div className="bg-emerald-100/50 p-3 rounded-md border border-emerald-200 text-center">
+                    <div className="text-xs sm:text-sm text-emerald-700">
+                      Great! Your current savings are sufficient to meet your child's education goal.
+                    </div>
                   </div>
                 )}
-              </div>
-              
-              <div className="text-xs sm:text-sm text-emerald-600/80 mt-2 text-center">
-                *Calculations consider an inflation rate of {inflationRate}% p.a. and an expected return of {expectedReturn}% p.a.
               </div>
               
               {/* Share Button */}
               <Button 
                 onClick={handleShare} 
-                className="w-full mt-6 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white shadow-lg hover:from-emerald-600 hover:to-emerald-700 active:from-emerald-800 active:to-emerald-900 transition-all duration-300 ease-in-out"
+                className="w-full mt-4 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white shadow-lg hover:from-emerald-600 hover:to-emerald-700 active:from-emerald-800 active:to-emerald-900 transition-all duration-300 ease-in-out"
               >
                 Share Results via WhatsApp
               </Button>

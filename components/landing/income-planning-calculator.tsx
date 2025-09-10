@@ -118,12 +118,12 @@ export default function IncomePlanningCalculator() {
     const { retirementCorpus, monthlySavingsRequired } = calculationResults;
     
     // Generate the share text
-    let shareText = `💰 Retirement Planning Calculator Results for ${name}:
+    let shareText = `🏖️ Retirement Planning Calculator Results for ${name}:
 
 `;
     shareText += `🏦 Retirement Corpus Needed: ${formatLargeNumber(retirementCorpus)}
 `;
-    shareText += `💸 Monthly Savings Required: ${formatLargeNumber(monthlySavingsRequired)}
+    shareText += `💰 Monthly Savings Required: ${formatLargeNumber(monthlySavingsRequired)}
 `;
     
     // Encode the text for WhatsApp
@@ -137,7 +137,7 @@ export default function IncomePlanningCalculator() {
   return (
     <Card className="w-full max-w-3xl mx-auto bg-gradient-to-b from-indigo-50/70 to-indigo-100/50 backdrop-blur supports-[backdrop-filter]:bg-indigo-50/30 border border-indigo-200/80 shadow-xl rounded-xl">
       <CardHeader className="pb-2 mb-6">
-        <CardTitle className="text-center text-xl font-bold text-indigo-800">Retirement Planning Calculator</CardTitle>
+        <CardTitle className="text-center text-xl font-bold text-indigo-800">Retirement Planning Calculator 🏖️</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-6">
@@ -257,7 +257,7 @@ export default function IncomePlanningCalculator() {
           {showResults && calculationResults && (
             <div className="mt-8 p-4 sm:p-5 bg-indigo-50/50 rounded-lg border border-indigo-200/80">
               <h3 className="text-base sm:text-lg font-semibold mb-4 text-center text-indigo-800">
-                💰 Retirement Planning for {name}
+                🏖️ Retirement Planning for {name}
               </h3>
               
               <div className="space-y-4 mb-6">
@@ -272,32 +272,32 @@ export default function IncomePlanningCalculator() {
                 
                 <div className="flex flex-col sm:flex-row justify-between items-center gap-2 p-3 bg-white/50 rounded-md border border-indigo-100">
                   <span className="font-medium text-sm sm:text-base text-indigo-700">
-                    💸 Monthly Savings Required
+                    💰 Monthly Savings Required
                   </span>
                   <span className="font-bold text-base sm:text-lg text-indigo-800">
                     {formatLargeNumber(calculationResults.monthlySavingsRequired)}
                   </span>
                 </div>
                 
-                <div className="text-xs sm:text-sm text-indigo-600 mt-2 text-center">
-                  You need to invest &#8377;{formatLargeNumber(calculationResults.monthlySavingsRequired).replace('₹', '')} every month for the next {calculationResults.yearsUntilRetirement} years to build a retirement corpus of &#8377;{formatLargeNumber(calculationResults.retirementCorpus).replace('₹', '')}.
+                <div className="bg-indigo-100/50 p-3 rounded-md border border-indigo-200">
+                  <div className="text-xs sm:text-sm text-indigo-700 text-center font-medium">
+                    You need to invest ₹{formatLargeNumber(calculationResults.monthlySavingsRequired).replace('₹', '')} every month for the next {calculationResults.yearsUntilRetirement} years to build a retirement corpus of ₹{formatLargeNumber(calculationResults.retirementCorpus).replace('₹', '')}.
+                  </div>
+                  <div className="text-xs sm:text-sm text-indigo-600/80 mt-2 text-center">
+                    Based on your current monthly expenses of ₹{formatLargeNumber(parseFloat(monthlyExpenses)).replace('₹', '')}, 
+                    which will grow to ₹{formatLargeNumber(calculationResults.futureMonthlyExpenses).replace('₹', '')} by retirement 
+                    considering {inflationRate}% p.a. inflation.
+                  </div>
+                  <div className="text-xs sm:text-sm text-indigo-600/80 mt-2 text-center">
+                    *Calculations consider an inflation rate of {inflationRate}% p.a. and an expected return of {expectedReturn}% p.a.
+                  </div>
                 </div>
-                
-                <div className="text-xs sm:text-sm text-indigo-600/80 mt-2 text-center">
-                  Based on your current monthly expenses of &#8377;{formatLargeNumber(parseFloat(monthlyExpenses)).replace('₹', '')}, 
-                  which will grow to &#8377;{formatLargeNumber(calculationResults.futureMonthlyExpenses).replace('₹', '')} by retirement 
-                  considering {inflationRate}% p.a. inflation.
-                </div>
-              </div>
-              
-              <div className="text-xs sm:text-sm text-indigo-600/80 mt-2 text-center">
-                *Calculations consider an inflation rate of {inflationRate}% p.a. and an expected return of {expectedReturn}% p.a.
               </div>
               
               {/* Share Button */}
               <Button 
                 onClick={handleShare} 
-                className="w-full mt-6 bg-gradient-to-r from-indigo-600 to-indigo-700 text-white shadow-lg hover:from-indigo-600 hover:to-indigo-700 active:from-indigo-800 active:to-indigo-900 transition-all duration-300 ease-in-out"
+                className="w-full mt-4 bg-gradient-to-r from-indigo-600 to-indigo-700 text-white shadow-lg hover:from-indigo-600 hover:to-indigo-700 active:from-indigo-800 active:to-indigo-900 transition-all duration-300 ease-in-out"
               >
                 Share Results via WhatsApp
               </Button>
