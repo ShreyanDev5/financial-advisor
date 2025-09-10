@@ -155,14 +155,14 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
           <div className="space-y-6 sm:space-y-8">
             {investmentType === "sip" && (
               <div className="space-y-2 sm:space-y-2">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                  <Label htmlFor="investmentAmount" className="text-sm sm:text-base">Monthly Investment (₹)</Label>
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 px-4 md:px-8 max-w-[90%] mx-auto">
+                  <Label htmlFor="investmentAmount" className="text-sm sm:text-base w-full sm:w-1/2">Monthly Investment (₹)</Label>
                   <FormattedInput 
                     id="investmentAmount" 
                     inputMode="numeric" 
                     value={investmentAmount} 
                     onFormattedChange={setInvestmentAmount} 
-                    className="w-full sm:w-36 md:w-40" 
+                    className="w-full sm:w-1/3" 
                   />
                 </div>
                 <div className="px-4 md:px-8"> {/* Increased lateral spacing */}
@@ -172,14 +172,14 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
             )}
             {investmentType === "lumpsum" && (
               <div className="space-y-2 sm:space-y-2">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                  <Label htmlFor="totalInvestment" className="text-sm sm:text-base">Total Investment (₹)</Label>
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 px-4 md:px-8 max-w-[90%] mx-auto">
+                  <Label htmlFor="totalInvestment" className="text-sm sm:text-base w-full sm:w-1/2">Total Investment (₹)</Label>
                   <FormattedInput 
                     id="totalInvestment" 
                     inputMode="numeric" 
                     value={totalInvestment} 
                     onFormattedChange={setTotalInvestment} 
-                    className="w-full sm:w-36 md:w-40" 
+                    className="w-full sm:w-1/3" 
                   />
                 </div>
                 <div className="px-4 md:px-8"> {/* Increased lateral spacing */}
@@ -190,14 +190,14 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
             {investmentType === "swp" && (
               <>
                 <div className="space-y-2 sm:space-y-2">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                    <Label htmlFor="totalInvestment" className="text-sm sm:text-base">Total Investment (₹)</Label>
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 px-4 md:px-8 max-w-[90%] mx-auto">
+                    <Label htmlFor="totalInvestment" className="text-sm sm:text-base w-full sm:w-1/2">Total Investment (₹)</Label>
                     <FormattedInput 
                       id="totalInvestment" 
                       inputMode="numeric" 
                       value={totalInvestment} 
                       onFormattedChange={setTotalInvestment} 
-                      className="w-full sm:w-36 md:w-40" 
+                      className="w-full sm:w-1/3" 
                     />
                   </div>
                   <div className="px-4 md:px-8"> {/* Increased lateral spacing */}
@@ -205,14 +205,14 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
                   </div>
                 </div>
                 <div className="space-y-2 sm:space-y-2">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                    <Label htmlFor="withdrawalAmount" className="text-sm sm:text-base">Monthly Withdrawal (₹)</Label>
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 px-4 md:px-8 max-w-[90%] mx-auto">
+                    <Label htmlFor="withdrawalAmount" className="text-sm sm:text-base w-full sm:w-1/2">Monthly Withdrawal (₹)</Label>
                     <FormattedInput 
                       id="withdrawalAmount" 
                       inputMode="numeric" 
                       value={withdrawalAmount} 
                       onFormattedChange={setWithdrawalAmount} 
-                      className="w-full sm:w-36 md:w-40" 
+                      className="w-full sm:w-1/3" 
                     />
                   </div>
                   <div className="px-4 md:px-8"> {/* Increased lateral spacing */}
@@ -222,18 +222,18 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
               </>
             )}
             <div className="space-y-2 sm:space-y-2">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                <Label htmlFor="expectedReturnRate" className="text-sm sm:text-base">Expected Return Rate (% p.a.)</Label>
-                <Input id="expectedReturnRate" inputMode="numeric" value={expectedReturnRate} onChange={(e) => setExpectedReturnRate(e.target.value)} className="w-full sm:w-24 md:w-28" />
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 px-4 md:px-8 max-w-[90%] mx-auto">
+                <Label htmlFor="expectedReturnRate" className="text-sm sm:text-base w-full sm:w-1/2">Expected Return Rate (% p.a.)</Label>
+                <Input id="expectedReturnRate" inputMode="numeric" value={expectedReturnRate} onChange={(e) => setExpectedReturnRate(e.target.value)} className="w-full sm:w-1/3" />
               </div>
               <div className="px-4 md:px-8"> {/* Increased lateral spacing */}
                 <Slider value={[Number(expectedReturnRate) || 0]} onValueChange={([v]) => setExpectedReturnRate(String(v))} min={1} max={30} step={0.5} className="[&>span:first-child]:h-2 [&>span:first-child]:rounded-full [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:shadow-md mx-auto max-w-[90%]" /> {/* Reduced width with max-w-[90%] */}
               </div>
             </div>
             <div className="space-y-2 sm:space-y-2 mb-6">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                <Label htmlFor="timePeriod" className="text-sm sm:text-base">Time Period (Years)</Label>
-                <Input id="timePeriod" inputMode="numeric" value={timePeriod} onChange={(e) => setTimePeriod(e.target.value)} className="w-full sm:w-24 md:w-28" />
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 px-4 md:px-8 max-w-[90%] mx-auto">
+                <Label htmlFor="timePeriod" className="text-sm sm:text-base w-full sm:w-1/2">Time Period (Years)</Label>
+                <Input id="timePeriod" inputMode="numeric" value={timePeriod} onChange={(e) => setTimePeriod(e.target.value)} className="w-full sm:w-1/3" />
               </div>
               <div className="px-4 md:px-8"> {/* Increased lateral spacing */}
                 <Slider value={[Number(timePeriod) || 0]} onValueChange={([v]) => setTimePeriod(String(v))} min={1} max={40} step={1} className="[&>span:first-child]:h-2 [&>span:first-child]:rounded-full [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:shadow-md mx-auto max-w-[90%]" /> {/* Reduced width with max-w-[90%] */}
