@@ -92,33 +92,31 @@ export default function ChildEducationSipSwpCalculator() {
     
     return (
       <div className="space-y-4">
-        <div className="p-4 rounded-md">
-          <h3 className="text-base sm:text-lg font-semibold mb-3 text-center text-emerald-800">
-            📚 Higher Education Financial Support for {childName}
-          </h3>
+        <h3 className="text-base sm:text-lg font-semibold mb-4 text-center text-emerald-800">
+          📚 Higher Education Financial Support for {childName}
+        </h3>
+        
+        <div className="space-y-3">
+          {[...Array(educationYears)].map((_, i) => (
+            <div key={i} className="flex flex-col sm:flex-row items-center justify-between p-3 bg-white/50 rounded border border-emerald-100 gap-2">
+              <span className="font-medium text-emerald-700 text-sm sm:text-base">🔹 {startYear + i} years:</span>
+              <span className="font-bold text-emerald-800 text-sm sm:text-base">🪙 ₹{formatLargeNumber(yearlyAmount)?.replace('₹', '')}</span>
+            </div>
+          ))}
+        </div>
           
-          <div className="space-y-2">
-            {[...Array(educationYears)].map((_, i) => (
-              <div key={i} className="flex items-center justify-between p-2 bg-white/50 rounded border border-emerald-100">
-                <span className="font-medium text-emerald-700">🔹 {startYear + i} years:</span>
-                <span className="font-bold text-emerald-800">🪙 ₹{formatLargeNumber(yearlyAmount)?.replace('₹', '')}</span>
-              </div>
-            ))}
-          </div>
-          
-          <div className="mt-4 pt-3 border-t border-emerald-200">
-            <div className="flex flex-col sm:flex-row justify-between items-center gap-2 p-2 bg-white/50 rounded border border-emerald-100">
-              <span className="font-medium text-emerald-700">
+          <div className="mt-4 pt-4 border-t border-emerald-200">
+            <div className="flex flex-col sm:flex-row justify-between items-center gap-3 p-3 bg-white/50 rounded border border-emerald-100">
+              <span className="font-medium text-emerald-700 text-sm sm:text-base">
                 💰 One-time Career Support Fund
               </span>
-              <span className="font-bold text-emerald-800">
+              <span className="font-bold text-emerald-800 text-sm sm:text-base">
                 ₹{formatLargeNumber(careerFund)?.replace('₹', '')} at {finalYear} years
               </span>
             </div>
-          </div>
         </div>
         
-        <div className="bg-emerald-100/50 p-3 rounded-md border border-emerald-200 text-center">
+        <div className="bg-emerald-100/50 p-4 rounded-md border border-emerald-200 text-center">
           <div className="text-xs sm:text-sm text-emerald-700">
             *Calculations consider standard financial assumptions for education funding.
           </div>
@@ -151,39 +149,39 @@ export default function ChildEducationSipSwpCalculator() {
   };
 
   return (
-    <div className="space-y-6 min-h-[420px]">
+    <div className="space-y-6 min-h-[420px] w-full">
       {/* Child's Name Input */}
       <div className="space-y-2">
-        <Label htmlFor="childName" className="text-sm sm:text-base text-emerald-700">Child&apos;s Name</Label>
+        <Label htmlFor="childName" className="text-sm text-emerald-700">Child&apos;s Name</Label>
         <Input 
           id="childName" 
           value={childName} 
           onChange={(e) => setChildName(e.target.value)} 
           placeholder="e.g., Arjun"
-          className="w-full border-emerald-200 focus:border-emerald-400 focus:ring-emerald-300"
+          className="w-full border-emerald-200 focus:border-emerald-400 focus:ring-emerald-300 text-sm"
         />
       </div>
 
       {/* Monthly Savings Input */}
       <div className="space-y-2">
-        <Label htmlFor="monthlySavings" className="text-sm sm:text-base text-emerald-700">Monthly Savings (₹)</Label>
+        <Label htmlFor="monthlySavings" className="text-sm text-emerald-700">Monthly Savings (₹)</Label>
         <FormattedInput 
           id="monthlySavings" 
           inputMode="numeric" 
           value={monthlySavings} 
           onFormattedChange={setMonthlySavings} 
-          className="w-full border-emerald-200 focus:border-emerald-400 focus:ring-emerald-300" 
+          className="w-full border-emerald-200 focus:border-emerald-400 focus:ring-emerald-300 text-sm" 
           placeholder="e.g., 5000"
         />
       </div>
 
       {/* Payment Duration Options */}
       <div className="space-y-2">
-        <Label className="text-sm sm:text-base text-emerald-700">Payment Duration</Label>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <Label className="text-sm text-emerald-700">Payment Duration</Label>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <button
             onClick={() => setPaymentDuration("10")}
-            className={`py-2 px-3 rounded-lg border transition-all w-full text-sm font-medium ${
+            className={`py-3 px-4 rounded-lg border transition-all w-full text-sm font-medium ${
               paymentDuration === "10"
                 ? "bg-blue-600 text-white border-blue-700 shadow-md"
                 : "bg-white text-blue-800 border-blue-300 hover:bg-blue-100"
@@ -193,7 +191,7 @@ export default function ChildEducationSipSwpCalculator() {
           </button>
           <button
             onClick={() => setPaymentDuration("15")}
-            className={`py-2 px-3 rounded-lg border transition-all w-full text-sm font-medium ${
+            className={`py-3 px-4 rounded-lg border transition-all w-full text-sm font-medium ${
               paymentDuration === "15"
                 ? "bg-blue-600 text-white border-blue-700 shadow-md"
                 : "bg-white text-blue-800 border-blue-300 hover:bg-blue-100"
@@ -207,7 +205,7 @@ export default function ChildEducationSipSwpCalculator() {
       {/* Calculate Button */}
       <Button 
         onClick={handleCalculate} 
-        className="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 text-white shadow-lg hover:from-emerald-500 hover:to-emerald-600 active:from-emerald-700 active:to-emerald-800 transition-all duration-300 ease-in-out"
+        className="w-full py-3 text-sm bg-gradient-to-r from-emerald-500 to-emerald-600 text-white shadow-lg hover:from-emerald-500 hover:to-emerald-600 active:from-emerald-700 active:to-emerald-800 transition-all duration-300 ease-in-out"
         disabled={!childName || !monthlySavings}
       >
         Calculate Education Plan
@@ -223,7 +221,7 @@ export default function ChildEducationSipSwpCalculator() {
           {/* Share Button */}
           <Button 
             onClick={handleShare} 
-            className="w-full mt-4 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white shadow-lg hover:from-emerald-600 hover:to-emerald-700 active:from-emerald-800 active:to-emerald-900 transition-all duration-300 ease-in-out"
+            className="w-full py-3 text-sm mt-4 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white shadow-lg hover:from-emerald-600 hover:to-emerald-700 active:from-emerald-800 active:to-emerald-900 transition-all duration-300 ease-in-out"
           >
             Share Results via WhatsApp
           </Button>
