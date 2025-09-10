@@ -245,7 +245,7 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
               {!isMounted ? (
                 <div className="h-[260px] w-full max-w-[260px] md:h-[320px] md:max-w-[320px] animate-pulse rounded-lg bg-muted/30" />
               ) : hasChartData ? (
-                <div className="mt-2 sm:mt-3 flex flex-col items-center w-full px-2">
+                <div className="mt-2 sm:mt-3 flex flex-col items-center w-full px-2 py-2">
                 <svg
                   width={donutSize}
                   height={donutSize}
@@ -300,7 +300,7 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
                 {/* Add small spacing for desktop screens */}
                 <div className="hidden md:block h-4"></div>
                 {/* Desktop View */}
-                <div className="hidden md:flex items-center justify-center gap-6 text-base">
+                <div className="hidden md:flex items-center justify-center gap-6 text-base py-2">
                   <div className="flex flex-col gap-3">
                     <div className="flex items-center gap-3">
                       <span className="inline-block h-3 w-3 rounded-sm" style={{ backgroundColor: investedColor }} />
@@ -314,17 +314,17 @@ export function InvestmentCalculatorCard({ investmentType }: { investmentType: s
                     </div>
                   </div>
 
-                  <div className="text-7xl font-thin text-muted-foreground self-start pt-2">{'{'}</div>
+                  <div className="text-7xl font-thin text-muted-foreground self-start pt-3 -mt-1">{'{'}</div>
 
                   {calculatedResult && (
-                    <div className="flex flex-col items-start pt-1">
+                    <div className="flex flex-col items-start pt-2 -mt-1">
                       <div className="flex items-center gap-2">
                         <span className="text-primary font-medium text-lg">
                           {investmentType === 'swp' ? 'Final Balance' : 'Future Value'}
                         </span>
                       </div>
                       <span 
-                        className="font-bold text-primary truncate"
+                        className="font-bold text-primary truncate pb-1"
                         style={{ 
                           fontSize: `clamp(1.25rem, ${Math.max(1.75, 2.25 - (
                             ((investmentType === 'sip' && calculatedResult?.futureValue) || 
