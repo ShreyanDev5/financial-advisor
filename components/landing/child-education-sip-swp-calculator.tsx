@@ -94,7 +94,7 @@ export default function ChildEducationSipSwpCalculator() {
       <div className="space-y-4">
         <div className="bg-emerald-100/50 p-4 rounded-md border border-emerald-200">
           <h3 className="text-base sm:text-lg font-semibold mb-3 text-center text-emerald-800">
-            📚 Financial Support in Higher Education for {childName} for {educationYears} years:
+            📚 Higher Education Financial Support for {childName}
           </h3>
           
           <div className="space-y-2">
@@ -133,8 +133,8 @@ export default function ChildEducationSipSwpCalculator() {
     const { yearlyAmount, careerFund, startYear, educationYears, finalYear } = calculationResults;
     
     // Generate the share text
-    let shareText = `🎓 Child Education Funding Plan with Withdrawals for ${childName}:\n\n`;
-    shareText += `📚 Financial Support in Higher Education for ${educationYears} years:\n`;
+    let shareText = `🎓 Education Funding Plan for ${childName}:\n\n`;
+    shareText += `📚 Higher Education Financial Support:\n`;
     
     for (let i = 0; i < educationYears; i++) {
       shareText += `🔹 ${startYear + i} years: 🪙 ₹${formatLargeNumber(yearlyAmount)?.replace('₹', '')}\n`;
@@ -185,8 +185,8 @@ export default function ChildEducationSipSwpCalculator() {
             onClick={() => setPaymentDuration("10")}
             className={`py-2 px-3 rounded-lg border transition-all w-full text-sm font-medium ${
               paymentDuration === "10"
-                ? "bg-blue-500 text-white border-blue-600 shadow-md"
-                : "bg-white text-blue-700 border-blue-200 hover:bg-blue-50"
+                ? "bg-blue-600 text-white border-blue-700 shadow-md"
+                : "bg-white text-blue-800 border-blue-300 hover:bg-blue-100"
             }`}
           >
             Pay for 10 years
@@ -195,8 +195,8 @@ export default function ChildEducationSipSwpCalculator() {
             onClick={() => setPaymentDuration("15")}
             className={`py-2 px-3 rounded-lg border transition-all w-full text-sm font-medium ${
               paymentDuration === "15"
-                ? "bg-blue-500 text-white border-blue-600 shadow-md"
-                : "bg-white text-blue-700 border-blue-200 hover:bg-blue-50"
+                ? "bg-blue-600 text-white border-blue-700 shadow-md"
+                : "bg-white text-blue-800 border-blue-300 hover:bg-blue-100"
             }`}
           >
             Pay for 15 years
@@ -216,10 +216,6 @@ export default function ChildEducationSipSwpCalculator() {
       {/* Results Display */}
       {showResults && calculationResults && (
         <div className="mt-8 p-4 sm:p-5 bg-emerald-50/50 rounded-lg border border-emerald-200/80">
-          <h3 className="text-base sm:text-lg font-semibold mb-4 text-center text-emerald-800">
-            🎓 Child Education Funding Plan with Withdrawals for {childName}
-          </h3>
-          
           <div className="space-y-4 mb-6">
             {renderResults()}
           </div>
