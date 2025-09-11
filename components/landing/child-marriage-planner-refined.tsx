@@ -179,7 +179,7 @@ export default function ChildMarriageCalculatorRefined() {
               </div>
               <div>
                 <p className="text-sm font-medium text-rose-800">
-                  You need to invest <span className="font-bold">₹{formatLargeNumber(sipInvestment)?.replace('₹', '')}</span> every month for the next <span className="font-bold">{yearsUntilMarriage} years</span> to meet your child's marriage goal.
+                  You need to invest <span className="font-bold">₹{formatLargeNumber(sipInvestment)?.replace('₹', '')}</span> every month for the next <span className="font-bold">{yearsUntilMarriage} years</span> to meet your child&apos;s marriage goal.
                 </p>
                 <p className="text-sm font-medium text-rose-800 mt-1">
                   OR make a one-time investment of <span className="font-bold">₹{formatLargeNumber(lumpSumInvestment)?.replace('₹', '')}</span> today.
@@ -199,7 +199,7 @@ export default function ChildMarriageCalculatorRefined() {
                 </svg>
               </div>
               <p className="text-sm text-rose-800">
-                Great! Your current savings are sufficient to meet your child's marriage goal.
+                Great! Your current savings are sufficient to meet your child&apos;s marriage goal.
               </p>
             </div>
           </div>
@@ -210,20 +210,31 @@ export default function ChildMarriageCalculatorRefined() {
 
   const handleShare = () => {
     if (!calculationResults) return;
-    
-    const { futureCostOfMarriage, sipInvestment, lumpSumInvestment } = calculationResults;
-    
-    // Generate the share text
-    let shareText = `💍 Marriage Expense Planner for ${childName}:\n\n`;
-    shareText += `💒 Future Cost of Marriage: ${formatLargeNumber(futureCostOfMarriage)}\n`;
-    shareText += `🔁 SIP Investment Required: ${formatLargeNumber(sipInvestment)}\n`;
-    shareText += `💼 Lump Sum Investment Required: ${formatLargeNumber(lumpSumInvestment)}\n`;
-    
-    // Encode the text for WhatsApp
-    const encodedText = encodeURIComponent(shareText);
+
+    const { futureCostOfMarriage, sipInvestment, lumpSumInvestment, yearsUntilMarriage } = calculationResults;
+
+    const shareText = `
+*💍 Marriage Plan for ${childName}*
+
+*Future Cost of Marriage:*
+${formatLargeNumber(futureCostOfMarriage)} (in ${yearsUntilMarriage} years)
+
+*Investment Options:*
+- Monthly SIP: ${formatLargeNumber(sipInvestment)}
+- One-Time Lumpsum: ${formatLargeNumber(lumpSumInvestment)}
+
+*Calculation Details:*
+- Present Cost: ${formatLargeNumber(parseFloat(estimatedExpenditure))}
+- Inflation Rate: ${inflationRate}%
+- Expected Return: ${expectedReturn}%
+- Already Saved: ${formatLargeNumber(parseFloat(amountSaved))}
+
+_This is a projection. For a detailed plan, consult a financial advisor._
+    `;
+
+    const encodedText = encodeURIComponent(shareText.trim());
     const whatsappUrl = `https://wa.me/?text=${encodedText}`;
     
-    // Open WhatsApp
     window.open(whatsappUrl, '_blank');
   };
 
@@ -243,7 +254,7 @@ export default function ChildMarriageCalculatorRefined() {
         <div className="space-y-6">
           {/* Child's Name Input */}
           <div className="space-y-2">
-            <Label htmlFor="childMarriageChildName" className="text-sm font-medium text-rose-800">Child's Name</Label>
+            <Label htmlFor="childMarriageChildName" className="text-sm font-medium text-rose-800">Child&apos;s Name</Label>
             <Input 
               id="childMarriageChildName" 
               value={childName} 
@@ -256,7 +267,7 @@ export default function ChildMarriageCalculatorRefined() {
           {/* Age Inputs */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="childMarriageCurrentAge" className="text-sm font-medium text-rose-800">Child's Current Age</Label>
+              <Label htmlFor="childMarriageCurrentAge" className="text-sm font-medium text-rose-800">Child&apos;s Current Age</Label>
               <FormattedInput 
                 id="childMarriageCurrentAge" 
                 inputMode="numeric" 
@@ -320,7 +331,7 @@ export default function ChildMarriageCalculatorRefined() {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="childMarriageAmountSaved" className="text-sm font-medium text-rose-800">Amount Already Saved for Child's Marriage (₹)</Label>
+            <Label htmlFor="childMarriageAmountSaved" className="text-sm font-medium text-rose-800">Amount Already Saved for Child&apos;s Marriage (₹)</Label>
             <FormattedInput 
               id="childMarriageAmountSaved" 
               inputMode="numeric" 

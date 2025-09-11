@@ -145,24 +145,32 @@ export default function ChildEducationSipSwpCalculatorRefined() {
 
   const handleShare = () => {
     if (!calculationResults) return;
-    
+
     const { yearlyAmount, careerFund, startYear, educationYears, finalYear } = calculationResults;
-    
-    // Generate the share text
-    let shareText = `🎓 Education Funding Plan for ${childName}:\n\n`;
-    shareText += `📚 Higher Education Financial Support:\n`;
-    
+
+    let yearlyPayouts = '';
     for (let i = 0; i < educationYears; i++) {
-      shareText += `🔹 ${startYear + i} years: 🪙 ₹${formatLargeNumber(yearlyAmount)?.replace('₹', '')}\n`;
+      yearlyPayouts += `  - Year ${startYear + i}: ${formatLargeNumber(yearlyAmount)}
+`;
     }
-    
-    shareText += `\n💰 One-time Career Support Fund ₹${formatLargeNumber(careerFund)?.replace('₹', '')} at ${finalYear} years`;
-    
-    // Encode the text for WhatsApp
-    const encodedText = encodeURIComponent(shareText);
+
+    const shareText = `
+*🎓 Education Funding Plan for ${childName}*
+
+*Summary:*
+- Monthly Savings: ${formatLargeNumber(parseFloat(monthlySavings))}
+- Payment Duration: ${paymentDuration} years
+
+*Yearly Payouts for Education:*
+${yearlyPayouts}*One-Time Career Fund:*
+${formatLargeNumber(careerFund)} (at year ${finalYear})
+
+_This is a projection. For a detailed plan, consult a financial advisor._
+    `;
+
+    const encodedText = encodeURIComponent(shareText.trim());
     const whatsappUrl = `https://wa.me/?text=${encodedText}`;
     
-    // Open WhatsApp
     window.open(whatsappUrl, '_blank');
   };
 
@@ -170,7 +178,7 @@ export default function ChildEducationSipSwpCalculatorRefined() {
     <div className="space-y-6 min-h-[420px] w-full max-w-3xl mx-auto">
       {/* Child's Name Input */}
       <div className="space-y-2">
-        <Label htmlFor="childEducationFundingChildName" className="text-sm font-medium text-emerald-800">Child's Name</Label>
+        <Label htmlFor="childEducationFundingChildName" className="text-sm font-medium text-emerald-800">Child&apos;s Name</Label>
         <Input 
           id="childEducationFundingChildName" 
           value={childName} 

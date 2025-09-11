@@ -271,7 +271,7 @@ export function ChildEducationCalculatorCardRefined({ calculatorType }: { calcul
               </div>
               <div>
                 <p className="text-sm font-medium text-emerald-800">
-                  You need to invest <span className="font-bold">₹{formatLargeNumber(monthlyInvestment)?.replace('₹', '')}</span> every month for the next <span className="font-bold">{yearsUntilEducation} years</span> to meet your child's education goal.
+                  You need to invest <span className="font-bold">₹{formatLargeNumber(monthlyInvestment)?.replace('₹', '')}</span> every month for the next <span className="font-bold">{yearsUntilEducation} years</span> to meet your child&apos;s education goal.
                 </p>
                 <p className="text-xs text-emerald-600/80 mt-2">
                   *Calculations consider an inflation rate of {inflationRate}% p.a. and an expected return of {expectedReturn}% p.a.
@@ -288,7 +288,7 @@ export function ChildEducationCalculatorCardRefined({ calculatorType }: { calcul
                 </svg>
               </div>
               <p className="text-sm text-emerald-800">
-                Great! Your current savings are sufficient to meet your child's education goal.
+                Great! Your current savings are sufficient to meet your child&apos;s education goal.
               </p>
             </div>
           </div>
@@ -363,7 +363,7 @@ export function ChildEducationCalculatorCardRefined({ calculatorType }: { calcul
         <>
           {/* Child's Name Input */}
           <div className="space-y-2">
-            <Label htmlFor="childName" className="text-sm font-medium text-emerald-800">Child's Name</Label>
+            <Label htmlFor="childName" className="text-sm font-medium text-emerald-800">Child&apos;s Name</Label>
             <Input 
               id="childName" 
               value={childName} 
@@ -376,7 +376,7 @@ export function ChildEducationCalculatorCardRefined({ calculatorType }: { calcul
           {/* Age Inputs */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="childAge" className="text-sm font-medium text-emerald-800">Child's Current Age</Label>
+              <Label htmlFor="childAge" className="text-sm font-medium text-emerald-800">Child&apos;s Current Age</Label>
               <FormattedInput 
                 id="childAge" 
                 inputMode="numeric" 
@@ -440,7 +440,7 @@ export function ChildEducationCalculatorCardRefined({ calculatorType }: { calcul
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="amountSaved" className="text-sm font-medium text-emerald-800">Amount Already Saved for Child's Higher Education (₹)</Label>
+            <Label htmlFor="amountSaved" className="text-sm font-medium text-emerald-800">Amount Already Saved for Child&apos;s Higher Education (₹)</Label>
             <FormattedInput 
               id="amountSaved" 
               inputMode="numeric" 
@@ -510,7 +510,7 @@ export function ChildEducationCalculatorCardRefined({ calculatorType }: { calcul
         <>
           {/* Child's Name Input */}
           <div className="space-y-2">
-            <Label htmlFor="childName" className="text-sm font-medium text-emerald-800">Child's Name</Label>
+            <Label htmlFor="childName" className="text-sm font-medium text-emerald-800">Child&apos;s Name</Label>
             <Input 
               id="childName" 
               value={childName} 

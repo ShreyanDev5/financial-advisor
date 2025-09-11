@@ -6,9 +6,7 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Coins, Wallet } from "lucide-react";
 import { ChildEducationCalculatorCardRefined } from "@/components/ui/child-education-calculator-card-refined";
 
-interface ChildEducationCalculatorWrapperProps {
-  className?: string;
-}
+
 
 export function ChildEducationCalculatorToggleRefined({ 
   calculatorType, 
@@ -56,24 +54,20 @@ export function ChildEducationCalculatorWithToggleRefined() {
       </div>
       <ChildEducationCalculatorRefined 
         calculatorType={calculatorType} 
-        onCalculatorTypeChange={setCalculatorType} 
       />
     </div>
   );
 }
 
 export default function ChildEducationCalculatorRefined({ 
-  calculatorType,
-  onCalculatorTypeChange
+  calculatorType
 }: { 
-  calculatorType?: string; 
-  onCalculatorTypeChange?: (type: string) => void; 
+  calculatorType?: string;
 }) {
-  const [internalCalculatorType, setInternalCalculatorType] = useState("sip");
+  const [internalCalculatorType] = useState("sip");
 
   // Use external state if provided, otherwise use internal state
   const effectiveCalculatorType = calculatorType !== undefined ? calculatorType : internalCalculatorType;
-  const handleTypeChange = onCalculatorTypeChange !== undefined ? onCalculatorTypeChange : setInternalCalculatorType;
 
   return (
     <Card className="w-full max-w-3xl mx-auto bg-gradient-to-b from-emerald-50/70 to-emerald-100/50 backdrop-blur supports-[backdrop-filter]:bg-emerald-50/30 border border-emerald-200/80 shadow-xl rounded-2xl overflow-hidden">

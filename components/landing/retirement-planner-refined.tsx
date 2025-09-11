@@ -177,7 +177,7 @@ export default function IncomePlanningCalculatorRefined() {
               </p>
               <p className="text-sm text-indigo-700 mt-2">
                 Based on your current monthly expenses of <span className="font-medium">₹{formatLargeNumber(parseFloat(monthlyExpenses))?.replace('₹', '')}</span>, 
-                you'll need <span className="font-medium">₹{formatLargeNumber(futureMonthlyExpenses)?.replace('₹', '')}</span> per month at retirement 
+                you&apos;ll need <span className="font-medium">₹{formatLargeNumber(futureMonthlyExpenses)?.replace('₹', '')}</span> per month at retirement 
                 (considering an inflation rate of <span className="font-medium">{inflationRate}% p.a.</span>). 
                 With an expected return of <span className="font-medium">{expectedReturn}% p.a.</span>, your corpus will generate 
                 <span className="font-medium"> ₹{formatLargeNumber(futureMonthlyExpenses)?.replace('₹', '')}</span> per month.
@@ -191,19 +191,35 @@ export default function IncomePlanningCalculatorRefined() {
 
   const handleShare = () => {
     if (!calculationResults) return;
-    
-    const { retirementCorpus, monthlySavingsRequired } = calculationResults;
-    
-    // Generate the share text
-    let shareText = `🏖️ Retirement Planning Calculator Results for ${name}:\n\n`;
-    shareText += `🏦 Retirement Corpus Needed: ${formatLargeNumber(retirementCorpus)}\n`;
-    shareText += `💰 Monthly Savings Required: ${formatLargeNumber(monthlySavingsRequired)}\n`;
-    
-    // Encode the text for WhatsApp
-    const encodedText = encodeURIComponent(shareText);
+
+    const { retirementCorpus, monthlySavingsRequired, yearsUntilRetirement, futureMonthlyExpenses } = calculationResults;
+
+    const shareText = `
+*🏖️ Retirement Plan for ${name}*
+
+*Retirement Corpus Needed:*
+${formatLargeNumber(retirementCorpus)}
+
+*Monthly Savings Required:*
+${formatLargeNumber(monthlySavingsRequired)} for ${yearsUntilRetirement} years
+
+*At Retirement (age ${retirementAge}):*
+Your monthly expenses will be ~${formatLargeNumber(futureMonthlyExpenses)}.
+
+*Calculation Details:*
+- Current Age: ${currentAge}
+- Retirement Age: ${retirementAge}
+- Life Expectancy: ${lifeExpectancy}
+- Current Monthly Expenses: ${formatLargeNumber(parseFloat(monthlyExpenses))}
+- Inflation Rate: ${inflationRate}%
+- Expected Return: ${expectedReturn}%
+
+_This is a projection. For a detailed plan, consult a financial advisor._
+    `;
+
+    const encodedText = encodeURIComponent(shareText.trim());
     const whatsappUrl = `https://wa.me/?text=${encodedText}`;
     
-    // Open WhatsApp
     window.open(whatsappUrl, '_blank');
   };
 

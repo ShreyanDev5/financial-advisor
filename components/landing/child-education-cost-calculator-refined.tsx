@@ -157,7 +157,7 @@ export default function ChildEducationSipCalculatorRefined() {
               </div>
               <div>
                 <p className="text-sm font-medium text-emerald-800">
-                  You need to invest <span className="font-bold">₹{formatLargeNumber(monthlyInvestment)?.replace('₹', '')}</span> every month for the next <span className="font-bold">{yearsUntilEducation} years</span> to meet your child's education goal.
+                  You need to invest <span className="font-bold">₹{formatLargeNumber(monthlyInvestment)?.replace('₹', '')}</span> every month for the next <span className="font-bold">{yearsUntilEducation} years</span> to meet your child&apos;s education goal.
                 </p>
                 <p className="text-xs text-emerald-600/80 mt-2">
                   *Calculations consider an inflation rate of {inflationRate}% p.a. and an expected return of {expectedReturn}% p.a.
@@ -174,7 +174,7 @@ export default function ChildEducationSipCalculatorRefined() {
                 </svg>
               </div>
               <p className="text-sm text-emerald-800">
-                Great! Your current savings are sufficient to meet your child's education goal.
+                Great! Your current savings are sufficient to meet your child&apos;s education goal.
               </p>
             </div>
           </div>
@@ -185,19 +185,30 @@ export default function ChildEducationSipCalculatorRefined() {
 
   const handleShare = () => {
     if (!calculationResults) return;
-    
-    const { projectedCost, monthlyInvestment } = calculationResults;
-    
-    // Generate the share text
-    let shareText = `🎓 Child Education Planning for ${childName}:\n\n`;
-    shareText += `💰 Projected Cost of Education: ${formatLargeNumber(projectedCost)}\n`;
-    shareText += `💰 Monthly Investment Required: ${formatLargeNumber(monthlyInvestment)}\n`;
-    
-    // Encode the text for WhatsApp
-    const encodedText = encodeURIComponent(shareText);
+
+    const { projectedCost, monthlyInvestment, yearsUntilEducation } = calculationResults;
+
+    const shareText = `
+*🎓 Child Education Plan for ${childName}*
+
+*Future Cost of Education:*
+${formatLargeNumber(projectedCost)} (in ${yearsUntilEducation} years)
+
+*Monthly Investment Needed:*
+${formatLargeNumber(monthlyInvestment)}
+
+*Calculation Details:*
+- Present Cost: ${formatLargeNumber(parseFloat(presentCost))}
+- Inflation Rate: ${inflationRate}%
+- Expected Return: ${expectedReturn}%
+- Already Saved: ${formatLargeNumber(parseFloat(amountSaved))}
+
+_This is a projection. For a detailed plan, consult a financial advisor._
+    `;
+
+    const encodedText = encodeURIComponent(shareText.trim());
     const whatsappUrl = `https://wa.me/?text=${encodedText}`;
     
-    // Open WhatsApp
     window.open(whatsappUrl, '_blank');
   };
 
@@ -205,7 +216,7 @@ export default function ChildEducationSipCalculatorRefined() {
     <div className="space-y-6 min-h-[420px] w-full">
       {/* Child's Name Input */}
       <div className="space-y-2">
-        <Label htmlFor="childEducationCostChildName" className="text-sm font-medium text-emerald-800">Child's Name</Label>
+        <Label htmlFor="childEducationCostChildName" className="text-sm font-medium text-emerald-800">Child&apos;s Name</Label>
         <Input 
           id="childEducationCostChildName" 
           value={childName} 
@@ -218,7 +229,7 @@ export default function ChildEducationSipCalculatorRefined() {
       {/* Age Inputs */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="space-y-2">
-          <Label htmlFor="childEducationCostChildAge" className="text-sm font-medium text-emerald-800">Child's Current Age</Label>
+          <Label htmlFor="childEducationCostChildAge" className="text-sm font-medium text-emerald-800">Child&apos;s Current Age</Label>
           <FormattedInput 
             id="childEducationCostChildAge" 
             inputMode="numeric" 
@@ -282,7 +293,7 @@ export default function ChildEducationSipCalculatorRefined() {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="childEducationCostAmountSaved" className="text-sm font-medium text-emerald-800">Amount Already Saved for Child's Higher Education (₹)</Label>
+        <Label htmlFor="childEducationCostAmountSaved" className="text-sm font-medium text-emerald-800">Amount Already Saved for Child&apos;s Higher Education (₹)</Label>
         <FormattedInput 
           id="childEducationCostAmountSaved" 
           inputMode="numeric" 
