@@ -205,9 +205,9 @@ export default function ChildEducationSipCalculatorRefined() {
     <div className="space-y-6 min-h-[420px] w-full">
       {/* Child's Name Input */}
       <div className="space-y-2">
-        <Label htmlFor="childName" className="text-sm font-medium text-emerald-800">Child's Name</Label>
+        <Label htmlFor="childEducationCostChildName" className="text-sm font-medium text-emerald-800">Child's Name</Label>
         <Input 
-          id="childName" 
+          id="childEducationCostChildName" 
           value={childName} 
           onChange={(e) => setChildName(e.target.value)} 
           placeholder="e.g., Arjun"
@@ -218,9 +218,9 @@ export default function ChildEducationSipCalculatorRefined() {
       {/* Age Inputs */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="space-y-2">
-          <Label htmlFor="childAge" className="text-sm font-medium text-emerald-800">Child's Current Age</Label>
+          <Label htmlFor="childEducationCostChildAge" className="text-sm font-medium text-emerald-800">Child's Current Age</Label>
           <FormattedInput 
-            id="childAge" 
+            id="childEducationCostChildAge" 
             inputMode="numeric" 
             value={childAge} 
             onFormattedChange={setChildAge} 
@@ -230,9 +230,9 @@ export default function ChildEducationSipCalculatorRefined() {
         </div>
         
         <div className="space-y-2">
-          <Label htmlFor="educationStartAge" className="text-sm font-medium text-emerald-800">Age When Child Will Go for Higher Education</Label>
+          <Label htmlFor="childEducationCostEducationStartAge" className="text-sm font-medium text-emerald-800">Age When Child Will Go for Higher Education</Label>
           <FormattedInput 
-            id="educationStartAge" 
+            id="childEducationCostEducationStartAge" 
             inputMode="numeric" 
             value={educationStartAge} 
             onFormattedChange={setEducationStartAge} 
@@ -244,9 +244,9 @@ export default function ChildEducationSipCalculatorRefined() {
 
       {/* Financial Inputs */}
       <div className="space-y-2">
-        <Label htmlFor="presentCost" className="text-sm font-medium text-emerald-800">Present Cost of Higher Education (₹)</Label>
+        <Label htmlFor="childEducationCostPresentCost" className="text-sm font-medium text-emerald-800">Present Cost of Higher Education (₹)</Label>
         <FormattedInput 
-          id="presentCost" 
+          id="childEducationCostPresentCost" 
           inputMode="numeric" 
           value={presentCost} 
           onFormattedChange={setPresentCost} 
@@ -257,9 +257,9 @@ export default function ChildEducationSipCalculatorRefined() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="space-y-2">
-          <Label htmlFor="inflationRate" className="text-sm font-medium text-emerald-800">Expected Inflation Rate (% p.a.)</Label>
+          <Label htmlFor="childEducationCostInflationRate" className="text-sm font-medium text-emerald-800">Expected Inflation Rate (% p.a.)</Label>
           <FormattedInput 
-            id="inflationRate" 
+            id="childEducationCostInflationRate" 
             inputMode="decimal" 
             value={inflationRate} 
             onFormattedChange={setInflationRate} 
@@ -269,9 +269,9 @@ export default function ChildEducationSipCalculatorRefined() {
         </div>
         
         <div className="space-y-2">
-          <Label htmlFor="expectedReturn" className="text-sm font-medium text-emerald-800">Expected Rate of Return (% p.a.)</Label>
+          <Label htmlFor="childEducationCostExpectedReturn" className="text-sm font-medium text-emerald-800">Expected Rate of Return (% p.a.)</Label>
           <FormattedInput 
-            id="expectedReturn" 
+            id="childEducationCostExpectedReturn" 
             inputMode="decimal" 
             value={expectedReturn} 
             onFormattedChange={setExpectedReturn} 
@@ -282,9 +282,9 @@ export default function ChildEducationSipCalculatorRefined() {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="amountSaved" className="text-sm font-medium text-emerald-800">Amount Already Saved for Child's Higher Education (₹)</Label>
+        <Label htmlFor="childEducationCostAmountSaved" className="text-sm font-medium text-emerald-800">Amount Already Saved for Child's Higher Education (₹)</Label>
         <FormattedInput 
-          id="amountSaved" 
+          id="childEducationCostAmountSaved" 
           inputMode="numeric" 
           value={amountSaved} 
           onFormattedChange={setAmountSaved} 

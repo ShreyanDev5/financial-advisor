@@ -170,9 +170,9 @@ export default function ChildEducationSipSwpCalculatorRefined() {
     <div className="space-y-6 min-h-[420px] w-full max-w-3xl mx-auto">
       {/* Child's Name Input */}
       <div className="space-y-2">
-        <Label htmlFor="childName" className="text-sm font-medium text-emerald-800">Child's Name</Label>
+        <Label htmlFor="childEducationFundingChildName" className="text-sm font-medium text-emerald-800">Child's Name</Label>
         <Input 
-          id="childName" 
+          id="childEducationFundingChildName" 
           value={childName} 
           onChange={(e) => setChildName(e.target.value)} 
           placeholder="e.g., Arjun"
@@ -182,9 +182,9 @@ export default function ChildEducationSipSwpCalculatorRefined() {
 
       {/* Monthly Savings Input */}
       <div className="space-y-2">
-        <Label htmlFor="monthlySavings" className="text-sm font-medium text-emerald-800">Monthly Savings (₹)</Label>
+        <Label htmlFor="childEducationFundingMonthlySavings" className="text-sm font-medium text-emerald-800">Monthly Savings (₹)</Label>
         <FormattedInput 
-          id="monthlySavings" 
+          id="childEducationFundingMonthlySavings" 
           inputMode="numeric" 
           value={monthlySavings} 
           onFormattedChange={setMonthlySavings} 

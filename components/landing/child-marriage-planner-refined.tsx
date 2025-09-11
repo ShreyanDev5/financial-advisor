@@ -243,9 +243,9 @@ export default function ChildMarriageCalculatorRefined() {
         <div className="space-y-6">
           {/* Child's Name Input */}
           <div className="space-y-2">
-            <Label htmlFor="childName" className="text-sm font-medium text-rose-800">Child's Name</Label>
+            <Label htmlFor="childMarriageChildName" className="text-sm font-medium text-rose-800">Child's Name</Label>
             <Input 
-              id="childName" 
+              id="childMarriageChildName" 
               value={childName} 
               onChange={(e) => setChildName(e.target.value)} 
               placeholder="Enter your child's name"
@@ -256,9 +256,9 @@ export default function ChildMarriageCalculatorRefined() {
           {/* Age Inputs */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="currentAge" className="text-sm font-medium text-rose-800">Child's Current Age</Label>
+              <Label htmlFor="childMarriageCurrentAge" className="text-sm font-medium text-rose-800">Child's Current Age</Label>
               <FormattedInput 
-                id="currentAge" 
+                id="childMarriageCurrentAge" 
                 inputMode="numeric" 
                 value={currentAge} 
                 onFormattedChange={setCurrentAge} 
@@ -268,9 +268,9 @@ export default function ChildMarriageCalculatorRefined() {
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="marriageAge" className="text-sm font-medium text-rose-800">Planned Marriage Age</Label>
+              <Label htmlFor="childMarriageMarriageAge" className="text-sm font-medium text-rose-800">Planned Marriage Age</Label>
               <FormattedInput 
-                id="marriageAge" 
+                id="childMarriageMarriageAge" 
                 inputMode="numeric" 
                 value={marriageAge} 
                 onFormattedChange={setMarriageAge} 
@@ -282,9 +282,9 @@ export default function ChildMarriageCalculatorRefined() {
 
           {/* Financial Inputs */}
           <div className="space-y-2">
-            <Label htmlFor="estimatedExpenditure" className="text-sm font-medium text-rose-800">Estimated Marriage Expenditure (₹)</Label>
+            <Label htmlFor="childMarriageEstimatedExpenditure" className="text-sm font-medium text-rose-800">Estimated Marriage Expenditure (₹)</Label>
             <FormattedInput 
-              id="estimatedExpenditure" 
+              id="childMarriageEstimatedExpenditure" 
               inputMode="numeric" 
               value={estimatedExpenditure} 
               onFormattedChange={setEstimatedExpenditure} 
@@ -295,9 +295,9 @@ export default function ChildMarriageCalculatorRefined() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="inflationRate" className="text-sm font-medium text-rose-800">Expected Inflation Rate (% p.a.)</Label>
+              <Label htmlFor="childMarriageInflationRate" className="text-sm font-medium text-rose-800">Expected Inflation Rate (% p.a.)</Label>
               <FormattedInput 
-                id="inflationRate" 
+                id="childMarriageInflationRate" 
                 inputMode="decimal" 
                 value={inflationRate} 
                 onFormattedChange={setInflationRate} 
@@ -307,9 +307,9 @@ export default function ChildMarriageCalculatorRefined() {
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="expectedReturn" className="text-sm font-medium text-rose-800">Expected Rate of Return (% p.a.)</Label>
+              <Label htmlFor="childMarriageExpectedReturn" className="text-sm font-medium text-rose-800">Expected Rate of Return (% p.a.)</Label>
               <FormattedInput 
-                id="expectedReturn" 
+                id="childMarriageExpectedReturn" 
                 inputMode="decimal" 
                 value={expectedReturn} 
                 onFormattedChange={setExpectedReturn} 
@@ -320,9 +320,9 @@ export default function ChildMarriageCalculatorRefined() {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="amountSaved" className="text-sm font-medium text-rose-800">Amount Already Saved for Child's Marriage (₹)</Label>
+            <Label htmlFor="childMarriageAmountSaved" className="text-sm font-medium text-rose-800">Amount Already Saved for Child's Marriage (₹)</Label>
             <FormattedInput 
-              id="amountSaved" 
+              id="childMarriageAmountSaved" 
               inputMode="numeric" 
               value={amountSaved} 
               onFormattedChange={setAmountSaved} 

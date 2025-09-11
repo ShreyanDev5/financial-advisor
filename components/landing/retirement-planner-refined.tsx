@@ -223,9 +223,9 @@ export default function IncomePlanningCalculatorRefined() {
         <div className="space-y-6">
           {/* Name Input */}
           <div className="space-y-2">
-            <Label htmlFor="name" className="text-sm font-medium text-indigo-800">Your Name</Label>
+            <Label htmlFor="retirementPlannerName" className="text-sm font-medium text-indigo-800">Your Name</Label>
             <Input 
-              id="name" 
+              id="retirementPlannerName" 
               value={name} 
               onChange={(e) => setName(e.target.value)} 
               placeholder="e.g., Arjun Sharma"
@@ -236,9 +236,9 @@ export default function IncomePlanningCalculatorRefined() {
           {/* Age Inputs */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="currentAge" className="text-sm font-medium text-indigo-800">Current Age</Label>
+              <Label htmlFor="retirementPlannerCurrentAge" className="text-sm font-medium text-indigo-800">Current Age</Label>
               <FormattedInput 
-                id="currentAge" 
+                id="retirementPlannerCurrentAge" 
                 inputMode="numeric" 
                 value={currentAge} 
                 onFormattedChange={setCurrentAge} 
@@ -248,9 +248,9 @@ export default function IncomePlanningCalculatorRefined() {
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="retirementAge" className="text-sm font-medium text-indigo-800">Retirement Age</Label>
+              <Label htmlFor="retirementPlannerRetirementAge" className="text-sm font-medium text-indigo-800">Retirement Age</Label>
               <FormattedInput 
-                id="retirementAge" 
+                id="retirementPlannerRetirementAge" 
                 inputMode="numeric" 
                 value={retirementAge} 
                 onFormattedChange={setRetirementAge} 
@@ -260,9 +260,9 @@ export default function IncomePlanningCalculatorRefined() {
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="lifeExpectancy" className="text-sm font-medium text-indigo-800">Life Expectancy</Label>
+              <Label htmlFor="retirementPlannerLifeExpectancy" className="text-sm font-medium text-indigo-800">Life Expectancy</Label>
               <FormattedInput 
-                id="lifeExpectancy" 
+                id="retirementPlannerLifeExpectancy" 
                 inputMode="numeric" 
                 value={lifeExpectancy} 
                 onFormattedChange={setLifeExpectancy} 
@@ -274,9 +274,9 @@ export default function IncomePlanningCalculatorRefined() {
 
           {/* Financial Inputs */}
           <div className="space-y-2">
-            <Label htmlFor="monthlyExpenses" className="text-sm font-medium text-indigo-800">Current Monthly Expenses (₹)</Label>
+            <Label htmlFor="retirementPlannerMonthlyExpenses" className="text-sm font-medium text-indigo-800">Current Monthly Expenses (₹)</Label>
             <FormattedInput 
-              id="monthlyExpenses" 
+              id="retirementPlannerMonthlyExpenses" 
               inputMode="numeric" 
               value={monthlyExpenses} 
               onFormattedChange={setMonthlyExpenses} 
@@ -287,9 +287,9 @@ export default function IncomePlanningCalculatorRefined() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="retirementInflationRate" className="text-sm font-medium text-indigo-800">Expected Inflation Rate (% p.a.)</Label>
+              <Label htmlFor="retirementPlannerInflationRate" className="text-sm font-medium text-indigo-800">Expected Inflation Rate (% p.a.)</Label>
               <FormattedInput 
-                id="retirementInflationRate" 
+                id="retirementPlannerInflationRate" 
                 inputMode="decimal" 
                 value={inflationRate} 
                 onFormattedChange={setInflationRate} 
@@ -299,9 +299,9 @@ export default function IncomePlanningCalculatorRefined() {
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="retirementExpectedReturn" className="text-sm font-medium text-indigo-800">Expected Rate of Return (% p.a.)</Label>
+              <Label htmlFor="retirementPlannerExpectedReturn" className="text-sm font-medium text-indigo-800">Expected Rate of Return (% p.a.)</Label>
               <FormattedInput 
-                id="retirementExpectedReturn" 
+                id="retirementPlannerExpectedReturn" 
                 inputMode="decimal" 
                 value={expectedReturn} 
                 onFormattedChange={setExpectedReturn} 
