@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import { SimplePageHeader } from "@/components/ui/simple-page-header";
-import InvestmentCalculator from "@/components/landing/investment-calculator";
-import { ChildEducationCalculatorWithToggle } from "@/components/landing/child-education-calculator";
-import ChildMarriageCalculator from "@/components/landing/child-marriage-calculator";
-import IncomePlanningCalculator from "@/components/landing/income-planning-calculator";
+import InvestmentCalculator from "@/components/landing/investment-return-calculator";
+import { ChildEducationCalculatorWithToggle } from "@/components/landing/child-education-planner";
+import ChildMarriageCalculator from "@/components/landing/child-marriage-planner";
+import IncomePlanningCalculator from "@/components/landing/retirement-planner";
 
 export default function CalculatorsContent() {
   return (

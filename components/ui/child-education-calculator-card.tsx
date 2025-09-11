@@ -248,7 +248,7 @@ export function ChildEducationCalculatorCard({ calculatorType }: { calculatorTyp
         {monthlyInvestment > 0 ? (
           <div className="bg-emerald-100/50 p-3 rounded-md border border-emerald-200">
             <div className="text-xs sm:text-sm text-emerald-700 text-center font-medium">
-              You need to invest ₹{formatLargeNumber(monthlyInvestment)?.replace('₹', '')} every month for the next {yearsUntilEducation} years to meet your child's education goal.
+              You need to invest ₹{formatLargeNumber(monthlyInvestment)?.replace('₹', '')} every month for the next {yearsUntilEducation} years to meet your child&apos;s education goal.
             </div>
             <div className="text-xs sm:text-sm text-emerald-600/80 mt-2 text-center">
               *Calculations consider an inflation rate of {inflationRate}% p.a. and an expected return of {expectedReturn}% p.a.
@@ -257,7 +257,7 @@ export function ChildEducationCalculatorCard({ calculatorType }: { calculatorTyp
         ) : (
           <div className="bg-emerald-100/50 p-3 rounded-md border border-emerald-200 text-center">
             <div className="text-xs sm:text-sm text-emerald-700">
-              Great! Your current savings are sufficient to meet your child's education goal.
+              Great! Your current savings are sufficient to meet your child&apos;s education goal.
             </div>
           </div>
         )}
@@ -310,7 +310,7 @@ export function ChildEducationCalculatorCard({ calculatorType }: { calculatorTyp
         <>
           {/* Child's Name Input */}
           <div className="space-y-2">
-            <Label htmlFor="childName" className="text-sm sm:text-base text-emerald-700">Child's Name</Label>
+            <Label htmlFor="childName" className="text-sm sm:text-base text-emerald-700">Child&apos;s Name</Label>
             <Input 
               id="childName" 
               value={childName} 
@@ -323,7 +323,7 @@ export function ChildEducationCalculatorCard({ calculatorType }: { calculatorTyp
           {/* Age Inputs */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="childAge" className="text-sm sm:text-base text-emerald-700">Child's Current Age</Label>
+              <Label htmlFor="childAge" className="text-sm sm:text-base text-emerald-700">Child&apos;s Current Age</Label>
               <FormattedInput 
                 id="childAge" 
                 inputMode="numeric" 
@@ -387,7 +387,7 @@ export function ChildEducationCalculatorCard({ calculatorType }: { calculatorTyp
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="amountSaved" className="text-sm sm:text-base text-emerald-700">Amount Already Saved for Child's Higher Education (₹)</Label>
+            <Label htmlFor="amountSaved" className="text-sm sm:text-base text-emerald-700">Amount Already Saved for Child&apos;s Higher Education (₹)</Label>
             <FormattedInput 
               id="amountSaved" 
               inputMode="numeric" 
@@ -442,7 +442,7 @@ export function ChildEducationCalculatorCard({ calculatorType }: { calculatorTyp
         <>
           {/* Child's Name Input */}
           <div className="space-y-2">
-            <Label htmlFor="childName" className="text-sm text-emerald-700">Child's Name</Label>
+            <Label htmlFor="childName" className="text-sm text-emerald-700">Child&apos;s Name</Label>
             <Input 
               id="childName" 
               value={childName} 
