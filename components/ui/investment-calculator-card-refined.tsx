@@ -147,7 +147,7 @@ export function InvestmentCalculatorCardRefined({ investmentType }: { investment
 
   return (
     <Card className="w-full max-w-3xl mx-auto bg-gradient-to-b from-background/60 to-background/40 backdrop-blur supports-[backdrop-filter]:bg-background/40 border border-border/60 shadow-xl rounded-2xl overflow-hidden">
-      <CardHeader className="pb-2 mb-6 bg-gradient-to-r from-orange-500/10 to-red-500/10">
+      <CardHeader className="pb-2 mb-6 bg-gradient-to-r from-orange-500/10 to-red-500/10 flex items-center justify-center py-4">
         <CardTitle className="text-center text-xl font-bold flex items-center justify-center gap-2">
           <div className="bg-orange-100 p-2 rounded-full">
             {investmentType === "sip" && (

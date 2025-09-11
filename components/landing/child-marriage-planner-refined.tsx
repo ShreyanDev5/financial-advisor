@@ -229,7 +229,7 @@ export default function ChildMarriageCalculatorRefined() {
 
   return (
     <Card className="w-full max-w-3xl mx-auto bg-gradient-to-b from-rose-50/70 to-rose-100/50 backdrop-blur supports-[backdrop-filter]:bg-rose-50/30 border border-rose-200/80 shadow-xl rounded-2xl overflow-hidden">
-      <CardHeader className="pb-2 mb-6 bg-gradient-to-r from-rose-500/10 to-pink-500/10">
+      <CardHeader className="pb-2 mb-6 bg-gradient-to-r from-rose-500/10 to-pink-500/10 flex items-center justify-center py-4">
         <CardTitle className="text-center text-xl font-bold text-rose-800 flex items-center justify-center gap-2">
           <div className="bg-rose-100 p-2 rounded-full">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-rose-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">

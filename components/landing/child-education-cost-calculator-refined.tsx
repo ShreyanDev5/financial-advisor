@@ -167,8 +167,8 @@ export default function ChildEducationSipCalculatorRefined() {
           </div>
         ) : (
           <div className="bg-emerald-50/80 p-4 rounded-xl border border-emerald-200 shadow-sm">
-            <div className="flex items-start gap-3">
-              <div className="bg-emerald-100 p-2 rounded-lg mt-0.5">
+            <div className="flex items-center gap-3">
+              <div className="bg-emerald-100 p-2 rounded-lg">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
@@ -316,7 +316,7 @@ export default function ChildEducationSipCalculatorRefined() {
 
       {/* Results Display */}
       {showResults && calculationResults && (
-        <div className="mt-8 p-5 bg-emerald-50/50 rounded-xl border border-emerald-200/80 shadow-sm">
+        <div className="mt-8 p-5 bg-emerald-50/50 rounded-xl border border-emerald-200/80 shadow-sm min-h-[300px]">
           <h3 className="text-base sm:text-lg font-semibold mb-5 text-center text-emerald-800 flex items-center justify-center gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />

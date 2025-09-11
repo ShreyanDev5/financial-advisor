@@ -77,7 +77,7 @@ export default function ChildEducationCalculatorRefined({
 
   return (
     <Card className="w-full max-w-3xl mx-auto bg-gradient-to-b from-emerald-50/70 to-emerald-100/50 backdrop-blur supports-[backdrop-filter]:bg-emerald-50/30 border border-emerald-200/80 shadow-xl rounded-2xl overflow-hidden">
-      <CardHeader className="pb-2 mb-6 bg-gradient-to-r from-emerald-500/10 to-teal-500/10">
+      <CardHeader className="pb-2 mb-6 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 flex items-center justify-center py-4">
         <CardTitle className="text-center text-xl font-bold text-emerald-800 flex items-center justify-center gap-2">
           <div className="bg-emerald-100 p-2 rounded-full">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -209,7 +209,7 @@ export default function IncomePlanningCalculatorRefined() {
 
   return (
     <Card className="w-full max-w-3xl mx-auto bg-gradient-to-b from-indigo-50/70 to-indigo-100/50 backdrop-blur supports-[backdrop-filter]:bg-indigo-50/30 border border-indigo-200/80 shadow-xl rounded-2xl overflow-hidden">
-      <CardHeader className="pb-2 mb-6 bg-gradient-to-r from-indigo-500/10 to-purple-500/10">
+      <CardHeader className="pb-2 mb-6 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 flex items-center justify-center py-4">
         <CardTitle className="text-center text-xl font-bold text-indigo-800 flex items-center justify-center gap-2">
           <div className="bg-indigo-100 p-2 rounded-full">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
