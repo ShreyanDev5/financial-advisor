@@ -17,12 +17,7 @@ export default function InvestmentCalculatorRefined() {
     <AnimatedSection animation="elegant-fade" delay={50} duration={400}>
       <div className="container mx-auto space-y-8 px-0 sm:px-6 lg:px-8 font-sans">
         <div className="text-center px-2 sm:px-0">
-          <h2 className="text-2xl sm:text-4xl font-bold font-serif tracking-tight text-gray-900 dark:text-white flex items-center justify-center gap-3">
-            <div className="bg-gradient-to-r from-orange-500 to-red-500 p-2 rounded-full">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-              </svg>
-            </div>
+          <h2 className="text-2xl sm:text-4xl font-bold font-serif tracking-tight text-gray-900 dark:text-white">
             Investment Calculator
           </h2>
           <p className="mt-3 text-sm sm:text-base leading-5 sm:leading-7 text-gray-600 dark:text-gray-300">

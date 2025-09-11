@@ -231,8 +231,8 @@ export default function ChildMarriageCalculatorRefined() {
     <Card className="w-full max-w-3xl mx-auto bg-gradient-to-b from-rose-50/70 to-rose-100/50 backdrop-blur supports-[backdrop-filter]:bg-rose-50/30 border border-rose-200/80 shadow-xl rounded-2xl overflow-hidden">
       <CardHeader className="pb-2 mb-6 bg-gradient-to-r from-rose-500/10 to-pink-500/10 flex items-center justify-center py-4">
         <CardTitle className="text-center text-xl font-bold text-rose-800 flex items-center justify-center gap-2">
-          <div className="bg-rose-100 p-2 rounded-full">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-rose-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div className="bg-gradient-to-r from-rose-500 to-pink-500 p-2 rounded-full">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
             </svg>
           </div>
@@ -356,9 +356,11 @@ export default function ChildMarriageCalculatorRefined() {
           {showResults && calculationResults && (
             <div className="mt-8 p-5 bg-rose-50/50 rounded-xl border border-rose-200/80 shadow-sm">
               <h3 className="text-base sm:text-lg font-semibold mb-5 text-center text-rose-800 flex items-center justify-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-rose-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-                </svg>
+                <div className="bg-gradient-to-r from-rose-500 to-pink-500 p-2 rounded-full">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                  </svg>
+                </div>
                 Marriage Planning for {childName}
               </h3>
               

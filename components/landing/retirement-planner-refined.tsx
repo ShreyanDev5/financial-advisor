@@ -211,8 +211,8 @@ export default function IncomePlanningCalculatorRefined() {
     <Card className="w-full max-w-3xl mx-auto bg-gradient-to-b from-indigo-50/70 to-indigo-100/50 backdrop-blur supports-[backdrop-filter]:bg-indigo-50/30 border border-indigo-200/80 shadow-xl rounded-2xl overflow-hidden">
       <CardHeader className="pb-2 mb-6 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 flex items-center justify-center py-4">
         <CardTitle className="text-center text-xl font-bold text-indigo-800 flex items-center justify-center gap-2">
-          <div className="bg-indigo-100 p-2 rounded-full">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div className="bg-gradient-to-r from-indigo-500 to-purple-500 p-2 rounded-full">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
             </svg>
           </div>
@@ -402,9 +402,11 @@ export default function IncomePlanningCalculatorRefined() {
           {showResults && calculationResults && (
             <div className="mt-8 p-5 bg-indigo-50/50 rounded-xl border border-indigo-200/80 shadow-sm">
               <h3 className="text-base sm:text-lg font-semibold mb-5 text-center text-indigo-800 flex items-center justify-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-                </svg>
+                <div className="bg-gradient-to-r from-indigo-500 to-purple-500 p-2 rounded-full">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                  </svg>
+                </div>
                 Income Planning for {name}
               </h3>
               
