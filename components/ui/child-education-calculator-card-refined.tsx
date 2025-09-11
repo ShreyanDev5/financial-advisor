@@ -539,7 +539,7 @@ export function ChildEducationCalculatorCardRefined({ calculatorType }: { calcul
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <button
                 onClick={() => setPaymentDuration("10")}
-                className={`py-4 px-4 rounded-xl border transition-all w-full text-sm font-medium flex items-center justify-center gap-2 ${
+                className={`py-3 px-3 rounded-xl border transition-all w-full text-sm font-medium flex items-center justify-center gap-2 ${
                   paymentDuration === "10"
                     ? "bg-emerald-500 text-white border-emerald-600 shadow-md"
                     : "bg-white text-emerald-800 border-emerald-200 hover:bg-emerald-50"
@@ -552,7 +552,7 @@ export function ChildEducationCalculatorCardRefined({ calculatorType }: { calcul
               </button>
               <button
                 onClick={() => setPaymentDuration("15")}
-                className={`py-4 px-4 rounded-xl border transition-all w-full text-sm font-medium flex items-center justify-center gap-2 ${
+                className={`py-3 px-3 rounded-xl border transition-all w-full text-sm font-medium flex items-center justify-center gap-2 ${
                   paymentDuration === "15"
                     ? "bg-emerald-500 text-white border-emerald-600 shadow-md"
                     : "bg-white text-emerald-800 border-emerald-200 hover:bg-emerald-50"
