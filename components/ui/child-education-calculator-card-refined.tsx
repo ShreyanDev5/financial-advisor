@@ -287,9 +287,11 @@ export function ChildEducationCalculatorCardRefined({ calculatorType }: { calcul
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <p className="text-sm text-emerald-800">
-                Great! Your current savings are sufficient to meet your child's education goal.
-              </p>
+              <div className="flex items-center">
+                <p className="text-sm text-emerald-800">
+                  Great! Your current savings are sufficient to meet your child's education goal.
+                </p>
+              </div>
             </div>
           </div>
         )}
@@ -341,13 +343,13 @@ export function ChildEducationCalculatorCardRefined({ calculatorType }: { calcul
         </div>
         
         <div className="bg-emerald-50/80 p-4 rounded-xl border border-emerald-200 shadow-sm">
-          <div className="flex items-start gap-3">
-            <div className="bg-emerald-100 p-2 rounded-lg mt-0.5">
+          <div className="flex items-center gap-3">
+            <div className="bg-emerald-100 p-2 rounded-lg">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
-            <p className="text-xs sm:text-sm text-emerald-700">
+            <p className="text-xs sm:text-sm text-emerald-600/80">
               *Calculations consider standard financial assumptions for education funding.
             </p>
           </div>
