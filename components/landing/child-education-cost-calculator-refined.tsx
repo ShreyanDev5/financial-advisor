@@ -188,25 +188,23 @@ export default function ChildEducationSipCalculatorRefined() {
 
     const { projectedCost, monthlyInvestment, yearsUntilEducation } = calculationResults;
 
-    const shareText = `
-*🎓 Child Education Plan for ${childName}*
+    const shareText = `🎓 Projected Cost of Education
 
-*Future Cost of Education:*
-${formatLargeNumber(projectedCost)} (in ${yearsUntilEducation} years)
+after ${yearsUntilEducation} years
 
-*Monthly Investment Needed:*
+${formatLargeNumber(projectedCost)}
+
+💸 Monthly Investment Required
+
+to meet education goal
+
 ${formatLargeNumber(monthlyInvestment)}
 
-*Calculation Details:*
-- Present Cost: ${formatLargeNumber(parseFloat(presentCost))}
-- Inflation Rate: ${inflationRate}%
-- Expected Return: ${expectedReturn}%
-- Already Saved: ${formatLargeNumber(parseFloat(amountSaved))}
+You need to invest ${formatLargeNumber(monthlyInvestment)} every month for the next ${yearsUntilEducation} years to meet your child's education goal.
 
-_This is a projection. For a detailed plan, consult a financial advisor._
-    `;
+*Calculations consider an inflation rate of ${inflationRate}% p.a. and an expected return of ${expectedReturn}% p.a.`;
 
-    const encodedText = encodeURIComponent(shareText.trim());
+    const encodedText = encodeURIComponent(shareText);
     const whatsappUrl = `https://wa.me/?text=${encodedText}`;
     
     window.open(whatsappUrl, '_blank');

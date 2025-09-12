@@ -148,27 +148,26 @@ export default function ChildEducationSipSwpCalculatorRefined() {
 
     const { yearlyAmount, careerFund, startYear, educationYears, finalYear } = calculationResults;
 
-    let yearlyPayouts = '';
+    // Generate the share text with the new format to match UI
+    let shareText = `🎓 Higher Education Financial Support
+
+for ${childName}
+
+`;
+    
     for (let i = 0; i < educationYears; i++) {
-      yearlyPayouts += `  - Year ${startYear + i}: ${formatLargeNumber(yearlyAmount)}
+      shareText += `🔹 ${startYear + i} years: 🪙 ₹${formatLargeNumber(yearlyAmount)?.replace('₹', '')}
 `;
     }
+    
+    shareText += `
+💰 One-time Career Support Fund
 
-    const shareText = `
-*🎓 Education Funding Plan for ${childName}*
+₹${formatLargeNumber(careerFund)?.replace('₹', '')} at ${finalYear} years
 
-*Summary:*
-- Monthly Savings: ${formatLargeNumber(parseFloat(monthlySavings))}
-- Payment Duration: ${paymentDuration} years
+*Calculations consider standard financial assumptions for education funding.`;
 
-*Yearly Payouts for Education:*
-${yearlyPayouts}*One-Time Career Fund:*
-${formatLargeNumber(careerFund)} (at year ${finalYear})
-
-_This is a projection. For a detailed plan, consult a financial advisor._
-    `;
-
-    const encodedText = encodeURIComponent(shareText.trim());
+    const encodedText = encodeURIComponent(shareText);
     const whatsappUrl = `https://wa.me/?text=${encodedText}`;
     
     window.open(whatsappUrl, '_blank');

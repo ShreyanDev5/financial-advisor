@@ -194,30 +194,24 @@ export default function IncomePlanningCalculatorRefined() {
 
     const { retirementCorpus, monthlySavingsRequired, yearsUntilRetirement, futureMonthlyExpenses } = calculationResults;
 
-    const shareText = `
-*🏖️ Retirement Plan for ${name}*
+    // Generate the share text with the new format to match UI
+    const shareText = `🏖️ Retirement Corpus Needed
 
-*Retirement Corpus Needed:*
+to maintain your lifestyle
+
 ${formatLargeNumber(retirementCorpus)}
 
-*Monthly Savings Required:*
-${formatLargeNumber(monthlySavingsRequired)} for ${yearsUntilRetirement} years
+💸 Monthly Savings Required
 
-*At Retirement (age ${retirementAge}):*
-Your monthly expenses will be ~${formatLargeNumber(futureMonthlyExpenses)}.
+to build retirement corpus
 
-*Calculation Details:*
-- Current Age: ${currentAge}
-- Retirement Age: ${retirementAge}
-- Life Expectancy: ${lifeExpectancy}
-- Current Monthly Expenses: ${formatLargeNumber(parseFloat(monthlyExpenses))}
-- Inflation Rate: ${inflationRate}%
-- Expected Return: ${expectedReturn}%
+${formatLargeNumber(monthlySavingsRequired)}
 
-_This is a projection. For a detailed plan, consult a financial advisor._
-    `;
+You need to invest ${formatLargeNumber(monthlySavingsRequired)} every month for the next ${yearsUntilRetirement} years to build a retirement corpus of ${formatLargeNumber(retirementCorpus)}.
 
-    const encodedText = encodeURIComponent(shareText.trim());
+Based on your current monthly expenses of ${formatLargeNumber(parseFloat(monthlyExpenses))}, you'll need ${formatLargeNumber(futureMonthlyExpenses)} per month at retirement (considering an inflation rate of ${inflationRate}% p.a.). With an expected return of ${expectedReturn}% p.a., your corpus will generate ${formatLargeNumber(futureMonthlyExpenses)} per month.`;
+
+    const encodedText = encodeURIComponent(shareText);
     const whatsappUrl = `https://wa.me/?text=${encodedText}`;
     
     window.open(whatsappUrl, '_blank');

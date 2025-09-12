@@ -182,10 +182,22 @@ export function ChildEducationCalculatorCardRefined({ calculatorType }: { calcul
     
     const { projectedCost, monthlyInvestment, yearsUntilEducation } = sipCalculationResults;
     
-    // Generate the share text
-    let shareText = `🎓 Education Planning for ${childName}:\n\n`;
-    shareText += `💰 Projected Cost of Education after ${yearsUntilEducation} years: ${formatLargeNumber(projectedCost)}\n`;
-    shareText += `🔁 Monthly Investment Required: ${formatLargeNumber(monthlyInvestment)}\n`;
+    // Generate the share text with the new format
+    let shareText = `🎓 Projected Cost of Education
+
+after ${yearsUntilEducation} years
+
+${formatLargeNumber(projectedCost)}
+
+💸 Monthly Investment Required
+
+to meet education goal
+
+${formatLargeNumber(monthlyInvestment)}
+
+You need to invest ${formatLargeNumber(monthlyInvestment)} every month for the next ${yearsUntilEducation} years to meet your child's education goal.
+
+*Calculations consider an inflation rate of ${inflationRate}% p.a. and an expected return of ${expectedReturn}% p.a.`;
     
     // Encode the text for WhatsApp
     const encodedText = encodeURIComponent(shareText);
@@ -200,15 +212,23 @@ export function ChildEducationCalculatorCardRefined({ calculatorType }: { calcul
     
     const { yearlyAmount, careerFund, startYear, educationYears, finalYear } = sipSwpCalculationResults;
     
-    // Generate the share text
-    let shareText = `🎓 Education Funding Plan for ${childName}:\n\n`;
-    shareText += `📚 Higher Education Financial Support:\n`;
+    // Generate the share text with updated format
+    let shareText = `🎓 Higher Education Financial Support
+
+for ${childName}
+
+`;
     
     for (let i = 0; i < educationYears; i++) {
       shareText += `🔹 ${startYear + i} years: 🪙 ₹${formatLargeNumber(yearlyAmount)?.replace('₹', '')}\n`;
     }
     
-    shareText += `\n💰 One-time Career Support Fund ₹${formatLargeNumber(careerFund)?.replace('₹', '')} at ${finalYear} years`;
+    shareText += `
+💰 One-time Career Support Fund
+
+₹${formatLargeNumber(careerFund)?.replace('₹', '')} at ${finalYear} years
+
+*Calculations consider standard financial assumptions for education funding.`;
     
     // Encode the text for WhatsApp
     const encodedText = encodeURIComponent(shareText);

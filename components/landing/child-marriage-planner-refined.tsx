@@ -213,26 +213,32 @@ export default function ChildMarriageCalculatorRefined() {
 
     const { futureCostOfMarriage, sipInvestment, lumpSumInvestment, yearsUntilMarriage } = calculationResults;
 
-    const shareText = `
-*💍 Marriage Plan for ${childName}*
+    // Generate the share text with the new format to match UI
+    const shareText = `💍 Projected Cost of Marriage
 
-*Future Cost of Marriage:*
-${formatLargeNumber(futureCostOfMarriage)} (in ${yearsUntilMarriage} years)
+after ${yearsUntilMarriage} years
 
-*Investment Options:*
-- Monthly SIP: ${formatLargeNumber(sipInvestment)}
-- One-Time Lumpsum: ${formatLargeNumber(lumpSumInvestment)}
+${formatLargeNumber(futureCostOfMarriage)}
 
-*Calculation Details:*
-- Present Cost: ${formatLargeNumber(parseFloat(estimatedExpenditure))}
-- Inflation Rate: ${inflationRate}%
-- Expected Return: ${expectedReturn}%
-- Already Saved: ${formatLargeNumber(parseFloat(amountSaved))}
+💸 Monthly SIP Investment Required
 
-_This is a projection. For a detailed plan, consult a financial advisor._
-    `;
+to meet marriage goal
 
-    const encodedText = encodeURIComponent(shareText.trim());
+${formatLargeNumber(sipInvestment)}
+
+💰 One-time Lump Sum Investment Required
+
+to meet marriage goal
+
+${formatLargeNumber(lumpSumInvestment)}
+
+You need to invest ${formatLargeNumber(sipInvestment)} every month for the next ${yearsUntilMarriage} years to meet your child's marriage goal.
+
+OR make a one-time investment of ${formatLargeNumber(lumpSumInvestment)} today.
+
+*Calculations consider an inflation rate of ${inflationRate}% p.a. and an expected return of ${expectedReturn}% p.a.`;
+
+    const encodedText = encodeURIComponent(shareText);
     const whatsappUrl = `https://wa.me/?text=${encodedText}`;
     
     window.open(whatsappUrl, '_blank');
