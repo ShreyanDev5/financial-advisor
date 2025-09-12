@@ -19,7 +19,7 @@ export default function CalculatorsContentRefined() {
 
       {/* Gray divider to separate sections */}
       <div className="sm:max-w-5xl sm:mx-auto my-2">
-        <div className="h-px w-3/4 sm:w-2/3 md:w-1/2 mx-auto bg-gray-200 dark:bg-gray-800" />
+        <div className="h-px w-1/2 sm:w-1/3 md:w-1/4 mx-auto bg-gray-200 dark:bg-gray-800" />
       </div>
 
       {/* Investment Calculator */}
@@ -29,7 +29,7 @@ export default function CalculatorsContentRefined() {
 
       {/* Gray divider to separate sections */}
       <div className="sm:max-w-5xl sm:mx-auto my-2">
-        <div className="h-px w-3/4 sm:w-2/3 md:w-1/2 mx-auto bg-gray-200 dark:bg-gray-800" />
+        <div className="h-px w-1/2 sm:w-1/3 md:w-1/4 mx-auto bg-gray-200 dark:bg-gray-800" />
       </div>
 
       {/* Child Education Calculator */}
@@ -49,7 +49,7 @@ export default function CalculatorsContentRefined() {
 
       {/* Gray divider to separate sections */}
       <div className="sm:max-w-5xl sm:mx-auto my-2">
-        <div className="h-px w-3/4 sm:w-2/3 md:w-1/2 mx-auto bg-gray-200 dark:bg-gray-800" />
+        <div className="h-px w-1/2 sm:w-1/3 md:w-1/4 mx-auto bg-gray-200 dark:bg-gray-800" />
       </div>
 
       {/* Income Planning Calculator */}
@@ -67,7 +67,7 @@ export default function CalculatorsContentRefined() {
 
       {/* Gray divider to separate sections */}
       <div className="sm:max-w-5xl sm:mx-auto my-2">
-        <div className="h-px w-3/4 sm:w-2/3 md:w-1/2 mx-auto bg-gray-200 dark:bg-gray-800" />
+        <div className="h-px w-1/2 sm:w-1/3 md:w-1/4 mx-auto bg-gray-200 dark:bg-gray-800" />
       </div>
 
       {/* Marriage Expense Planner */}
