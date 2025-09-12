@@ -148,9 +148,8 @@ export default function ChildEducationSipSwpCalculatorRefined() {
 
     const { yearlyAmount, careerFund, startYear, educationYears, finalYear } = calculationResults;
 
-    // Generate the share text with the new format to match UI
+    // Generate the share text with refined formatting
     let shareText = `🎓 Higher Education Financial Support
-
 for ${childName}
 
 `;
@@ -162,7 +161,6 @@ for ${childName}
     
     shareText += `
 💰 One-time Career Support Fund
-
 ₹${formatLargeNumber(careerFund)?.replace('₹', '')} at ${finalYear} years
 
 *Calculations consider standard financial assumptions for education funding.`;

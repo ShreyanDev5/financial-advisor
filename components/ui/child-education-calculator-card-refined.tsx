@@ -182,15 +182,13 @@ export function ChildEducationCalculatorCardRefined({ calculatorType }: { calcul
     
     const { projectedCost, monthlyInvestment, yearsUntilEducation } = sipCalculationResults;
     
-    // Generate the share text with the new format
-    let shareText = `🎓 Projected Cost of Education
-
+    // Generate the share text with refined formatting
+    const shareText = `🎓 Projected Cost of Education
 after ${yearsUntilEducation} years
 
 ${formatLargeNumber(projectedCost)}
 
 💸 Monthly Investment Required
-
 to meet education goal
 
 ${formatLargeNumber(monthlyInvestment)}
@@ -212,26 +210,25 @@ You need to invest ${formatLargeNumber(monthlyInvestment)} every month for the n
     
     const { yearlyAmount, careerFund, startYear, educationYears, finalYear } = sipSwpCalculationResults;
     
-    // Generate the share text with updated format
-    let shareText = `🎓 Higher Education Financial Support
-
+    // Generate the share text with refined formatting
+    let shareTextContent = `🎓 Higher Education Financial Support
 for ${childName}
 
 `;
     
     for (let i = 0; i < educationYears; i++) {
-      shareText += `🔹 ${startYear + i} years: 🪙 ₹${formatLargeNumber(yearlyAmount)?.replace('₹', '')}\n`;
+      shareTextContent += `🔹 ${startYear + i} years: 🪙 ₹${formatLargeNumber(yearlyAmount)?.replace('₹', '')}
+`;
     }
     
-    shareText += `
+    shareTextContent += `
 💰 One-time Career Support Fund
-
 ₹${formatLargeNumber(careerFund)?.replace('₹', '')} at ${finalYear} years
 
 *Calculations consider standard financial assumptions for education funding.`;
     
     // Encode the text for WhatsApp
-    const encodedText = encodeURIComponent(shareText);
+    const encodedText = encodeURIComponent(shareTextContent);
     const whatsappUrl = `https://wa.me/?text=${encodedText}`;
     
     // Open WhatsApp

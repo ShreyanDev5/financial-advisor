@@ -194,15 +194,13 @@ export default function IncomePlanningCalculatorRefined() {
 
     const { retirementCorpus, monthlySavingsRequired, yearsUntilRetirement, futureMonthlyExpenses } = calculationResults;
 
-    // Generate the share text with the new format to match UI
+    // Generate the share text with refined formatting
     const shareText = `🏖️ Retirement Corpus Needed
-
 to maintain your lifestyle
 
 ${formatLargeNumber(retirementCorpus)}
 
 💸 Monthly Savings Required
-
 to build retirement corpus
 
 ${formatLargeNumber(monthlySavingsRequired)}

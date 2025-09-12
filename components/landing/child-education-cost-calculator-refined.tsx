@@ -189,13 +189,11 @@ export default function ChildEducationSipCalculatorRefined() {
     const { projectedCost, monthlyInvestment, yearsUntilEducation } = calculationResults;
 
     const shareText = `🎓 Projected Cost of Education
-
 after ${yearsUntilEducation} years
 
 ${formatLargeNumber(projectedCost)}
 
 💸 Monthly Investment Required
-
 to meet education goal
 
 ${formatLargeNumber(monthlyInvestment)}

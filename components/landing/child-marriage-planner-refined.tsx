@@ -213,21 +213,18 @@ export default function ChildMarriageCalculatorRefined() {
 
     const { futureCostOfMarriage, sipInvestment, lumpSumInvestment, yearsUntilMarriage } = calculationResults;
 
-    // Generate the share text with the new format to match UI
+    // Generate the share text with refined formatting
     const shareText = `💍 Projected Cost of Marriage
-
 after ${yearsUntilMarriage} years
 
 ${formatLargeNumber(futureCostOfMarriage)}
 
 💸 Monthly SIP Investment Required
-
 to meet marriage goal
 
 ${formatLargeNumber(sipInvestment)}
 
 💰 One-time Lump Sum Investment Required
-
 to meet marriage goal
 
 ${formatLargeNumber(lumpSumInvestment)}
