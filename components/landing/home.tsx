@@ -107,13 +107,13 @@ export default function HomeContent() {
           />
         </div>
       </AnimatedSection>
-      <div className="w-3/5 sm:w-1/2 md:w-1/3 mx-auto my-4 sm:my-6">
+      <div className="w-1/2 sm:w-1/3 md:w-1/4 mx-auto my-4 sm:my-6">
         <div className="h-px w-full bg-gray-200 dark:bg-gray-800" />
       </div>
       <div className="py-2 sm:py-3">
         <Advisor />
       </div>
-      <div className="w-3/5 sm:w-1/2 md:w-1/3 mx-auto my-4 sm:my-6">
+      <div className="w-1/2 sm:w-1/3 md:w-1/4 mx-auto my-4 sm:my-6">
         <div className="h-px w-full bg-gray-200 dark:bg-gray-800" />
       </div>
       <AnimatedSection className="text-center">
@@ -142,7 +142,7 @@ export default function HomeContent() {
           ))}
         </div>
       </AnimatedSection>
-      <div className="w-3/5 sm:w-1/2 md:w-1/3 mx-auto">
+      <div className="w-1/2 sm:w-1/3 md:w-1/4 mx-auto">
         <div className="h-px w-full bg-gray-200 dark:bg-gray-800" />
       </div>
       <AnimatedSection className="text-center mb-16 sm:mb-24">
