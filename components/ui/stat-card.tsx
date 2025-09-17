@@ -33,10 +33,10 @@ export const StatCard = ({
         >
           <Icon className={`w-5 h-5 sm:w-6 sm:h-6 ${iconTextColor}`} />
         </div>
-        <div className="text-xl sm:text-2xl font-bold text-gray-900 mb-1 leading-tight tracking-tight">{value}</div>
-        <h3 className="text-sm font-semibold text-gray-800 mb-1.5 leading-tight">{title}</h3>
+        <div className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 leading-tight tracking-tight">{value}</div>
+        <h3 className="text-sm sm:text-base md:text-lg font-semibold text-gray-800 mb-1.5 leading-tight">{title}</h3>
       </div>
-      <p className="text-xs text-gray-500 text-pretty leading-relaxed text-center mt-1 pt-2 border-t border-gray-100/30">{description}</p>
+      <p className="text-xs sm:text-sm md:text-base text-gray-500 text-pretty leading-relaxed text-center mt-1 pt-2 border-t border-gray-100/30">{description}</p>
     </div>
   );
 };
