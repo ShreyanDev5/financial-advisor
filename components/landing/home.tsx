@@ -133,18 +133,18 @@ export default function HomeContent() {
             Practical financial solutions that deliver results.
           </p>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 md:gap-5 max-w-6xl mx-auto px-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 md:gap-5 lg:gap-6 max-w-6xl mx-auto px-4">
           {quickServices.map((service, index) => (
             <Link href={service.href!} key={index}>
               <div
-                className={`group relative p-4 rounded-xl transition-all duration-300 ${service.color} ${service.hoverColor} border ${service.borderColor} flex flex-col items-center text-center shadow-sm h-full overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 hover:shadow-md backdrop-blur-sm bg-gradient-to-br from-white/40 to-white/20 transform hover:-translate-y-0.5`}
+                className={`group relative p-4 md:p-5 lg:p-6 rounded-xl md:rounded-2xl transition-all duration-300 ${service.color} ${service.hoverColor} border ${service.borderColor} flex flex-col items-center text-center shadow-sm h-full overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 hover:shadow-md backdrop-blur-sm bg-gradient-to-br from-white/40 to-white/20 transform hover:-translate-y-0.5`}
               >
                 <div
-                  className={`p-3 rounded-lg ${service.iconColor} bg-white/90 mb-3 shadow ring-1 ring-white/60 transition-all duration-300 group-hover:scale-105`}
+                  className={`p-3 md:p-4 rounded-lg ${service.iconColor} bg-white/90 mb-3 md:mb-4 shadow ring-1 ring-white/60 transition-all duration-300 group-hover:scale-105`}
                 >
-                  <service.icon className="w-6 h-6" />
+                  <service.icon className="w-6 h-6 md:w-7 lg:w-8 md:h-7 lg:h-8" />
                 </div>
-                <h3 className="text-sm font-semibold text-gray-800 leading-tight transition-all duration-300 group-hover:text-gray-900">
+                <h3 className="text-sm md:text-base font-semibold text-gray-800 leading-tight transition-all duration-300 group-hover:text-gray-900">
                   {service.title}
                 </h3>
               </div>
