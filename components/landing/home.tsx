@@ -67,8 +67,8 @@ export default function HomeContent() {
         }
         color="emerald-600 to-green-600"
       />
-      <AnimatedSection className="mx-4 sm:mx-16 mt-12 sm:mt-24">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+      <AnimatedSection className="mx-4 sm:mx-8 md:mx-16 mt-8 sm:mt-12 md:mt-24">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
           <StatCard
             title="Happy Clients"
             value="700+"
