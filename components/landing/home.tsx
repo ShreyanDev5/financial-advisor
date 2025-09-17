@@ -97,7 +97,7 @@ export default function HomeContent() {
             className="bg-gradient-to-br from-purple-50 to-purple-100 border-purple-200 shadow-lg"
           />
           <StatCard
-            title="AUM"
+            title="Assets Under Management"
             value="1CR+"
             icon={TrendingUp}
             description="As of December 2025."
