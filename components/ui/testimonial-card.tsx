@@ -18,19 +18,19 @@ export function TestimonialCard({
       {/* Image placeholder - visually appealing and compact */}
       <div className="mb-4 flex items-center justify-center">
         {avatarSrc ? (
-          <div className="relative rounded-full border-2 border-white shadow-md w-16 h-16 overflow-hidden">
+          <div className="relative rounded-full border-2 border-white shadow-md w-24 h-24 overflow-hidden">
             <Image
               src={avatarSrc}
               alt={name}
               fill
-              className="object-contain"
-              sizes="64px"
+              className="object-cover"
+              sizes="96px"
             />
           </div>
         ) : (
-          <div className="bg-gradient-to-br from-emerald-100 to-teal-100 border-2 border-white rounded-full w-16 h-16 flex items-center justify-center shadow-md">
-            <div className="bg-gradient-to-br from-emerald-300 to-teal-300 rounded-full w-14 h-14 flex items-center justify-center">
-              <span className="text-emerald-700 font-bold text-lg">
+          <div className="bg-gradient-to-br from-emerald-100 to-teal-100 border-2 border-white rounded-full w-24 h-24 flex items-center justify-center shadow-md">
+            <div className="bg-gradient-to-br from-emerald-300 to-teal-300 rounded-full w-20 h-20 flex items-center justify-center">
+              <span className="text-emerald-700 font-bold text-2xl">
                 {name.charAt(0)}
               </span>
             </div>
