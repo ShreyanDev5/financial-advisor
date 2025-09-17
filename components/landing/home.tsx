@@ -167,16 +167,19 @@ export default function HomeContent() {
             name="Apurbo Saha"
             role="CEO, GS Diesel Company"
             testimonial="Monotosh makes financial decisions simple. His guidance has given me peace of mind and the confidence to plan ahead for my business and family."
+            avatarSrc="/Apurbo Saha.png"
           />
           <TestimonialCard
             name="Sanchita Mondal"
             role="Cashier, SBI"
             testimonial="I always felt lost about where to start with savings, but Monotosh explained everything with such patience. I finally feel in control of my money."
+            avatarSrc="/Sanchita Mondal.png"
           />
           <TestimonialCard
             name="Dr. Debashis Sarkar"
             role="Physician"
             testimonial="What I value most is his sincerity. Monotosh truly listens and gives advice that feels right for me and my family's future."
+            avatarSrc="/Dr. Debashis Sarkar.png"
           />
         </div>
       </AnimatedSection>
