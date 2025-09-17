@@ -58,10 +58,10 @@ export default function HomeContent() {
     {
       title: "Life Insurance",
       icon: ShieldCheck,
-      color: "bg-red-500/10",
-      iconColor: "text-red-500",
-      borderColor: "border-red-500/20",
-      hoverColor: "hover:bg-red-500/20",
+      color: "bg-purple-500/10",
+      iconColor: "text-purple-500",
+      borderColor: "border-purple-500/20",
+      hoverColor: "hover:bg-purple-500/20",
       href: "/insurance#life-insurance",
     },
   ];
@@ -117,34 +117,34 @@ export default function HomeContent() {
           />
         </div>
       </AnimatedSection>
-      <div className="w-1/2 sm:w-1/3 md:w-1/4 mx-auto my-4 sm:my-6">
+      <div className="w-1/2 sm:w-1/3 md:w-1/4 mx-auto my-6 sm:my-8">
         <div className="h-px w-full bg-gray-200 dark:bg-gray-800" />
       </div>
-      <div className="py-2 sm:py-3">
+      <div className="py-3 sm:py-4">
         <Advisor />
       </div>
-      <div className="w-1/2 sm:w-1/3 md:w-1/4 mx-auto my-4 sm:my-6">
+      <div className="w-1/2 sm:w-1/3 md:w-1/4 mx-auto my-6 sm:my-8">
         <div className="h-px w-full bg-gray-200 dark:bg-gray-800" />
       </div>
-      <AnimatedSection className="text-center">
+      <AnimatedSection className="text-center py-2 sm:py-4">
         <div className="space-y-2 mb-8">
           <h2 className="text-3xl sm:text-4xl font-bold font-serif">Core Services</h2>
           <p className="text-base sm:text-lg text-gray-600 max-w-4xl mx-auto px-4 sm:px-0">
             Practical financial solutions that deliver results.
           </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mx-4 sm:mx-16">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 md:gap-5 max-w-6xl mx-auto px-4">
           {quickServices.map((service, index) => (
             <Link href={service.href!} key={index}>
               <div
-                className={`group relative p-5 sm:p-6 rounded-2xl transition-all duration-300 ${service.color} ${service.hoverColor} border ${service.borderColor} flex flex-col items-center text-center shadow-soft h-full overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500`}
+                className={`group relative p-4 rounded-xl transition-all duration-300 ${service.color} ${service.hoverColor} border ${service.borderColor} flex flex-col items-center text-center shadow-sm h-full overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 hover:shadow-md backdrop-blur-sm bg-gradient-to-br from-white/40 to-white/20 transform hover:-translate-y-0.5`}
               >
                 <div
-                  className={`p-3 sm:p-4 rounded-xl ${service.iconColor} bg-white/90 mb-3 sm:mb-4 shadow-md ring-1 ring-white/60`}
+                  className={`p-3 rounded-lg ${service.iconColor} bg-white/90 mb-3 shadow ring-1 ring-white/60 transition-all duration-300 group-hover:scale-105`}
                 >
-                  <service.icon className="w-7 h-7 sm:w-8 sm:h-8" />
+                  <service.icon className="w-6 h-6" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-800">
+                <h3 className="text-sm font-semibold text-gray-800 leading-tight transition-all duration-300 group-hover:text-gray-900">
                   {service.title}
                 </h3>
               </div>
@@ -152,7 +152,7 @@ export default function HomeContent() {
           ))}
         </div>
       </AnimatedSection>
-      <div className="w-1/2 sm:w-1/3 md:w-1/4 mx-auto">
+      <div className="w-1/2 sm:w-1/3 md:w-1/4 mx-auto my-8 sm:my-10">
         <div className="h-px w-full bg-gray-200 dark:bg-gray-800" />
       </div>
       <AnimatedSection className="text-center mb-16 sm:mb-24">
