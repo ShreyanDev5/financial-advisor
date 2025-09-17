@@ -8,6 +8,7 @@ import {
   Heart,
   ClipboardList,
   FileText,
+  ShieldCheck,
 } from "lucide-react";
 import { StatCard } from "@/components/ui/stat-card";
 import { AnimatedSection } from "@/components/ui/animated-section";
@@ -53,6 +54,15 @@ export default function HomeContent() {
       borderColor: "border-indigo-500/20",
       hoverColor: "hover:bg-indigo-500/20",
       href: "/documents#income-tax-filing-services",
+    },
+    {
+      title: "Life Insurance",
+      icon: ShieldCheck,
+      color: "bg-red-500/10",
+      iconColor: "text-red-500",
+      borderColor: "border-red-500/20",
+      hoverColor: "hover:bg-red-500/20",
+      href: "/insurance#life-insurance",
     },
   ];
 
