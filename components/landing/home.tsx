@@ -162,7 +162,7 @@ export default function HomeContent() {
             Real outcomes from real plans.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10 mx-4 sm:mx-0">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4 sm:gap-6 max-w-6xl mx-auto px-4 sm:px-6">
           <TestimonialCard
             name="Apurbo Saha"
             role="CEO, GS Diesel Company"

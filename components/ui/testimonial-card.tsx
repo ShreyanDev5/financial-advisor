@@ -14,22 +14,35 @@ export function TestimonialCard({
   avatarSrc,
 }: TestimonialCardProps) {
   return (
-    <div className="bg-gray-50 p-6 sm:p-10 rounded-2xl shadow-strong border border-gray-100 flex flex-col items-center text-center h-full">
-      {avatarSrc && (
-        <Image
-          src={avatarSrc}
-          alt={name}
-          width={90}
-          height={90}
-          className="rounded-full mb-4 sm:mb-6 border-4 border-white shadow-md w-20 h-20 sm:w-[90px] sm:h-[90px]"
-        />
-      )}
-      <p className="text-base sm:text-xl text-gray-700 mb-4 sm:mb-6 font-serif italic">
+    <div className="bg-white/80 backdrop-blur-sm p-5 sm:p-6 rounded-2xl shadow-medium border border-gray-100/50 flex flex-col items-center text-center h-full transition-all duration-300 hover:shadow-strong hover:-translate-y-1">
+      {/* Image placeholder - visually appealing and compact */}
+      <div className="mb-4 flex items-center justify-center">
+        {avatarSrc ? (
+          <Image
+            src={avatarSrc}
+            alt={name}
+            width={64}
+            height={64}
+            className="rounded-full border-2 border-white shadow-md w-16 h-16"
+          />
+        ) : (
+          <div className="bg-gradient-to-br from-emerald-100 to-teal-100 border-2 border-white rounded-full w-16 h-16 flex items-center justify-center shadow-md">
+            <div className="bg-gradient-to-br from-emerald-300 to-teal-300 rounded-full w-14 h-14 flex items-center justify-center">
+              <span className="text-emerald-700 font-bold text-lg">
+                {name.charAt(0)}
+              </span>
+            </div>
+          </div>
+        )}
+      </div>
+      
+      <p className="text-sm sm:text-base text-gray-700 mb-4 font-serif italic leading-relaxed">
         &quot;{testimonial}&quot;
       </p>
+      
       <div className="mt-auto">
-        <p className="font-bold text-base sm:text-lg text-gray-900">{name}</p>
-        <p className="text-sm sm:text-base text-gray-500">{role}</p>
+        <p className="font-bold text-sm sm:text-base text-gray-900">{name}</p>
+        <p className="text-xs sm:text-sm text-gray-500 mt-1">{role}</p>
       </div>
     </div>
   );
