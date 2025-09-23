@@ -1,118 +1,95 @@
 # Financial Advisor
 
-[![MIT License](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://financial-advisor-website.vercel.app/)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.dev-black?style=for-the-badge)](https://v0.dev/chat/projects/8HsnGtGfTd9)
+Welcome to the Financial Advisor application, a comprehensive tool designed to help users manage their finances, plan for the future, and make informed investment decisions. This project is a testament to my journey as a software developer, showcasing my skills in building modern, user-friendly, and data-driven web applications.
 
-A modern, feature-rich financial advisory web application designed to empower users with powerful financial planning tools and insights. Built with Next.js and shadcn/ui, this platform offers a seamless, responsive, and intuitive user experience.
+## Live Demo
 
-![Application Screenshot](./public/app-reference.jpg)
+[Link to live demo]
 
-## ✨ Features
+## Features
 
--   **Financial Calculators**: A suite of powerful calculators to help users plan their financial future.
-    -   💰 **SIP Calculator**: Project future returns on Systematic Investment Plans.
-    -   🏦 **Lumpsum Calculator**: Estimate the future value of a one-time investment.
-    -   💸 **SWP Calculator**: Plan your Systematic Withdrawal Plan for post-retirement income.
--   **Core Services**: Comprehensive information on a range of financial products.
-    -   **Investment Advisory**: Detailed insights into various investment opportunities.
-    -   **Insurance Planning**: Information on different types of insurance policies.
-    -   **Document Management**: Guidance on managing essential financial documents.
--   **Modern UX**:
-    -   **Responsive Design**: Fully optimized for a seamless experience on any device, from desktops to smartphones.
-    -   **Theme Support**: Includes both Light and Dark modes for user comfort.
+*   **Financial Calculators:** A suite of calculators to help users with:
+    *   Investment Returns
+    *   Retirement Planning
+    *   Child's Education Planning
+    *   Child's Marriage Planning
+*   **Investment Information:** Detailed information on various investment options.
+*   **Insurance Information:** Information on different types of insurance.
+*   **Document Management:** A secure place for users to store and manage their financial documents.
+*   **Responsive Design:** A clean and intuitive user interface that works seamlessly on all devices.
 
-## 🚀 Live Demo
+## Technologies Used
 
-The live application is deployed on Vercel.
+*   **Framework:** [Next.js](https://nextjs.org/)
+*   **Language:** [TypeScript](https://www.typescriptlang.org/)
+*   **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+*   **UI Components:** [Shadcn UI](https://ui.shadcn.com/)
+*   **Form Management:** [React Hook Form](https://react-hook-form.com/)
+*   **Schema Validation:** [Zod](https://zod.dev/)
+*   **Linting:** [ESLint](https://eslint.org/)
+*   **Code Formatting:** [Prettier](https://prettier.io/)
 
-**[➡️ Visit the Live Site](https://financial-advisor-website.vercel.app/)**
+## Getting Started
 
----
-
-## 🛠️ Tech Stack
-
-| Category          | Technology                                                              |
-| ----------------- | ----------------------------------------------------------------------- |
-| **Framework**     | [Next.js](https://nextjs.org/)                                          |
-| **UI Library**    | [shadcn/ui](https://ui.shadcn.com/)                                     |
-| **Styling**       | [Tailwind CSS](https://tailwindcss.com/)                                |
-| **Forms**         | [React Hook Form](https://react-hook-form.com/)                         |
-| **Validation**    | [Zod](https://zod.dev/)                                                 |
-| **Charting**      | [Recharts](https://recharts.org/)                                       |
-| **Linting**       | [ESLint](https://eslint.org/)                                           |
-| **Package Manager**| [npm](https://www.npmjs.com/)                                           |
-
-## 📂 Project Structure
-
-The project follows a standard Next.js App Router structure:
-
-```
-.
-├── app/                # Main application, routing, and layouts
-│   ├── (landing)/      # Route group for primary pages
-│   └── layout.tsx      # Root layout
-├── components/         # Reusable React components
-│   ├── landing/        # Components specific to landing pages
-│   └── ui/             # Core UI elements (from shadcn/ui)
-├── hooks/              # Custom React hooks
-├── lib/                # Utility functions and helpers
-├── public/             # Static assets (images, fonts, etc.)
-└── ...
-```
-
----
-
-## 🏁 Getting Started
-
-Follow these instructions to set up the project locally.
+To get a local copy up and running, follow these simple steps.
 
 ### Prerequisites
 
--   [Node.js](https://nodejs.org/en/) (v20.x or later)
--   [npm](https://www.npmjs.com/) (comes with Node.js)
+*   Node.js (v20.x or later)
+*   npm
 
 ### Installation
 
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/your-username/financial-advisor.git
+1.  Clone the repo
+    ```sh
+    git clone https://github.com/your_username/financial-advisor.git
     ```
-
-2.  **Navigate to the project directory:**
-    ```bash
-    cd financial-advisor
-    ```
-
-3.  **Install dependencies:**
-    ```bash
+2.  Install NPM packages
+    ```sh
     npm install
     ```
 
-## 📜 Available Scripts
+### Running the Application
 
--   `npm run dev`: Starts the development server at `http://localhost:3000`.
--   `npm run build`: Builds the application for production.
--   `npm run start`: Starts the production server.
--   `npm run lint`: Lints the codebase using ESLint.
+```sh
+npm run dev
+```
 
-## ✅ Testing
+This will start the development server at `http://localhost:3000`.
 
-The investment calculators have been rigorously tested to ensure mathematical accuracy and robustness. The test suite includes:
+## Folder Structure
 
--   **Unit & Integration Tests**: Verifying calculations against various scenarios.
--   **Edge Case Analysis**: Validating behavior with minimum, maximum, and zero values.
--   **Formatting Tests**: Ensuring correct implementation of the Indian numbering system.
+```
+.
+├── app/
+│   ├── (landing)/
+│   │   ├── calculators/
+│   │   ├── documents/
+│   │   ├── insurance/
+│   │   └── invest/
+│   └── layout.tsx
+├── components/
+│   ├── landing/
+│   └── ui/
+├── hooks/
+├── lib/
+├── public/
+└── styles/
+```
 
-For a complete overview, please see the [**TESTING_REPORT.md**](./TESTING_REPORT.md).
+## Testing
 
-## 🚀 Deployment
+The project includes a suite of tests to ensure the quality and correctness of the code. To run the tests, use the following command:
 
-This project is configured for continuous deployment on [Vercel](https://vercel.com/). Every push to the `main` branch automatically triggers a new build and deployment.
+```sh
+npm test
+```
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
 
 1.  Fork the Project
 2.  Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
@@ -120,6 +97,6 @@ Contributions are what make the open-source community such an amazing place to l
 4.  Push to the Branch (`git push origin feature/AmazingFeature`)
 5.  Open a Pull Request
 
-## 📄 License
+## License
 
-This project is licensed under the MIT License. See the `LICENSE` file for more information.
+Distributed under the MIT License. See `LICENSE` for more information.
