@@ -29,6 +29,17 @@ Welcome to the Financial Advisor application, a comprehensive tool designed to h
 *   **Linting:** [ESLint](https://eslint.org/)
 *   **Code Formatting:** [Prettier](https://prettier.io/)
 
+## AI-Assisted Development
+
+This project was developed with the assistance of AI tools, including:
+
+*   [v0 by Vercel](https://v0.dev/)
+*   [Cursor](https://cursor.sh/)
+*   [Gemini CLI](https://developers.google.com/gemini/cli)
+*   [Qwen CLI](https://github.com/alibaba/qwen-cli)
+
+These tools were used to accelerate development, generate code, and provide insights into best practices.
+
 ## Getting Started
 
 To get a local copy up and running, follow these simple steps.
