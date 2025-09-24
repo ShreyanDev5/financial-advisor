@@ -1,6 +1,6 @@
 {
-  "name": "Financial Advisor",
-  "short_name": "FinAdvisor",
+  "name": "WealthWise",
+  "short_name": "WealthWise",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
