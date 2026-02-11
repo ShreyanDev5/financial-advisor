@@ -6,7 +6,6 @@ import { Input } from "@/components/ui/input";
 import { FormattedInput } from "@/components/ui/formatted-input";
 import { Button } from "@/components/ui/button";
 import { formatLargeNumber } from "@/lib/format-large-number";
-import { calculateEducationPlan } from "@/lib/calculators";
 
 // Define the type for SIP calculation results
 interface SipCalculationResults {
@@ -25,7 +24,7 @@ interface SipSwpCalculationResults {
 }
 
 export function ChildEducationCalculatorCardRefined({ calculatorType }: { calculatorType: string }) {
-  console.log('ChildEducationCalculatorCardRefined rendered with type:', calculatorType);
+
   // SIP states
   const [childName, setChildName] = useState("");
   const [childAge, setChildAge] = useState("");
