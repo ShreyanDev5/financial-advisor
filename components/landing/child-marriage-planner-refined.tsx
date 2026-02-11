@@ -6,15 +6,8 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { FormattedInput } from "@/components/ui/formatted-input";
 import { Button } from "@/components/ui/button";
-import { formatLargeNumber } from "@/lib/format-large-number.js";
-
-// Define the type for calculation results
-interface CalculationResults {
-  futureCostOfMarriage: number;
-  sipInvestment: number;
-  lumpSumInvestment: number;
-  yearsUntilMarriage: number;
-}
+import { formatLargeNumber } from "@/lib/format-large-number";
+import { calculateMarriagePlan, MarriagePlanResult } from "@/lib/calculators";
 
 export default function ChildMarriageCalculatorRefined() {
   const [childName, setChildName] = useState("");
@@ -27,7 +20,7 @@ export default function ChildMarriageCalculatorRefined() {
   const [showResults, setShowResults] = useState(false);
 
   // Calculate results based on inputs
-  const calculationResults = useMemo<CalculationResults | null>(() => {
+  const calculationResults = useMemo<MarriagePlanResult | null>(() => {
     if (!childName || !currentAge || !marriageAge || !estimatedExpenditure || !inflationRate || !amountSaved || !expectedReturn) return null;
 
     const childCurrentAge = parseInt(currentAge);
@@ -36,56 +29,19 @@ export default function ChildMarriageCalculatorRefined() {
     const inflation = parseFloat(inflationRate) || 0;
     const savedAmount = parseFloat(amountSaved) || 0;
     const returnRate = parseFloat(expectedReturn) || 0;
-    
+
     // Validate inputs
     if (childMarriageAge <= childCurrentAge || childCurrentAge < 0 || childMarriageAge > 40) return null;
     if (expenditure <= 0 || inflation < 0 || returnRate < 0) return null;
-    
-    // Calculate years until marriage
-    const yearsUntilMarriage = childMarriageAge - childCurrentAge;
-    
-    // Calculate future cost of marriage with inflation
-    const futureCostOfMarriage = expenditure * Math.pow(1 + inflation / 100, yearsUntilMarriage);
-    
-    // Calculate future value of amount already saved
-    const futureValueOfSavings = savedAmount * Math.pow(1 + returnRate / 100, yearsUntilMarriage);
-    
-    // Calculate shortfall
-    const shortfall = futureCostOfMarriage - futureValueOfSavings;
-    
-    // If no shortfall, no investment needed
-    if (shortfall <= 0) {
-      return {
-        futureCostOfMarriage,
-        sipInvestment: 0,
-        lumpSumInvestment: 0,
-        yearsUntilMarriage
-      };
-    }
-    
-    // Calculate SIP investment required to cover shortfall
-    // Using the future value of ordinary annuity formula: PMT = FV * r / ((1 + r)^n - 1)
-    const monthlyRate = returnRate / 100 / 12;
-    const numberOfMonths = yearsUntilMarriage * 12;
-    
-    let sipInvestment;
-    if (monthlyRate === 0) {
-      sipInvestment = shortfall / numberOfMonths;
-    } else {
-      // Future value of ordinary annuity formula (payments at end of period)
-      sipInvestment = shortfall * monthlyRate / (Math.pow(1 + monthlyRate, numberOfMonths) - 1);
-    }
-    
-    // Calculate lump sum investment required to cover shortfall
-    // Using present value formula: PV = FV / (1 + r)^n
-    const lumpSumInvestment = shortfall / Math.pow(1 + returnRate / 100, yearsUntilMarriage);
-    
-    return {
-      futureCostOfMarriage,
-      sipInvestment,
-      lumpSumInvestment,
-      yearsUntilMarriage
-    };
+
+    return calculateMarriagePlan(
+      childCurrentAge,
+      childMarriageAge,
+      expenditure,
+      inflation,
+      savedAmount,
+      returnRate
+    );
   }, [childName, currentAge, marriageAge, estimatedExpenditure, inflationRate, amountSaved, expectedReturn]);
 
   const handleCalculate = () => {
@@ -96,14 +52,14 @@ export default function ChildMarriageCalculatorRefined() {
       const inflation = parseFloat(inflationRate);
       const savedAmount = parseFloat(amountSaved);
       const returnRate = parseFloat(expectedReturn);
-      
+
       // Validate inputs
-      if (isNaN(childCurrentAge) || isNaN(childMarriageAge) || isNaN(expenditure) || 
-          isNaN(inflation) || isNaN(savedAmount) || isNaN(returnRate)) return;
-      
+      if (isNaN(childCurrentAge) || isNaN(childMarriageAge) || isNaN(expenditure) ||
+        isNaN(inflation) || isNaN(savedAmount) || isNaN(returnRate)) return;
+
       // Validate age inputs
-      if (childMarriageAge > childCurrentAge && childCurrentAge >= 0 && childMarriageAge <= 40 && 
-          expenditure > 0 && inflation >= 0 && returnRate >= 0) {
+      if (childMarriageAge > childCurrentAge && childCurrentAge >= 0 && childMarriageAge <= 40 &&
+        expenditure > 0 && inflation >= 0 && returnRate >= 0) {
         setShowResults(true);
       }
     }
@@ -112,10 +68,10 @@ export default function ChildMarriageCalculatorRefined() {
   const renderResults = () => {
     // Type guard to ensure calculationResults is not null
     if (!calculationResults) return null;
-    
+
     // Use non-null assertion since we've already checked
     const { futureCostOfMarriage, sipInvestment, lumpSumInvestment, yearsUntilMarriage } = calculationResults!;
-    
+
     return (
       <>
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 p-4 bg-white/70 rounded-xl border border-rose-100 shadow-sm">
@@ -134,7 +90,7 @@ export default function ChildMarriageCalculatorRefined() {
             {formatLargeNumber(futureCostOfMarriage)}
           </span>
         </div>
-        
+
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 p-4 bg-white/70 rounded-xl border border-rose-100 shadow-sm">
           <div className="flex items-center gap-3">
             <div className="bg-rose-100 p-2 rounded-lg">
@@ -151,7 +107,7 @@ export default function ChildMarriageCalculatorRefined() {
             {formatLargeNumber(sipInvestment)}
           </span>
         </div>
-        
+
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 p-4 bg-white/70 rounded-xl border border-rose-100 shadow-sm">
           <div className="flex items-center gap-3">
             <div className="bg-rose-100 p-2 rounded-lg">
@@ -168,7 +124,7 @@ export default function ChildMarriageCalculatorRefined() {
             {formatLargeNumber(lumpSumInvestment)}
           </span>
         </div>
-        
+
         {sipInvestment > 0 ? (
           <div className="bg-rose-50/80 p-4 rounded-xl border border-rose-200 shadow-sm">
             <div className="flex items-start gap-3">
@@ -237,7 +193,7 @@ OR make a one-time investment of ${formatLargeNumber(lumpSumInvestment)} today.
 
     const encodedText = encodeURIComponent(shareText);
     const whatsappUrl = `https://wa.me/?text=${encodedText}`;
-    
+
     window.open(whatsappUrl, '_blank');
   };
 
@@ -258,10 +214,10 @@ OR make a one-time investment of ${formatLargeNumber(lumpSumInvestment)} today.
           {/* Child's Name Input */}
           <div className="space-y-2">
             <Label htmlFor="childMarriageChildName" className="text-sm font-medium text-rose-800">Child&apos;s Name</Label>
-            <Input 
-              id="childMarriageChildName" 
-              value={childName} 
-              onChange={(e) => setChildName(e.target.value)} 
+            <Input
+              id="childMarriageChildName"
+              value={childName}
+              onChange={(e) => setChildName(e.target.value)}
               placeholder="Enter your child's name"
               className="w-full border-rose-200 focus:border-rose-400 focus:ring-rose-300 rounded-lg"
             />
@@ -271,24 +227,24 @@ OR make a one-time investment of ${formatLargeNumber(lumpSumInvestment)} today.
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="childMarriageCurrentAge" className="text-sm font-medium text-rose-800">Child&apos;s Current Age</Label>
-              <FormattedInput 
-                id="childMarriageCurrentAge" 
-                inputMode="numeric" 
-                value={currentAge} 
-                onFormattedChange={setCurrentAge} 
-                className="w-full border-rose-200 focus:border-rose-400 focus:ring-rose-300 rounded-lg" 
+              <FormattedInput
+                id="childMarriageCurrentAge"
+                inputMode="numeric"
+                value={currentAge}
+                onFormattedChange={setCurrentAge}
+                className="w-full border-rose-200 focus:border-rose-400 focus:ring-rose-300 rounded-lg"
                 placeholder="Enter current age"
               />
             </div>
-            
+
             <div className="space-y-2">
               <Label htmlFor="childMarriageMarriageAge" className="text-sm font-medium text-rose-800">Planned Marriage Age</Label>
-              <FormattedInput 
-                id="childMarriageMarriageAge" 
-                inputMode="numeric" 
-                value={marriageAge} 
-                onFormattedChange={setMarriageAge} 
-                className="w-full border-rose-200 focus:border-rose-400 focus:ring-rose-300 rounded-lg" 
+              <FormattedInput
+                id="childMarriageMarriageAge"
+                inputMode="numeric"
+                value={marriageAge}
+                onFormattedChange={setMarriageAge}
+                className="w-full border-rose-200 focus:border-rose-400 focus:ring-rose-300 rounded-lg"
                 placeholder="Enter marriage age"
               />
             </div>
@@ -297,12 +253,12 @@ OR make a one-time investment of ${formatLargeNumber(lumpSumInvestment)} today.
           {/* Financial Inputs */}
           <div className="space-y-2">
             <Label htmlFor="childMarriageEstimatedExpenditure" className="text-sm font-medium text-rose-800">Estimated Marriage Expenditure (₹)</Label>
-            <FormattedInput 
-              id="childMarriageEstimatedExpenditure" 
-              inputMode="numeric" 
-              value={estimatedExpenditure} 
-              onFormattedChange={setEstimatedExpenditure} 
-              className="w-full border-rose-200 focus:border-rose-400 focus:ring-rose-300 rounded-lg" 
+            <FormattedInput
+              id="childMarriageEstimatedExpenditure"
+              inputMode="numeric"
+              value={estimatedExpenditure}
+              onFormattedChange={setEstimatedExpenditure}
+              className="w-full border-rose-200 focus:border-rose-400 focus:ring-rose-300 rounded-lg"
               placeholder="e.g., 1000000"
             />
           </div>
@@ -310,24 +266,24 @@ OR make a one-time investment of ${formatLargeNumber(lumpSumInvestment)} today.
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="childMarriageInflationRate" className="text-sm font-medium text-rose-800">Expected Inflation Rate (% p.a.)</Label>
-              <FormattedInput 
-                id="childMarriageInflationRate" 
-                inputMode="decimal" 
-                value={inflationRate} 
-                onFormattedChange={setInflationRate} 
-                className="w-full border-rose-200 focus:border-rose-400 focus:ring-rose-300 rounded-lg" 
+              <FormattedInput
+                id="childMarriageInflationRate"
+                inputMode="decimal"
+                value={inflationRate}
+                onFormattedChange={setInflationRate}
+                className="w-full border-rose-200 focus:border-rose-400 focus:ring-rose-300 rounded-lg"
                 placeholder="e.g., 7"
               />
             </div>
-            
+
             <div className="space-y-2">
               <Label htmlFor="childMarriageExpectedReturn" className="text-sm font-medium text-rose-800">Expected Rate of Return (% p.a.)</Label>
-              <FormattedInput 
-                id="childMarriageExpectedReturn" 
-                inputMode="decimal" 
-                value={expectedReturn} 
-                onFormattedChange={setExpectedReturn} 
-                className="w-full border-rose-200 focus:border-rose-400 focus:ring-rose-300 rounded-lg" 
+              <FormattedInput
+                id="childMarriageExpectedReturn"
+                inputMode="decimal"
+                value={expectedReturn}
+                onFormattedChange={setExpectedReturn}
+                className="w-full border-rose-200 focus:border-rose-400 focus:ring-rose-300 rounded-lg"
                 placeholder="e.g., 10"
               />
             </div>
@@ -335,12 +291,12 @@ OR make a one-time investment of ${formatLargeNumber(lumpSumInvestment)} today.
 
           <div className="space-y-2">
             <Label htmlFor="childMarriageAmountSaved" className="text-sm font-medium text-rose-800">Amount Already Saved for Child&apos;s Marriage (₹)</Label>
-            <FormattedInput 
-              id="childMarriageAmountSaved" 
-              inputMode="numeric" 
-              value={amountSaved} 
-              onFormattedChange={setAmountSaved} 
-              className="w-full border-rose-200 focus:border-rose-400 focus:ring-rose-300 rounded-lg" 
+            <FormattedInput
+              id="childMarriageAmountSaved"
+              inputMode="numeric"
+              value={amountSaved}
+              onFormattedChange={setAmountSaved}
+              className="w-full border-rose-200 focus:border-rose-400 focus:ring-rose-300 rounded-lg"
               placeholder="e.g., 200000"
             />
           </div>
@@ -358,8 +314,8 @@ OR make a one-time investment of ${formatLargeNumber(lumpSumInvestment)} today.
           )}
 
           {/* Calculate Button */}
-          <Button 
-            onClick={handleCalculate} 
+          <Button
+            onClick={handleCalculate}
             className="w-full py-3 bg-gradient-to-r from-rose-500 to-rose-600 text-white shadow-lg hover:from-rose-600 hover:to-rose-700 active:from-rose-700 active:to-rose-800 transition-all duration-300 ease-in-out rounded-xl font-medium"
             disabled={!childName || !currentAge || !marriageAge || !estimatedExpenditure || !inflationRate || !amountSaved || !expectedReturn}
           >
@@ -377,14 +333,14 @@ OR make a one-time investment of ${formatLargeNumber(lumpSumInvestment)} today.
                 </div>
                 Marriage Planning for {childName}
               </h3>
-              
+
               <div className="space-y-4 mb-6">
                 {renderResults()}
               </div>
-              
+
               {/* Share Button */}
-              <Button 
-                onClick={handleShare} 
+              <Button
+                onClick={handleShare}
                 className="w-full py-3 mt-4 bg-gradient-to-r from-rose-500 to-rose-600 text-white shadow-lg hover:from-rose-600 hover:to-rose-700 active:from-rose-700 active:to-rose-800 transition-all duration-300 ease-in-out rounded-xl font-medium"
               >
                 <div className="flex items-center justify-center gap-2">

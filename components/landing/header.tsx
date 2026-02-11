@@ -20,7 +20,7 @@ export default function Header() {
               className="rounded-xl shadow-sm"
             />
             <div className="leading-tight">
-              <h1 className="text-lg md:text-xl font-bold font-serif bg-gradient-to-r from-emerald-600 to-emerald-800 bg-clip-text text-transparent tracking-tight">
+              <h1 className="text-lg md:text-xl font-bold font-serif bg-gradient-to-r from-emerald-700 to-teal-900 bg-clip-text text-transparent tracking-tight">
                 WealthWise
               </h1>
               <p className="text-[11px] md:text-xs text-gray-600/90 font-medium tracking-normal md:tracking-wider uppercase">

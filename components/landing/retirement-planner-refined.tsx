@@ -6,16 +6,8 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { FormattedInput } from "@/components/ui/formatted-input";
 import { Button } from "@/components/ui/button";
-import { formatLargeNumber } from "@/lib/format-large-number.js";
-
-// Define the type for calculation results
-interface CalculationResults {
-  retirementCorpus: number;
-  monthlySavingsRequired: number;
-  yearsUntilRetirement: number;
-  yearsInRetirement: number;
-  futureMonthlyExpenses: number;
-}
+import { formatLargeNumber } from "@/lib/format-large-number";
+import { calculateRetirementPlan, RetirementPlanResult } from "@/lib/calculators";
 
 export default function IncomePlanningCalculatorRefined() {
   const [name, setName] = useState("");
@@ -28,7 +20,7 @@ export default function IncomePlanningCalculatorRefined() {
   const [showResults, setShowResults] = useState(false);
 
   // Calculate results based on inputs
-  const calculationResults = useMemo<CalculationResults | null>(() => {
+  const calculationResults = useMemo<RetirementPlanResult | null>(() => {
     if (!name || !currentAge || !retirementAge || !lifeExpectancy || !monthlyExpenses || !inflationRate || !expectedReturn) return null;
 
     const current = parseInt(currentAge);
@@ -37,67 +29,23 @@ export default function IncomePlanningCalculatorRefined() {
     const expenses = parseFloat(monthlyExpenses) || 0;
     const inflation = parseFloat(inflationRate) || 0;
     const expectedReturnRate = parseFloat(expectedReturn) || 0;
-    
+
     // Validate inputs
-    if (isNaN(current) || isNaN(retirement) || isNaN(expectancy) || 
-        isNaN(expenses) || isNaN(inflation) || isNaN(expectedReturnRate)) return null;
-    
+    if (isNaN(current) || isNaN(retirement) || isNaN(expectancy) ||
+      isNaN(expenses) || isNaN(inflation) || isNaN(expectedReturnRate)) return null;
+
     // More reasonable validation limits
-    if (retirement <= current || current < 15 || retirement > 100 || 
-        expectancy <= retirement || expenses <= 0 || inflation < 0 || expectedReturnRate < 0) return null;
-    
-    // Calculate years until retirement
-    const yearsUntilRetirement = retirement - current;
-    
-    // Calculate years in retirement
-    const yearsInRetirement = expectancy - retirement;
-    
-    // Calculate future monthly expenses at retirement (considering inflation)
-    const futureMonthlyExpenses = expenses * Math.pow(1 + inflation / 100, yearsUntilRetirement);
-    
-    // Calculate annual expenses at retirement
-    const annualExpensesAtRetirement = futureMonthlyExpenses * 12;
-    
-    // Calculate retirement corpus needed using the present value of a growing annuity due formula
-    // This accounts for expenses growing at the inflation rate during retirement
-    // PV = PMT / (r - g) * [1 - ((1 + g) / (1 + r))^n] * (1 + r)
-    // Where PMT = initial annual expenses, r = return rate, g = growth rate, n = years
-    // The (1 + r) factor accounts for withdrawals at the beginning of each period (annuity due)
-    const growthRate = inflation / 100; // Growth rate of expenses during retirement (inflation)
-    const discountRate = expectedReturnRate / 100; // Discount rate (expected return)
-    
-    let retirementCorpus;
-    if (Math.abs(discountRate - growthRate) < 0.0001) {
-      // If rates are nearly equal, use the simplified formula to avoid division by zero
-      retirementCorpus = annualExpensesAtRetirement * yearsInRetirement;
-    } else {
-      // Present value of growing annuity due formula (payments at beginning of period)
-      retirementCorpus = annualExpensesAtRetirement / (discountRate - growthRate) * 
-        (1 - Math.pow((1 + growthRate) / (1 + discountRate), yearsInRetirement)) * (1 + discountRate);
-    }
-    
-    // Calculate monthly savings required to reach corpus
-    // Using future value of annuity due formula: PMT = FV * r / [((1 + r)^n - 1) * (1 + r)]
-    // This accounts for savings at the beginning of each period (annuity due)
-    const monthlyRate = expectedReturnRate / 100 / 12;
-    const numberOfMonths = yearsUntilRetirement * 12;
-    
-    let monthlySavingsRequired;
-    if (monthlyRate === 0) {
-      // If expected return is 0, simple division
-      monthlySavingsRequired = retirementCorpus / numberOfMonths;
-    } else {
-      // Future value of annuity due formula (payments at beginning of period)
-      monthlySavingsRequired = retirementCorpus * monthlyRate / ((Math.pow(1 + monthlyRate, numberOfMonths) - 1) * (1 + monthlyRate));
-    }
-    
-    return {
-      retirementCorpus,
-      monthlySavingsRequired,
-      yearsUntilRetirement,
-      yearsInRetirement,
-      futureMonthlyExpenses
-    };
+    if (retirement <= current || current < 15 || retirement > 100 ||
+      expectancy <= retirement || expenses <= 0 || inflation < 0 || expectedReturnRate < 0) return null;
+
+    return calculateRetirementPlan(
+      current,
+      retirement,
+      expectancy,
+      expenses,
+      inflation,
+      expectedReturnRate
+    );
   }, [name, currentAge, retirementAge, lifeExpectancy, monthlyExpenses, inflationRate, expectedReturn]);
 
   const handleCalculate = () => {
@@ -108,14 +56,14 @@ export default function IncomePlanningCalculatorRefined() {
       const expenses = parseFloat(monthlyExpenses);
       const inflation = parseFloat(inflationRate);
       const expectedReturnRate = parseFloat(expectedReturn);
-      
+
       // Validate all inputs
-      if (isNaN(current) || isNaN(retirement) || isNaN(expectancy) || 
-          isNaN(expenses) || isNaN(inflation) || isNaN(expectedReturnRate)) return;
-      
+      if (isNaN(current) || isNaN(retirement) || isNaN(expectancy) ||
+        isNaN(expenses) || isNaN(inflation) || isNaN(expectedReturnRate)) return;
+
       // Validate age inputs with more reasonable limits
-      if (retirement > current && current >= 15 && retirement <= 100 && 
-          expectancy > retirement && expenses > 0 && inflation >= 0 && expectedReturnRate >= 0) {
+      if (retirement > current && current >= 15 && retirement <= 100 &&
+        expectancy > retirement && expenses > 0 && inflation >= 0 && expectedReturnRate >= 0) {
         setShowResults(true);
       }
     }
@@ -124,77 +72,58 @@ export default function IncomePlanningCalculatorRefined() {
   const renderResults = () => {
     // Type guard to ensure calculationResults is not null
     if (!calculationResults) return null;
-    
+
     // Use non-null assertion since we've already checked
     const { retirementCorpus, monthlySavingsRequired, yearsUntilRetirement, futureMonthlyExpenses } = calculationResults!;
-    
+
     return (
-      <>
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 p-4 bg-white/70 rounded-xl border border-indigo-100 shadow-sm">
-          <div className="flex items-center gap-3">
-            <div className="bg-indigo-100 p-2 rounded-lg">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <div>
-              <p className="text-sm text-indigo-600">Retirement Corpus Needed</p>
-              <p className="font-medium text-indigo-800">to maintain your lifestyle</p>
-            </div>
+      <div className="space-y-6">
+        <div className="md:flex items-center justify-between gap-6 p-6 bg-slate-50/80 rounded-2xl border border-slate-100">
+          <div className="flex flex-col gap-1">
+            <span className="text-slate-500 font-medium font-serif text-sm uppercase tracking-wider">Retirement Corpus</span>
+            <span className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight leading-none text-left">
+              {formatLargeNumber(retirementCorpus)}
+            </span>
+            <span className="text-sm text-slate-400 font-medium">
+              Required to maintain lifestyle
+            </span>
           </div>
-          <span className="font-bold text-lg text-indigo-800">
-            {formatLargeNumber(retirementCorpus)}
-          </span>
-        </div>
-        
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 p-4 bg-white/70 rounded-xl border border-indigo-100 shadow-sm">
-          <div className="flex items-center gap-3">
-            <div className="bg-indigo-100 p-2 rounded-lg">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
-              </svg>
-            </div>
-            <div>
-              <p className="text-sm text-indigo-600">Monthly Savings Required</p>
-              <p className="font-medium text-indigo-800">to build retirement corpus</p>
-            </div>
-          </div>
-          <span className="font-bold text-lg text-indigo-800">
-            {formatLargeNumber(monthlySavingsRequired)}
-          </span>
-        </div>
-        
-        <div className="bg-indigo-50/80 p-4 rounded-xl border border-indigo-200 shadow-sm">
-          <div className="flex items-start gap-3">
-            <div className="bg-indigo-100 p-2 rounded-lg mt-0.5">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <div>
-              <p className="text-sm font-medium text-indigo-800">
-                You need to invest <span className="font-bold">₹{formatLargeNumber(monthlySavingsRequired)?.replace('₹', '')}</span> every month for the next <span className="font-bold">{yearsUntilRetirement} years</span> to build a retirement corpus of <span className="font-bold">₹{formatLargeNumber(retirementCorpus)?.replace('₹', '')}</span>.
-              </p>
-              <p className="text-sm text-indigo-700 mt-2">
-                Based on your current monthly expenses of <span className="font-medium">₹{formatLargeNumber(parseFloat(monthlyExpenses))?.replace('₹', '')}</span>, 
-                you&apos;ll need <span className="font-medium">₹{formatLargeNumber(futureMonthlyExpenses)?.replace('₹', '')}</span> per month at retirement 
-                (considering an inflation rate of <span className="font-medium">{inflationRate}% p.a.</span>). 
-                With an expected return of <span className="font-medium">{expectedReturn}% p.a.</span>, your corpus will generate 
-                <span className="font-medium"> ₹{formatLargeNumber(futureMonthlyExpenses)?.replace('₹', '')}</span> per month.
-              </p>
-            </div>
+
+          <div className="hidden md:block w-px h-16 bg-slate-200"></div>
+          <div className="md:hidden w-full h-px bg-slate-200 my-4"></div>
+
+          <div className="flex flex-col gap-1 items-start md:items-end">
+            <span className="text-indigo-600 font-medium font-serif text-sm uppercase tracking-wider">Monthly Savings</span>
+            <span className="text-3xl sm:text-4xl font-bold text-indigo-600 tracking-tight leading-none">
+              {formatLargeNumber(monthlySavingsRequired)}
+            </span>
+            <span className="text-sm text-indigo-600/60 font-medium">
+              To reach your goal
+            </span>
           </div>
         </div>
-      </>
+
+        <div className="grid grid-cols-2 gap-4">
+          <div className="bg-white p-4 rounded-xl border border-slate-100 shadow-sm text-center">
+            <span className="block text-xs uppercase tracking-wider text-slate-400 font-bold mb-1">Time to Ret.</span>
+            <span className="block text-xl font-serif font-bold text-slate-700">{yearsUntilRetirement} Years</span>
+          </div>
+          <div className="bg-white p-4 rounded-xl border border-slate-100 shadow-sm text-center">
+            <span className="block text-xs uppercase tracking-wider text-slate-400 font-bold mb-1">Future Exp.</span>
+            <span className="block text-xl font-serif font-bold text-slate-700">{formatLargeNumber(futureMonthlyExpenses)}</span>
+          </div>
+        </div>
+      </div>
     );
   };
+
+
 
   const handleShare = () => {
     if (!calculationResults) return;
 
     const { retirementCorpus, monthlySavingsRequired, yearsUntilRetirement, futureMonthlyExpenses } = calculationResults;
 
-    // Generate the share text with refined formatting
     const shareText = `🏖️ Retirement Corpus Needed
 to maintain your lifestyle
 
@@ -211,7 +140,7 @@ Based on your current monthly expenses of ${formatLargeNumber(parseFloat(monthly
 
     const encodedText = encodeURIComponent(shareText);
     const whatsappUrl = `https://wa.me/?text=${encodedText}`;
-    
+
     window.open(whatsappUrl, '_blank');
   };
 
@@ -232,10 +161,10 @@ Based on your current monthly expenses of ${formatLargeNumber(parseFloat(monthly
           {/* Name Input */}
           <div className="space-y-2">
             <Label htmlFor="retirementPlannerName" className="text-sm font-medium text-indigo-800">Your Name</Label>
-            <Input 
-              id="retirementPlannerName" 
-              value={name} 
-              onChange={(e) => setName(e.target.value)} 
+            <Input
+              id="retirementPlannerName"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               placeholder="e.g., Arjun Sharma"
               className="w-full border-indigo-200 focus:border-indigo-400 focus:ring-indigo-300 rounded-lg"
             />
@@ -245,36 +174,36 @@ Based on your current monthly expenses of ${formatLargeNumber(parseFloat(monthly
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div className="space-y-2">
               <Label htmlFor="retirementPlannerCurrentAge" className="text-sm font-medium text-indigo-800">Current Age</Label>
-              <FormattedInput 
-                id="retirementPlannerCurrentAge" 
-                inputMode="numeric" 
-                value={currentAge} 
-                onFormattedChange={setCurrentAge} 
-                className="w-full border-indigo-200 focus:border-indigo-400 focus:ring-indigo-300 rounded-lg" 
+              <FormattedInput
+                id="retirementPlannerCurrentAge"
+                inputMode="numeric"
+                value={currentAge}
+                onFormattedChange={setCurrentAge}
+                className="w-full border-indigo-200 focus:border-indigo-400 focus:ring-indigo-300 rounded-lg"
                 placeholder="e.g., 35 years"
               />
             </div>
-            
+
             <div className="space-y-2">
               <Label htmlFor="retirementPlannerRetirementAge" className="text-sm font-medium text-indigo-800">Retirement Age</Label>
-              <FormattedInput 
-                id="retirementPlannerRetirementAge" 
-                inputMode="numeric" 
-                value={retirementAge} 
-                onFormattedChange={setRetirementAge} 
-                className="w-full border-indigo-200 focus:border-indigo-400 focus:ring-indigo-300 rounded-lg" 
+              <FormattedInput
+                id="retirementPlannerRetirementAge"
+                inputMode="numeric"
+                value={retirementAge}
+                onFormattedChange={setRetirementAge}
+                className="w-full border-indigo-200 focus:border-indigo-400 focus:ring-indigo-300 rounded-lg"
                 placeholder="e.g., 60 years"
               />
             </div>
-            
+
             <div className="space-y-2">
               <Label htmlFor="retirementPlannerLifeExpectancy" className="text-sm font-medium text-indigo-800">Life Expectancy</Label>
-              <FormattedInput 
-                id="retirementPlannerLifeExpectancy" 
-                inputMode="numeric" 
-                value={lifeExpectancy} 
-                onFormattedChange={setLifeExpectancy} 
-                className="w-full border-indigo-200 focus:border-indigo-400 focus:ring-indigo-300 rounded-lg" 
+              <FormattedInput
+                id="retirementPlannerLifeExpectancy"
+                inputMode="numeric"
+                value={lifeExpectancy}
+                onFormattedChange={setLifeExpectancy}
+                className="w-full border-indigo-200 focus:border-indigo-400 focus:ring-indigo-300 rounded-lg"
                 placeholder="e.g., 85 years"
               />
             </div>
@@ -283,12 +212,12 @@ Based on your current monthly expenses of ${formatLargeNumber(parseFloat(monthly
           {/* Financial Inputs */}
           <div className="space-y-2">
             <Label htmlFor="retirementPlannerMonthlyExpenses" className="text-sm font-medium text-indigo-800">Current Monthly Expenses (₹)</Label>
-            <FormattedInput 
-              id="retirementPlannerMonthlyExpenses" 
-              inputMode="numeric" 
-              value={monthlyExpenses} 
-              onFormattedChange={setMonthlyExpenses} 
-              className="w-full border-indigo-200 focus:border-indigo-400 focus:ring-indigo-300 rounded-lg" 
+            <FormattedInput
+              id="retirementPlannerMonthlyExpenses"
+              inputMode="numeric"
+              value={monthlyExpenses}
+              onFormattedChange={setMonthlyExpenses}
+              className="w-full border-indigo-200 focus:border-indigo-400 focus:ring-indigo-300 rounded-lg"
               placeholder="e.g., ₹50,000 per month"
             />
           </div>
@@ -296,24 +225,24 @@ Based on your current monthly expenses of ${formatLargeNumber(parseFloat(monthly
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="retirementPlannerInflationRate" className="text-sm font-medium text-indigo-800">Expected Inflation Rate (% p.a.)</Label>
-              <FormattedInput 
-                id="retirementPlannerInflationRate" 
-                inputMode="decimal" 
-                value={inflationRate} 
-                onFormattedChange={setInflationRate} 
-                className="w-full border-indigo-200 focus:border-indigo-400 focus:ring-indigo-300 rounded-lg" 
+              <FormattedInput
+                id="retirementPlannerInflationRate"
+                inputMode="decimal"
+                value={inflationRate}
+                onFormattedChange={setInflationRate}
+                className="w-full border-indigo-200 focus:border-indigo-400 focus:ring-indigo-300 rounded-lg"
                 placeholder="e.g., 6% per year"
               />
             </div>
-            
+
             <div className="space-y-2">
               <Label htmlFor="retirementPlannerExpectedReturn" className="text-sm font-medium text-indigo-800">Expected Rate of Return (% p.a.)</Label>
-              <FormattedInput 
-                id="retirementPlannerExpectedReturn" 
-                inputMode="decimal" 
-                value={expectedReturn} 
-                onFormattedChange={setExpectedReturn} 
-                className="w-full border-indigo-200 focus:border-indigo-400 focus:ring-indigo-300 rounded-lg" 
+              <FormattedInput
+                id="retirementPlannerExpectedReturn"
+                inputMode="decimal"
+                value={expectedReturn}
+                onFormattedChange={setExpectedReturn}
+                className="w-full border-indigo-200 focus:border-indigo-400 focus:ring-indigo-300 rounded-lg"
                 placeholder="e.g., 10% per year"
               />
             </div>
@@ -330,7 +259,7 @@ Based on your current monthly expenses of ${formatLargeNumber(parseFloat(monthly
               </p>
             </div>
           )}
-          
+
           {retirementAge && parseInt(retirementAge) > 100 && (
             <div className="flex items-center gap-2 p-3 bg-red-50 rounded-lg border border-red-200">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -341,7 +270,7 @@ Based on your current monthly expenses of ${formatLargeNumber(parseFloat(monthly
               </p>
             </div>
           )}
-          
+
           {monthlyExpenses && parseFloat(monthlyExpenses) <= 0 && (
             <div className="flex items-center gap-2 p-3 bg-red-50 rounded-lg border border-red-200">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -352,7 +281,7 @@ Based on your current monthly expenses of ${formatLargeNumber(parseFloat(monthly
               </p>
             </div>
           )}
-          
+
           {inflationRate && parseFloat(inflationRate) < 0 && (
             <div className="flex items-center gap-2 p-3 bg-red-50 rounded-lg border border-red-200">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -363,7 +292,7 @@ Based on your current monthly expenses of ${formatLargeNumber(parseFloat(monthly
               </p>
             </div>
           )}
-          
+
           {expectedReturn && parseFloat(expectedReturn) < 0 && (
             <div className="flex items-center gap-2 p-3 bg-red-50 rounded-lg border border-red-200">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -374,7 +303,7 @@ Based on your current monthly expenses of ${formatLargeNumber(parseFloat(monthly
               </p>
             </div>
           )}
-          
+
           {currentAge && retirementAge && parseInt(retirementAge) <= parseInt(currentAge) && (
             <div className="flex items-center gap-2 p-3 bg-red-50 rounded-lg border border-red-200">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -385,7 +314,7 @@ Based on your current monthly expenses of ${formatLargeNumber(parseFloat(monthly
               </p>
             </div>
           )}
-          
+
           {retirementAge && lifeExpectancy && parseInt(lifeExpectancy) <= parseInt(retirementAge) && (
             <div className="flex items-center gap-2 p-3 bg-red-50 rounded-lg border border-red-200">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -398,8 +327,8 @@ Based on your current monthly expenses of ${formatLargeNumber(parseFloat(monthly
           )}
 
           {/* Calculate Button */}
-          <Button 
-            onClick={handleCalculate} 
+          <Button
+            onClick={handleCalculate}
             className="w-full py-3 bg-gradient-to-r from-indigo-500 to-indigo-600 text-white shadow-lg hover:from-indigo-600 hover:to-indigo-700 active:from-indigo-700 active:to-indigo-800 transition-all duration-300 ease-in-out rounded-xl font-medium"
             disabled={!name || !currentAge || !retirementAge || !lifeExpectancy || !monthlyExpenses || !inflationRate || !expectedReturn}
           >
@@ -417,14 +346,14 @@ Based on your current monthly expenses of ${formatLargeNumber(parseFloat(monthly
                 </div>
                 Income Planning for {name}
               </h3>
-              
+
               <div className="space-y-4 mb-6">
                 {renderResults()}
               </div>
-              
+
               {/* Share Button */}
-              <Button 
-                onClick={handleShare} 
+              <Button
+                onClick={handleShare}
                 className="w-full py-3 mt-4 bg-gradient-to-r from-indigo-500 to-indigo-600 text-white shadow-lg hover:from-indigo-600 hover:to-indigo-700 active:from-indigo-700 active:to-indigo-800 transition-all duration-300 ease-in-out rounded-xl font-medium"
               >
                 <div className="flex items-center justify-center gap-2">

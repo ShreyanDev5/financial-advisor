@@ -53,52 +53,52 @@ export function ServiceCard({
   const colorClasses = useMemo(() => {
     const map: Record<string, { text: string; bgSoft: string; button: string; icon: string; borderSoft: string; tabActive: string }> = {
       teal: {
-        text: "text-teal-500",
-        bgSoft: "bg-teal-50/30",
-        button: "bg-teal-500 hover:bg-teal-600",
-        icon: "text-teal-500",
+        text: "text-teal-600",
+        bgSoft: "bg-teal-50/50",
+        button: "from-teal-600 to-teal-800",
+        icon: "text-teal-600",
         borderSoft: "border-teal-200",
-        tabActive: "data-[state=active]:bg-teal-100/80 data-[state=active]:text-teal-700 data-[state=active]:shadow-sm",
+        tabActive: "data-[state=active]:bg-teal-50",
       },
       emerald: {
-        text: "text-emerald-500",
-        bgSoft: "bg-emerald-50/30",
-        button: "bg-emerald-500 hover:bg-emerald-600",
-        icon: "text-emerald-500",
+        text: "text-emerald-600",
+        bgSoft: "bg-emerald-50/50",
+        button: "from-emerald-600 to-emerald-800",
+        icon: "text-emerald-600",
         borderSoft: "border-emerald-200",
-        tabActive: "data-[state=active]:bg-emerald-100/80 data-[state=active]:text-emerald-700 data-[state=active]:shadow-sm",
+        tabActive: "data-[state=active]:bg-emerald-50",
       },
       blue: {
-        text: "text-blue-500",
-        bgSoft: "bg-blue-50/30",
-        button: "bg-blue-500 hover:bg-blue-600",
-        icon: "text-blue-500",
+        text: "text-blue-600",
+        bgSoft: "bg-blue-50/50",
+        button: "from-blue-600 to-blue-800",
+        icon: "text-blue-600",
         borderSoft: "border-blue-200",
-        tabActive: "data-[state=active]:bg-blue-100/80 data-[state=active]:text-blue-700 data-[state=active]:shadow-sm",
+        tabActive: "data-[state=active]:bg-blue-50",
       },
       purple: {
-        text: "text-purple-500",
-        bgSoft: "bg-purple-50/30",
-        button: "bg-purple-500 hover:bg-purple-600",
-        icon: "text-purple-500",
+        text: "text-purple-600",
+        bgSoft: "bg-purple-50/50",
+        button: "from-purple-600 to-purple-800",
+        icon: "text-purple-600",
         borderSoft: "border-purple-200",
-        tabActive: "data-[state=active]:bg-purple-100/80 data-[state=active]:text-purple-700 data-[state=active]:shadow-sm",
+        tabActive: "data-[state=active]:bg-purple-50",
       },
       orange: {
-        text: "text-orange-500",
-        bgSoft: "bg-orange-50/30",
-        button: "bg-orange-500 hover:bg-orange-600",
-        icon: "text-orange-500",
+        text: "text-orange-600",
+        bgSoft: "bg-orange-50/50",
+        button: "from-orange-600 to-orange-800",
+        icon: "text-orange-600",
         borderSoft: "border-orange-200",
-        tabActive: "data-[state=active]:bg-orange-100/80 data-[state=active]:text-orange-700 data-[state=active]:shadow-sm",
+        tabActive: "data-[state=active]:bg-orange-50",
       },
       red: {
-        text: "text-red-500",
-        bgSoft: "bg-red-50/30",
-        button: "bg-red-500 hover:bg-red-600",
-        icon: "text-red-500",
+        text: "text-red-600",
+        bgSoft: "bg-red-50/50",
+        button: "from-red-600 to-red-800",
+        icon: "text-red-600",
         borderSoft: "border-red-200",
-        tabActive: "data-[state=active]:bg-red-100/80 data-[state=active]:text-red-700 data-[state=active]:shadow-sm",
+        tabActive: "data-[state=active]:bg-red-50",
       },
     };
     return map[colorScheme] || map.teal;
@@ -121,8 +121,8 @@ export function ServiceCard({
 
   return (
     <AnimatedSection animation={animation} delay={delay} duration={500}>
-      <div className="relative">
-        <div className={`relative bg-white rounded-2xl shadow-lg border border-gray-100/80 overflow-hidden ${className}`}>
+      <div className="relative group">
+        <div className={`relative bg-white/90 backdrop-blur-xl rounded-2xl shadow-lg border border-white/50 overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:border-${colorScheme}-200/60 ${className}`}>
           <div className={`absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r ${accentGradient} rounded-t-2xl`} />
           <div className="p-6 text-center">
             <div className={`flex flex-col sm:flex-row items-center justify-center gap-4 mb-4 ${colorClasses.text}`}>
@@ -154,7 +154,7 @@ export function ServiceCard({
               href={waHref}
               target="_blank"
               rel="noopener noreferrer"
-              className={`w-full sm:w-auto inline-flex items-center justify-center px-8 py-3 ${colorClasses.button} text-white rounded-lg font-semibold transition-all duration-300 text-base shadow-md hover:shadow-lg transform hover:-translate-y-0.5`}
+              className={`w-full sm:w-auto inline-flex items-center justify-center px-8 py-3 bg-gradient-to-r ${colorClasses.button} text-white rounded-xl font-bold tracking-wide transition-all duration-300 text-base shadow-lg hover:shadow-xl hover:-translate-y-0.5 border border-white/20`}
               aria-label={`${ctaText} via WhatsApp`}
             >
               {ctaText}
@@ -162,12 +162,12 @@ export function ServiceCard({
           </div>
 
           {hasTabs && (
-            <div className="px-6 pb-6 border-t border-gray-200/80 bg-gray-50/50">
+            <div className="px-6 pb-6 border-t border-gray-100/50 bg-gray-50/50">
               <Tabs defaultValue={getDefaultTab()} className="w-full max-w-3xl mx-auto pt-5">
-                <TabsList className="grid w-full grid-cols-3 bg-gray-200/70 p-1 h-auto rounded-lg sm:flex sm:flex-wrap">
-                  {documents && documents.length > 0 && <TabsTrigger value="documents" className={`rounded-md text-gray-600 ${colorClasses.tabActive}`}>Documents</TabsTrigger>}
-                  {process && process.length > 0 && <TabsTrigger value="process" className={`rounded-md text-gray-600 ${colorClasses.tabActive}`}>Process</TabsTrigger>}
-                  {costs && costs.length > 0 && <TabsTrigger value="costs" className={`rounded-md text-gray-600 ${colorClasses.tabActive}`}>Costs</TabsTrigger>}
+                <TabsList className="grid w-full grid-cols-3 bg-slate-200/60 p-1.5 h-auto rounded-xl sm:flex sm:flex-wrap mb-6 border border-slate-200/50">
+                  {documents && documents.length > 0 && <TabsTrigger value="documents" className={`rounded-lg text-gray-600 font-medium data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-${colorScheme}-700 transition-all duration-300`}>Documents</TabsTrigger>}
+                  {process && process.length > 0 && <TabsTrigger value="process" className={`rounded-lg text-gray-600 font-medium data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-${colorScheme}-700 transition-all duration-300`}>Process</TabsTrigger>}
+                  {costs && costs.length > 0 && <TabsTrigger value="costs" className={`rounded-lg text-gray-600 font-medium data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-${colorScheme}-700 transition-all duration-300`}>Costs</TabsTrigger>}
                 </TabsList>
 
                 {documents && documents.length > 0 && (
