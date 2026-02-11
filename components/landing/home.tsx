@@ -81,7 +81,7 @@ export default function HomeContent() {
         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
           <StatCard
             title="Happy Clients"
-            value="700+"
+            value="750+"
             icon={Users}
             description="Satisfied clients across the country."
             iconBgColor="bg-blue-100"
@@ -99,7 +99,7 @@ export default function HomeContent() {
           />
           <StatCard
             title="Years of Experience"
-            value="18+"
+            value="19+"
             icon={Award}
             description="In the financial advisory field."
             iconBgColor="bg-purple-100"
@@ -108,9 +108,9 @@ export default function HomeContent() {
           />
           <StatCard
             title="Assets Under Management"
-            value="1CR+"
+            value="30 Lakhs"
             icon={TrendingUp}
-            description="As of December 2025."
+            description="As of February 2026."
             iconBgColor="bg-orange-100"
             iconTextColor="text-orange-600"
             className="bg-gradient-to-br from-orange-50 to-orange-100 border-orange-200 shadow-lg"
