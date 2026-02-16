@@ -164,10 +164,10 @@ export function ServiceCard({
           {hasTabs && (
             <div className="px-6 pb-6 border-t border-gray-100/50 bg-gray-50/50">
               <Tabs defaultValue={getDefaultTab()} className="w-full max-w-3xl mx-auto pt-5">
-                <TabsList className="grid w-full grid-cols-3 bg-slate-200/60 p-1.5 h-auto rounded-xl sm:flex sm:flex-wrap mb-6 border border-slate-200/50">
-                  {documents && documents.length > 0 && <TabsTrigger value="documents" className={`rounded-lg text-gray-600 font-medium data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-${colorScheme}-700 transition-all duration-300`}>Documents</TabsTrigger>}
-                  {process && process.length > 0 && <TabsTrigger value="process" className={`rounded-lg text-gray-600 font-medium data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-${colorScheme}-700 transition-all duration-300`}>Process</TabsTrigger>}
-                  {costs && costs.length > 0 && <TabsTrigger value="costs" className={`rounded-lg text-gray-600 font-medium data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-${colorScheme}-700 transition-all duration-300`}>Costs</TabsTrigger>}
+                <TabsList className="flex w-full bg-slate-200/60 p-1.5 h-auto rounded-xl sm:flex sm:flex-wrap mb-6 border border-slate-200/50">
+                  {documents && documents.length > 0 && <TabsTrigger value="documents" className={`flex-1 rounded-lg text-gray-600 font-medium data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-${colorScheme}-700 transition-all duration-300`}>Documents</TabsTrigger>}
+                  {process && process.length > 0 && <TabsTrigger value="process" className={`flex-1 rounded-lg text-gray-600 font-medium data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-${colorScheme}-700 transition-all duration-300`}>Process</TabsTrigger>}
+                  {costs && costs.length > 0 && <TabsTrigger value="costs" className={`flex-1 rounded-lg text-gray-600 font-medium data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-${colorScheme}-700 transition-all duration-300`}>Costs</TabsTrigger>}
                 </TabsList>
 
                 {documents && documents.length > 0 && (
