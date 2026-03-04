@@ -15,8 +15,8 @@ export default function Header() {
             <Image
               src="/monotosh_logo_1.1.png"
               alt="Monotosh Logo"
-              width={40}
-              height={40}
+              width={48}
+              height={48}
               className="rounded-xl shadow-sm"
             />
             <div className="leading-tight">
