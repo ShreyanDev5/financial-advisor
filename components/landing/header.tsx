@@ -17,7 +17,7 @@ export default function Header() {
               alt="Monotosh Logo"
               width={48}
               height={48}
-              className="rounded-xl shadow-sm"
+              className="w-10 h-10 md:w-12 md:h-12 rounded-xl shadow-sm"
             />
             <div className="leading-tight">
               <h1 className="text-lg md:text-xl font-bold font-serif bg-gradient-to-r from-emerald-700 to-teal-900 bg-clip-text text-transparent tracking-tight">
