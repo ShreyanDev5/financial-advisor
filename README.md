@@ -1,6 +1,6 @@
 # Financial Advisor
 
-Private Next.js application for financial planning and advisory workflows.
+A streamlined application for personal financial planning and professional advisory workflows.
 
 ## What It Includes
 
