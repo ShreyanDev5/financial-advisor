@@ -11,20 +11,20 @@ export default function Header() {
       <div className="relative bg-white/70 backdrop-blur-xl border-b border-white/30 shadow-sm">
         <div className="px-6 py-4 flex items-center justify-between">
           {/* Left side - Logo and brand */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 md:gap-3">
             <Image
               src="/monotosh_logo_1.1.png"
               alt="Monotosh Logo"
               width={48}
               height={48}
-              className="w-8 h-8 md:w-12 md:h-12 object-contain"
+              className="w-11 h-11 md:w-12 md:h-12 object-contain"
             />
             <div className="leading-tight">
-              <h1 className="text-lg md:text-xl font-bold font-serif bg-gradient-to-r from-emerald-700 to-teal-900 bg-clip-text text-transparent tracking-tight">
+              <h1 className="text-[17px] sm:text-lg md:text-xl font-bold font-serif bg-gradient-to-r from-emerald-700 to-teal-900 bg-clip-text text-transparent tracking-tight">
                 WealthWise
               </h1>
-              <p className="text-[11px] md:text-xs text-gray-600/90 font-medium tracking-normal md:tracking-wider uppercase">
-                Growth <span className="mx-0.5 md:mx-1 text-emerald-600">|</span> Ambition <span className="mx-0.5 md:mx-1 text-emerald-600">|</span> Stability
+              <p className="text-[9.5px] sm:text-[11px] md:text-xs text-gray-600/90 font-medium tracking-tight sm:tracking-normal md:tracking-wider uppercase">
+                Growth <span className="mx-[2px] md:mx-1 text-emerald-600">|</span> Ambition <span className="mx-[2px] md:mx-1 text-emerald-600">|</span> Stability
               </p>
             </div>
           </div>
