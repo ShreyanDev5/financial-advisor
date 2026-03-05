@@ -1,4 +1,3 @@
-
 import { calculateSIP, calculateLumpsum, calculateSWP, calculateEducationPlan } from '@/lib/calculators';
 import { formatLargeNumber } from '@/lib/format-large-number';
 

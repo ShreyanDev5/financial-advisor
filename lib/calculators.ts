@@ -1,4 +1,3 @@
-
 /**
  * Financial Calculator Utility Functions
  * 

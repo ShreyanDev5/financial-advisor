@@ -4,7 +4,7 @@ Welcome to the Financial Advisor application, a comprehensive tool designed to h
 
 ## Live Demo
 
-[Link to live demo]
+Add your deployment URL here.
 
 ## Features
 
@@ -53,7 +53,7 @@ To get a local copy up and running, follow these simple steps.
 
 1.  Clone the repo
     ```sh
-    git clone https://github.com/your_username/financial-advisor.git
+    git clone https://github.com/<your-username>/financial-advisor.git
     ```
 2.  Install NPM packages
     ```sh
@@ -68,11 +68,31 @@ npm run dev
 
 This will start the development server at `http://localhost:3000`.
 
+### Available Scripts
+
+```sh
+# development server
+npm run dev
+
+# linting
+npm run lint
+
+# calculator and formatter test suites
+npm test
+
+# production build
+npm run build
+
+# production server
+npm run start
+```
+
 ## Folder Structure
 
 ```
 .
 ├── app/
+│   ├── globals.css
 │   ├── (landing)/
 │   │   ├── calculators/
 │   │   ├── documents/
@@ -85,15 +105,24 @@ This will start the development server at `http://localhost:3000`.
 ├── hooks/
 ├── lib/
 ├── public/
-└── styles/
+├── scripts/
+└── tests/
 ```
 
 ## Testing
 
-The project includes a suite of tests to ensure the quality and correctness of the code. To run the tests, use the following command:
+The project includes source-based calculator and formatting tests. To run all suites:
 
 ```sh
 npm test
+```
+
+Run individual suites when needed:
+
+```sh
+npm run test:basic
+npm run test:comprehensive
+npm run test:formatting
 ```
 
 ## Contributing
