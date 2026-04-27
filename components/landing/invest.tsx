@@ -3,6 +3,7 @@
 import { TrendingUp } from "lucide-react";
 import { ServiceCard } from "@/components/ui/service-card";
 import { SimplePageHeader } from "@/components/ui/simple-page-header";
+import InvestFaq from "@/components/landing/invest-faq";
 
 export default function InvestContent() {
   const mutualFundServices = {
@@ -59,6 +60,16 @@ export default function InvestContent() {
           animation="elegant-fade"
           whatsAppMessage={`Hi Monotosh, I'm interested in mutual funds and would like to start investing. Could you please help me understand the options based on my risk profile?`}
         />
+      </div>
+
+      {/* Divider before FAQ */}
+      <div className="sm:max-w-5xl sm:mx-auto my-4 sm:my-6">
+        <div className="h-px w-3/4 sm:w-2/3 md:w-1/2 mx-auto bg-gray-200 dark:bg-gray-800" />
+      </div>
+
+      {/* FAQ Section */}
+      <div id="mutual-fund-faq" className="scroll-mt-28 sm:scroll-mt-32">
+        <InvestFaq />
       </div>
     </div>
   );
