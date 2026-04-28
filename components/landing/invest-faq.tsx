@@ -1,40 +1,24 @@
-'use client';
+"use client";
 
-import { useState, useMemo } from 'react';
-import { AnimatedSection } from '@/components/ui/animated-section';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion';
-import {
-  HelpCircle,
-  BookOpen,
-  Shield,
-  TrendingUp,
-  Receipt,
-  Droplets,
-  Scale,
-  Landmark,
-  Search,
-  ChevronRight,
-} from 'lucide-react';
+import { useMemo, useState } from "react";
+import { BookOpen, ChevronRight, Droplets, HelpCircle, Landmark, Receipt, Scale, Shield, TrendingUp, Search } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import { AnimatedSection } from "@/components/ui/animated-section";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
-/* ------------------------------------------------------------------ */
-/*  Category & FAQ data                                                */
-/* ------------------------------------------------------------------ */
+type Language = "en" | "bn";
 
 interface FaqItem {
   q: string;
-  a: string; // supports line-breaks via \n → rendered with whitespace
+  aEn: string;
+  aBn: string;
 }
 
 interface FaqCategory {
   id: string;
   label: string;
-  icon: React.ElementType;
-  color: string; // tailwind text-color token
+  icon: LucideIcon;
+  color: string;
   bgSoft: string;
   borderSoft: string;
   items: FaqItem[];
@@ -51,23 +35,74 @@ const categories: FaqCategory[] = [
     items: [
       {
         q: 'What exactly is a mutual fund?',
-        a: `A mutual fund is a professionally managed investment vehicle that pools money from many investors to buy a diversified portfolio of stocks, bonds, or other securities.\n\nThink of it like a shared bus ride — everyone chips in, a skilled driver (fund manager) navigates the route, and the destination (returns) is shared proportionally based on how much each person contributed.\n\nIn India, mutual funds are regulated by SEBI (Securities and Exchange Board of India), which ensures transparency and investor protection.`,
+    aEn: `A mutual fund pools money from many investors and invests it in stocks, bonds, or other securities. A professional fund manager runs the fund.
+
+This gives small investors diversification and expert management without buying many individual securities. In India, mutual funds are regulated by SEBI, which enforces disclosures and investor protections.`,
+    aBn: `Mutual fund হলো একসাথে অনেক বিনিয়োগকারীর টাকা পুল করে stocks, bonds ইত্যাদিতে বিনিয়োগ করার একটি ব্যবস্থা। একজন professional fund manager এটি পরিচালনা করেন।
+
+এতে ছোট বিনিয়োগকারীরাও risk ভাগ করে নিতে পারেন এবং পেশাদারিভাবে তত্ত্বাবধান পেয়ে সুবিধা পান। ভারতে SEBI ফান্ডগুলিকে নিয়ন্ত্রন করে এবং প্রয়োজনীয় তথ্য প্রকাশ নিশ্চিত করে।`,
       },
       {
         q: 'How does a mutual fund actually work?',
-        a: `Here's the simplified flow:\n\n1. You invest money into a mutual fund scheme.\n2. The fund manager combines your money with other investors' money.\n3. This pooled corpus is invested in stocks, bonds, or both — depending on the fund's objective.\n4. The fund's value is reflected in its NAV (Net Asset Value), calculated daily.\n5. When the underlying assets grow in value, the NAV rises, and your investment grows.\n\nYou can invest via SIP (Systematic Investment Plan) for regular, disciplined investing or as a one-time lump sum.`,
+    aEn: `How it works:
+
+1. Investors give money to a fund.
+2. The fund manager pools and invests it per the fund's objective.
+3. The fund's price is shown as NAV (Net Asset Value) and is updated regularly.
+4. If the fund's holdings gain value, NAV and your holding increase; if they fall, NAV falls.
+
+You can invest as a lump sum or by SIP (Systematic Investment Plan) to add regularly.`,
+    aBn: `কীভাবে কাজ করে:
+
+1. বিনিয়োগকারীরা টাকা দেন।
+2. fund manager তা একত্র করে fund-এর লক্ষ্য অনুযায়ী বিনিয়োগ করেন।
+3. ফান্ডের দাম NAV হিসেবে প্রকাশিত হয় এবং নিয়মিত আপডেট হয়।
+4. ফান্ডের সম্পদের দাম উঠলে NAV বাড়ে, কমে গেলে NAV কমে।
+
+আপনি lump sum বা নিয়মিত SIP-এর মাধ্যমে অর্থ জমা করতে পারেন।`,
       },
       {
         q: 'What is NAV and why does it matter?',
-        a: `NAV stands for Net Asset Value. It is the per-unit market value of all the securities held by the fund, minus liabilities, divided by the total number of units outstanding.\n\nNAV = (Total Assets − Total Liabilities) ÷ Total Units\n\nWhen you invest ₹10,000 and the NAV is ₹50, you get 200 units. If the NAV later rises to ₹60, your investment is worth ₹12,000.\n\nNAV is updated at the end of every business day and is the price at which you buy or sell mutual fund units.`,
+    aEn: `NAV (Net Asset Value) is the price of one unit of a mutual fund.
+
+Formula: NAV = (Total Assets - Total Liabilities) / Total Units
+
+Example: If NAV = Rs 50 and you invest Rs 10,000, you get 200 units. If NAV rises to Rs 60, your holding is worth Rs 12,000.
+
+NAV is published regularly (usually daily) and is used when buying or selling units.`,
+    aBn: `NAV (Net Asset Value) হলো একটি ইউনিটের মূল্য।
+
+ফর্মুলা: NAV = (Total Assets - Total Liabilities) / Total Units
+
+উদাহরণ: NAV Rs 50 হলে Rs 10,000 দিলে 200 units পাওয়া যায়; NAV Rs 60 হলে হোল্ডিং Rs 12,000 হবে।
+
+NAV সাধারণত প্রতিদিন প্রকাশিত হয় এবং কেনাবেচার সময় রেফারেন্স হিসেবে ব্যবহৃত হয়।`,
       },
       {
         q: 'What are the main types of mutual funds in India?',
-        a: `Mutual funds are broadly classified by asset class:\n\n• Equity Funds – Invest primarily in stocks. Higher risk, higher potential returns. Examples: large-cap, mid-cap, small-cap, flexi-cap, sectoral funds.\n\n• Debt Funds – Invest in bonds, government securities, and money market instruments. Lower risk, more stable returns. Examples: liquid funds, short-duration, gilt funds.\n\n• Hybrid Funds – Mix of equity and debt for balanced risk-return. Examples: aggressive hybrid, balanced advantage, conservative hybrid.\n\n• Index Funds & ETFs – Passively track a market index like Nifty 50 or Sensex. Low cost, no active fund manager decisions.\n\n• Solution-Oriented Funds – Designed for goals like retirement or children's education, often with a lock-in period.`,
+    aEn: `Common types:
+
+- Equity Funds: Invest mainly in stocks. Higher risk and potentially higher returns (large-cap, mid-cap, small-cap).
+- Debt Funds: Invest in bonds and money-market instruments. Lower risk, steadier returns (liquid, short-duration).
+- Hybrid Funds: Mix of equity and debt to balance risk and return.
+- Index Funds & ETFs: Track an index (e.g., Nifty 50) and usually have low fees.
+- Solution-Oriented Funds: Built for goals like retirement or child education; may have lock-ins.`,
+    aBn: `প্রধান ধরনের ফান্ড:
+
+- Equity Funds: মূলত shares-এ বিনিয়োগ করে; ঝুঁকি বেশি, সম্ভবত রিটার্নও বেশি (large-cap, mid-cap ইত্যাদি)।
+- Debt Funds: bonds ও money-market-এ; ঝুঁকি কম এবং রিটার্ন স্থিতিশীল।
+- Hybrid Funds: equity ও debt মিশিয়ে ঝুঁকি ও রিটার্ন ব্যালান্স করে।
+- Index Funds/ETFs: কোনো index (e.g., Nifty 50) অনুসরণ করে; খরচ কম থাকে।
+- Solution-Oriented Funds: নির্দিষ্ট লক্ষ্য (retirement, child education) পূরণের জন্য; মাঝে মাঝে lock-in থাকে।`,
       },
       {
         q: 'Do I need a Demat account to invest in mutual funds?',
-        a: `No, a Demat account is NOT required to invest in mutual funds. You can invest directly through the AMC (Asset Management Company) website, apps, or through a distributor/advisor.\n\nAll you need is:\n• PAN card and Aadhaar (for KYC)\n• A bank account\n• Mobile number and email\n\nKYC is a one-time process, and once done, you can invest in any mutual fund scheme across all AMCs.`,
+    aEn: `No. A Demat account is not required for most mutual fund investments. You can invest via the AMC's website/app or through a distributor.
+
+Typical requirements: PAN and Aadhaar (for KYC), a bank account, mobile number and email. KYC is usually a one-time process.`,
+    aBn: `না। mutual fund-এ সাধারণত Demat account লাগে না। আপনি AMC-এর ওয়েবসাইট/অ্যাপ বা distributor-এর মাধ্যমে বিনিয়োগ করতে পারেন。
+
+প্রয়োজনীয়তা: PAN ও Aadhaar (KYC), একটি ব্যাংক অ্যাকাউন্ট, মোবাইল ও ইমেইল। KYC সাধারণত একবারেই হয়ে যায়।`,
       },
     ],
   },
@@ -81,15 +116,52 @@ const categories: FaqCategory[] = [
     items: [
       {
         q: 'Are mutual funds safe? Can I lose all my money?',
-        a: `Mutual funds are market-linked investments, so they carry varying degrees of risk — but losing all your money is extremely unlikely with diversified funds.\n\nKey safety aspects:\n• Regulated by SEBI – strict rules on transparency, auditing, and fund management.\n• Diversification – your money is spread across many securities, reducing single-stock risk.\n• Custodian-held assets – your investments are held by a separate custodian (not the AMC), protecting you even if the fund house faces issues.\n\nThat said, short-term fluctuations are normal. Equity funds can drop 10-30% in a bad year, but historically recover and grow over 5-10+ year horizons.`,
+        aEn: `Mutual funds are market-linked, so they carry risk. A well-diversified fund makes losing everything very unlikely, but short-term losses can occur.
+
+Protections:
+- SEBI regulation and required disclosures.
+- Fund assets are held by an independent custodian, not the AMC.
+- Diversification reduces the impact of any single security.
+
+Equity funds can fall sharply in some years (e.g., 10–30%). A longer holding period (5–10 years) lowers the chance of permanent loss.`,
+        aBn: `Mutual fund market-linked, তাই ঝুঁকি আছে। ভালভাবে diversified হলে সব টাকা হারানোর সম্ভাবনা খুব কম, তবে স্বল্পকালীন ক্ষতি হতে পারে।
+
+সুরক্ষা:
+- SEBI নিয়ম ও তথ্য প্রকাশ বাধ্যতামূলক।
+- ফান্ডের সম্পদ independent custodian-এর কাছে রাখা হয়, AMC থেকে আলাদা।
+- diversification একক সিকিউরিটির প্রভাব কমায়।
+
+Equity fund কোনো বছরে 10–30% পর্যন্ত কমতে পারে। 5–10 বছর ধরে রাখলে স্থায়ী ক্ষতির ঝুঁকি কমে।`,
       },
-      {
+            {
         q: 'What are the different types of risk in mutual funds?',
-        a: `• Market Risk – Value fluctuates with market movements. Affects equity funds most.\n\n• Credit Risk – The issuer of a bond may default. Relevant for debt funds investing in corporate bonds.\n\n• Interest Rate Risk – Bond prices fall when interest rates rise. Affects debt and hybrid funds.\n\n• Liquidity Risk – Difficulty selling underlying assets quickly. Rare in large-cap equity and liquid debt funds.\n\n• Concentration Risk – Over-exposure to a single sector or stock. Sectoral/thematic funds carry this.\n\nDiversification across fund types and asset classes is the best way to manage these risks.`,
-      },
+        aEn: `Common risks:
+
+      - Market Risk: Fund value moves with market (important for equity funds).
+      - Credit Risk: A bond issuer may default (relevant for some debt funds).
+      - Interest Rate Risk: Bond prices fall when rates rise.
+      - Liquidity Risk: Some assets may be hard to sell quickly.
+      - Concentration Risk: Heavy exposure to one sector or stock increases risk.
+
+      Diversifying across fund types and asset classes reduces these risks.`,
+        aBn: `মূল ঝুঁকিগুলো:
+
+      - Market Risk: বাজারের ওঠা-নামার সাথে ফান্ড মূল্য ওঠানামা করে (বিশেষ করে equity)।
+      - Credit Risk: bond issuer default করলে ক্ষতি হতে পারে (কিছু debt fund-এ)।
+      - Interest Rate Risk: সুদ বাড়লে bond-এর দাম পড়ে।
+      - Liquidity Risk: কোনো সম্পদ দ্রুত বিক্রি করা কঠিন হলে সমস্যা হয়।
+      - Concentration Risk: একাধিক পজিশন না রেখে অতিরিক্ত এক্সপোজার ঝুঁকি বাড়ায়।
+
+      বিভিন্ন fund ও asset class-এ বিনিয়োগ করে ঝুঁকি কমানো যায়।`,
+            },
       {
         q: 'What happens to my money if the mutual fund company shuts down?',
-        a: `Your money is safe. Here's why:\n\n• The mutual fund's assets are held by an independent custodian (usually a bank), not by the AMC.\n• If an AMC shuts down, SEBI mandates that the fund is either transferred to another AMC or the assets are liquidated and returned to investors.\n• Your units and NAV belong to you — the AMC only manages the fund.\n\nThis separation of asset ownership from management is a critical investor protection feature under Indian securities law.`,
+        aEn: `Your money and the fund's securities are not the AMC's personal assets. Securities are held by an independent custodian (usually a bank).
+
+If an AMC fails, SEBI and regulators usually move the fund to another AMC or orderly liquidate assets and return proceeds to investors. Your units and NAV remain your property.`,
+        aBn: `আপনার টাকা AMC-এর ব্যক্তিগত সম্পত্তি নয়। ফান্ডের সিকিউরিটিগুলো independent custodian (সাধারণত ব্যাংক)-এর কাছে থাকে।
+
+AMC যদি বন্ধ হয়, SEBI সাধারণত ফান্ড অন্য AMC-এ স্থানান্তর করে বা সম্পদ বিক্রি করে বিনিয়োগকারীদের টাকা ফেরত দেয়। আপনার units এবং NAV আপনারই থাকে।`,
       },
     ],
   },
@@ -103,15 +175,60 @@ const categories: FaqCategory[] = [
     items: [
       {
         q: 'What kind of returns can I realistically expect?',
-        a: `Returns depend on the fund type and time horizon. Historical averages (not guarantees):\n\n• Equity (large-cap): 10–13% per annum over 10+ years\n• Equity (mid/small-cap): 12–18% per annum (with higher volatility)\n• Hybrid funds: 8–12% per annum\n• Debt funds: 6–8% per annum\n• Liquid funds: 4–6% per annum\n\nImportant: These are long-term averages. In any single year, equity returns can range from −20% to +50%. Consistency comes from staying invested over 5–10+ years.\n\nPast performance does not guarantee future results.`,
+        aEn: `Returns depend on fund type and time horizon. Typical long-term averages (not guaranteed):
+
+- Equity (large-cap): ~10–13% p.a. over 10+ years
+- Equity (mid/small-cap): ~12–18% p.a. (more volatile)
+- Hybrid funds: ~8–12% p.a.
+- Debt funds: ~6–8% p.a.
+- Liquid funds: ~4–6% p.a.
+
+These are long-term averages; single-year equity returns can vary widely. Staying invested for 5–10+ years smooths volatility. Past performance does not guarantee future results.`,
+        aBn: `রিটার্ন fund-এর ধরন ও সময়কাল অনুসারে পরিবর্তিত হয়। দীর্ঘমেয়াদী গড় (গ্যারান্টি নয়):
+
+- Equity (large-cap): ~10–13% p.a. (10+ বছর)
+- Equity (mid/small-cap): ~12–18% p.a. (ভোলাটাইল)
+- Hybrid: ~8–12% p.a.
+- Debt: ~6–8% p.a.
+- Liquid: ~4–6% p.a.
+
+এগুলো long-term গড়; এক বছরের রিটার্ন খুব ভিন্ন হতে পারে। 5–10 বছর ধরে থাকলে ওঠানামা মসৃণ হয়। পূর্ববর্তী পারফরম্যান্স ভবিষ্যৎ নিশ্চিত করে না।`,
       },
       {
         q: 'How does compounding work in mutual funds?',
-        a: `Compounding means your returns generate their own returns over time. It is the most powerful wealth-building force.\n\nExample: ₹10,000/month SIP at 12% annual return:\n• After 5 years → ~₹8.2 lakh (invested: ₹6 lakh)\n• After 10 years → ~₹23.2 lakh (invested: ₹12 lakh)\n• After 20 years → ~₹1 crore (invested: ₹24 lakh)\n\nThe key insight: in year 1, your returns come mostly from your principal. By year 15-20, the majority of your wealth is from compounded returns, not from what you deposited. Start early, stay consistent.`,
+    aEn: `Compounding means your returns earn further returns over time. This accelerates wealth growth the longer you stay invested.
+
+Example (approx.): Rs 10,000/month SIP at 12% p.a.:
+- 5 years -> ~Rs 8.2 lakh (invested: Rs 6 lakh)
+- 10 years -> ~Rs 23.2 lakh (invested: Rs 12 lakh)
+- 20 years -> ~Rs 1 crore (invested: Rs 24 lakh)
+
+Start early and stay consistent to benefit most from compounding.`,
+        aBn: `Compounding মানে আপনার প্রাপ্ত রিটার্ন সময়ের সঙ্গে আরও রিটার্ন তৈরি করে। সময় বাড়লে বৃদ্ধি দ্রুত হয়।
+
+উদাহরণ (আনুমানিক): Rs 10,000/মাস SIP, 12% p.a.:
+- 5 বছর -> ~Rs 8.2 lakh (মোট বিনিয়োগ: Rs 6 lakh)
+- 10 বছর -> ~Rs 23.2 lakh (মোট বিনিয়োগ: Rs 12 lakh)
+- 20 বছর -> ~Rs 1 crore (মোট বিনিয়োগ: Rs 24 lakh)
+
+আগে শুরু করুন এবং নিয়মিত থাকুন, তাহলে compounding-এর লাভ বেশি পাবেন।`,
       },
       {
         q: 'Are mutual fund returns guaranteed?',
-        a: `No. Mutual fund returns are never guaranteed because they are market-linked. This applies to ALL mutual funds — including debt funds.\n\nHowever, risk varies significantly:\n• Liquid/overnight funds have very low volatility and rarely deliver negative returns.\n• Equity funds can fluctuate sharply in the short term but have historically delivered strong inflation-beating returns over 7+ years.\n\nIf you want guaranteed returns, consider fixed deposits, PPF, or government bonds — but these typically grow slower than inflation-adjusted mutual fund returns over the long term.`,
+        aEn: `No. Mutual fund returns are not guaranteed because they are market-linked. Risk varies by fund type:
+
+- Liquid/overnight funds: very low volatility; negative returns are rare.
+- Debt funds: lower volatility but not guaranteed.
+- Equity funds: can be volatile short-term; historically they have outperformed inflation over long horizons (7+ years), but past performance is no guarantee.
+
+If you need guaranteed returns, consider products like fixed deposits, PPF, or government bonds, which usually have lower long-term growth.`,
+        aBn: `না। mutual fund-এর রিটার্ন guaranteed নয়; কারণ এগুলো market-linked। ঝুঁকি fund-নির্ভর:
+
+- Liquid/overnight: volatility খুব কম, negative return বিরল।
+- Debt: তুলনামূলকভাবে কম ঝুঁকি, তবে guaranteed নয়।
+- Equity: স্বল্পমেয়াদে ভোলাটাইল, দীর্ঘমেয়াদে (7+ বছর) históricoভাবে মুদ্রাস্ফীতিকে অতিক্রম করেছে, কিন্তু অতীত ফলাফল ভবিষ্যৎ নিশ্চিত করে না।
+
+Guaranteed রিটার্ন চাইলে fixed deposits, PPF বা government bonds বিবেচনা করুন; দীর্ঘমেয়াদে growth সাধারণত mutual fund-এর তুলনায় কম হতে পারে।`,
       },
     ],
   },
@@ -125,15 +242,60 @@ const categories: FaqCategory[] = [
     items: [
       {
         q: 'How are mutual fund returns taxed in India?',
-        a: `Taxation depends on the fund type and holding period (as per the latest rules):\n\nEquity Funds (≥65% equity allocation):\n• STCG (held < 1 year): 20% on gains\n• LTCG (held ≥ 1 year): 12.5% on gains exceeding ₹1.25 lakh/year\n\nDebt Funds:\n• All gains (regardless of holding period) are taxed at your income tax slab rate.\n\nHybrid Funds:\n• Taxed as equity if equity allocation ≥ 65%, otherwise as debt.\n\nNote: Tax laws change periodically. Always verify the latest rules or consult your advisor before making tax-related decisions.`,
+        aEn: `Tax depends on fund type and holding period. Rules change, so confirm current law. Common points:
+
+Equity Funds (>=65% equity):
+- Short-term (STCG, held < 1 year): taxed at rates that may include 15% for certain listed equity gains (check current law).
+- Long-term (LTCG, held >= 1 year): often taxed (e.g., 10% on gains above Rs 1,00,000), subject to current rules.
+
+Debt Funds:
+- Taxed at your income tax slab rate; indexation benefits may apply for long-term holdings.
+
+Hybrid Funds: Tax treatment depends on the equity proportion (treated as equity if >=65%).
+
+Consult a tax advisor or check the latest rules before making tax-sensitive decisions.`,
+        aBn: `ট্যাক্স fund-এর ধরন ও হোল্ডিং পিরিয়ড অনুসারে পরিবর্তিত হয়; নিয়ম সময়ে সময়ে বদলে যেতে পারে। সাধারণ নির্দেশিকা:
+
+Equity Funds (>=65% equity):
+- Short-term (STCG, <1 year): নির্দিষ্ট অবস্থায় 15% বা প্রযোজ্য আইন অনুযায়ী।
+- Long-term (LTCG, >=1 year): Rs 1,00,000 ছাড়ের ওপর গেইনে প্রযোজ্য হারে ট্যাক্স ধার্য হতে পারে (সর্বশেষ নিয়ম দেখুন)।
+
+Debt Funds:
+- আপনার income tax slab অনুযায়ী ট্যাক্স; দীর্ঘমেয়াদে indexation সুবিধা থাকতে পারে।
+
+Hybrid: equity অনুপাত >=65% হলে equity হিসেবে ট্যাক্স ধরা হয়।
+
+ট্যাক্স সংক্রান্ত সিদ্ধান্তের আগে সর্বশেষ আইন দেখুন বা ট্যাক্স পরামর্শকের সঙ্গে পরামর্শ করুন।`,
       },
       {
         q: 'What is ELSS and how does it save tax?',
-        a: `ELSS (Equity Linked Savings Scheme) is a type of equity mutual fund that qualifies for tax deduction under Section 80C of the Income Tax Act.\n\n• You can claim a deduction of up to ₹1.5 lakh per financial year on ELSS investments.\n• ELSS has the shortest lock-in period among 80C instruments — just 3 years.\n• After the lock-in, your units remain invested and continue to grow unless you redeem them.\n\nELSS offers the dual benefit of tax saving and wealth creation through equity exposure. It's often considered the most efficient 80C option for long-term investors.`,
+        aEn: `ELSS (Equity Linked Savings Scheme) is an equity mutual fund eligible for deduction under Section 80C.
+
+- Investments in ELSS qualify for Section 80C deductions (subject to the prevailing limit).
+- ELSS usually has a 3-year lock-in, typically the shortest among 80C options.
+
+ELSS offers tax saving plus equity exposure; returns remain market-linked.`,
+        aBn: `ELSS (Equity Linked Savings Scheme) একটি equity mutual fund যা Section 80C-এর আওতায় ট্যাক্স সুবিধা দেয়।
+
+- ELSS-এ বিনিয়োগ করলে Section 80C-এর সীমা পর্যন্ত ট্যাক্স ছাড় নেওয়া যায়।
+- সাধারণত ELSS-এ 3 বছর lock-in থাকে, যা 80C অপশনের মধ্যে ছোট।
+
+ELSS ট্যাক্স-সেভিং দেয়, কিন্তু রিটার্ন বাজার-নির্ভরই থাকে।`,
       },
       {
         q: 'Do I pay tax if I switch between mutual fund schemes?',
-        a: `Yes. Switching from one scheme to another is treated as a redemption from the first scheme and a fresh purchase in the second. This means:\n\n• Any capital gains on the redeemed units are taxable.\n• The holding period resets for the new scheme.\n\nSo switching is not "free" — plan your switches carefully, especially if you have significant unrealized gains. Within the same fund house, switching between growth and IDCW (dividend) options of the same scheme is also a taxable event.`,
+        aEn: `Yes. Switching is usually treated as a redemption from the first scheme and a purchase in the second.
+
+- Any capital gains from the redeemed units are taxable.
+- The holding period for tax purposes restarts in the new scheme.
+
+Consider tax consequences before switching, especially with large unrealized gains.`,
+        aBn: `হ্যাঁ। সাধারণত switch-কে প্রথম scheme-এর redemption এবং পরের scheme-এ নতুন ক্রয় হিসেবে ধরা হয়।
+
+- redeemed units-এ যে capital gain হয় তা ট্যাক্সযোগ্য।
+- নতুন scheme-এ holding period ট্যাক্স উদ্দেশ্যে পুনরায় শুরু হয়।
+
+বড় unrealized gain থাকলে switch করার আগে ট্যাক্স প্রভাব বিবেচনা করুন।`,
       },
     ],
   },
@@ -147,11 +309,35 @@ const categories: FaqCategory[] = [
     items: [
       {
         q: 'What fees do I pay when investing in mutual funds?',
-        a: `The primary costs are:\n\n• Expense Ratio (TER) – An annual fee charged by the fund for management, operations, and distribution. It is deducted daily from the NAV (you don't pay it separately). Ranges from 0.05% for index funds to 2.25% for actively managed equity funds.\n\n• Exit Load – A fee charged if you redeem units before a specified period (usually 1% if redeemed within 1 year for equity funds). Not all funds have exit loads.\n\n• Stamp Duty – 0.005% on all mutual fund purchases (very small).\n\nThere are NO entry loads in India (abolished by SEBI in 2009). Direct plans have lower expense ratios than regular plans.`,
+        aEn: `Main costs:
+
+- Expense Ratio (TER): An annual fee taken from the fund's assets to cover management and operations. Lower for index funds, higher for active funds.
+- Exit Load: Fee for redeeming within a specified period (not all funds have it).
+- Small transaction charges or stamp duty may apply.
+
+There are no entry loads in India. Direct plans usually have lower expense ratios than regular plans.`,
+        aBn: `প্রধান খরচ:
+
+- Expense Ratio (TER): বার্ষিক ফি যা ফান্ডের সম্পদ থেকে কেটে নেওয়া হয়; index fund-এ সাধারণত কম, active fund-এ বেশি।
+- Exit Load: নির্দিষ্ট সময়ের মধ্যে redeem করলে ধার্য ফি (সব ফান্ডে থাকে না)।
+- ছোট ট্রানজ্যাকশন চার্জ বা stamp duty প্রযোজ্য হতে পারে।
+
+ভারতে entry load নেই। Direct plan-এ সাধারণত expense ratio কম থাকে।`,
       },
       {
         q: 'What is the difference between Direct and Regular plans?',
-        a: `Every mutual fund scheme offers two variants:\n\n• Regular Plan – Purchased through a distributor/broker who earns a commission from the AMC. This commission is embedded in the expense ratio, making it higher.\n\n• Direct Plan – Purchased directly from the AMC (no intermediary). Lower expense ratio since there's no distribution commission.\n\nThe difference in expense ratio is typically 0.5–1% per year. Over 20 years, this seemingly small difference can result in 15–25% more wealth in the direct plan due to compounding.\n\nDirect plans are ideal if you can research and select funds yourself. Regular plans make sense if you value personalized advisory and guidance.`,
+        aEn: `Two purchase options:
+
+- Regular Plan: Bought via a distributor or broker; may include distributor commission in the expense ratio.
+- Direct Plan: Bought directly from the AMC; usually lower expense ratio because no distributor commission.
+
+Over long periods, small differences in expense ratio can materially affect returns due to compounding. Use Direct if you do your own research; use Regular if you need advice.`,
+        aBn: `কেনার দুটি উপায়:
+
+- Regular Plan: distributor/agent-এর মাধ্যমে; expense ratio-এ commission থাকতে পারে।
+- Direct Plan: AMC থেকে সরাসরি; distributor commission না থাকায় expense ratio সাধারণত কম।
+
+দীর্ঘমেয়াদে ছোট খরচের পার্থক্যও compounding-এর মাধ্যমে বড় প্রভাব ফেলতে পারে। নিজে গবেষণা করলে Direct সুবিধাজনক, পরামর্শ পেতে Regular ব্যবহার করতে পারেন।`,
       },
     ],
   },
@@ -165,11 +351,51 @@ const categories: FaqCategory[] = [
     items: [
       {
         q: 'How quickly can I withdraw my money from a mutual fund?',
-        a: `Most open-ended mutual funds offer high liquidity:\n\n• Liquid Funds – Redemption proceeds credited within T+1 day (next business day). Some offer instant redemption up to ₹50,000.\n• Equity Funds – Typically T+2 to T+3 business days.\n• Debt Funds – Typically T+1 to T+2 business days.\n\nYou can redeem partially or fully at any time (subject to exit load, if applicable).\n\nExceptions with lock-in:\n• ELSS – 3-year lock-in per SIP installment.\n• Close-ended funds – Cannot redeem until maturity.\n• Solution-oriented funds – 5-year lock-in.`,
+        aEn: `Most open-ended mutual funds are liquid:
+
+      - Liquid Funds: Redemption proceeds are usually credited by T+1 (next business day). Some funds offer instant redemption up to specified limits (e.g., Rs 50,000).
+      - Equity Funds: Typically credited in 2–3 business days, depending on the AMC and scheme.
+      - Debt Funds: Typically credited in 1–2 business days.
+
+      You can redeem partially or fully anytime, but exit loads or scheme rules may apply.
+
+      Exceptions with lock-in:
+      - ELSS: usually a 3-year lock-in per investment.
+      - Close-ended funds: cannot be redeemed until maturity.
+      - Some solution-oriented funds may have longer lock-ins (e.g., 5 years).`,
+        aBn: `অনেক open-ended mutual fund লিকুইড, অর্থাৎ সহজে বিক্রি করা যায়:
+
+- Liquid Funds: সাধারণত T+1 এ টাকা ব্যাংকে আসে; কিছু ফান্ড নির্দিষ্ট সীমা পর্যন্ত instant redemption দেয় (উদাহরণ: Rs 50,000)।
+- Equity Funds: সাধারণত T+2 থেকে T+3 সময় লাগে।
+- Debt Funds: সাধারণত T+1 থেকে T+2 সময় লাগে।
+
+আংশিক বা পুরোপুরি যখন ইচ্ছা redeem করা যায়, তবে exit load বা scheme নিয়ম প্রযোজ্য হতে পারে।
+
+Lock-in উদাহরণ:
+- ELSS: সাধারণত 3 বছর lock-in।
+- Close-ended: maturity পর্যন্ত redeem করা যায় না।
+- কিছু solution-oriented fund-এ দীর্ঘ lock-in থাকতে পারে (যেমন 5 বছর)।`,
       },
       {
         q: 'What is an exit load and when does it apply?',
-        a: `An exit load is a fee charged when you redeem units before a specified holding period. It discourages short-term trading and protects long-term investors.\n\nCommon examples:\n• Most equity funds: 1% if redeemed within 1 year, nil after that.\n• Liquid funds: Graded exit load for first 7 days, nil after 7 days.\n• Index funds: Often zero or very low exit load.\n• ELSS: No exit load (but has a 3-year lock-in).\n\nThe exit load is deducted from the redemption proceeds. Always check the scheme's exit load structure in the Scheme Information Document (SID) before investing.`,
+        aEn: `An exit load is a fee charged by a fund if you redeem units before a specified holding period. It helps discourage short-term trading.
+
+      Examples (varies by scheme):
+      - Many equity funds: an exit load may apply if redeemed within 1 year (commonly around 1%).
+      - Liquid funds: may have a small graded exit load for the first few days.
+      - Index funds: often have no or very low exit loads.
+      - ELSS: typically no exit load, but has a mandatory lock-in period.
+
+      Exit loads are deducted from redemption proceeds. Check the Scheme Information Document (SID) for exact terms before investing.`,
+        aBn: `Exit load হলো একটি ফি, যা scheme-এ নির্দিষ্ট holding period-এর আগে units redeem করলে কেটে নেওয়া হয়। এটি স্বল্পকালীন ট্রেডিং কমাতে সাহায্য করে।
+
+      উদাহরণ (scheme অনুযায়ী পরিবর্তিত হতে পারে):
+      - অনেক equity fund-এ 1 বছরের মধ্যে redeem করলে exit load লাগতে পারে (সাধারণত ~1%)।
+      - Liquid fund-এ প্রথম কয়েক দিনে graded exit load থাকতে পারে।
+      - Index fund-এ সাধারণত exit load নেই বা খুব কম থাকে。
+      - ELSS-এ সাধারণত exit load থাকে না, তবে lock-in বাধ্যতামূলক।
+
+      Exit load সরাসরি redemption proceeds থেকে কাটা হয়। বিনিয়োগের আগে SID (Scheme Information Document) দেখে নিন।`,
       },
     ],
   },
@@ -183,15 +409,68 @@ const categories: FaqCategory[] = [
     items: [
       {
         q: 'What is SIP and how is it different from lump sum investing?',
-        a: `SIP (Systematic Investment Plan) means investing a fixed amount at regular intervals (monthly, weekly, or quarterly). Lump sum means investing the entire amount at once.\n\nSIP advantages:\n• Rupee Cost Averaging – You buy more units when prices are low and fewer when high, smoothing out volatility.\n• Disciplined investing – Automates the process; no need to time the market.\n• Accessible – Start with as little as ₹500/month.\n\nLump sum advantages:\n• Full capital is deployed immediately, benefiting if markets rise from day one.\n• Simpler for windfall amounts (bonus, inheritance).\n\nFor most salaried individuals, SIP is the recommended approach. Lump sum works well for experienced investors who understand market conditions.`,
+        aEn: `SIP (Systematic Investment Plan) is investing a fixed amount regularly (monthly, weekly, quarterly). Lump sum is investing the full amount at once.
+
+Why choose SIP:
+- Rupee Cost Averaging: buy more units when price is low, fewer when high.
+- Disciplined: automates investing; no market timing needed.
+- Accessible: start small (e.g., Rs 500/month).
+
+Why choose Lump Sum:
+- Deploys full capital immediately; can benefit if markets rise.
+- Useful for windfalls (bonus, inheritance).
+
+For many salaried investors, SIP is recommended; lump sum is suitable when you understand market timing.`,
+        aBn: `SIP (Systematic Investment Plan) মানে নিয়মিত নির্দিষ্ট পরিমাণ (মাসিক/সাপ্তাহিক/ত্রীমাসিক) বিনিয়োগ করা। Lump sum মানে পুরো অর্থ একবারে বিনিয়োগ।
+
+SIP-এর সুবিধা:
+- Rupee Cost Averaging: দাম কমে বেশি unit, দাম বেড়ে কম unit কেনা হয়।
+- নিয়মিত ও স্বয়ংক্রিয়; market timing-এর প্রয়োজন কম।
+- ছোট থেকে শুরু করা যায় (উদাহরণ: Rs 500/মাস)।
+
+Lump sum-এর সুবিধা:
+- পুরো পুঁজিটি একবারে কাজ করে; বাজার ওঠালেই লাভ দ্রুত।
+- windfall বিনিয়োগের জন্য উপযুক্ত।
+
+সাধারণভাবে salaried ব্যক্তিদের জন্য SIP সুপারিশকৃত; market বুঝে Lump sum ব্যবহার করা যায়।`,
       },
       {
         q: 'Can I increase, pause, or stop my SIP anytime?',
-        a: `Yes, SIPs are completely flexible:\n\n• Increase – You can start an additional SIP in the same fund or use a "step-up SIP" to automatically increase the amount annually (e.g., 10% increase every year).\n• Pause/Skip – Many AMCs allow you to pause SIP installments for a few months without cancellation.\n• Stop – You can cancel a SIP at any time. Your existing units remain invested until you choose to redeem them.\n\nStopping a SIP does NOT redeem your invested money — it simply stops future installments. Your accumulated units continue to grow (or decline) with the market.`,
+        aEn: `Yes. SIPs are flexible:
+
+- Increase: start an additional SIP or use a step-up SIP to raise amounts over time.
+- Pause/Skip: some AMCs allow pausing or skipping installments temporarily.
+- Stop: cancel a SIP anytime; cancelling stops future payments but does not redeem existing units.
+
+Canceling does not automatically redeem your invested units; they remain invested and will move with the market.`,
+        aBn: `হ্যাঁ। SIP নমনীয়:
+
+- বাড়ানো: অতিরিক্ত SIP শুরু করা যায় বা step-up SIP দিয়ে পরিমাণ বাড়ানো যায়।
+- বিরতি/skip: কিছু AMC সাময়িকভাবে কিস্তি pause/skip করার অপশন দেয়।
+- বন্ধ: SIP যেকোনো সময় cancel করা যায়; এতে ভবিষ্যতের কিস্তি বন্ধ হয়, কিন্তু পুরোনো units রিডিম হয় না।
+
+Cancel করলে আপনার বিদ্যমান ইউনিটগুলো একইভাবে বাজার অনুয়ায়ী থাকবে।`,
       },
       {
         q: 'How much should I invest via SIP per month?',
-        a: `A common guideline is to invest at least 20–30% of your take-home salary toward long-term goals. But the right SIP amount depends on:\n\n1. Your financial goals (retirement, house, children's education)\n2. Time horizon for each goal\n3. Expected rate of return\n4. Current savings and expenses\n\nQuick rule of thumb: To accumulate ₹1 crore in 15 years at ~12% return, you need a SIP of approximately ₹20,000/month.\n\nStart with whatever you can afford — even ₹500/month — and increase it over time as your income grows. The most important factor is consistency, not the amount.`,
+        aEn: `There is no single answer. Practical steps:
+
+      1. Define your goal and time horizon (retirement, home, child education).
+      2. Estimate the total amount needed and an expected return.
+      3. Calculate a monthly SIP that helps reach the goal.
+
+      Rule of thumb: To reach ~Rs 1 crore in 15 years at ~12% p.a., a SIP of about Rs 20,000/month is a rough estimate.
+
+      Start with what you can afford (even Rs 500/month) and increase over time. Consistency is more important than the initial amount.`,
+        aBn: `একটি নির্দিষ্ট সংখ্যা নেই। ব্যবহারিক ধাপ:
+
+1. লক্ষ্য ও সময়কাল নির্ধারণ করুন (retirement, বাড়ি, শিশু শিক্ষা)।
+2. প্রয়োজনীয় মোট অর্থ এবং প্রত্যাশিত রিটার্ন অনুমান করুন।
+3. লক্ষ্য অনুযায়ী মাসিক SIP হিসাব করুন।
+
+নিয়মিত নির্দেশিকা: 15 বছরে ~12% ধরলে Rs 1 crore লক্ষ্য হলে প্রায় Rs 20,000/মাস একটি আনুমানিক রেফারেন্স।
+
+আপনার সামর্থ্য অনুযায়ী শুরু করুন (এমনকি Rs 500/মাস) এবং পরে বাড়ান; ধারাবাহিকতা সবচেয়ে গুরুত্বপূর্ণ।`,
       },
     ],
   },
@@ -204,19 +483,26 @@ const categories: FaqCategory[] = [
 export default function InvestFaq() {
   const [activeCategory, setActiveCategory] = useState(categories[0].id);
   const [searchQuery, setSearchQuery] = useState('');
+  const [language, setLanguage] = useState<Language>('en');
 
-  /* Filtered items for search */
+  const getAnswer = (item: FaqItem) => (language === 'bn' ? item.aBn : item.aEn);
+
+  /* Search supports both English and Bengali body content */
   const filteredItems = useMemo(() => {
-    if (!searchQuery.trim()) return null; // null means "show category view"
+    if (!searchQuery.trim()) return null;
+
     const q = searchQuery.toLowerCase();
     const results: { cat: FaqCategory; item: FaqItem }[] = [];
+
     categories.forEach((cat) => {
       cat.items.forEach((item) => {
-        if (item.q.toLowerCase().includes(q) || item.a.toLowerCase().includes(q)) {
+        const searchable = `${item.q} ${item.aEn} ${item.aBn}`.toLowerCase();
+        if (searchable.includes(q)) {
           results.push({ cat, item });
         }
       });
     });
+
     return results;
   }, [searchQuery]);
 
@@ -224,35 +510,68 @@ export default function InvestFaq() {
 
   return (
     <AnimatedSection animation="elegant-fade" delay={200} duration={500}>
-      <div className="sm:max-w-5xl sm:mx-auto">
+      <div className="w-full max-w-5xl mx-auto px-1 sm:px-0">
         {/* Section heading */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-6 sm:mb-8 px-2 sm:px-0">
           <div className="inline-flex items-center gap-2 bg-blue-50/70 border border-blue-200/50 text-blue-700 text-xs sm:text-sm font-semibold px-4 py-1.5 rounded-full mb-4 tracking-wide">
             <HelpCircle className="w-3.5 h-3.5" />
             Frequently Asked Questions
           </div>
+
           <h2 className="text-2xl sm:text-4xl font-bold font-serif text-slate-900 mb-3 tracking-tight">
             Everything You Need to Know
           </h2>
-          <p className="text-sm sm:text-base text-gray-500 max-w-2xl mx-auto leading-relaxed">
+
+          <p className="text-sm sm:text-base text-gray-500 max-w-2xl mx-auto leading-relaxed px-2 sm:px-0">
             Clear, jargon-free answers to the most common questions about mutual fund investing in India.
           </p>
+
+          <div className="flex items-center justify-center gap-2 mt-4">
+            <span className="text-xs sm:text-sm text-gray-500">Language</span>
+            <div className="inline-flex rounded-lg border border-gray-200 bg-white shadow-sm overflow-hidden">
+              <button
+                type="button"
+                onClick={() => setLanguage('en')}
+                className={`px-3 py-1.5 text-xs sm:text-sm font-semibold transition-colors ${
+                  language === 'en'
+                    ? 'bg-blue-600 text-white'
+                    : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50'
+                }`}
+                aria-pressed={language === 'en'}
+              >
+                EN
+              </button>
+              <button
+                type="button"
+                onClick={() => setLanguage('bn')}
+                className={`px-3 py-1.5 text-xs sm:text-sm font-semibold transition-colors ${
+                  language === 'bn'
+                    ? 'bg-blue-600 text-white'
+                    : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50'
+                }`}
+                aria-pressed={language === 'bn'}
+              >
+                BN
+              </button>
+            </div>
+          </div>
+
         </div>
 
         {/* Search bar */}
-        <div className="relative max-w-lg mx-auto mb-8">
+        <div className="relative max-w-xl mx-auto mb-6 sm:mb-8 px-1 sm:px-0">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
           <input
             type="text"
-            placeholder="Search questions… e.g. &quot;tax&quot;, &quot;SIP&quot;, &quot;risk&quot;"
+            placeholder='Search questions... e.g. "tax", "SIP", "risk"'
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-11 pr-4 py-3 rounded-xl bg-white/90 border border-gray-200/80 text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400/40 focus:border-blue-300 transition-all shadow-sm"
+            className="w-full pl-11 pr-14 sm:pr-16 py-3.5 rounded-xl bg-white/90 border border-gray-200/80 text-sm sm:text-base text-gray-800 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400/40 focus:border-blue-300 transition-all shadow-sm"
           />
           {searchQuery && (
             <button
               onClick={() => setSearchQuery('')}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 text-xs font-medium"
+              className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 text-xs font-semibold h-8 px-2 rounded-md hover:bg-gray-100"
             >
               Clear
             </button>
@@ -263,37 +582,39 @@ export default function InvestFaq() {
         <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-lg border border-white/50 overflow-hidden">
           {/* Category pills (hidden during search) */}
           {!filteredItems && (
-            <div className="px-4 sm:px-6 pt-5 pb-3 border-b border-gray-100/80">
-              <div className="flex flex-wrap gap-2 justify-center">
-                {categories.map((cat) => {
-                  const Icon = cat.icon;
-                  const isActive = cat.id === activeCategory;
-                  return (
-                    <button
-                      key={cat.id}
-                      onClick={() => setActiveCategory(cat.id)}
-                      className={`
-                        inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200
-                        ${
-                          isActive
-                            ? `${cat.bgSoft} ${cat.color} ${cat.borderSoft} border shadow-sm`
-                            : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50 border border-transparent'
-                        }
-                      `}
-                    >
-                      <Icon className="w-3.5 h-3.5" />
-                      {cat.label}
-                    </button>
-                  );
-                })}
+            <div className="px-3 sm:px-6 pt-4 sm:pt-5 pb-3 border-b border-gray-100/80">
+              <div className="-mx-1 px-1 overflow-x-auto sm:overflow-visible">
+                <div className="flex sm:flex-wrap gap-2 justify-start sm:justify-center min-w-max sm:min-w-0 pb-1">
+                  {categories.map((cat) => {
+                    const Icon = cat.icon;
+                    const isActive = cat.id === activeCategory;
+
+                    return (
+                      <button
+                        key={cat.id}
+                        onClick={() => setActiveCategory(cat.id)}
+                        className={`
+                          inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 whitespace-nowrap
+                          ${
+                            isActive
+                              ? `${cat.bgSoft} ${cat.color} ${cat.borderSoft} border shadow-sm`
+                              : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50 border border-transparent'
+                          }
+                        `}
+                      >
+                        <Icon className="w-3.5 h-3.5" />
+                        {cat.label}
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           )}
 
           {/* FAQ accordion */}
-          <div className="px-4 sm:px-6 py-4">
+          <div className="px-3 sm:px-6 py-4 sm:py-5">
             {filteredItems !== null ? (
-              /* Search results mode */
               filteredItems.length === 0 ? (
                 <div className="text-center py-12 text-gray-400">
                   <Search className="w-10 h-10 mx-auto mb-3 opacity-40" />
@@ -305,21 +626,23 @@ export default function InvestFaq() {
                   <p className="text-xs text-gray-400 mb-4 font-medium">
                     {filteredItems.length} result{filteredItems.length > 1 ? 's' : ''} found
                   </p>
+
                   <Accordion type="single" collapsible className="space-y-2">
                     {filteredItems.map(({ cat, item }, idx) => {
                       const CatIcon = cat.icon;
+
                       return (
                         <AccordionItem
-                          key={idx}
+                          key={`${cat.id}-${idx}`}
                           value={`search-${idx}`}
-                          className="border border-gray-100/80 rounded-xl px-4 overflow-hidden data-[state=open]:border-gray-200 data-[state=open]:shadow-sm transition-all"
+                          className="border border-gray-100/80 rounded-xl px-3 sm:px-4 overflow-hidden data-[state=open]:border-gray-200 data-[state=open]:shadow-sm transition-all"
                         >
-                          <AccordionTrigger className="text-left text-sm sm:text-base font-semibold text-slate-800 hover:no-underline gap-3 py-4">
-                            <span className="flex items-start gap-3">
+                          <AccordionTrigger className="text-left text-sm sm:text-base font-semibold text-slate-800 hover:no-underline gap-3 py-3.5 sm:py-4 items-start">
+                            <span className="flex items-start gap-2.5 sm:gap-3">
                               <span className={`mt-0.5 flex-shrink-0 ${cat.color}`}>
                                 <CatIcon className="w-4 h-4" />
                               </span>
-                              <span>
+                              <span className="leading-snug">
                                 {item.q}
                                 <span className={`ml-2 text-[10px] font-medium ${cat.color} opacity-70`}>
                                   {cat.label}
@@ -327,8 +650,8 @@ export default function InvestFaq() {
                               </span>
                             </span>
                           </AccordionTrigger>
-                          <AccordionContent className="text-sm text-gray-600 leading-relaxed whitespace-pre-line">
-                            {item.a}
+                          <AccordionContent className="text-sm sm:text-[15px] text-gray-600 leading-7 whitespace-pre-line">
+                            {getAnswer(item)}
                           </AccordionContent>
                         </AccordionItem>
                       );
@@ -337,17 +660,16 @@ export default function InvestFaq() {
                 </div>
               )
             ) : (
-              /* Category mode */
               <div>
                 {/* Active category header */}
                 <div className="flex items-center gap-2 mb-4">
                   <div className={`p-1.5 rounded-lg ${activeCat.bgSoft} ${activeCat.borderSoft} border`}>
                     <activeCat.icon className={`w-4 h-4 ${activeCat.color}`} />
                   </div>
-                  <h3 className="text-base sm:text-lg font-bold text-slate-800">
-                    {activeCat.label}
-                  </h3>
-                  <span className="text-xs text-gray-400 ml-auto">
+
+                  <h3 className="text-base sm:text-lg font-bold text-slate-800">{activeCat.label}</h3>
+
+                  <span className="text-xs text-gray-400 ml-auto whitespace-nowrap">
                     {activeCat.items.length} question{activeCat.items.length > 1 ? 's' : ''}
                   </span>
                 </div>
@@ -357,16 +679,16 @@ export default function InvestFaq() {
                     <AccordionItem
                       key={idx}
                       value={`${activeCat.id}-${idx}`}
-                      className="border border-gray-100/80 rounded-xl px-4 overflow-hidden data-[state=open]:border-gray-200 data-[state=open]:shadow-sm transition-all"
+                      className="border border-gray-100/80 rounded-xl px-3 sm:px-4 overflow-hidden data-[state=open]:border-gray-200 data-[state=open]:shadow-sm transition-all"
                     >
-                      <AccordionTrigger className="text-left text-sm sm:text-base font-semibold text-slate-800 hover:no-underline gap-3 py-4">
-                        <span className="flex items-center gap-3">
-                          <ChevronRight className={`w-3.5 h-3.5 flex-shrink-0 ${activeCat.color} opacity-50`} />
-                          <span>{item.q}</span>
+                      <AccordionTrigger className="text-left text-sm sm:text-base font-semibold text-slate-800 hover:no-underline gap-2.5 sm:gap-3 py-3.5 sm:py-4 items-start">
+                        <span className="flex items-start gap-2.5 sm:gap-3">
+                          <ChevronRight className={`w-3.5 h-3.5 mt-0.5 flex-shrink-0 ${activeCat.color} opacity-50`} />
+                          <span className="leading-snug">{item.q}</span>
                         </span>
                       </AccordionTrigger>
-                      <AccordionContent className="text-sm text-gray-600 leading-relaxed whitespace-pre-line pl-6.5">
-                        {item.a}
+                      <AccordionContent className="text-sm sm:text-[15px] text-gray-600 leading-7 whitespace-pre-line pl-6 sm:pl-7">
+                        {getAnswer(item)}
                       </AccordionContent>
                     </AccordionItem>
                   ))}
@@ -376,11 +698,10 @@ export default function InvestFaq() {
           </div>
 
           {/* Footer note */}
-          <div className="px-4 sm:px-6 py-4 bg-gray-50/50 border-t border-gray-100/60">
+          <div className="px-3 sm:px-6 py-4 bg-gray-50/50 border-t border-gray-100/60">
             <p className="text-center text-xs text-gray-400 leading-relaxed">
               Mutual fund investments are subject to market risks. Read all scheme-related documents carefully before investing.
-              <br className="hidden sm:block" />
-              {' '}The information above is for educational purposes and may not reflect the latest regulatory changes.
+              <br className="hidden sm:block" /> The information above is for educational purposes and may not reflect the latest regulatory changes.
             </p>
           </div>
         </div>
