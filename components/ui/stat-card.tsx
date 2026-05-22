@@ -11,6 +11,7 @@ interface StatCardProps {
   className?: string;
 }
 
+
 export const StatCard = ({
   title,
   value,
@@ -23,20 +24,31 @@ export const StatCard = ({
   return (
     <div
       className={cn(
-        "bg-white/80 p-3.5 sm:p-5 rounded-2xl shadow-strong border border-gray-100 flex flex-col justify-between h-full transition-all duration-300 hover:shadow-medium touch-manipulation backdrop-blur-sm",
+        "bg-white/90 p-3 sm:p-3.5 rounded-xl border border-white/50 flex flex-col justify-between h-full transition-all duration-300 shadow-medium hover:shadow-strong hover:-translate-y-0.5 card-shine touch-manipulation backdrop-blur-md",
         className
       )}
     >
       <div className="flex flex-col items-center text-center flex-grow">
+        {/* Glowing border around icon container - scaled down */}
         <div
-          className={`w-11 h-11 sm:w-12 sm:h-12 rounded-2xl ${iconBgColor} flex items-center justify-center mb-2 flex-shrink-0 shadow-medium ring-1 ring-inset ring-white/50`}
+          className={`w-8 h-8 rounded-lg ${iconBgColor} flex items-center justify-center mb-1.5 flex-shrink-0 shadow-sm ring-2 ring-white/80 transition-all duration-300 group-hover:scale-105`}
         >
-          <Icon className={`w-5 h-5 sm:w-6 sm:h-6 ${iconTextColor}`} />
+          <Icon className={`w-4 h-4 ${iconTextColor}`} />
         </div>
-        <div className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 leading-tight tracking-tight">{value}</div>
-        <h3 className="text-sm sm:text-base md:text-lg font-semibold text-gray-800 mb-1.5 leading-tight">{title}</h3>
+        
+        {/* Numerical stat - scaled down */}
+        <div className="text-lg sm:text-xl lg:text-2xl font-extrabold text-slate-900 mb-0.5 leading-tight tracking-tight bg-gradient-to-br from-slate-900 to-slate-700 bg-clip-text text-transparent">
+          {value}
+        </div>
+        
+        {/* Stat title - scaled down */}
+        <h3 className="text-[11px] sm:text-xs font-bold text-slate-800 leading-snug">{title}</h3>
       </div>
-      <p className="text-xs sm:text-sm md:text-base text-gray-500 text-pretty leading-relaxed text-center mt-1 pt-2 border-t border-gray-100/30">{description}</p>
+      
+      {/* Supporting description - hidden on mobile for better breathing room */}
+      <p className="hidden sm:block text-[10px] sm:text-[11px] text-gray-500 leading-normal text-center mt-2 pt-2 border-t border-slate-100/50">
+        {description}
+      </p>
     </div>
   );
 };

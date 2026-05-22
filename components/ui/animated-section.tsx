@@ -9,9 +9,10 @@ interface AnimatedSectionProps {
   animation?: "fade-up" | "fade-in" | "slide-left" | "slide-right" | "scale-in" | "elegant-fade";
   delay?: number;
   duration?: number;
+  id?: string;
 }
 
-export function AnimatedSection({ children, className = "", animation = "fade-up", delay = 0, duration = 600 }: AnimatedSectionProps) {
+export function AnimatedSection({ children, className = "", animation = "fade-up", delay = 0, duration = 600, id }: AnimatedSectionProps) {
   const [ref, isVisible] = useIntersectionObserver();
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
@@ -61,7 +62,7 @@ export function AnimatedSection({ children, className = "", animation = "fade-up
   const style = prefersReducedMotion ? {} : { transitionDelay: `${delay}ms` };
 
   return (
-    <div ref={ref} className={`${getAnimationClasses()} ${className}`} style={style}>
+    <div ref={ref} id={id} className={`${getAnimationClasses()} ${className}`} style={style}>
       {children}
     </div>
   );

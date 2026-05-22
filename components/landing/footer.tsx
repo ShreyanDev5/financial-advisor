@@ -48,7 +48,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-lg border-t border-gray-200/60 z-50">
+    <div className="fixed bottom-0 left-0 right-0 bg-white/85 backdrop-blur-xl border-t border-slate-100 shadow-[0_-8px_30px_rgba(0,0,0,0.015)] z-50">
       <div className="flex justify-around items-center py-1 px-1" role="tablist" aria-label="Primary navigation">
         {tabs.map((tab) => {
           const Icon = tab.icon;

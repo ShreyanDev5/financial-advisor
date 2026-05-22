@@ -11,6 +11,8 @@ const buttonVariants = cva(
       variant: {
         default: "bg-primary text-primary-foreground hover:bg-primary/90",
         "gradient-emerald": "bg-gradient-to-r from-emerald-500 to-emerald-600 text-white shadow-lg hover:from-emerald-600 hover:to-emerald-700 transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-0.5",
+        dark: "bg-slate-900 text-white hover:bg-slate-800 border border-slate-900 hover:border-slate-800 shadow-sm transition-all duration-200",
+        "emerald-dark": "bg-emerald-700 text-white hover:bg-emerald-800 border border-emerald-700 hover:border-emerald-800 shadow-sm transition-all duration-200",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:

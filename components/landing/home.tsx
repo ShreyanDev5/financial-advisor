@@ -9,142 +9,229 @@ import {
   ClipboardList,
   FileText,
   ShieldCheck,
+  ArrowRight,
+  MessageCircle,
 } from "lucide-react";
 import { StatCard } from "@/components/ui/stat-card";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { TestimonialCard } from "@/components/ui/testimonial-card";
-import { PageHeader } from "@/components/ui/page-header";
 import { Button } from "@/components/ui/button";
 import Advisor from "@/components/landing/advisor";
 
 export default function HomeContent() {
+  const scrollToServices = () => {
+    const el = document.getElementById('core-services-section');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   const quickServices = [
     {
       title: "Health Insurance",
       icon: Heart,
-      color: "bg-red-500/10",
+      color: "bg-red-50",
       iconColor: "text-red-500",
-      borderColor: "border-red-500/20",
-      hoverColor: "hover:bg-red-500/20",
+      barColor: "bg-red-500",
+      hoverBorderColor: "hover:border-red-500/25",
       href: "/insurance#star-health-and-care-insurance",
     },
     {
       title: "Mutual Funds",
       icon: TrendingUp,
-      color: "bg-green-500/10",
-      iconColor: "text-green-500",
-      borderColor: "border-green-500/20",
-      hoverColor: "hover:bg-green-500/20",
+      color: "bg-emerald-50",
+      iconColor: "text-emerald-600",
+      barColor: "bg-emerald-500",
+      hoverBorderColor: "hover:border-emerald-500/25",
       href: "/invest#mutual-funds",
     },
     {
       title: "PAN Card",
       icon: FileText,
-      color: "bg-blue-500/10",
+      color: "bg-blue-50",
       iconColor: "text-blue-500",
-      borderColor: "border-blue-500/20",
-      hoverColor: "hover:bg-blue-500/20",
+      barColor: "bg-blue-500",
+      hoverBorderColor: "hover:border-blue-500/25",
       href: "/documents#pan-card-services",
     },
     {
       title: "Tax Filing",
       icon: ClipboardList,
-      color: "bg-indigo-500/10",
+      color: "bg-indigo-50",
       iconColor: "text-indigo-500",
-      borderColor: "border-indigo-500/20",
-      hoverColor: "hover:bg-indigo-500/20",
+      barColor: "bg-indigo-500",
+      hoverBorderColor: "hover:border-indigo-500/25",
       href: "/documents#income-tax-filing-services",
     },
     {
       title: "Life Insurance",
       icon: ShieldCheck,
-      color: "bg-purple-500/10",
+      color: "bg-purple-50",
       iconColor: "text-purple-500",
-      borderColor: "border-purple-500/20",
-      hoverColor: "hover:bg-purple-500/20",
+      barColor: "bg-purple-500",
+      hoverBorderColor: "hover:border-purple-500/25",
       href: "/insurance#life-insurance",
     },
   ];
 
   return (
-    <div className="pb-0 space-y-12 sm:space-y-16">
-      <PageHeader
-        title="Build Your Wealth"
-        description={
-          <>
-            Personalized guidance from <span className="underline-wavy font-medium">Monotosh Sardar</span> for lasting peace of mind.
-          </>
-        }
-        color="emerald-600 to-green-600"
-      />
-      <AnimatedSection className="mx-4 sm:mx-8 md:mx-16 mt-8 sm:mt-12 md:mt-24">
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
-          <StatCard
-            title="Happy Clients"
-            value="750+"
-            icon={Users}
-            description="Satisfied clients across the country."
-            iconBgColor="bg-blue-100"
-            iconTextColor="text-blue-600"
-            className="bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200 shadow-lg"
-          />
-          <StatCard
-            title="Services Offered"
-            value="20+"
-            icon={ClipboardList}
-            description="Wide range of financial services."
-            iconBgColor="bg-emerald-100"
-            iconTextColor="text-emerald-600"
-            className="bg-gradient-to-br from-emerald-50 to-emerald-100 border-emerald-200 shadow-lg"
-          />
-          <StatCard
-            title="Years of Experience"
-            value="19+"
-            icon={Award}
-            description="In the financial advisory field."
-            iconBgColor="bg-purple-100"
-            iconTextColor="text-purple-600"
-            className="bg-gradient-to-br from-purple-50 to-purple-100 border-purple-200 shadow-lg"
-          />
-          <StatCard
-            title="Assets Under Management"
-            value="30 Lakhs"
-            icon={TrendingUp}
-            description="As of February 2026."
-            iconBgColor="bg-orange-100"
-            iconTextColor="text-orange-600"
-            className="bg-gradient-to-br from-orange-50 to-orange-100 border-orange-200 shadow-lg"
-          />
+    <div className="pb-0 space-y-12 sm:space-y-16 relative overflow-hidden">
+      {/* Subtle Static Ambient Background Orbs for a smooth, premium, non-distracting feel */}
+      <div className="absolute top-[12%] left-[-15%] w-[450px] h-[450px] rounded-full bg-emerald-500/3 blur-[120px] pointer-events-none -z-10" />
+      <div className="absolute top-[40%] right-[-15%] w-[550px] h-[550px] rounded-full bg-teal-500/3 blur-[150px] pointer-events-none -z-10" />
+      <div className="absolute bottom-[20%] left-[-10%] w-[500px] h-[500px] rounded-full bg-emerald-400/3 blur-[130px] pointer-events-none -z-10" />
+      
+      {/* Beautiful Combined Side-by-Side Hero & Stats Grid Card */}
+      <AnimatedSection
+        animation="fade-up"
+        delay={0}
+        duration={500}
+        className="relative py-8 sm:py-16 lg:py-20 bg-white/70 backdrop-blur-2xl rounded-3xl border border-white/50 shadow-lg sm:shadow-strong mx-2.5 sm:mx-12 lg:mx-20 overflow-hidden"
+      >
+        {/* Premium Apple-like subtle dotted background overlay */}
+        <div 
+          className="absolute inset-0 bg-[radial-gradient(#80808012_1px,transparent_1px)] bg-[size:20px_20px] pointer-events-none [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,#000_70%,transparent_100%)]" 
+          aria-hidden="true"
+        />
+        
+        {/* Decorative ambient glowing gradient behind text */}
+        <div 
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-gradient-to-tr from-emerald-500/10 to-teal-500/5 rounded-full blur-3xl pointer-events-none -z-10" 
+          aria-hidden="true"
+        />
+
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-8 lg:px-10 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
+          {/* Left Column: Hero Content */}
+          <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left">
+            {/* Dynamic Gradient Title - Left aligned on desktop */}
+            <h1 className="text-3xl sm:text-5xl lg:text-[46px] lg:leading-[1.15] font-bold font-serif bg-gradient-to-r from-emerald-700 via-emerald-600 to-teal-800 bg-clip-text text-transparent mb-5 tracking-tight">
+              Personalized Financial Planning
+            </h1>
+
+            {/* Description Text - Left aligned on desktop */}
+            <p className="text-sm sm:text-base text-gray-600 max-w-xl leading-relaxed mb-8 text-pretty">
+              Clear, honest guidance from <span className="underline-wavy font-medium">Monotosh Sardar</span> to help you secure your family&apos;s future.
+            </p>
+
+            {/* Double Action Button Grid */}
+            <div className="flex flex-col sm:flex-row gap-3.5 items-center justify-center lg:justify-start w-full sm:w-auto">
+              <a
+                href="https://wa.me/919836472260?text=Hi%20Monotosh%2C%20I'm%20visiting%20your%20website%20and%20would%20like%20to%20schedule%20a%20free%20financial%20advisory%20consultation."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto inline-block"
+                aria-label="Contact us on WhatsApp"
+              >
+                <Button 
+                  variant="dark"
+                  size="lg" 
+                  className="w-full sm:w-auto h-11 px-7 rounded-xl font-semibold tracking-wide transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 flex items-center justify-center gap-2"
+                >
+                  <MessageCircle className="w-4 h-4 text-white" />
+                  Free Consultation
+                </Button>
+              </a>
+
+              <Button 
+                onClick={scrollToServices}
+                size="lg" 
+                className="w-full sm:w-auto h-11 px-7 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl font-semibold tracking-wide transition-all duration-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 flex items-center justify-center gap-2 group border border-slate-200"
+              >
+                Explore Services
+                <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
+              </Button>
+            </div>
+          </div>
+
+          {/* Right Column: Stats Card Grid - mt-11 for extra breathing room on mobile stacking */}
+          <div className="lg:col-span-5 w-full mt-11 lg:mt-0">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-5">
+              <StatCard
+                title="Clients Served"
+                value="750+"
+                icon={Users}
+                description="Individuals and families."
+                iconBgColor="bg-blue-100"
+                iconTextColor="text-blue-600"
+                className="bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200 shadow-md hover:shadow-lg"
+              />
+              <StatCard
+                title="Services & Offerings"
+                value="20+"
+                icon={ClipboardList}
+                description="Insurance, tax, and documents."
+                iconBgColor="bg-emerald-100"
+                iconTextColor="text-emerald-600"
+                className="bg-gradient-to-br from-emerald-50 to-emerald-100 border-emerald-200 shadow-md hover:shadow-lg"
+              />
+              <StatCard
+                title="Years of Experience"
+                value="19+"
+                icon={Award}
+                description="Dedicated professional advisory."
+                iconBgColor="bg-purple-100"
+                iconTextColor="text-purple-600"
+                className="bg-gradient-to-br from-purple-50 to-purple-100 border-purple-200 shadow-md hover:shadow-lg"
+              />
+              <StatCard
+                title="Mutual Fund AUM"
+                value="₹30 Lakhs"
+                icon={TrendingUp}
+                description="Assets under advisory."
+                iconBgColor="bg-orange-100"
+                iconTextColor="text-orange-600"
+                className="bg-gradient-to-br from-orange-50 to-orange-100 border-orange-200 shadow-md hover:shadow-lg"
+              />
+            </div>
+          </div>
         </div>
       </AnimatedSection>
+
       <div className="w-1/2 sm:w-1/3 md:w-1/4 mx-auto my-6 sm:my-8">
-        <div className="h-px w-full bg-gray-200 dark:bg-gray-800" />
+        <div className="h-px w-full bg-gray-200 dark:bg-gray-800 opacity-60" />
       </div>
-      <div className="py-3 sm:py-4">
+
+      <div className="py-2 sm:py-3 animate-fade-in">
         <Advisor />
       </div>
+
       <div className="w-1/2 sm:w-1/3 md:w-1/4 mx-auto my-6 sm:my-8">
-        <div className="h-px w-full bg-gray-200 dark:bg-gray-800" />
+        <div className="h-px w-full bg-gray-200 dark:bg-gray-800 opacity-60" />
       </div>
-      <AnimatedSection className="text-center py-2 sm:py-4">
-        <div className="space-y-2 mb-8">
-          <h2 className="text-3xl sm:text-4xl font-bold font-serif">Core Services</h2>
-          <p className="text-base sm:text-lg text-gray-600 max-w-4xl mx-auto px-4 sm:px-0">
-            Our Most In-Demand Services
+      
+      {/* Redesigned Core Services Section with scrolling and premium cards */}
+      <AnimatedSection id="core-services-section" className="text-center py-4 sm:py-6 scroll-mt-24">
+        <div className="space-y-2 mb-8 sm:mb-10">
+          <span className="text-xs font-bold uppercase tracking-widest text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">
+            Our Offerings
+          </span>
+          <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-bold font-serif text-slate-900 tracking-tight mt-3">
+            Advisory & Essential Services
+          </h2>
+          <p className="text-sm sm:text-base text-gray-500 max-w-xl mx-auto px-4 sm:px-0 leading-relaxed text-pretty">
+            We help you manage investments, secure insurance, and handle essential government documentation.
           </p>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 md:gap-5 lg:gap-6 max-w-6xl mx-auto px-4">
+        
+        {/* Beautiful Glassmorphism Core Service Links Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-5 max-w-6xl mx-auto px-3 sm:px-6">
           {quickServices.map((service, index) => (
-            <Link href={service.href!} key={index}>
+            <Link href={service.href!} key={index} className="h-full">
               <div
-                className={`group relative p-4 md:p-5 lg:p-6 rounded-xl md:rounded-2xl transition-all duration-300 ${service.color} ${service.hoverColor} border ${service.borderColor} flex flex-col items-center text-center shadow-sm h-full overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 hover:shadow-md backdrop-blur-sm bg-gradient-to-br from-white/40 to-white/20 transform hover:-translate-y-0.5`}
+                className={`group relative p-3.5 sm:p-6 md:p-8 rounded-2xl transition-all duration-300 border border-slate-100/80 bg-white/70 ${service.hoverBorderColor} hover:bg-white/95 shadow-sm hover:shadow-md flex flex-col items-center text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 backdrop-blur-md h-full transform-gpu`}
               >
+                {/* Premium, ultra-thin centered, rounded colored hover pill (w-12 h-[3.5px] instead of full width) */}
+                <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-12 h-[3.5px] rounded-b-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${service.barColor}`} />
+
+                {/* Floating Soft Colored Circle containing the Icon */}
                 <div
-                  className={`p-3 md:p-4 rounded-lg ${service.iconColor} bg-white/90 mb-3 md:mb-4 shadow ring-1 ring-white/60 transition-all duration-300 group-hover:scale-105`}
+                  className={`p-3.5 sm:p-4 md:p-4.5 rounded-2xl ${service.color} ${service.iconColor} mb-4 shadow-sm transition-all duration-300 group-hover:scale-[1.03] ring-4 ring-white`}
                 >
-                  <service.icon className="w-6 h-6 md:w-7 lg:w-8 md:h-7 lg:h-8" />
+                  <service.icon className="w-7 h-7 md:w-8 md:h-8" />
                 </div>
-                <h3 className="text-sm md:text-base font-semibold text-gray-800 leading-tight transition-all duration-300 group-hover:text-gray-900">
+                
+                {/* Fixed Title text: no color change on hover */}
+                <h3 className="text-sm sm:text-base font-extrabold text-slate-800 leading-tight">
                   {service.title}
                 </h3>
               </div>
@@ -152,53 +239,90 @@ export default function HomeContent() {
           ))}
         </div>
       </AnimatedSection>
-      <div className="w-1/2 sm:w-1/3 md:w-1/4 mx-auto my-8 sm:my-10">
-        <div className="h-px w-full bg-gray-200 dark:bg-gray-800" />
+
+      <div className="w-1/2 sm:w-1/3 md:w-1/4 mx-auto my-6 sm:my-8">
+        <div className="h-px w-full bg-gray-200 dark:bg-gray-800 opacity-60" />
       </div>
-      <AnimatedSection className="text-center mb-16 sm:mb-24">
-        <div className="space-y-2 mb-8">
-          <h2 className="text-3xl sm:text-4xl font-bold font-serif">Client Stories</h2>
-          <p className="text-base sm:text-lg text-gray-600">
-            Real outcomes from real plans.
+
+      {/* Redesigned Testimonials Section */}
+      <AnimatedSection className="text-center py-2">
+        <div className="space-y-2 mb-10">
+          <span className="text-xs font-bold uppercase tracking-widest text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">
+            Client Feedback
+          </span>
+          <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-bold font-serif text-slate-900 tracking-tight mt-3">
+            What Our Clients Say
+          </h2>
+          <p className="text-sm sm:text-base text-gray-500 max-w-xl mx-auto px-4 sm:px-0">
+            Sincere feedback from people we have helped over the years.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4 sm:gap-6 max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto px-4 sm:px-6">
           <TestimonialCard
             name="Apurbo Saha"
             role="CEO, GS Diesel Company"
-            testimonial="Monotosh makes financial decisions simple. His guidance has given me peace of mind and the confidence to plan ahead for my business and family."
+            testimonial="Excellent and highly professional financial services. Highly recommended for long-term wealth planning, structured investments, and tax advisory."
             avatarSrc="/Apurbo Saha.png"
           />
           <TestimonialCard
             name="Sanchita Mondal"
             role="Cashier, SBI"
-            testimonial="I always felt lost about where to start with savings, but Monotosh explained everything with such patience. I finally feel in control of my money."
+            testimonial="Provides transparent advice on mutual funds and insurance. Very satisfied with the guidance, prompt responses, and dedicated support received."
             avatarSrc="/Sanchita Mondal.png"
           />
           <TestimonialCard
             name="Dr. Debashis Sarkar"
             role="Physician"
-            testimonial="What I value most is his sincerity. Monotosh truly listens and gives advice that feels right for me and my family's future."
+            testimonial="Reliable, dedicated, and extremely helpful. Handles all tax filings, insurance planning, and asset allocation with great care and attention."
             avatarSrc="/Dr. Debashis Sarkar.png"
           />
         </div>
       </AnimatedSection>
-      <AnimatedSection className="bg-white/50 backdrop-blur-2xl p-6 sm:p-16 rounded-2xl text-center border-4 border-emerald-600 shadow-strong mx-4 sm:mx-16">
-        <div className="space-y-2 mb-8">
-          <h2 className="text-3xl sm:text-4xl font-bold font-serif leading-tight">Start Your Financial Plan</h2>
-          <p className="text-base sm:text-lg text-gray-600 max-w-4xl mx-auto mb-8 text-pretty">
-            Set goals. Get a clear path. Stay on track.
+
+      <div className="w-1/2 sm:w-1/3 md:w-1/4 mx-auto my-10 sm:my-12">
+        <div className="h-px w-full bg-gray-200 dark:bg-gray-800 opacity-60" />
+      </div>
+
+      {/* Redesigned High-Impact Dark-Emerald CTA Section */}
+      <AnimatedSection className="relative bg-gradient-to-br from-slate-900 via-emerald-950 to-emerald-900 p-6 sm:p-12 lg:p-16 rounded-2xl text-center border border-emerald-800/80 shadow-lg sm:shadow-strong mx-2.5 sm:mx-12 lg:mx-20 overflow-hidden transform-gpu">
+        {/* Subtle grid lines in the background */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:16px_24px] pointer-events-none" />
+        {/* Glowing atmospheric bubbles inside card */}
+        <div className="absolute -top-24 -left-24 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none -z-10" />
+        <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-teal-500/10 rounded-full blur-3xl pointer-events-none -z-10" />
+
+        <div className="relative z-10 max-w-2xl mx-auto flex flex-col items-center">
+          <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-emerald-400 bg-emerald-950/60 border border-emerald-800/60 px-3 py-1 rounded-full mb-5 backdrop-blur-md">
+            Get in Touch
+          </span>
+          <h2 className="text-2xl sm:text-3xl lg:text-[36px] font-bold font-serif leading-tight text-white mb-4 tracking-tight">
+            Let&apos;s Discuss Your Financial Goals
+          </h2>
+          <p className="text-xs sm:text-sm text-emerald-100/70 max-w-md mx-auto mb-8 leading-relaxed text-pretty">
+            Reach out for a simple, no-obligation conversation about your investments, insurance, or document needs.
+          </p>
+
+          <a
+            href="https://wa.me/919836472260?text=Hi%20Monotosh%2C%20I'm%20interested%20in%20your%20financial%20services"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block w-full sm:w-auto"
+            aria-label="Contact us on WhatsApp"
+          >
+            <Button 
+              variant="emerald-dark"
+              size="lg" 
+              className="w-full sm:w-auto h-11 px-8 rounded-xl font-bold hover:-translate-y-0.5" 
+            >
+              Chat on WhatsApp
+            </Button>
+          </a>
+
+          {/* Friction-reducing Trust badges / micro-copy */}
+          <p className="text-[11px] text-emerald-200/40 mt-4 font-medium tracking-wide">
+            Instant response on WhatsApp • Free introductory call • No obligation
           </p>
         </div>
-        <a
-          href="https://wa.me/919836472260?text=Hi%20Monotosh%2C%20I'm%20interested%20in%20your%20financial%20services"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block"
-          aria-label="Contact us on WhatsApp"
-        >
-          <Button size="lg" className="xl:h-12 xl:px-10 transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-0.5" variant="gradient-emerald">Contact Us</Button>
-        </a>
       </AnimatedSection>
     </div>
   );
