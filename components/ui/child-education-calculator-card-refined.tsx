@@ -184,19 +184,12 @@ export function ChildEducationCalculatorCardRefined({ calculatorType }: { calcul
     const { projectedCost, monthlyInvestment, yearsUntilEducation } = sipCalculationResults;
 
     // Generate the share text with refined formatting
-    const shareText = `🎓 Projected Cost of Education
-after ${yearsUntilEducation} years
+    const shareText = `Here is our projected Child Education Plan:
 
-${formatLargeNumber(projectedCost)}
+🎓 *Estimated Cost* (in ${yearsUntilEducation} years): ${formatLargeNumber(projectedCost)}
+💸 *Required Monthly SIP*: ${formatLargeNumber(monthlyInvestment)}
 
-💸 Monthly Investment Required
-to meet education goal
-
-${formatLargeNumber(monthlyInvestment)}
-
-You need to invest ${formatLargeNumber(monthlyInvestment)} every month for the next ${yearsUntilEducation} years to meet your child's education goal.
-
-*Calculations consider an inflation rate of ${inflationRate}% p.a. and an expected return of ${expectedReturn}% p.a.`;
+(Calculated at ${inflationRate}% inflation & ${expectedReturn}% expected return)`;
 
     // Encode the text for WhatsApp
     const encodedText = encodeURIComponent(shareText);
@@ -209,24 +202,15 @@ You need to invest ${formatLargeNumber(monthlyInvestment)} every month for the n
   const handleShareSipSwp = () => {
     if (!sipSwpCalculationResults) return;
 
-    const { yearlyAmount, careerFund, startYear, educationYears, finalYear } = sipSwpCalculationResults;
+    const { yearlyAmount, careerFund, educationYears } = sipSwpCalculationResults;
 
     // Generate the share text with refined formatting
-    let shareTextContent = `🎓 Higher Education Financial Support
-for ${childName}
+    const shareTextContent = `Here is our Higher Education Support Plan:
 
-`;
+🎓 *Yearly Support*: ${formatLargeNumber(yearlyAmount)} per year (for ${educationYears} years)
+💰 *Career Fund*: ${formatLargeNumber(careerFund)} at the end of term
 
-    for (let i = 0; i < educationYears; i++) {
-      shareTextContent += `🔹 ${startYear + i} years: 🪙 ₹${formatLargeNumber(yearlyAmount)?.replace('₹', '')}
-`;
-    }
-
-    shareTextContent += `
-💰 One-time Career Support Fund
-₹${formatLargeNumber(careerFund)?.replace('₹', '')} at ${finalYear} years
-
-*Calculations consider standard financial assumptions for education funding.`;
+(Based on a monthly investment of ${formatLargeNumber(parseFloat(monthlySavings))} for ${paymentDuration} years)`;
 
     // Encode the text for WhatsApp
     const encodedText = encodeURIComponent(shareTextContent);
@@ -530,26 +514,26 @@ for ${childName}
           {/* Payment Duration Options */}
           <div className="space-y-2">
             <Label className="text-sm font-semibold text-emerald-950">Payment Duration</Label>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="flex p-1 bg-slate-100/70 border border-slate-200/80 rounded-[14px] w-full">
               <button
                 onClick={() => setPaymentDuration("10")}
-                className={`py-3 px-4 rounded-2xl border transition-all duration-300 w-full text-sm font-bold flex items-center justify-center gap-2 ${paymentDuration === "10"
-                  ? "bg-gradient-to-r from-emerald-500 to-teal-500 text-white border-emerald-600 shadow-md shadow-emerald-500/25 scale-[1.01]"
-                  : "bg-white/80 text-emerald-800 border-slate-200/80 hover:bg-slate-50"
+                className={`flex-1 py-2 px-3 rounded-[10px] transition-all duration-300 text-sm font-semibold flex items-center justify-center gap-1.5 ${paymentDuration === "10"
+                  ? "bg-white text-emerald-700 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.08)] border border-slate-200/50"
+                  : "text-slate-500 hover:text-slate-700"
                   }`}
               >
-                <Clock className="h-4 w-4" />
-                Pay for 10 years
+                <Clock className={`h-3.5 w-3.5 ${paymentDuration === "10" ? "text-emerald-500" : "text-slate-400"}`} />
+                10 Years
               </button>
               <button
                 onClick={() => setPaymentDuration("15")}
-                className={`py-3 px-4 rounded-2xl border transition-all duration-300 w-full text-sm font-bold flex items-center justify-center gap-2 ${paymentDuration === "15"
-                  ? "bg-gradient-to-r from-emerald-500 to-teal-500 text-white border-emerald-600 shadow-md shadow-emerald-500/25 scale-[1.01]"
-                  : "bg-white/80 text-emerald-800 border-slate-200/80 hover:bg-slate-50"
+                className={`flex-1 py-2 px-3 rounded-[10px] transition-all duration-300 text-sm font-semibold flex items-center justify-center gap-1.5 ${paymentDuration === "15"
+                  ? "bg-white text-emerald-700 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.08)] border border-slate-200/50"
+                  : "text-slate-500 hover:text-slate-700"
                   }`}
               >
-                <Clock className="h-4 w-4" />
-                Pay for 15 years
+                <Clock className={`h-3.5 w-3.5 ${paymentDuration === "15" ? "text-emerald-500" : "text-slate-400"}`} />
+                15 Years
               </button>
             </div>
           </div>

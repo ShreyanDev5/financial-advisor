@@ -125,19 +125,13 @@ export default function IncomePlanningCalculatorRefined() {
 
     const { retirementCorpus, monthlySavingsRequired, yearsUntilRetirement, futureMonthlyExpenses } = calculationResults;
 
-    const shareText = `🏖️ Retirement Corpus Needed
-to maintain your lifestyle
+    const shareText = `Here is our projected Retirement Plan:
 
-${formatLargeNumber(retirementCorpus)}
+🏖️ *Target Corpus Needed*: ${formatLargeNumber(retirementCorpus)}
+💸 *Required Monthly Savings*: ${formatLargeNumber(monthlySavingsRequired)}
+⏱️ *Time to Retirement*: ${yearsUntilRetirement} years
 
-💸 Monthly Savings Required
-to build retirement corpus
-
-${formatLargeNumber(monthlySavingsRequired)}
-
-You need to invest ${formatLargeNumber(monthlySavingsRequired)} every month for the next ${yearsUntilRetirement} years to build a retirement corpus of ${formatLargeNumber(retirementCorpus)}.
-
-Based on your current monthly expenses of ${formatLargeNumber(parseFloat(monthlyExpenses))}, you'll need ${formatLargeNumber(futureMonthlyExpenses)} per month at retirement (considering an inflation rate of ${inflationRate}% p.a.). With an expected return of ${expectedReturn}% p.a., your corpus will generate ${formatLargeNumber(futureMonthlyExpenses)} per month.`;
+(Based on current expenses of ${formatLargeNumber(parseFloat(monthlyExpenses))}/mo, projecting ${formatLargeNumber(futureMonthlyExpenses)}/mo at retirement)`;
 
     const encodedText = encodeURIComponent(shareText);
     const whatsappUrl = `https://wa.me/?text=${encodedText}`;

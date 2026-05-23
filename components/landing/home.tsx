@@ -116,7 +116,7 @@ export default function HomeContent() {
             {/* Double Action Button Grid */}
             <div className="flex flex-col sm:flex-row gap-3.5 items-center justify-center lg:justify-start w-full sm:w-auto">
               <a
-                href="https://wa.me/919836472260?text=Hi%20Monotosh%2C%20I'm%20visiting%20your%20website%20and%20would%20like%20to%20schedule%20a%20free%20financial%20advisory%20consultation."
+                href="https://wa.me/919836472260?text=Hi%20Monotosh%2C%20I'd%20like%20to%20schedule%20a%20free%20consultation%20to%20discuss%20my%20financial%20goals."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto inline-block"
@@ -303,7 +303,7 @@ export default function HomeContent() {
           </p>
 
           <a
-            href="https://wa.me/919836472260?text=Hi%20Monotosh%2C%20I'm%20interested%20in%20your%20financial%20services"
+            href="https://wa.me/919836472260?text=Hi%20Monotosh%2C%20I'd%20like%20to%20learn%20more%20about%20your%20financial%20advisory%20services.%20Could%20we%20connect%3F"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block w-full sm:w-auto"

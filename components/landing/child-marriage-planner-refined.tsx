@@ -161,26 +161,13 @@ export default function ChildMarriageCalculatorRefined() {
     const { futureCostOfMarriage, sipInvestment, lumpSumInvestment, yearsUntilMarriage } = calculationResults;
 
     // Generate the share text with refined formatting
-    const shareText = `💍 Projected Cost of Marriage
-after ${yearsUntilMarriage} years
+    const shareText = `Here is our projected Child Marriage Plan:
 
-${formatLargeNumber(futureCostOfMarriage)}
+💍 *Estimated Cost* (in ${yearsUntilMarriage} years): ${formatLargeNumber(futureCostOfMarriage)}
+💸 *Required Monthly SIP*: ${formatLargeNumber(sipInvestment)}
+💰 *Or One-time Investment*: ${formatLargeNumber(lumpSumInvestment)}
 
-💸 Monthly SIP Investment Required
-to meet marriage goal
-
-${formatLargeNumber(sipInvestment)}
-
-💰 One-time Lump Sum Investment Required
-to meet marriage goal
-
-${formatLargeNumber(lumpSumInvestment)}
-
-You need to invest ${formatLargeNumber(sipInvestment)} every month for the next ${yearsUntilMarriage} years to meet your child's marriage goal.
-
-OR make a one-time investment of ${formatLargeNumber(lumpSumInvestment)} today.
-
-*Calculations consider an inflation rate of ${inflationRate}% p.a. and an expected return of ${expectedReturn}% p.a.`;
+(Calculated at ${inflationRate}% inflation & ${expectedReturn}% expected return)`;
 
     const encodedText = encodeURIComponent(shareText);
     const whatsappUrl = `https://wa.me/?text=${encodedText}`;

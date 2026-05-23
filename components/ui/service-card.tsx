@@ -105,7 +105,7 @@ export function ServiceCard({
   }, [colorScheme]);
 
   const waHref = useMemo(() => {
-    const defaultMessage = whatsAppMessage || `Hi Monotosh, I'm interested in ${title}. Please help me get started.`;
+    const defaultMessage = whatsAppMessage || `Hi Monotosh, I'm interested in your ${title} service. Could we schedule a quick chat to discuss how this works?`;
     const encoded = encodeURIComponent(defaultMessage);
     return `https://wa.me/${whatsAppNumber}?text=${encoded}`;
   }, [whatsAppMessage, whatsAppNumber, title]);
