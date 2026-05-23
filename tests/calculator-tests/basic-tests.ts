@@ -53,7 +53,7 @@ export function runBasicTests(): void {
   const marriageResult = calculateMarriagePlan(5, 25, 2000000, 7, 300000, 10);
   assert.deepEqual(marriageResult, {
     futureCostOfMarriage: 7739369,
-    sipInvestment: 7534,
+    sipInvestment: 7472,
     lumpSumInvestment: 850408,
     yearsUntilMarriage: 20,
   });
@@ -63,5 +63,15 @@ export function runBasicTests(): void {
     totalInvested: 1200000,
     wealthGained: 0,
     futureValue: 1200000,
+  });
+
+  // SWP Exhaustion/Overdraw Bug Test (0% rate, principal 10k, withdrawing 5k/mo over 3 months)
+  const exhaustedSwp = calculateSWP(10000, 5000, 0, 0.25); // 0.25 years is 3 months
+  assert.deepEqual(exhaustedSwp, {
+    totalInvested: 10000,
+    totalWithdrawn: 10000,
+    finalBalance: 0,
+    wealthGained: 0,
+    futureValue: 0,
   });
 }

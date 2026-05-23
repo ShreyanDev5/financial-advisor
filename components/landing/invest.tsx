@@ -8,7 +8,7 @@ import InvestFaq from "@/components/landing/invest-faq";
 export default function InvestContent() {
   const mutualFundServices = {
     title: "Mutual Funds",
-    description: "Expert guidance to grow your wealth with mutual funds.",
+    description: "Grow your wealth with mutual funds.",
     benefits: [
       "Expert fund management.",
       "Risk reduction through diversification.",
@@ -17,7 +17,7 @@ export default function InvestContent() {
     ],
     documents: [
       "PAN and Aadhaar for KYC.",
-      "Mother's name and Nominee's Aadhaar.",
+      "Mother's name and nominee details.",
       "Live photo and digital signature.",
       "Email, mobile number, and bank details.",
     ],
@@ -35,41 +35,60 @@ export default function InvestContent() {
   };
 
   return (
-    <div className="container mx-auto space-y-6 px-4 sm:px-6 lg:px-8">
-      <SimplePageHeader title="Investments" description="Grow your wealth, intelligently." className="mb-0 [&>h1]:text-4xl sm:[&>h1]:text-6xl" color="from-orange-500 to-orange-700" />
+    <div className="pb-16 sm:pb-24 pt-8 relative overflow-hidden w-full">
+      {/* Subtle Static Ambient Background Orbs */}
+      <div className="absolute top-[10%] left-[-10%] w-[400px] h-[400px] rounded-full bg-emerald-500/3 blur-[120px] pointer-events-none -z-10" />
+      <div className="absolute bottom-[20%] right-[-10%] w-[450px] h-[450px] rounded-full bg-teal-500/3 blur-[140px] pointer-events-none -z-10" />
 
-      {/* Gray divider to separate sections */}
-      <div className="sm:max-w-5xl sm:mx-auto my-2">
-        <div className="h-px w-3/4 sm:w-2/3 md:w-1/2 mx-auto bg-gray-200 dark:bg-gray-800" />
-      </div>
+      {/* Premium subtle dotted background overlay */}
+      <div 
+        className="absolute inset-0 bg-[radial-gradient(#80808008_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,#000_70%,transparent_100%)]" 
+        aria-hidden="true"
+      />
 
-      {/* Mutual Fund Advisory */}
-      <div id="mutual-funds" className="scroll-mt-28 sm:scroll-mt-32">
-        <ServiceCard
-          className="sm:max-w-5xl sm:mx-auto"
-          title={mutualFundServices.title}
-          description={mutualFundServices.description}
-          benefits={mutualFundServices.benefits}
-          documents={mutualFundServices.documents}
-          process={mutualFundServices.process}
-          costs={mutualFundServices.costs}
-          icon={TrendingUp}
-          ctaText="Start Investing"
-          colorScheme="blue"
-          delay={0}
-          animation="elegant-fade"
-          whatsAppMessage={`Hi Monotosh, I'm interested in mutual funds and would like to start investing. Could you please help me understand the options based on my risk profile?`}
-        />
-      </div>
+      <div className="container mx-auto space-y-6 sm:space-y-8 px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="text-center mb-4 sm:mb-6">
+          <span className="inline-block text-[11px] font-bold uppercase tracking-wider text-orange-600 bg-orange-50 px-2.5 py-0.5 rounded-full border border-orange-100 mb-1">
+            Wealth & Growth
+          </span>
+          <SimplePageHeader 
+            title="Investments" 
+            description="Grow your wealth, intelligently." 
+            className="mb-0" 
+            color="from-orange-700 via-orange-600 to-red-700" 
+          />
+        </div>
 
-      {/* Divider before FAQ */}
-      <div className="sm:max-w-5xl sm:mx-auto my-4 sm:my-6">
-        <div className="h-px w-3/4 sm:w-2/3 md:w-1/2 mx-auto bg-gray-200 dark:bg-gray-800" />
-      </div>
+        {/* Mutual Fund Advisory */}
+        <div id="mutual-funds" className="scroll-mt-28 sm:scroll-mt-32">
+          <ServiceCard
+            className="sm:max-w-3xl sm:mx-auto"
+            title={mutualFundServices.title}
+            description={mutualFundServices.description}
+            benefits={mutualFundServices.benefits}
+            documents={mutualFundServices.documents}
+            process={mutualFundServices.process}
+            costs={mutualFundServices.costs}
+            icon={TrendingUp}
+            ctaText="Start Investing"
+            colorScheme="orange"
+            delay={0}
+            animation="elegant-fade"
+            whatsAppMessage={`Hi Monotosh, I'm interested in mutual funds and would like to start investing. Could you please help me understand the options based on my risk profile?`}
+          />
+        </div>
 
-      {/* FAQ Section */}
-      <div id="mutual-fund-faq" className="scroll-mt-28 sm:scroll-mt-32">
-        <InvestFaq />
+        {/* Modern minimal neutral divider */}
+        <div className="flex items-center justify-center gap-1.5 my-6 sm:my-8" aria-hidden="true">
+          <div className="h-1 w-1 rounded-full bg-slate-300/50 dark:bg-slate-700/50" />
+          <div className="h-1 w-5 rounded-full bg-slate-200/50 dark:bg-slate-800/40" />
+          <div className="h-1 w-1 rounded-full bg-slate-300/50 dark:bg-slate-700/50" />
+        </div>
+
+        {/* FAQ Section */}
+        <div id="mutual-fund-faq" className="scroll-mt-28 sm:scroll-mt-32">
+          <InvestFaq />
+        </div>
       </div>
     </div>
   );

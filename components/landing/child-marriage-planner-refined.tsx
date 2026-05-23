@@ -8,6 +8,7 @@ import { FormattedInput } from "@/components/ui/formatted-input";
 import { Button } from "@/components/ui/button";
 import { formatLargeNumber } from "@/lib/format-large-number";
 import { calculateMarriagePlan, MarriagePlanResult } from "@/lib/calculators";
+import { CircleDollarSign, CreditCard, CheckCircle, Heart, AlertCircle, MessageSquare } from "lucide-react";
 
 export default function ChildMarriageCalculatorRefined() {
   const [childName, setChildName] = useState("");
@@ -77,9 +78,7 @@ export default function ChildMarriageCalculatorRefined() {
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 p-4 bg-white/70 rounded-xl border border-rose-100 shadow-sm">
           <div className="flex items-center gap-3">
             <div className="bg-rose-100 p-2 rounded-lg">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-rose-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
+              <CircleDollarSign className="h-5 w-5 text-rose-600" />
             </div>
             <div>
               <p className="text-sm text-rose-600">Projected Cost of Marriage</p>
@@ -94,9 +93,7 @@ export default function ChildMarriageCalculatorRefined() {
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 p-4 bg-white/70 rounded-xl border border-rose-100 shadow-sm">
           <div className="flex items-center gap-3">
             <div className="bg-rose-100 p-2 rounded-lg">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-rose-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
-              </svg>
+              <CreditCard className="h-5 w-5 text-rose-600" />
             </div>
             <div>
               <p className="text-sm text-rose-600">Monthly SIP Investment Required</p>
@@ -111,9 +108,7 @@ export default function ChildMarriageCalculatorRefined() {
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 p-4 bg-white/70 rounded-xl border border-rose-100 shadow-sm">
           <div className="flex items-center gap-3">
             <div className="bg-rose-100 p-2 rounded-lg">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-rose-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
+              <CircleDollarSign className="h-5 w-5 text-rose-600" />
             </div>
             <div>
               <p className="text-sm text-rose-600">One-time Lump Sum Investment Required</p>
@@ -129,9 +124,7 @@ export default function ChildMarriageCalculatorRefined() {
           <div className="bg-rose-50/80 p-4 rounded-xl border border-rose-200 shadow-sm">
             <div className="flex items-start gap-3">
               <div className="bg-rose-100 p-2 rounded-lg mt-0.5">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-rose-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+                 <CheckCircle className="h-5 w-5 text-rose-600" />
               </div>
               <div>
                 <p className="text-sm font-medium text-rose-800">
@@ -150,9 +143,7 @@ export default function ChildMarriageCalculatorRefined() {
           <div className="bg-rose-50/80 p-4 rounded-xl border border-rose-200 shadow-sm">
             <div className="flex items-center gap-3">
               <div className="bg-rose-100 p-2 rounded-lg">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-rose-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+                 <CheckCircle className="h-5 w-5 text-rose-600" />
               </div>
               <p className="text-sm text-rose-800">
                 Great! Your current savings are sufficient to meet your child&apos;s marriage goal.
@@ -198,162 +189,157 @@ OR make a one-time investment of ${formatLargeNumber(lumpSumInvestment)} today.
   };
 
   return (
-    <Card className="w-full max-w-3xl mx-auto bg-gradient-to-b from-rose-50/70 to-rose-100/50 backdrop-blur supports-[backdrop-filter]:bg-rose-50/30 border border-rose-200/80 shadow-xl rounded-2xl overflow-hidden">
-      <CardHeader className="pb-2 mb-6 bg-gradient-to-r from-rose-500/10 to-pink-500/10 flex items-center justify-center py-4">
-        <CardTitle className="text-center text-xl font-bold text-rose-800 flex items-center justify-center gap-2">
-          <div className="bg-gradient-to-r from-rose-500 to-pink-500 p-2 rounded-full">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-            </svg>
-          </div>
-          Child Marriage Planning Calculator
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="space-y-6">
-          {/* Child's Name Input */}
-          <div className="space-y-2">
-            <Label htmlFor="childMarriageChildName" className="text-sm font-medium text-rose-800">Child&apos;s Name</Label>
-            <Input
-              id="childMarriageChildName"
-              value={childName}
-              onChange={(e) => setChildName(e.target.value)}
-              placeholder="Enter your child's name"
-              className="w-full border-rose-200 focus:border-rose-400 focus:ring-rose-300 rounded-lg"
-            />
-          </div>
+    <div className="space-y-6 w-full animate-elegant-fade">
 
-          {/* Age Inputs */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <Card className="w-full max-w-3xl mx-auto bg-white/75 backdrop-blur-2xl border border-white/60 shadow-strong rounded-3xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:border-white/80">
+        <CardHeader className="pb-4 border-b border-white/40 bg-gradient-to-r from-rose-500/10 to-pink-500/10 flex items-center justify-center py-5">
+          <CardTitle className="text-center text-xl font-bold text-rose-850 flex items-center justify-center gap-2">
+            <div className="bg-gradient-to-r from-rose-500 to-pink-500 p-2 rounded-full text-white shadow-sm ring-3 ring-white/50">
+              <Heart className="h-4 w-4" />
+            </div>
+            <span className="font-serif tracking-tight text-rose-900">Child Marriage Planning Calculator</span>
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="pt-6 sm:pt-8 px-4 sm:px-8">
+          <div className="space-y-6">
+            {/* Child's Name Input */}
             <div className="space-y-2">
-              <Label htmlFor="childMarriageCurrentAge" className="text-sm font-medium text-rose-800">Child&apos;s Current Age</Label>
-              <FormattedInput
-                id="childMarriageCurrentAge"
-                inputMode="numeric"
-                value={currentAge}
-                onFormattedChange={setCurrentAge}
-                className="w-full border-rose-200 focus:border-rose-400 focus:ring-rose-300 rounded-lg"
-                placeholder="Enter current age"
+              <Label htmlFor="childMarriageChildName" className="text-sm font-semibold text-rose-950">Child&apos;s Name</Label>
+              <Input
+                id="childMarriageChildName"
+                value={childName}
+                onChange={(e) => setChildName(e.target.value)}
+                placeholder="Enter your child's name"
+                className="w-full rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-3 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-rose-400 focus:bg-white focus:ring-4 focus:ring-rose-400/15 font-medium"
               />
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="childMarriageMarriageAge" className="text-sm font-medium text-rose-800">Planned Marriage Age</Label>
-              <FormattedInput
-                id="childMarriageMarriageAge"
-                inputMode="numeric"
-                value={marriageAge}
-                onFormattedChange={setMarriageAge}
-                className="w-full border-rose-200 focus:border-rose-400 focus:ring-rose-300 rounded-lg"
-                placeholder="Enter marriage age"
-              />
-            </div>
-          </div>
-
-          {/* Financial Inputs */}
-          <div className="space-y-2">
-            <Label htmlFor="childMarriageEstimatedExpenditure" className="text-sm font-medium text-rose-800">Estimated Marriage Expenditure (₹)</Label>
-            <FormattedInput
-              id="childMarriageEstimatedExpenditure"
-              inputMode="numeric"
-              value={estimatedExpenditure}
-              onFormattedChange={setEstimatedExpenditure}
-              className="w-full border-rose-200 focus:border-rose-400 focus:ring-rose-300 rounded-lg"
-              placeholder="e.g., 1000000"
-            />
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="childMarriageInflationRate" className="text-sm font-medium text-rose-800">Expected Inflation Rate (% p.a.)</Label>
-              <FormattedInput
-                id="childMarriageInflationRate"
-                inputMode="decimal"
-                value={inflationRate}
-                onFormattedChange={setInflationRate}
-                className="w-full border-rose-200 focus:border-rose-400 focus:ring-rose-300 rounded-lg"
-                placeholder="e.g., 7"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="childMarriageExpectedReturn" className="text-sm font-medium text-rose-800">Expected Rate of Return (% p.a.)</Label>
-              <FormattedInput
-                id="childMarriageExpectedReturn"
-                inputMode="decimal"
-                value={expectedReturn}
-                onFormattedChange={setExpectedReturn}
-                className="w-full border-rose-200 focus:border-rose-400 focus:ring-rose-300 rounded-lg"
-                placeholder="e.g., 10"
-              />
-            </div>
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="childMarriageAmountSaved" className="text-sm font-medium text-rose-800">Amount Already Saved for Child&apos;s Marriage (₹)</Label>
-            <FormattedInput
-              id="childMarriageAmountSaved"
-              inputMode="numeric"
-              value={amountSaved}
-              onFormattedChange={setAmountSaved}
-              className="w-full border-rose-200 focus:border-rose-400 focus:ring-rose-300 rounded-lg"
-              placeholder="e.g., 200000"
-            />
-          </div>
-
-          {/* Error Message */}
-          {currentAge && marriageAge && parseInt(marriageAge) <= parseInt(currentAge) && (
-            <div className="flex items-center gap-2 p-3 bg-red-50 rounded-lg border border-red-200">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <p className="text-red-500 text-sm">
-                Marriage age must be greater than current age.
-              </p>
-            </div>
-          )}
-
-          {/* Calculate Button */}
-          <Button
-            onClick={handleCalculate}
-            className="w-full py-3 bg-gradient-to-r from-rose-500 to-rose-600 text-white shadow-lg hover:from-rose-600 hover:to-rose-700 active:from-rose-700 active:to-rose-800 transition-all duration-300 ease-in-out rounded-xl font-medium"
-            disabled={!childName || !currentAge || !marriageAge || !estimatedExpenditure || !inflationRate || !amountSaved || !expectedReturn}
-          >
-            Calculate Marriage Plan
-          </Button>
-
-          {/* Results Display */}
-          {showResults && calculationResults && (
-            <div className="mt-8 p-5 bg-rose-50/50 rounded-xl border border-rose-200/80 shadow-sm">
-              <h3 className="text-base sm:text-lg font-semibold mb-5 text-center text-rose-800 flex items-center justify-center gap-2">
-                <div className="bg-gradient-to-r from-rose-500 to-pink-500 p-2 rounded-full">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                  </svg>
-                </div>
-                Marriage Planning for {childName}
-              </h3>
-
-              <div className="space-y-4 mb-6">
-                {renderResults()}
+            {/* Age Inputs */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="childMarriageCurrentAge" className="text-sm font-semibold text-rose-950">Child&apos;s Current Age</Label>
+                <FormattedInput
+                  id="childMarriageCurrentAge"
+                  inputMode="numeric"
+                  value={currentAge}
+                  onFormattedChange={setCurrentAge}
+                  className="w-full rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-3 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-rose-400 focus:bg-white focus:ring-4 focus:ring-rose-400/15 font-medium"
+                  placeholder="Enter current age"
+                />
               </div>
 
-              {/* Share Button */}
-              <Button
-                onClick={handleShare}
-                className="w-full py-3 mt-4 bg-gradient-to-r from-rose-500 to-rose-600 text-white shadow-lg hover:from-rose-600 hover:to-rose-700 active:from-rose-700 active:to-rose-800 transition-all duration-300 ease-in-out rounded-xl font-medium"
-              >
-                <div className="flex items-center justify-center gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                  </svg>
-                  Share Results via WhatsApp
-                </div>
-              </Button>
+              <div className="space-y-2">
+                <Label htmlFor="childMarriageMarriageAge" className="text-sm font-semibold text-rose-950">Planned Marriage Age</Label>
+                <FormattedInput
+                  id="childMarriageMarriageAge"
+                  inputMode="numeric"
+                  value={marriageAge}
+                  onFormattedChange={setMarriageAge}
+                  className="w-full rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-3 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-rose-400 focus:bg-white focus:ring-4 focus:ring-rose-400/15 font-medium"
+                  placeholder="Enter marriage age"
+                />
+              </div>
             </div>
-          )}
-        </div>
-      </CardContent>
-    </Card>
+
+            {/* Financial Inputs */}
+            <div className="space-y-2">
+              <Label htmlFor="childMarriageEstimatedExpenditure" className="text-sm font-semibold text-rose-950">Estimated Marriage Expenditure (₹)</Label>
+              <FormattedInput
+                id="childMarriageEstimatedExpenditure"
+                inputMode="numeric"
+                value={estimatedExpenditure}
+                onFormattedChange={setEstimatedExpenditure}
+                className="w-full rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-3 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-rose-400 focus:bg-white focus:ring-4 focus:ring-rose-400/15 font-medium"
+                placeholder="e.g., 1000000"
+              />
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="childMarriageInflationRate" className="text-sm font-semibold text-rose-950">Expected Inflation Rate (% p.a.)</Label>
+                <FormattedInput
+                  id="childMarriageInflationRate"
+                  inputMode="decimal"
+                  value={inflationRate}
+                  onFormattedChange={setInflationRate}
+                  className="w-full rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-3 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-rose-400 focus:bg-white focus:ring-4 focus:ring-rose-400/15 font-medium"
+                  placeholder="e.g., 7"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="childMarriageExpectedReturn" className="text-sm font-semibold text-rose-950">Expected Rate of Return (% p.a.)</Label>
+                <FormattedInput
+                  id="childMarriageExpectedReturn"
+                  inputMode="decimal"
+                  value={expectedReturn}
+                  onFormattedChange={setExpectedReturn}
+                  className="w-full rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-3 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-rose-400 focus:bg-white focus:ring-4 focus:ring-rose-400/15 font-medium"
+                  placeholder="e.g., 10"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="childMarriageAmountSaved" className="text-sm font-semibold text-rose-950">Amount Already Saved (₹)</Label>
+              <FormattedInput
+                id="childMarriageAmountSaved"
+                inputMode="numeric"
+                value={amountSaved}
+                onFormattedChange={setAmountSaved}
+                className="w-full rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-3 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-rose-400 focus:bg-white focus:ring-4 focus:ring-rose-400/15 font-medium"
+                placeholder="e.g., 200000"
+              />
+            </div>
+
+            {/* Error Message */}
+            {currentAge && marriageAge && parseInt(marriageAge) <= parseInt(currentAge) && (
+              <div className="flex items-center gap-2 p-3 bg-red-50 rounded-2xl border border-red-200">
+                <AlertCircle className="h-5 w-5 text-red-500" />
+                <p className="text-red-500 text-sm font-medium">
+                  Marriage age must be greater than current age.
+                </p>
+              </div>
+            )}
+
+            {/* Calculate Button */}
+            <Button
+              onClick={handleCalculate}
+              className="w-full py-3.5 bg-gradient-to-r from-rose-500 to-pink-500 text-white shadow-md shadow-rose-500/10 hover:shadow-lg hover:shadow-rose-500/15 hover:-translate-y-0.5 active:translate-y-0 active:shadow-md transition-all duration-200 rounded-2xl font-bold tracking-wide"
+              disabled={!childName || !currentAge || !marriageAge || !estimatedExpenditure || !inflationRate || !amountSaved || !expectedReturn}
+            >
+              Calculate Marriage Plan
+            </Button>
+
+            {/* Results Display */}
+            {showResults && calculationResults && (
+              <div className="mt-8 p-6 bg-slate-50/80 rounded-3xl border border-slate-100 shadow-sm">
+                <h3 className="text-base sm:text-lg font-bold mb-5 text-center text-rose-900 flex items-center justify-center gap-2 font-serif">
+                  <div className="bg-gradient-to-r from-rose-500 to-pink-500 p-2.5 rounded-full text-white shadow-sm ring-4 ring-white/50">
+                    <Heart className="h-5 w-5 text-white" />
+                  </div>
+                  Marriage Planning for {childName}
+                </h3>
+
+                <div className="space-y-4 mb-6">
+                  {renderResults()}
+                </div>
+
+                {/* Share Button */}
+                <Button
+                  onClick={handleShare}
+                  className="w-full py-3.5 bg-gradient-to-r from-pink-500 to-rose-600 text-white shadow-md shadow-pink-500/10 hover:shadow-lg hover:shadow-pink-500/15 hover:-translate-y-0.5 active:translate-y-0 active:shadow-md transition-all duration-200 rounded-2xl font-bold tracking-wide mt-4"
+                >
+                  <div className="flex items-center justify-center gap-2">
+                    <MessageSquare className="h-4 w-4" />
+                    Share Results via WhatsApp
+                  </div>
+                </Button>
+              </div>
+            )}
+          </div>
+        </CardContent>
+      </Card>
+    </div>
   );
 }

@@ -115,13 +115,15 @@ export function calculateSWP(
   for (let i = 0; i < months; i++) {
     // Withdrawal at beginning of month
     balance -= monthlyWithdrawal;
-    totalWithdrawn += monthlyWithdrawal;
 
-    // If balance goes negative, stop
+    // If balance goes negative, stop (last withdrawal is limited to remaining balance)
     if (balance < 0) {
+      totalWithdrawn += (monthlyWithdrawal + balance);
       balance = 0;
       break;
     }
+
+    totalWithdrawn += monthlyWithdrawal;
 
     // Interest at end of month
     balance += balance * monthlyRate;
@@ -284,7 +286,7 @@ export function calculateMarriagePlan(
     };
   }
 
-  // Calculate SIP (Ordinary Annuity)
+  // Calculate SIP (Annuity Due for consistency across the site)
   const monthlyRate = expectedReturnRate / 100 / 12;
   const numberOfMonths = yearsUntilMarriage * 12;
 
@@ -292,7 +294,7 @@ export function calculateMarriagePlan(
   if (monthlyRate === 0) {
     sipInvestment = shortfall / numberOfMonths;
   } else {
-    sipInvestment = shortfall * monthlyRate / (Math.pow(1 + monthlyRate, numberOfMonths) - 1);
+    sipInvestment = shortfall * monthlyRate / ((Math.pow(1 + monthlyRate, numberOfMonths) - 1) * (1 + monthlyRate));
   }
 
   // Calculate Lumpsum

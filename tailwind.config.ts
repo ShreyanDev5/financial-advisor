@@ -48,18 +48,23 @@ const config = {
         serif: ['Playfair Display', 'serif'],
       },
       animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
+        "accordion-down": "accordion-down 150ms cubic-bezier(0.16, 1, 0.3, 1)",
+        "accordion-up": "accordion-up 150ms cubic-bezier(0.16, 1, 0.3, 1)",
         "infinite-scroll": "infinite-scroll 25s linear infinite",
+        "pulse-slow": "pulse-slow 12s cubic-bezier(0.4, 0, 0.6, 1) infinite",
       },
       keyframes: {
+        "pulse-slow": {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.3" },
+        },
         "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
+          from: { height: "0", opacity: "0" },
+          to: { height: "var(--radix-accordion-content-height)", opacity: "1" },
         },
         "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
+          from: { height: "var(--radix-accordion-content-height)", opacity: "1" },
+          to: { height: "0", opacity: "0" },
         },
         "infinite-scroll": {
           from: { transform: "translateX(0)" },

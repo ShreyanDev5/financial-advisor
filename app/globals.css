@@ -122,6 +122,17 @@ button {
     @apply hover:bg-white/90 hover:shadow-md hover:border-white/60 transition-all duration-300;
   }
 
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
 
 }
 
@@ -881,4 +892,20 @@ a:focus-visible {
     padding-bottom: 14px;
     /* Original padding for desktop */
   }
+}
+
+/* Elegant slow pulse animation for scroll indicators */
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 1;
+    transform: translateY(2px) scale(1);
+  }
+  50% {
+    opacity: 0.2;
+    transform: translateY(2px) scale(0.85);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite !important;
 }

@@ -12,7 +12,7 @@ interface AnimatedSectionProps {
   id?: string;
 }
 
-export function AnimatedSection({ children, className = "", animation = "fade-up", delay = 0, duration = 600, id }: AnimatedSectionProps) {
+export function AnimatedSection({ children, className = "", animation = "fade-up", delay = 0, duration = 400, id }: AnimatedSectionProps) {
   const [ref, isVisible] = useIntersectionObserver();
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
@@ -33,33 +33,37 @@ export function AnimatedSection({ children, className = "", animation = "fade-up
       return "opacity-100 transform-none";
     }
 
-    const baseDuration = duration < 300 ? 300 : duration;
-    const baseClasses = `transition-all ease-out will-change-transform`;
-    const durationClass = `duration-${baseDuration}`;
+    const baseClasses = `transition-all will-change-transform`;
 
     if (!isVisible) {
       switch (animation) {
         case "fade-up":
-          return `${baseClasses} ${durationClass} opacity-0 translate-y-6`;
+          return `${baseClasses} opacity-0 translate-y-4`;
         case "fade-in":
-          return `${baseClasses} ${durationClass} opacity-0`;
+          return `${baseClasses} opacity-0`;
         case "slide-left":
-          return `${baseClasses} ${durationClass} opacity-0 -translate-x-6`;
+          return `${baseClasses} opacity-0 -translate-x-4`;
         case "slide-right":
-          return `${baseClasses} ${durationClass} opacity-0 translate-x-6`;
+          return `${baseClasses} opacity-0 translate-x-4`;
         case "scale-in":
-          return `${baseClasses} ${durationClass} opacity-0 scale-95`;
+          return `${baseClasses} opacity-0 scale-98`;
         case "elegant-fade":
-          return `${baseClasses} ${durationClass} opacity-0 translate-y-3 blur-sm`;
+          return `${baseClasses} opacity-0 translate-y-2 blur-[2px]`;
         default:
-          return `${baseClasses} ${durationClass} opacity-0 translate-y-6`;
+          return `${baseClasses} opacity-0 translate-y-4`;
       }
     }
 
-    return `${baseClasses} ${durationClass} opacity-100 translate-y-0 translate-x-0 scale-100 blur-none`;
-  }, [isVisible, animation, duration, prefersReducedMotion]);
+    return `${baseClasses} opacity-100 translate-y-0 translate-x-0 scale-100 blur-none`;
+  }, [isVisible, animation, prefersReducedMotion]);
 
-  const style = prefersReducedMotion ? {} : { transitionDelay: `${delay}ms` };
+  const style = prefersReducedMotion
+    ? {}
+    : {
+        transitionDelay: `${delay}ms`,
+        transitionDuration: `${duration}ms`,
+        transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
+      };
 
   return (
     <div ref={ref} id={id} className={`${getAnimationClasses()} ${className}`} style={style}>

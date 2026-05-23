@@ -30,19 +30,19 @@ export default function HomeContent() {
     {
       title: "Health Insurance",
       icon: Heart,
-      color: "bg-red-50",
-      iconColor: "text-red-500",
-      barColor: "bg-red-500",
-      hoverBorderColor: "hover:border-red-500/25",
-      href: "/insurance#star-health-and-care-insurance",
-    },
-    {
-      title: "Mutual Funds",
-      icon: TrendingUp,
       color: "bg-emerald-50",
       iconColor: "text-emerald-600",
       barColor: "bg-emerald-500",
       hoverBorderColor: "hover:border-emerald-500/25",
+      href: "/insurance#health-insurance",
+    },
+    {
+      title: "Mutual Funds",
+      icon: TrendingUp,
+      color: "bg-orange-50",
+      iconColor: "text-orange-600",
+      barColor: "bg-orange-500",
+      hoverBorderColor: "hover:border-orange-500/25",
       href: "/invest#mutual-funds",
     },
     {
@@ -57,19 +57,19 @@ export default function HomeContent() {
     {
       title: "Tax Filing",
       icon: ClipboardList,
-      color: "bg-indigo-50",
-      iconColor: "text-indigo-500",
-      barColor: "bg-indigo-500",
-      hoverBorderColor: "hover:border-indigo-500/25",
+      color: "bg-purple-50",
+      iconColor: "text-purple-500",
+      barColor: "bg-purple-500",
+      hoverBorderColor: "hover:border-purple-500/25",
       href: "/documents#income-tax-filing-services",
     },
     {
       title: "Life Insurance",
       icon: ShieldCheck,
-      color: "bg-purple-50",
-      iconColor: "text-purple-500",
-      barColor: "bg-purple-500",
-      hoverBorderColor: "hover:border-purple-500/25",
+      color: "bg-red-50",
+      iconColor: "text-red-500",
+      barColor: "bg-red-500",
+      hoverBorderColor: "hover:border-red-500/25",
       href: "/insurance#life-insurance",
     },
   ];
@@ -110,7 +110,7 @@ export default function HomeContent() {
 
             {/* Description Text - Left aligned on desktop */}
             <p className="text-sm sm:text-base text-gray-600 max-w-xl leading-relaxed mb-8 text-pretty">
-              Clear, honest guidance from <span className="underline-wavy font-medium">Monotosh Sardar</span> to help you secure your family&apos;s future.
+              Clear, honest guidance from <span className="underline-wavy font-medium whitespace-nowrap">Monotosh Sardar</span> to help you secure <span className="inline-block whitespace-nowrap">your family&apos;s future.</span>
             </p>
 
             {/* Double Action Button Grid */}
@@ -150,7 +150,7 @@ export default function HomeContent() {
                 title="Clients Served"
                 value="750+"
                 icon={Users}
-                description="Individuals and families."
+                description="Families & individuals guided."
                 iconBgColor="bg-blue-100"
                 iconTextColor="text-blue-600"
                 className="bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200 shadow-md hover:shadow-lg"
@@ -168,7 +168,7 @@ export default function HomeContent() {
                 title="Years of Experience"
                 value="19+"
                 icon={Award}
-                description="Dedicated professional advisory."
+                description="Years of trusted expertise."
                 iconBgColor="bg-purple-100"
                 iconTextColor="text-purple-600"
                 className="bg-gradient-to-br from-purple-50 to-purple-100 border-purple-200 shadow-md hover:shadow-lg"
@@ -177,7 +177,7 @@ export default function HomeContent() {
                 title="Mutual Fund AUM"
                 value="₹30 Lakhs"
                 icon={TrendingUp}
-                description="Assets under advisory."
+                description="Total assets managed."
                 iconBgColor="bg-orange-100"
                 iconTextColor="text-orange-600"
                 className="bg-gradient-to-br from-orange-50 to-orange-100 border-orange-200 shadow-md hover:shadow-lg"
@@ -209,7 +209,7 @@ export default function HomeContent() {
             Advisory & Essential Services
           </h2>
           <p className="text-sm sm:text-base text-gray-500 max-w-xl mx-auto px-4 sm:px-0 leading-relaxed text-pretty">
-            We help you manage investments, secure insurance, and handle essential government documentation.
+            Expert help with your investments, insurance, and essential documentation.
           </p>
         </div>
         
@@ -254,26 +254,26 @@ export default function HomeContent() {
             What Our Clients Say
           </h2>
           <p className="text-sm sm:text-base text-gray-500 max-w-xl mx-auto px-4 sm:px-0">
-            Sincere feedback from people we have helped over the years.
+            Honest reviews from the families we protect.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto px-4 sm:px-6">
           <TestimonialCard
             name="Apurbo Saha"
             role="CEO, GS Diesel Company"
-            testimonial="Excellent and highly professional financial services. Highly recommended for long-term wealth planning, structured investments, and tax advisory."
+            testimonial="Monotosh made setting up our insurance and mutual funds incredibly simple. His honest guidance gives us complete peace of mind."
             avatarSrc="/Apurbo Saha.png"
           />
           <TestimonialCard
             name="Sanchita Mondal"
             role="Cashier, SBI"
-            testimonial="Provides transparent advice on mutual funds and insurance. Very satisfied with the guidance, prompt responses, and dedicated support received."
+            testimonial="I trust Monotosh completely with my investments and insurance. He explains everything clearly and is always there when I need help."
             avatarSrc="/Sanchita Mondal.png"
           />
           <TestimonialCard
             name="Dr. Debashis Sarkar"
             role="Physician"
-            testimonial="Reliable, dedicated, and extremely helpful. Handles all tax filings, insurance planning, and asset allocation with great care and attention."
+            testimonial="Monotosh helped me choose the right life insurance for my family. He is professional, reliable, and made the process completely stress-free."
             avatarSrc="/Dr. Debashis Sarkar.png"
           />
         </div>
@@ -299,7 +299,7 @@ export default function HomeContent() {
             Let&apos;s Discuss Your Financial Goals
           </h2>
           <p className="text-xs sm:text-sm text-emerald-100/70 max-w-md mx-auto mb-8 leading-relaxed text-pretty">
-            Reach out for a simple, no-obligation conversation about your investments, insurance, or document needs.
+            Send a message for a quick, free chat about your financial or document needs.
           </p>
 
           <a

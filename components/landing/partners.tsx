@@ -25,7 +25,7 @@ const Partners = ({ className }: { className?: string }) => {
                     <div className="space-y-2">
                         <h2 className="text-3xl sm:text-4xl font-bold font-serif tracking-tight">Trusted Partners</h2>
                         <p className="max-w-[900px] text-gray-600 text-base sm:text-lg">
-                            Built with leading financial institutions.
+                            Offering products from India's leading financial institutions.
                         </p>
                     </div>
                 </div>

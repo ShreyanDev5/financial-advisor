@@ -53,52 +53,52 @@ export function ServiceCard({
   const colorClasses = useMemo(() => {
     const map: Record<string, { text: string; bgSoft: string; button: string; icon: string; borderSoft: string; tabActive: string }> = {
       teal: {
-        text: "text-teal-600",
-        bgSoft: "bg-teal-50/50",
-        button: "from-teal-600 to-teal-800",
-        icon: "text-teal-600",
-        borderSoft: "border-teal-200",
-        tabActive: "data-[state=active]:bg-teal-50",
+        text: "text-teal-600 dark:text-teal-400",
+        bgSoft: "bg-teal-500/[0.06] dark:bg-teal-400/[0.08]",
+        button: "from-teal-600 to-teal-800 dark:from-teal-500 dark:to-teal-700",
+        icon: "text-teal-500",
+        borderSoft: "border-teal-200/30 dark:border-teal-800/20",
+        tabActive: "data-[state=active]:text-teal-600 dark:data-[state=active]:text-teal-400",
       },
       emerald: {
-        text: "text-emerald-600",
-        bgSoft: "bg-emerald-50/50",
-        button: "from-emerald-600 to-emerald-800",
-        icon: "text-emerald-600",
-        borderSoft: "border-emerald-200",
-        tabActive: "data-[state=active]:bg-emerald-50",
+        text: "text-emerald-600 dark:text-emerald-400",
+        bgSoft: "bg-emerald-500/[0.06] dark:bg-emerald-400/[0.08]",
+        button: "from-emerald-600 to-emerald-800 dark:from-emerald-500 dark:to-emerald-700",
+        icon: "text-emerald-500",
+        borderSoft: "border-emerald-200/30 dark:border-emerald-800/20",
+        tabActive: "data-[state=active]:text-emerald-600 dark:data-[state=active]:text-emerald-400",
       },
       blue: {
-        text: "text-blue-600",
-        bgSoft: "bg-blue-50/50",
-        button: "from-blue-600 to-blue-800",
-        icon: "text-blue-600",
-        borderSoft: "border-blue-200",
-        tabActive: "data-[state=active]:bg-blue-50",
+        text: "text-blue-600 dark:text-blue-400",
+        bgSoft: "bg-blue-500/[0.06] dark:bg-blue-400/[0.08]",
+        button: "from-blue-600 to-blue-800 dark:from-blue-500 dark:to-blue-700",
+        icon: "text-blue-500",
+        borderSoft: "border-blue-200/30 dark:border-blue-800/20",
+        tabActive: "data-[state=active]:text-blue-600 dark:data-[state=active]:text-blue-400",
       },
       purple: {
-        text: "text-purple-600",
-        bgSoft: "bg-purple-50/50",
-        button: "from-purple-600 to-purple-800",
-        icon: "text-purple-600",
-        borderSoft: "border-purple-200",
-        tabActive: "data-[state=active]:bg-purple-50",
+        text: "text-purple-600 dark:text-purple-400",
+        bgSoft: "bg-purple-500/[0.06] dark:bg-purple-400/[0.08]",
+        button: "from-purple-600 to-purple-800 dark:from-purple-500 dark:to-purple-700",
+        icon: "text-purple-500",
+        borderSoft: "border-purple-200/30 dark:border-purple-800/20",
+        tabActive: "data-[state=active]:text-purple-600 dark:data-[state=active]:text-purple-400",
       },
       orange: {
-        text: "text-orange-600",
-        bgSoft: "bg-orange-50/50",
-        button: "from-orange-600 to-orange-800",
-        icon: "text-orange-600",
-        borderSoft: "border-orange-200",
-        tabActive: "data-[state=active]:bg-orange-50",
+        text: "text-orange-600 dark:text-orange-400",
+        bgSoft: "bg-orange-500/[0.06] dark:bg-orange-400/[0.08]",
+        button: "from-orange-600 to-orange-800 dark:from-orange-500 dark:to-orange-700",
+        icon: "text-orange-500",
+        borderSoft: "border-orange-200/30 dark:border-orange-800/20",
+        tabActive: "data-[state=active]:text-orange-600 dark:data-[state=active]:text-orange-400",
       },
       red: {
-        text: "text-red-600",
-        bgSoft: "bg-red-50/50",
-        button: "from-red-600 to-red-800",
-        icon: "text-red-600",
-        borderSoft: "border-red-200",
-        tabActive: "data-[state=active]:bg-red-50",
+        text: "text-red-600 dark:text-red-400",
+        bgSoft: "bg-red-500/[0.06] dark:bg-red-400/[0.08]",
+        button: "from-red-600 to-red-800 dark:from-red-500 dark:to-red-700",
+        icon: "text-red-500",
+        borderSoft: "border-red-200/30 dark:border-red-800/20",
+        tabActive: "data-[state=active]:text-red-600 dark:data-[state=active]:text-red-400",
       },
     };
     return map[colorScheme] || map.teal;
@@ -120,63 +120,103 @@ export function ServiceCard({
   };
 
   return (
-    <AnimatedSection animation={animation} delay={delay} duration={500}>
+    <AnimatedSection animation={animation} delay={delay} duration={400}>
       <div className="relative group">
-        <div className={`relative bg-white/90 backdrop-blur-xl rounded-2xl shadow-lg border border-white/50 overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:border-${colorScheme}-200/60 ${className}`}>
-          <div className={`absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r ${accentGradient} rounded-t-2xl`} />
-          <div className="p-6 text-center">
-            <div className={`flex flex-col sm:flex-row items-center justify-center gap-4 mb-4 ${colorClasses.text}`}>
+        <div className={`relative bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-2xl sm:rounded-[24px] shadow-sm border border-slate-200/40 dark:border-slate-800/40 overflow-hidden transition-all duration-300 hover:shadow-[0_12px_30px_-5px_rgba(0,0,0,0.04),0_8px_16px_-6px_rgba(0,0,0,0.02)] hover:-translate-y-1 hover:border-slate-300 dark:hover:border-slate-700 ${className}`}>
+          {/* Extremely thin elegant top accent border */}
+          <div className={`absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r ${accentGradient}`} />
+          
+          <div className={`p-4 ${hasTabs ? 'pb-1.5 sm:pb-2.5' : 'pb-4 sm:pb-6'} sm:p-6 text-left`}>
+            {/* Header section with Icon on left, Title on right */}
+            <div className="flex items-center gap-3.5 mb-4">
               <div
-                className={`w-16 h-16 rounded-2xl flex items-center justify-center ${colorClasses.bgSoft} border ${colorClasses.borderSoft} flex-shrink-0`}
+                className={`w-10 h-10 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center ${colorClasses.bgSoft} border ${colorClasses.borderSoft} flex-shrink-0 text-current`}
               >
-                <Icon className="w-8 h-8" />
+                <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
               </div>
-              <h3 className="text-xl sm:text-2xl font-bold font-serif text-slate-900 text-center sm:text-left break-words">{title}</h3>
+              <div>
+                <h3 className="text-xl sm:text-[22px] font-bold font-serif text-slate-950 dark:text-white leading-tight">{title}</h3>
+              </div>
             </div>
 
-            <p className="text-sm sm:text-base text-gray-600 mb-6 max-w-2xl mx-auto">{description}</p>
+            {/* Description */}
+            <p className="text-[13.5px] sm:text-[15px] text-slate-600/95 dark:text-slate-400/95 mb-4 leading-relaxed">{description}</p>
 
+            {/* Key Benefits */}
             {benefits && benefits.length > 0 && (
-              <div className="mb-6 text-left bg-gray-50/70 p-4 rounded-lg border border-gray-200/70">
-                <h4 className={`text-lg font-semibold mb-3 ${colorClasses.text} text-center`}>Key Benefits</h4>
-                <ul className={`grid gap-2 ${benefits.length > 1 ? 'sm:grid-cols-2 sm:gap-x-6 sm:gap-y-2.5' : ''}`}>
+              <div className="mb-4 bg-slate-50/60 dark:bg-slate-950/20 p-3 sm:p-3.5 rounded-xl border border-slate-100/80 dark:border-slate-800/30">
+                <h4 className="text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2.5">Key Benefits</h4>
+                <ul className={`grid gap-2 ${benefits.length > 1 ? 'sm:grid-cols-2 sm:gap-x-5 sm:gap-y-2' : ''}`}>
                   {benefits.map((benefit, index) => (
-                    <li key={index} className="flex items-start gap-2.5 text-gray-700">
-                      <CheckCircle className={`w-4 h-4 ${colorClasses.icon} mt-1 flex-shrink-0`} />
-                      <span>{benefit}</span>
+                    <li key={index} className="flex items-start gap-2 text-[12.5px] sm:text-[13.5px] text-slate-700 dark:text-slate-200 leading-relaxed font-medium">
+                      <div className={`w-[18px] h-[18px] rounded-full ${colorClasses.bgSoft} flex items-center justify-center flex-shrink-0 mt-0.5 text-current`}>
+                        <CheckCircle className="w-2.5 h-2.5" />
+                      </div>
+                      <span className="pt-0.5">{benefit}</span>
                     </li>
                   ))}
                 </ul>
               </div>
             )}
 
-            <a
-              href={waHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`w-full sm:w-auto inline-flex items-center justify-center px-8 py-3 bg-gradient-to-r ${colorClasses.button} text-white rounded-xl font-bold tracking-wide transition-all duration-300 text-base shadow-lg hover:shadow-xl hover:-translate-y-0.5 border border-white/20`}
-              aria-label={`${ctaText} via WhatsApp`}
-            >
-              {ctaText}
-            </a>
+            {/* CTA Button (Only if hasTabs is false) */}
+            {!hasTabs && (
+              <div className="flex justify-center mt-5">
+                <a
+                  href={waHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`w-full sm:w-52 inline-flex items-center justify-center px-5 py-2.5 sm:px-6 sm:py-3 bg-gradient-to-r ${colorClasses.button} text-white rounded-xl font-semibold tracking-wide transition-all duration-200 text-[13.5px] sm:text-sm shadow-sm hover:shadow-md hover:shadow-current/10 hover:-translate-y-0.5 active:scale-95 border border-white/10`}
+                  aria-label={`${ctaText} via WhatsApp`}
+                >
+                  {ctaText}
+                </a>
+              </div>
+            )}
           </div>
 
+          {/* Bottom Tabs tray */}
           {hasTabs && (
-            <div className="px-6 pb-6 border-t border-gray-100/50 bg-gray-50/50">
-              <Tabs defaultValue={getDefaultTab()} className="w-full max-w-3xl mx-auto pt-5">
-                <TabsList className="flex w-full bg-slate-200/60 p-1.5 h-auto rounded-xl sm:flex sm:flex-wrap mb-6 border border-slate-200/50">
-                  {documents && documents.length > 0 && <TabsTrigger value="documents" className={`flex-1 rounded-lg text-gray-600 font-medium data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-${colorScheme}-700 transition-all duration-300`}>Documents</TabsTrigger>}
-                  {process && process.length > 0 && <TabsTrigger value="process" className={`flex-1 rounded-lg text-gray-600 font-medium data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-${colorScheme}-700 transition-all duration-300`}>Process</TabsTrigger>}
-                  {costs && costs.length > 0 && <TabsTrigger value="costs" className={`flex-1 rounded-lg text-gray-600 font-medium data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-${colorScheme}-700 transition-all duration-300`}>Costs</TabsTrigger>}
+            <div className="px-4 pb-5 sm:px-6 sm:pb-6 bg-slate-50/30 dark:bg-slate-950/10">
+              <Tabs defaultValue={getDefaultTab()} className="w-full max-w-3xl mx-auto pt-3">
+                {/* Segmented control navigation */}
+                <TabsList className="flex w-full bg-slate-100/80 dark:bg-slate-900/60 backdrop-blur-md p-0.5 rounded-lg border border-slate-200/20 mb-3 sm:mb-4">
+                  {documents && documents.length > 0 && (
+                    <TabsTrigger 
+                      value="documents" 
+                      className={`flex-1 rounded-[8px] text-[11.5px] py-1 text-slate-500 dark:text-slate-400 font-semibold transition-all duration-200 data-[state=active]:bg-white dark:data-[state=active]:bg-slate-800 data-[state=active]:shadow-sm ${colorClasses.tabActive}`}
+                    >
+                      Documents
+                    </TabsTrigger>
+                  )}
+                  {process && process.length > 0 && (
+                    <TabsTrigger 
+                      value="process" 
+                      className={`flex-1 rounded-[8px] text-[11.5px] py-1 text-slate-500 dark:text-slate-400 font-semibold transition-all duration-200 data-[state=active]:bg-white dark:data-[state=active]:bg-slate-800 data-[state=active]:shadow-sm ${colorClasses.tabActive}`}
+                    >
+                      Process
+                    </TabsTrigger>
+                  )}
+                  {costs && costs.length > 0 && (
+                    <TabsTrigger 
+                      value="costs" 
+                      className={`flex-1 rounded-[8px] text-[11.5px] py-1 text-slate-500 dark:text-slate-400 font-semibold transition-all duration-200 data-[state=active]:bg-white dark:data-[state=active]:bg-slate-800 data-[state=active]:shadow-sm ${colorClasses.tabActive}`}
+                    >
+                      Costs
+                    </TabsTrigger>
+                  )}
                 </TabsList>
 
+                {/* Tab content screens */}
                 {documents && documents.length > 0 && (
-                  <TabsContent value="documents" className="pt-4 text-left">
-                    <ul className={`grid gap-2 ${documents.length > 1 ? 'sm:grid-cols-2 sm:gap-x-6 sm:gap-y-2.5' : ''}`}>
+                  <TabsContent value="documents" className="pt-2 text-left focus-visible:outline-none">
+                    <ul className={`grid gap-2 ${documents.length > 1 ? 'sm:grid-cols-2 sm:gap-x-5 sm:gap-y-2' : ''}`}>
                       {documents.map((doc, index) => (
-                        <li key={index} className="flex items-start gap-2.5 text-gray-700">
-                          <FileText className={`w-4 h-4 ${colorClasses.icon} mt-1 flex-shrink-0`} />
-                          <span>{doc}</span>
+                        <li key={index} className="flex items-start gap-2 text-[12.5px] sm:text-[13.5px] text-slate-700 dark:text-slate-200 leading-relaxed font-medium">
+                          <div className={`w-[18px] h-[18px] rounded-full ${colorClasses.bgSoft} flex items-center justify-center flex-shrink-0 mt-0.5 text-current`}>
+                            <FileText className="w-2.5 h-2.5" />
+                          </div>
+                          <span className="pt-0.5">{doc}</span>
                         </li>
                       ))}
                     </ul>
@@ -184,12 +224,14 @@ export function ServiceCard({
                 )}
 
                 {process && process.length > 0 && (
-                  <TabsContent value="process" className="pt-4 text-left">
-                    <ul className={`grid gap-2 ${process.length > 1 ? 'sm:grid-cols-2 sm:gap-x-6 sm:gap-y-2.5' : ''}`}>
+                  <TabsContent value="process" className="pt-2 text-left focus-visible:outline-none">
+                    <ul className={`grid gap-2 ${process.length > 1 ? 'sm:grid-cols-2 sm:gap-x-5 sm:gap-y-2' : ''}`}>
                       {process.map((step, index) => (
-                        <li key={index} className="flex items-start gap-2.5 text-gray-700">
-                          <UserRoundCheck className={`w-4 h-4 ${colorClasses.icon} mt-1 flex-shrink-0`} />
-                          <span>{step}</span>
+                        <li key={index} className="flex items-start gap-2 text-[12.5px] sm:text-[13.5px] text-slate-700 dark:text-slate-200 leading-relaxed font-medium">
+                          <div className={`w-[18px] h-[18px] rounded-full ${colorClasses.bgSoft} flex items-center justify-center flex-shrink-0 mt-0.5 text-current`}>
+                            <UserRoundCheck className="w-2.5 h-2.5" />
+                          </div>
+                          <span className="pt-0.5">{step}</span>
                         </li>
                       ))}
                     </ul>
@@ -197,18 +239,33 @@ export function ServiceCard({
                 )}
 
                 {costs && costs.length > 0 && (
-                  <TabsContent value="costs" className="pt-4 text-left">
-                    <ul className={`grid gap-2 ${costs.length > 1 ? 'sm:grid-cols-2 sm:gap-x-6 sm:gap-y-2.5' : ''}`}>
+                  <TabsContent value="costs" className="pt-2 text-left focus-visible:outline-none">
+                    <ul className={`grid gap-2 ${costs.length > 1 ? 'sm:grid-cols-2 sm:gap-x-5 sm:gap-y-2' : ''}`}>
                       {costs.map((cost, index) => (
-                        <li key={index} className="flex items-start gap-2.5 text-gray-700">
-                          <Banknote className={`w-4 h-4 ${colorClasses.icon} mt-1 flex-shrink-0`} />
-                          <span>{cost}</span>
+                        <li key={index} className="flex items-start gap-2 text-[12.5px] sm:text-[13.5px] text-slate-700 dark:text-slate-200 leading-relaxed font-medium">
+                          <div className={`w-[18px] h-[18px] rounded-full ${colorClasses.bgSoft} flex items-center justify-center flex-shrink-0 mt-0.5 text-current`}>
+                            <Banknote className="w-2.5 h-2.5" />
+                          </div>
+                          <span className="pt-0.5">{cost}</span>
                         </li>
                       ))}
                     </ul>
                   </TabsContent>
                 )}
               </Tabs>
+
+              {/* CTA Button (Only if hasTabs is true) */}
+              <div className="flex justify-center mt-6">
+                <a
+                  href={waHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`w-full sm:w-52 inline-flex items-center justify-center px-5 py-2.5 sm:px-6 sm:py-3 bg-gradient-to-r ${colorClasses.button} text-white rounded-xl font-semibold tracking-wide transition-all duration-200 text-[13.5px] sm:text-sm shadow-sm hover:shadow-md hover:shadow-current/10 hover:-translate-y-0.5 active:scale-95 border border-white/10`}
+                  aria-label={`${ctaText} via WhatsApp`}
+                >
+                  {ctaText}
+                </a>
+              </div>
             </div>
           )}
         </div>

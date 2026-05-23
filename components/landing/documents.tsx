@@ -1,15 +1,118 @@
 'use client';
 
-import { UserCheck, FileCheck, Car, Baby, Briefcase, Calculator, FileText, ScrollText, BookUser, Handshake, HeartHandshake, Coins } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { UserCheck, FileCheck, Car, Baby, Briefcase, Calculator, FileText, ScrollText, BookUser, Handshake, HeartHandshake, Coins, ChevronLeft, ChevronRight } from "lucide-react";
 import { ServiceCard } from "@/components/ui/service-card";
 import { SimplePageHeader } from "@/components/ui/simple-page-header";
 
 export default function DocumentsContent() {
-  const documentServices = [
+  const [activeCategory, setActiveCategory] = useState<'all' | 'personal' | 'vehicle' | 'business'>('all');
+
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [showLeftScroll, setShowLeftScroll] = useState(false);
+  const [showRightScroll, setShowRightScroll] = useState(false);
+
+  const checkScrollLimits = () => {
+    const el = scrollContainerRef.current;
+    if (!el) return;
+    setShowLeftScroll(el.scrollLeft > 4);
+    const maxScroll = el.scrollWidth - el.clientWidth;
+    setShowRightScroll(el.scrollLeft < maxScroll - 4);
+  };
+
+  const scroll = (direction: 'left' | 'right') => {
+    const el = scrollContainerRef.current;
+    if (!el) return;
+    const scrollAmount = 200;
+    el.scrollBy({
+      left: direction === 'left' ? -scrollAmount : scrollAmount,
+      behavior: 'smooth',
+    });
+  };
+
+  useEffect(() => {
+    const el = scrollContainerRef.current;
+    if (!el) return;
+
+    checkScrollLimits();
+
+    const resizeObserver = new ResizeObserver(() => {
+      checkScrollLimits();
+    });
+    resizeObserver.observe(el);
+
+    window.addEventListener("resize", checkScrollLimits);
+
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", checkScrollLimits);
+    };
+  }, []);
+
+  useEffect(() => {
+    const checkHash = () => {
+      const hash = window.location.hash;
+      if (hash) {
+        const id = hash.substring(1).toLowerCase();
+        if (
+          id.includes("pan") ||
+          id.includes("aadhaar") ||
+          id.includes("voter") ||
+          id.includes("ration") ||
+          id.includes("birth") ||
+          id.includes("passport") ||
+          id.includes("marriage")
+        ) {
+          setActiveCategory("personal");
+        } else if (
+          id.includes("driving") ||
+          id.includes("licence") ||
+          id.includes("vehicle") ||
+          id.includes("ownership") ||
+          id.includes("rto")
+        ) {
+          setActiveCategory("vehicle");
+        } else if (
+          id.includes("tax") ||
+          id.includes("trade") ||
+          id.includes("agreement") ||
+          id.includes("affidavit") ||
+          id.includes("business") ||
+          id.includes("p.tax")
+        ) {
+          setActiveCategory("business");
+        }
+      }
+    };
+
+    // Run immediately
+    checkHash();
+
+    // Check at multiple intervals to handle any router hydration/navigation delays
+    const interval = setInterval(checkHash, 100);
+
+    // Add event listener for hash changes
+    window.addEventListener("hashchange", checkHash);
+
+    // Clean up after 1.5 seconds to prevent continuous background polling
+    const timeout = setTimeout(() => {
+      clearInterval(interval);
+    }, 1500);
+
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timeout);
+      window.removeEventListener("hashchange", checkHash);
+    };
+  }, []);
+
+  const allDocumentServices = [
+    // --- PERSONAL IDS & REGISTRY ---
     {
+      category: "personal" as const,
       title: "PAN Card Services",
       description: "New PAN, e-PAN, Corrections, Re-issue of Lost Card, Aadhaar-PAN Linking.",
-      benefits: ["New PAN, e-PAN, corrections, re-issue, and Aadhaar linking."],
+      benefits: ["Mandatory official ID for all major financial transactions."],
       documents: [
         "Individual: Aadhaar, address proof, photos.",
         "Organization: Registration certificate, authorized person's ID.",
@@ -29,12 +132,14 @@ export default function DocumentsContent() {
         "Organization PAN: ₹550"
       ],
       icon: FileText,
-      colorScheme: "purple",
+      colorScheme: "blue",
+      whatsAppMessage: "Hi Monotosh, I'd like to apply for a PAN card. Could you please help me understand the required documents and process?",
     },
     {
+      category: "personal" as const,
       title: "Aadhaar Card Services",
       description: "New Enrolment, Address/Mobile/Name Updates, PVC Card, e-Aadhaar Download.",
-      benefits: ["New enrolment, updates (address, mobile, name), PVC card, and e-Aadhaar download."],
+      benefits: ["Essential identity proof for government and financial services."],
       documents: [
         "Aadhaar-linked mobile for OTP.",
         "ID proof (PAN, Voter ID).",
@@ -56,11 +161,13 @@ export default function DocumentsContent() {
       ],
       icon: UserCheck,
       colorScheme: "blue",
+      whatsAppMessage: "Hi Monotosh, I'd like to apply for an Aadhaar card. Could you please help me understand the required documents and process?",
     },
     {
+      category: "personal" as const,
       title: "Voter ID Card Services",
       description: "New Card Application, Corrections, Address Change, Aadhaar/Mobile Linking.",
-      benefits: ["New card, corrections, address change, and Aadhaar/mobile linking."],
+      benefits: ["Official citizenship proof and voting rights."],
       documents: [
         "Aadhaar with linked mobile",
         "PAN or Ration Card", 
@@ -80,11 +187,13 @@ export default function DocumentsContent() {
       ],
       icon: FileCheck,
       colorScheme: "orange",
+      whatsAppMessage: "Hi Monotosh, I'd like to apply for a Voter ID card. Could you please help me understand the required documents and process?",
     },
     {
+      category: "personal" as const,
       title: "Ration Card Services",
       description: "New Card Application, Add/Remove Member, Corrections, Aadhaar/Mobile Linking, Dealer Change.",
-      benefits: ["New card, add/remove member, corrections, Aadhaar/mobile linking, and dealer change."],
+      benefits: ["Access to subsidized food grains and official address proof."],
       documents: [
         "Aadhaar with linked mobile for all members.",
         "Birth certificate for children.",
@@ -106,11 +215,13 @@ export default function DocumentsContent() {
       ],
       icon: FileText,
       colorScheme: "emerald",
+      whatsAppMessage: "Hi Monotosh, I'd like to apply for a Ration card. Could you please help me understand the required documents and process?",
     },
     {
+      category: "personal" as const,
       title: "Birth Certificate Services",
       description: "New Application, Corrections, Download & Lamination.",
-      benefits: ["New application, corrections, and download/lamination."],
+      benefits: ["Primary proof of age and identity for schools and passports."],
       documents: [
         "New: Hospital birth proof, parents' Aadhaar/Voter cards, attested Form-1.",
         "Correction: Existing certificate, child's and parents' IDs.",
@@ -128,14 +239,79 @@ export default function DocumentsContent() {
       ],
       icon: Baby,
       colorScheme: "purple",
+      whatsAppMessage: "Hi Monotosh, I'd like to apply for a Birth certificate. Could you please help me understand the required documents and process?",
     },
-  ];
-
-  const drivingLicenceServices = [
     {
+      category: "personal" as const,
+      title: "Passport Services (Online OTP-Based Application)",
+      description: "Convenient Application, Flexible Scheduling, Multiple Service Options.",
+      benefits: [
+        "Official legal travel document and citizenship proof.",
+        "Full assistance in application filing and scheduling.",
+        "Hassle-free preparation for your physical interview."
+      ],
+      documents: [
+        "New: Aadhaar (OTP-linked) + 1 other ID (Voter, PAN, etc.).",
+        "Renewal: Old passport copy.",
+        "Lost: Address/DOB proof, ID, FIR, old passport copy (if available), affidavit.",
+      ],
+      process: [
+        "Apply online with OTP",
+        "Upload documents and select service",
+        "Pay required fees", 
+        "Schedule and attend appointment with original documents",
+        "Passport issued after verification"
+      ],
+      costs: [
+        "New (36 pages): ₹2,100",
+        "New (60 pages): ₹2,650", 
+        "Renewal: ₹2,200",
+        "Lost: ₹3,500"
+      ],
+      icon: BookUser,
+      colorScheme: "red",
+      whatsAppMessage: "Hi Monotosh, I need help with passport services. Could you please guide me through the application process?",
+    },
+    {
+      category: "personal" as const,
+      title: "Marriage Registration Services",
+      description: "Seamless marriage registration with legal recognition.",
+      benefits: [
+        "Legally valid marriage certificate for visa and immigration.",
+        "Saves time with end-to-end guidance through the registrar office.",
+        "Vital proof for joint bank accounts, insurance, and home loans."
+      ],
+      documents: [
+        "Aadhaar, address proof, DOB proof for couple.",
+        "Photos of couple.",
+        "Invitation card (if available).",
+        "2 witnesses with ID/address proof.",
+      ],
+      process: [
+        "File application at registrar's office or online",
+        "Submit documents and photos", 
+        "Officials verify identities of couple and witnesses",
+        "Certificate issued after signing"
+      ],
+      costs: [
+        "Starts at ₹3,000", 
+        "Varies by state and fees"
+      ],
+      icon: HeartHandshake,
+      colorScheme: "teal",
+      whatsAppMessage: "Hi Monotosh, I'd like information about marriage registration services. Could you please explain the requirements and process?",
+    },
+
+    // --- DRIVING & VEHICLE ---
+    {
+      category: "vehicle" as const,
       title: "New Driving Licence",
       description: "Hassle-free driving license services with bookings, mock tests, and RTO support.",
-      benefits: ["Drive 2, 3, 4-wheelers, or commercial vehicles. Includes booking, mock tests, and RTO support."],
+      benefits: [
+        "Legally drive private or commercial vehicles.",
+        "Excellent universally accepted photo identity proof.",
+        "Mock tests and RTO guidance for stress-free exams."
+      ],
       documents: [
         "Aadhaar (mandatory)",
         "Voter ID", 
@@ -157,11 +333,17 @@ export default function DocumentsContent() {
       ],
       icon: Car,
       colorScheme: "blue",
+      whatsAppMessage: "Hi Monotosh, I'd like to apply for a driving licence. Could you please help me understand the requirements and process?",
     },
     {
+      category: "vehicle" as const,
       title: "Licence Renewal, Corrections & Duplicates",
       description: "Renewal, Name/Address/DOB Correction, Duplicate/Lost Licence Replacement.",
-      benefits: ["Renewal, name/address/DOB correction, and duplicate/lost licence replacement."],
+      benefits: [
+        "Keeps your driving permit legally active and valid.",
+        "Updates match other primary documents to avoid KYC failures.",
+        "Fast duplicate issuance for lost or damaged physical cards."
+      ],
       documents: [
         "Original Driving Licence",
         "Aadhaar", 
@@ -183,14 +365,17 @@ export default function DocumentsContent() {
       ],
       icon: Car,
       colorScheme: "orange",
+      whatsAppMessage: "Hi Monotosh, I need help with licence renewal, corrections, or duplicates. Could you please guide me through the process?",
     },
-  ];
-
-  const vehicleRegistrationServices = [
     {
+      category: "vehicle" as const,
       title: "Ownership (Name) Transfer",
       description: "Legally transfer vehicle ownership from seller to buyer.",
-      benefits: ["Legal transfer of vehicle ownership."],
+      benefits: [
+        "Protects the seller from liability after sale.",
+        "Legally secures vehicle title under the buyer's name.",
+        "Ensures smooth insurance claim transfers."
+      ],
       documents: [
         "Original RC (Registration Certificate)",
         "Valid insurance", 
@@ -211,11 +396,17 @@ export default function DocumentsContent() {
       ],
       icon: Handshake,
       colorScheme: "emerald",
+      whatsAppMessage: "Hi Monotosh, I need help with vehicle registration services. Could you please guide me through the process?",
     },
     {
+      category: "vehicle" as const,
       title: "Other Vehicle Services",
       description: "RC / Smart Card Issuance, MV Road Tax Payment, Certificate of Fitness (CF), Fine / Penalty Payment.",
-      benefits: ["RC/Smart Card, road tax, fitness certificate (CF), and fine/penalty payment."],
+      benefits: [
+        "Maintains road tax compliance to avoid impoundment.",
+        "Certified vehicle fitness (CF) for safe driving.",
+        "Quick smart card replacement for broken or lost physical RCs."
+      ],
       documents: [],
       process: [],
       costs: [
@@ -226,14 +417,19 @@ export default function DocumentsContent() {
       ],
       icon: FileText,
       colorScheme: "red",
+      whatsAppMessage: "Hi Monotosh, I need help with vehicle registration services. Could you please guide me through the process?",
     },
-  ];
 
-  const businessAndLegalServices = [
+    // --- BUSINESS & TAX ---
     {
+      category: "business" as const,
       title: "Trade License",
-      description: "Obtain legal permission to operate your business at a specified location. Required for compliance and other permits.",
-      benefits: ["Legal permission to operate a business. Required for compliance."],
+      description: "Legal permission to operate your business. Required for compliance.",
+      benefits: [
+        "Protects your business from regulatory legal actions.",
+        "Builds credibility with customers, vendors, and banks.",
+        "A mandatory pre-requisite for other commercial licenses."
+      ],
       documents: [
         "ID proof (Aadhaar, PAN)",
         "Property tax receipt or rent agreement", 
@@ -251,11 +447,17 @@ export default function DocumentsContent() {
       ],
       icon: Briefcase,
       colorScheme: "orange",
+      whatsAppMessage: "Hi Monotosh, I need help with trade license. Could you please provide more information about the process and requirements?",
     },
     {
+      category: "business" as const,
       title: "Agreements & Affidavits",
       description: "Professionally drafted, legally valid documents prepared by experienced lawyers.",
-      benefits: ["Rent, business, sale agreements; judicial/non-judicial affidavits."],
+      benefits: [
+        "Rent, business, sale agreements; judicial/non-judicial affidavits.",
+        "Legally binding protection crafted by expert lawyers.",
+        "Prevents future disputes with clear terms and clauses."
+      ],
       documents: [],
       process: [
         "Share document type and party details",
@@ -268,11 +470,17 @@ export default function DocumentsContent() {
       ],
       icon: ScrollText,
       colorScheme: "purple",
+      whatsAppMessage: "Hi Monotosh, I need help with agreements & affidavits. Could you please provide more information about the process and requirements?",
     },
     {
+      category: "business" as const,
       title: "Professional Tax (P.Tax)",
       description: "Ensure compliance with state-level tax for professionals and businesses to avoid penalties.",
-      benefits: ["State-level tax compliance for professionals and businesses."],
+      benefits: [
+        "Prevents heavy state-level penalty charges.",
+        "Mandatory for obtaining state-level business permits.",
+        "Demonstrates clean corporate tax governance."
+      ],
       documents: [],
       process: [
         "Determine applicability by state/income",
@@ -285,18 +493,16 @@ export default function DocumentsContent() {
       ],
       icon: Coins,
       colorScheme: "blue",
+      whatsAppMessage: "Hi Monotosh, I need help with professional tax (p.tax). Could you please provide more information about the process and requirements?",
     },
-  ];
-
-  const incomeTaxFilingServices = [
     {
+      category: "business" as const,
       title: "Income Tax Filing Services",
       description: "CA-guided filing for accuracy, including TDS and AIS review.",
       benefits: [
-        "Timely filing to avoid penalties.",
-        "ITR for loans/credit cards.",
-        "CA-guided for accuracy.",
-        "Plans for salaried, business, and investors.",
+        "Avoid expensive late filing fees & penalties.",
+        "Strong financial proof required for loan and visa approvals.",
+        "CA-guided check of TDS, AIS, and Form 26AS for zero errors."
       ],
       documents: [
         "PAN, Aadhaar, bank statements.",
@@ -319,254 +525,150 @@ export default function DocumentsContent() {
         "(Indicative prices)"
       ],
       icon: Calculator,
-      colorScheme: "emerald",
+      colorScheme: "purple",
+      whatsAppMessage: "Hi Monotosh, I'd like assistance with income tax filing. Could you please help me understand the process and required documents?",
     },
   ];
 
-  const passportServices = [
-    {
-      title: "Passport Services (Online OTP-Based Application)",
-      description: "Convenient Application, Flexible Scheduling, Multiple Service Options.",
-      benefits: ["Online OTP-based application. Flexible interview scheduling. New, renewal, and lost passport services."],
-      documents: [
-        "New: Aadhaar (OTP-linked) + 1 other ID (Voter, PAN, etc.).",
-        "Renewal: Old passport copy.",
-        "Lost: Address/DOB proof, ID, FIR, old passport copy (if available), affidavit.",
-      ],
-      process: [
-        "Apply online with OTP",
-        "Upload documents and select service",
-        "Pay required fees", 
-        "Schedule and attend appointment with original documents",
-        "Passport issued after verification"
-      ],
-      costs: [
-        "New (36 pages): ₹2,100",
-        "New (60 pages): ₹2,650", 
-        "Renewal: ₹2,200",
-        "Lost: ₹3,500"
-      ],
-      icon: BookUser,
-      colorScheme: "red",
-    },
-  ];
-
-  const marriageRegistrationServices = [
-    {
-      title: "Marriage Registration Services",
-      description: "Seamless marriage registration with legal recognition and official proof.",
-      benefits: ["Official legal recognition of marriage. Valid proof for visas, banking, etc. Protects legal rights of spouses."],
-      documents: [
-        "Aadhaar, address proof, DOB proof for couple.",
-        "Photos of couple.",
-        "Invitation card (if available).",
-        "2 witnesses with ID/address proof.",
-      ],
-      process: [
-        "File application at registrar's office or online",
-        "Submit documents and photos", 
-        "Officials verify identities of couple and witnesses",
-        "Certificate issued after signing"
-      ],
-      costs: [
-        "Starts at ₹3,000", 
-        "Varies by state and fees"
-      ],
-      icon: HeartHandshake,
-      colorScheme: "teal",
-    },
-  ];
-
-  const SectionHeader = ({ title, showDivider = true }: { title: string, showDivider?: boolean }) => (
-    <div className="text-center my-4">
-      {showDivider && (
-        <div className="sm:max-w-5xl sm:mx-auto mb-4 lg:mb-8">
-          <div className="h-px w-3/4 sm:w-2/3 md:w-1/2 mx-auto bg-gray-200 dark:bg-gray-800" />
-        </div>
-      )}
-      <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 font-serif">{title}</h2>
-      <div className="h-1 w-24 bg-purple-600 mx-auto mt-2" />
-    </div>
-  );
+  const filteredServices = allDocumentServices.filter((service) => {
+    if (activeCategory === 'all') return true;
+    return service.category === activeCategory;
+  });
 
   return (
-    <div className="container mx-auto space-y-8 px-4 sm:px-6 lg:px-8">
-      <SimplePageHeader title="Documents" description="We simplify the application process for Aadhaar, PAN, and more." className="mb-8 [&>h1]:text-4xl sm:[&>h1]:text-6xl" color="from-purple-600 to-violet-600" />
+    <div className="pb-16 sm:pb-24 pt-8 relative overflow-hidden w-full">
+      {/* Subtle Static Ambient Background Orbs */}
+      <div className="absolute top-[10%] left-[-10%] w-[400px] h-[400px] rounded-full bg-purple-500/3 blur-[120px] pointer-events-none -z-10" />
+      <div className="absolute bottom-[20%] right-[-10%] w-[450px] h-[450px] rounded-full bg-violet-500/3 blur-[130px] pointer-events-none -z-10" />
 
-      <div className="-mt-4">
-        <SectionHeader title="Document Services" showDivider={true} />
-      </div>
-      {documentServices.map((service, index) => (
-        <div key={index} id={service.title.toLowerCase().replace(/\s+/g, '-')} className="scroll-mt-28 sm:scroll-mt-32">
-          <ServiceCard
-            className="sm:max-w-5xl sm:mx-auto"
-            title={service.title}
-            description={service.description}
-            benefits={service.benefits}
-            documents={service.documents}
-            process={service.process}
-            costs={service.costs}
-            icon={service.icon}
-            ctaText="Apply Now"
-            colorScheme={service.colorScheme}
-            delay={index * 50}
-            animation="elegant-fade"
-            whatsAppMessage={
-              service.title === "Aadhaar Card Services" 
-                ? `Hi Monotosh, I'd like to apply for an Aadhaar card. Could you please help me understand the required documents and process?`
-                : service.title === "Voter ID Card Services"
-                ? `Hi Monotosh, I'd like to apply for a Voter ID card. Could you please help me understand the required documents and process?`
-                : service.title === "Ration Card Services"
-                ? `Hi Monotosh, I'd like to apply for a Ration card. Could you please help me understand the required documents and process?`
-                : service.title === "Birth Certificate Services"
-                ? `Hi Monotosh, I'd like to apply for a Birth certificate. Could you please help me understand the required documents and process?`
-                : `Hi Monotosh, I'd like to apply for a PAN card. Could you please help me understand the required documents and process?`
-            }
-          />
-        </div>
-      ))}
+      {/* Premium subtle dotted background overlay */}
+      <div 
+        className="absolute inset-0 bg-[radial-gradient(#80808008_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,#000_70%,transparent_100%)]" 
+        aria-hidden="true"
+      />
 
-      <div className="mt-16 pt-8">
-        <SectionHeader title="Driving Licence Services" showDivider={false} />
-      </div>
-      {drivingLicenceServices.map((service, index) => (
-        <div key={index} id={service.title.toLowerCase().replace(/\s+/g, '-')} className="scroll-mt-28 sm:scroll-mt-32">
-          <ServiceCard
-            className="sm:max-w-5xl sm:mx-auto"
-            title={service.title}
-            description={service.description}
-            benefits={service.benefits}
-            documents={service.documents}
-            process={service.process}
-            costs={service.costs}
-            icon={service.icon}
-            ctaText="Apply Now"
-            colorScheme={service.colorScheme}
-            delay={index * 50}
-            animation="elegant-fade"
-            whatsAppMessage={
-              service.title === "Licence Renewal, Corrections & Duplicates"
-                ? `Hi Monotosh, I need help with licence renewal, corrections, or duplicates. Could you please guide me through the process?`
-                : `Hi Monotosh, I'd like to apply for a driving licence. Could you please help me understand the requirements and process?`
-            }
-          />
-        </div>
-      ))}
+      <div className="container mx-auto space-y-6 sm:space-y-8 px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="flex flex-col items-center gap-2.5 sm:gap-3.5 mb-2 w-full">
+          <div className="text-center">
+            <span className="inline-block text-[11px] font-bold uppercase tracking-wider text-purple-600 bg-purple-50 px-2.5 py-0.5 rounded-full border border-purple-100 mb-1">
+              Essential Services
+            </span>
+            <SimplePageHeader 
+              title="Documents" 
+              description="We simplify the application process for Aadhaar, PAN, and more." 
+              className="mb-0" 
+              color="from-purple-700 via-purple-600 to-violet-800" 
+            />
+          </div>
 
-      <div className="mt-16 pt-8">
-        <SectionHeader title="Vehicle Registration Services" showDivider={false} />
-      </div>
-      {vehicleRegistrationServices.map((service, index) => (
-        <div key={index} id={service.title.toLowerCase().replace(/\s+/g, '-')} className="scroll-mt-28 sm:scroll-mt-32">
-          <ServiceCard
-            className="sm:max-w-5xl sm:mx-auto"
-            title={service.title}
-            description={service.description}
-            benefits={service.benefits}
-            documents={service.documents}
-            process={service.process}
-            costs={service.costs}
-            icon={service.icon}
-            ctaText="Apply Now"
-            colorScheme={service.colorScheme}
-            delay={index * 50}
-            animation="elegant-fade"
-            whatsAppMessage={`Hi Monotosh, I need help with vehicle registration services. Could you please guide me through the process?`}
-          />
-        </div>
-      ))}
+          {/* Category Filter Pills Wrapper */}
+          <div className="relative w-full max-w-2xl mx-auto overflow-hidden z-20">
+            {/* Left fade scroll indicator */}
+            <button 
+              type="button"
+              onClick={() => scroll("left")}
+              className={`absolute left-1 top-[15px] -translate-y-1/2 z-30 transition-opacity duration-300 sm:hidden ${
+                showLeftScroll ? "opacity-100 cursor-pointer" : "opacity-0 pointer-events-none"
+              }`}
+              aria-label="Scroll left"
+            >
+              <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-white/60 backdrop-blur-md shadow-sm border border-white/50 ring-1 ring-black/[0.04]"><ChevronLeft className="flex-shrink-0 w-3.5 h-3.5 -translate-x-[0.5px] -translate-y-[1px] text-purple-600 animate-pulse-slow" /></span>
+            </button>
 
-      <div className="mt-16 pt-8">
-        <SectionHeader title="Business & Legal Services" showDivider={false} />
-      </div>
-      {businessAndLegalServices.map((service, index) => (
-        <div key={index} id={service.title.toLowerCase().replace(/\s+/g, '-')} className="scroll-mt-28 sm:scroll-mt-32">
-          <ServiceCard
-            className="sm:max-w-5xl sm:mx-auto"
-            title={service.title}
-            description={service.description}
-            benefits={service.benefits}
-            documents={service.documents}
-            process={service.process}
-            costs={service.costs}
-            icon={service.icon}
-            ctaText="Get Started"
-            colorScheme={service.colorScheme}
-            delay={index * 50}
-            animation="elegant-fade"
-            whatsAppMessage={`Hi Monotosh, I need help with ${service.title.toLowerCase()}. Could you please provide more information about the process and requirements?`}
-          />
-        </div>
-      ))}
+            {/* Right fade scroll indicator */}
+            <button 
+              type="button"
+              onClick={() => scroll("right")}
+              className={`absolute right-1 top-[15px] -translate-y-1/2 z-30 transition-opacity duration-300 sm:hidden ${
+                showRightScroll ? "opacity-100 cursor-pointer" : "opacity-0 pointer-events-none"
+              }`}
+              aria-label="Scroll right"
+            >
+              <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-white/60 backdrop-blur-md shadow-sm border border-white/50 ring-1 ring-black/[0.04]"><ChevronRight className="flex-shrink-0 w-3.5 h-3.5 translate-x-[0.5px] -translate-y-[1px] text-purple-600 animate-pulse-slow" /></span>
+            </button>
 
-      <div className="mt-16 pt-8">
-        <SectionHeader title="Income Tax Filing Services" showDivider={false} />
-      </div>
-      {incomeTaxFilingServices.map((service, index) => (
-        <div key={index} id={service.title.toLowerCase().replace(/\s+/g, '-')} className="scroll-mt-28 sm:scroll-mt-32">
-          <ServiceCard
-            className="sm:max-w-5xl sm:mx-auto"
-            title={service.title}
-            description={service.description}
-            benefits={service.benefits}
-            documents={service.documents}
-            process={service.process}
-            costs={service.costs}
-            icon={service.icon}
-            ctaText="Get Started"
-            colorScheme={service.colorScheme}
-            delay={index * 50}
-            animation="elegant-fade"
-            whatsAppMessage={`Hi Monotosh, I'd like assistance with income tax filing. Could you please help me understand the process and required documents?`}
-          />
+            <div 
+              ref={scrollContainerRef}
+              onScroll={checkScrollLimits}
+              className="flex overflow-x-auto sm:overflow-x-visible whitespace-nowrap [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] w-full justify-start sm:justify-center gap-2 px-4 sm:px-0 pb-1.5 sm:pb-0 relative z-20"
+            >
+              <button
+                onClick={() => setActiveCategory('all')}
+                className={`px-4 py-1.5 sm:px-5 sm:py-2 text-xs sm:text-xs font-semibold rounded-xl border transition-all duration-300 ${
+                  activeCategory === 'all'
+                    ? 'bg-purple-600 text-white border-purple-600 shadow-md shadow-purple-500/25 scale-[1.02]'
+                    : 'bg-white/80 text-slate-600 border-slate-200/80 hover:bg-slate-50'
+                }`}
+              >
+                All Services
+              </button>
+              <button
+                onClick={() => setActiveCategory('personal')}
+                className={`px-4 py-1.5 sm:px-5 sm:py-2 text-xs sm:text-xs font-semibold rounded-xl border transition-all duration-300 ${
+                  activeCategory === 'personal'
+                    ? 'bg-purple-600 text-white border-purple-600 shadow-md shadow-purple-500/25 scale-[1.02]'
+                    : 'bg-white/80 text-slate-600 border-slate-200/80 hover:bg-slate-50'
+                }`}
+              >
+                Personal IDs & Registry
+              </button>
+              <button
+                onClick={() => setActiveCategory('vehicle')}
+                className={`px-4 py-1.5 sm:px-5 sm:py-2 text-xs sm:text-xs font-semibold rounded-xl border transition-all duration-300 ${
+                  activeCategory === 'vehicle'
+                    ? 'bg-purple-600 text-white border-purple-600 shadow-md shadow-purple-500/25 scale-[1.02]'
+                    : 'bg-white/80 text-slate-600 border-slate-200/80 hover:bg-slate-50'
+                }`}
+              >
+                Driving & Vehicle
+              </button>
+              <button
+                onClick={() => setActiveCategory('business')}
+                className={`px-4 py-1.5 sm:px-5 sm:py-2 text-xs sm:text-xs font-semibold rounded-xl border transition-all duration-300 ${
+                  activeCategory === 'business'
+                    ? 'bg-purple-600 text-white border-purple-600 shadow-md shadow-purple-500/25 scale-[1.02]'
+                    : 'bg-white/80 text-slate-600 border-slate-200/80 hover:bg-slate-50'
+                }`}
+              >
+                Business & Tax
+              </button>
+            </div>
+          </div>
         </div>
-      ))}
 
-      <div className="mt-16 pt-8">
-        <SectionHeader title="Passport Services" showDivider={false} />
-      </div>
-      {passportServices.map((service, index) => (
-        <div key={index} id={service.title.toLowerCase().replace(/\s+/g, '-')} className="scroll-mt-28 sm:scroll-mt-32">
-          <ServiceCard
-            className="sm:max-w-5xl sm:mx-auto"
-            title={service.title}
-            description={service.description}
-            benefits={service.benefits}
-            documents={service.documents}
-            process={service.process}
-            costs={service.costs}
-            icon={service.icon}
-            ctaText="Apply Now"
-            colorScheme={service.colorScheme}
-            delay={index * 50}
-            animation="elegant-fade"
-            whatsAppMessage={`Hi Monotosh, I need help with passport services. Could you please guide me through the application process?`}
-          />
-        </div>
-      ))}
+        <div className="space-y-6 sm:space-y-8">
+          {filteredServices.map((service, index) => (
+            <div key={index}>
+              <div id={service.title.toLowerCase().replace(/\s+/g, '-')} className="scroll-mt-28 sm:scroll-mt-32">
+                <ServiceCard
+                  className="sm:max-w-3xl sm:mx-auto"
+                  title={service.title}
+                  description={service.description}
+                  benefits={service.benefits}
+                  documents={service.documents}
+                  process={service.process}
+                  costs={service.costs}
+                  icon={service.icon}
+                  ctaText={service.category === 'business' || service.title.includes("Registration") ? "Get Started" : "Apply Now"}
+                  colorScheme={service.colorScheme}
+                  delay={0}
+                  animation="elegant-fade"
+                  whatsAppMessage={service.whatsAppMessage}
+                />
+              </div>
 
-      <div className="mt-16 pt-8">
-        <SectionHeader title="Marriage Registration Services" showDivider={false} />
-      </div>
-      {marriageRegistrationServices.map((service, index) => (
-        <div key={index} id={service.title.toLowerCase().replace(/\s+/g, '-')} className="scroll-mt-28 sm:scroll-mt-32">
-          <ServiceCard
-            className="sm:max-w-5xl sm:mx-auto"
-            title={service.title}
-            description={service.description}
-            benefits={service.benefits}
-            documents={service.documents}
-            process={service.process}
-            costs={service.costs}
-            icon={service.icon}
-            ctaText="Get Started"
-            colorScheme={service.colorScheme}
-            delay={index * 50}
-            animation="elegant-fade"
-            whatsAppMessage={`Hi Monotosh, I'd like information about marriage registration services. Could you please explain the requirements and process?`}
-          />
+              {/* Modern minimal neutral divider between cards */}
+              {index < filteredServices.length - 1 && (
+                <div className="flex items-center justify-center gap-1.5 my-6 sm:my-8" aria-hidden="true">
+                  <div className="h-1 w-1 rounded-full bg-slate-300/50 dark:bg-slate-700/50" />
+                  <div className="h-1 w-5 rounded-full bg-slate-200/50 dark:bg-slate-800/40" />
+                  <div className="h-1 w-1 rounded-full bg-slate-300/50 dark:bg-slate-700/50" />
+                </div>
+              )}
+            </div>
+          ))}
         </div>
-      ))}
+      </div>
     </div>
   );
 }

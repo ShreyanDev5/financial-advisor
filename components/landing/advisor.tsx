@@ -25,7 +25,7 @@ export function AdvisorSection({ advisor }: { advisor: AdvisorInfo }) {
       {/* Meet Your Advisor Heading replaced with Decluttered Name Header */}
       <div className="text-center mb-10 sm:mb-12">
         <span className="text-xs font-bold uppercase tracking-widest text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">
-          Your Trusted Partner
+          Meet Your Advisor
         </span>
         <h2 className="text-3xl sm:text-4xl font-extrabold font-serif mt-3 mb-2 text-slate-900 tracking-tight">
           {advisor.name}
@@ -69,7 +69,7 @@ export function AdvisorSection({ advisor }: { advisor: AdvisorInfo }) {
             {/* Shorter premium vertical accent bar */}
             <div className="absolute left-0 top-3.5 bottom-3.5 w-1 bg-emerald-500 rounded-full" />
             <p className="relative z-10">
-              <span className="text-emerald-500 font-serif font-bold text-2xl sm:text-4xl select-none mr-1.5 inline-block leading-[0px] align-middle">&ldquo;</span>Wealth planning is not just about numbers; it&apos;s about creating stability and giving your family the freedom to focus on what truly matters.<span className="text-emerald-500 font-serif font-bold text-2xl sm:text-4xl select-none ml-0 inline-block leading-[0px] align-middle">&rdquo;</span>
+              <span className="text-emerald-500 font-serif font-bold text-2xl sm:text-4xl select-none mr-1.5 inline-block leading-[0px] align-middle">&ldquo;</span>Financial planning isn&apos;t just about numbers—it&apos;s about creating stability so your family can focus on what matters most.<span className="text-emerald-500 font-serif font-bold text-2xl sm:text-4xl select-none ml-0 inline-block leading-[0px] align-middle">&rdquo;</span>
             </p>
           </div>
 

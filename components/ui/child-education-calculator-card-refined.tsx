@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { FormattedInput } from "@/components/ui/formatted-input";
 import { Button } from "@/components/ui/button";
 import { formatLargeNumber } from "@/lib/format-large-number";
+import { CheckCircle, Calendar, CircleDollarSign, Info, AlertCircle, BookOpen, MessageSquare, Clock } from "lucide-react";
 
 // Define the type for SIP calculation results
 interface SipCalculationResults {
@@ -246,11 +247,11 @@ for ${childName}
       <div className="space-y-6">
         <div className="md:flex items-center justify-between gap-6 p-6 bg-slate-50/80 rounded-2xl border border-slate-100">
           <div className="flex flex-col gap-1">
-            <span className="text-slate-500 font-medium font-serif text-sm uppercase tracking-wider">Projected Cost</span>
-            <span className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight leading-none text-left">
+            <span className="text-slate-500 font-bold font-sans text-xs uppercase tracking-wider">Projected Cost</span>
+            <span className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-none text-left font-sans">
               {formatLargeNumber(projectedCost)}
             </span>
-            <span className="text-sm text-slate-400 font-medium">
+            <span className="text-xs text-slate-400 font-medium mt-1">
               Estimated cost after {yearsUntilEducation} years
             </span>
           </div>
@@ -259,11 +260,11 @@ for ${childName}
           <div className="md:hidden w-full h-px bg-slate-200 my-4"></div>
 
           <div className="flex flex-col gap-1 items-start md:items-end">
-            <span className="text-emerald-600 font-medium font-serif text-sm uppercase tracking-wider">Monthly SIP Required</span>
-            <span className="text-3xl sm:text-4xl font-bold text-emerald-600 tracking-tight leading-none">
+            <span className="text-emerald-600 font-bold font-sans text-xs uppercase tracking-wider">Monthly SIP Required</span>
+            <span className="text-3xl sm:text-4xl font-extrabold text-emerald-600 tracking-tight leading-none font-sans">
               {formatLargeNumber(monthlyInvestment)}
             </span>
-            <span className="text-sm text-emerald-600/60 font-medium">
+            <span className="text-xs text-emerald-600/60 font-medium mt-1">
               To reach your goal
             </span>
           </div>
@@ -273,9 +274,7 @@ for ${childName}
           <div className="bg-emerald-50/80 p-4 rounded-xl border border-emerald-200 shadow-sm">
             <div className="flex items-start gap-3">
               <div className="bg-emerald-100 p-2 rounded-lg mt-0.5">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+                <CheckCircle className="h-5 w-5 text-emerald-600" />
               </div>
               <div>
                 <p className="text-sm font-medium text-emerald-800">
@@ -291,9 +290,7 @@ for ${childName}
           <div className="bg-emerald-50/80 p-4 rounded-xl border border-emerald-200 shadow-sm">
             <div className="flex items-center gap-3">
               <div className="bg-emerald-100 p-2 rounded-lg">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+                <CheckCircle className="h-5 w-5 text-emerald-600" />
               </div>
               <p className="text-sm text-emerald-800">
                 Great! Your current savings are sufficient to meet your child&apos;s education goal.
@@ -320,9 +317,7 @@ for ${childName}
             <div key={i} className="flex flex-col sm:flex-row items-center justify-between p-4 bg-white/70 rounded-xl border border-emerald-100 shadow-sm gap-3">
               <div className="flex items-center gap-3">
                 <div className="bg-emerald-100 p-2 rounded-lg">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
+                  <Calendar className="h-5 w-5 text-emerald-600" />
                 </div>
                 <span className="font-medium text-emerald-800">{startYear + i} years:</span>
               </div>
@@ -335,9 +330,7 @@ for ${childName}
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3 p-4 bg-white/70 rounded-xl border border-emerald-100 shadow-sm">
             <div className="flex items-center gap-3">
               <div className="bg-emerald-100 p-2 rounded-lg">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+                <CircleDollarSign className="h-5 w-5 text-emerald-600" />
               </div>
               <span className="font-medium text-emerald-800">
                 One-time Career Support Fund
@@ -352,9 +345,7 @@ for ${childName}
         <div className="bg-emerald-50/80 p-4 rounded-xl border border-emerald-200 shadow-sm">
           <div className="flex items-center gap-3">
             <div className="bg-emerald-100 p-2 rounded-lg">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
+              <Info className="h-5 w-5 text-emerald-600" />
             </div>
             <p className="text-xs sm:text-sm text-emerald-600/80">
               *Calculations consider standard financial assumptions for education funding.
@@ -372,38 +363,38 @@ for ${childName}
         <>
           {/* Child's Name Input */}
           <div className="space-y-2">
-            <Label htmlFor="childName" className="text-sm font-medium text-emerald-800">Child&apos;s Name</Label>
+            <Label htmlFor="childName" className="text-sm font-semibold text-emerald-950">Child&apos;s Name</Label>
             <Input
               id="childName"
               value={childName}
               onChange={(e) => setChildName(e.target.value)}
               placeholder="e.g., Arjun"
-              className="w-full border-emerald-200 focus:border-emerald-400 focus:ring-emerald-300 rounded-lg"
+              className="w-full rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-3 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-emerald-400 focus:bg-white focus:ring-4 focus:ring-emerald-400/15 font-medium"
             />
           </div>
 
           {/* Age Inputs */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="childAge" className="text-sm font-medium text-emerald-800">Child&apos;s Current Age</Label>
+              <Label htmlFor="childAge" className="text-sm font-semibold text-emerald-950">Child&apos;s Current Age</Label>
               <FormattedInput
                 id="childAge"
                 inputMode="numeric"
                 value={childAge}
                 onFormattedChange={setChildAge}
-                className="w-full border-emerald-200 focus:border-emerald-400 focus:ring-emerald-300 rounded-lg"
+                className="w-full rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-3 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-emerald-400 focus:bg-white focus:ring-4 focus:ring-emerald-400/15 font-medium"
                 placeholder="e.g., 5"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="educationStartAge" className="text-sm font-medium text-emerald-800">Age When Child Will Go for Higher Education</Label>
+              <Label htmlFor="educationStartAge" className="text-sm font-semibold text-emerald-950">Age of Higher Education</Label>
               <FormattedInput
                 id="educationStartAge"
                 inputMode="numeric"
                 value={educationStartAge}
                 onFormattedChange={setEducationStartAge}
-                className="w-full border-emerald-200 focus:border-emerald-400 focus:ring-emerald-300 rounded-lg"
+                className="w-full rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-3 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-emerald-400 focus:bg-white focus:ring-4 focus:ring-emerald-400/15 font-medium"
                 placeholder="e.g., 18"
               />
             </div>
@@ -411,84 +402,80 @@ for ${childName}
 
           {/* Financial Inputs */}
           <div className="space-y-2">
-            <Label htmlFor="presentCost" className="text-sm font-medium text-emerald-800">Present Cost of Higher Education (₹)</Label>
+            <Label htmlFor="presentCost" className="text-sm font-semibold text-emerald-950">Present Cost of Higher Education (₹)</Label>
             <FormattedInput
               id="presentCost"
               inputMode="numeric"
               value={presentCost}
               onFormattedChange={setPresentCost}
-              className="w-full border-emerald-200 focus:border-emerald-400 focus:ring-emerald-300 rounded-lg"
+              className="w-full rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-3 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-emerald-400 focus:bg-white focus:ring-4 focus:ring-emerald-400/15 font-medium"
               placeholder="e.g., 1000000"
             />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="inflationRate" className="text-sm font-medium text-emerald-800">Expected Education Inflation Rate (% p.a.)</Label>
+              <Label htmlFor="inflationRate" className="text-sm font-semibold text-emerald-950">Expected Inflation Rate (% p.a.)</Label>
               <FormattedInput
                 id="inflationRate"
                 inputMode="decimal"
                 value={inflationRate}
                 onFormattedChange={setInflationRate}
-                className="w-full border-emerald-200 focus:border-emerald-400 focus:ring-emerald-300 rounded-lg"
+                className="w-full rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-3 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-emerald-400 focus:bg-white focus:ring-4 focus:ring-emerald-400/15 font-medium"
                 placeholder="e.g., 7"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="expectedReturn" className="text-sm font-medium text-emerald-800">Expected Rate of Return (% p.a.)</Label>
+              <Label htmlFor="expectedReturn" className="text-sm font-semibold text-emerald-950">Expected Rate of Return (% p.a.)</Label>
               <FormattedInput
                 id="expectedReturn"
                 inputMode="decimal"
                 value={expectedReturn}
                 onFormattedChange={setExpectedReturn}
-                className="w-full border-emerald-200 focus:border-emerald-400 focus:ring-emerald-300 rounded-lg"
+                className="w-full rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-3 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-emerald-400 focus:bg-white focus:ring-4 focus:ring-emerald-400/15 font-medium"
                 placeholder="e.g., 10"
               />
             </div>
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="amountSaved" className="text-sm font-medium text-emerald-800">Amount Already Saved for Child&apos;s Higher Education (₹)</Label>
+            <Label htmlFor="amountSaved" className="text-sm font-semibold text-emerald-950">Amount Already Saved (₹)</Label>
             <FormattedInput
               id="amountSaved"
               inputMode="numeric"
               value={amountSaved}
               onFormattedChange={setAmountSaved}
-              className="w-full border-emerald-200 focus:border-emerald-400 focus:ring-emerald-300 rounded-lg"
+              className="w-full rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-3 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-emerald-400 focus:bg-white focus:ring-4 focus:ring-emerald-400/15 font-medium"
               placeholder="e.g., 200000"
             />
           </div>
 
-          {/* Calculate Button */}
-          <Button
-            onClick={handleCalculate}
-            className="w-full py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white shadow-lg hover:from-emerald-600 hover:to-emerald-700 active:from-emerald-700 active:to-emerald-800 transition-all duration-300 ease-in-out rounded-xl font-medium"
-            disabled={!childName || !childAge || !educationStartAge || !presentCost || !inflationRate || !expectedReturn}
-          >
-            Calculate Education Plan
-          </Button>
-
           {/* Error Message */}
           {childAge && educationStartAge && parseInt(educationStartAge) <= parseInt(childAge) && (
-            <div className="flex items-center gap-2 p-3 bg-red-50 rounded-lg border border-red-200">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <p className="text-red-500 text-sm">
+            <div className="flex items-center gap-2 p-3 bg-red-50 rounded-2xl border border-red-200">
+              <AlertCircle className="h-5 w-5 text-red-500" />
+              <p className="text-red-500 text-sm font-medium">
                 Education start age must be greater than current age.
               </p>
             </div>
           )}
 
+          {/* Calculate Button */}
+          <Button
+            onClick={handleCalculate}
+            className="w-full py-3.5 bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-md shadow-emerald-500/10 hover:shadow-lg hover:shadow-emerald-500/15 hover:-translate-y-0.5 active:translate-y-0 active:shadow-md transition-all duration-200 rounded-2xl font-bold tracking-wide"
+            disabled={!childName || !childAge || !educationStartAge || !presentCost || !inflationRate || !expectedReturn}
+          >
+            Calculate Education Plan
+          </Button>
+
           {/* Results Display */}
           {showResults && sipCalculationResults && (
-            <div className="mt-8 p-5 bg-emerald-50/50 rounded-xl border border-emerald-200/80 shadow-sm">
-              <h3 className="text-base sm:text-lg font-semibold mb-5 text-center text-emerald-800 flex items-center justify-center gap-2">
-                <div className="bg-gradient-to-r from-emerald-500 to-teal-500 p-2 rounded-full">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                  </svg>
+            <div className="mt-8 p-6 bg-slate-50/80 rounded-3xl border border-slate-100 shadow-sm">
+              <h3 className="text-base sm:text-lg font-bold mb-5 text-center text-emerald-900 flex items-center justify-center gap-2 font-serif">
+                <div className="bg-gradient-to-r from-emerald-500 to-teal-500 p-2.5 rounded-full text-white shadow-sm ring-4 ring-white/50">
+                  <BookOpen className="h-5 w-5 text-white" />
                 </div>
                 Education Planning for {childName}
               </h3>
@@ -500,12 +487,10 @@ for ${childName}
               {/* Share Button */}
               <Button
                 onClick={handleShareSip}
-                className="w-full py-3 mt-4 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white shadow-lg hover:from-emerald-600 hover:to-emerald-700 active:from-emerald-800 active:to-emerald-900 transition-all duration-300 ease-in-out rounded-xl font-medium"
+                className="w-full py-3.5 bg-gradient-to-r from-teal-500 to-emerald-600 text-white shadow-md shadow-teal-500/10 hover:shadow-lg hover:shadow-teal-500/15 hover:-translate-y-0.5 active:translate-y-0 active:shadow-md transition-all duration-200 rounded-2xl font-bold tracking-wide"
               >
                 <div className="flex items-center justify-center gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                  </svg>
+                  <MessageSquare className="h-4 w-4" />
                   Share Results via WhatsApp
                 </div>
               </Button>
@@ -519,55 +504,51 @@ for ${childName}
         <>
           {/* Child's Name Input */}
           <div className="space-y-2">
-            <Label htmlFor="childName" className="text-sm font-medium text-emerald-800">Child&apos;s Name</Label>
+            <Label htmlFor="childName" className="text-sm font-semibold text-emerald-950">Child&apos;s Name</Label>
             <Input
               id="childName"
               value={childName}
               onChange={(e) => setChildName(e.target.value)}
               placeholder="e.g., Arjun"
-              className="w-full border-emerald-200 focus:border-emerald-400 focus:ring-emerald-300 rounded-lg"
+              className="w-full rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-3 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-emerald-400 focus:bg-white focus:ring-4 focus:ring-emerald-400/15 font-medium"
             />
           </div>
 
           {/* Monthly Savings Input */}
           <div className="space-y-2">
-            <Label htmlFor="monthlySavings" className="text-sm font-medium text-emerald-800">Monthly Savings (₹)</Label>
+            <Label htmlFor="monthlySavings" className="text-sm font-semibold text-emerald-950">Monthly Savings (₹)</Label>
             <FormattedInput
               id="monthlySavings"
               inputMode="numeric"
               value={monthlySavings}
               onFormattedChange={setMonthlySavings}
-              className="w-full border-emerald-200 focus:border-emerald-400 focus:ring-emerald-300 rounded-lg"
+              className="w-full rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-3 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-emerald-400 focus:bg-white focus:ring-4 focus:ring-emerald-400/15 font-medium"
               placeholder="e.g., 5000"
             />
           </div>
 
           {/* Payment Duration Options */}
           <div className="space-y-2">
-            <Label className="text-sm font-medium text-emerald-800">Payment Duration</Label>
+            <Label className="text-sm font-semibold text-emerald-950">Payment Duration</Label>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <button
                 onClick={() => setPaymentDuration("10")}
-                className={`py-3 px-3 rounded-xl border transition-all w-full text-sm font-medium flex items-center justify-center gap-2 ${paymentDuration === "10"
-                  ? "bg-emerald-500 text-white border-emerald-600 shadow-md"
-                  : "bg-white text-emerald-800 border-emerald-200 hover:bg-emerald-50"
+                className={`py-3 px-4 rounded-2xl border transition-all duration-300 w-full text-sm font-bold flex items-center justify-center gap-2 ${paymentDuration === "10"
+                  ? "bg-gradient-to-r from-emerald-500 to-teal-500 text-white border-emerald-600 shadow-md shadow-emerald-500/25 scale-[1.01]"
+                  : "bg-white/80 text-emerald-800 border-slate-200/80 hover:bg-slate-50"
                   }`}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+                <Clock className="h-4 w-4" />
                 Pay for 10 years
               </button>
               <button
                 onClick={() => setPaymentDuration("15")}
-                className={`py-3 px-3 rounded-xl border transition-all w-full text-sm font-medium flex items-center justify-center gap-2 ${paymentDuration === "15"
-                  ? "bg-emerald-500 text-white border-emerald-600 shadow-md"
-                  : "bg-white text-emerald-800 border-emerald-200 hover:bg-emerald-50"
+                className={`py-3 px-4 rounded-2xl border transition-all duration-300 w-full text-sm font-bold flex items-center justify-center gap-2 ${paymentDuration === "15"
+                  ? "bg-gradient-to-r from-emerald-500 to-teal-500 text-white border-emerald-600 shadow-md shadow-emerald-500/25 scale-[1.01]"
+                  : "bg-white/80 text-emerald-800 border-slate-200/80 hover:bg-slate-50"
                   }`}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+                <Clock className="h-4 w-4" />
                 Pay for 15 years
               </button>
             </div>
@@ -576,7 +557,7 @@ for ${childName}
           {/* Calculate Button */}
           <Button
             onClick={handleCalculate}
-            className="w-full py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white shadow-lg hover:from-emerald-600 hover:to-emerald-700 active:from-emerald-700 active:to-emerald-800 transition-all duration-300 ease-in-out rounded-xl font-medium"
+            className="w-full py-3.5 bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-md shadow-emerald-500/10 hover:shadow-lg hover:shadow-emerald-500/15 hover:-translate-y-0.5 active:translate-y-0 active:shadow-md transition-all duration-200 rounded-2xl font-bold tracking-wide"
             disabled={!childName || !monthlySavings}
           >
             Calculate Education Plan
@@ -584,12 +565,10 @@ for ${childName}
 
           {/* Results Display */}
           {showResults && sipSwpCalculationResults && (
-            <div className="mt-8 p-5 bg-emerald-50/50 rounded-xl border border-emerald-200/80 shadow-sm">
-              <h3 className="text-base sm:text-lg font-semibold mb-5 text-center text-emerald-800 flex items-center justify-center gap-2">
-                <div className="bg-gradient-to-r from-emerald-500 to-teal-500 p-2 rounded-full">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                  </svg>
+            <div className="mt-8 p-6 bg-slate-50/80 rounded-3xl border border-slate-100 shadow-sm">
+              <h3 className="text-base sm:text-lg font-bold mb-5 text-center text-emerald-900 flex items-center justify-center gap-2 font-serif">
+                <div className="bg-gradient-to-r from-emerald-500 to-teal-500 p-2.5 rounded-full text-white shadow-sm ring-4 ring-white/50">
+                  <BookOpen className="h-5 w-5 text-white" />
                 </div>
                 Higher Education Financial Support for {childName}
               </h3>
@@ -601,12 +580,10 @@ for ${childName}
               {/* Share Button */}
               <Button
                 onClick={handleShareSipSwp}
-                className="w-full py-3 mt-4 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white shadow-lg hover:from-emerald-600 hover:to-emerald-700 active:from-emerald-800 active:to-emerald-900 transition-all duration-300 ease-in-out rounded-xl font-medium"
+                className="w-full py-3.5 bg-gradient-to-r from-teal-500 to-emerald-600 text-white shadow-md shadow-teal-500/10 hover:shadow-lg hover:shadow-teal-500/15 hover:-translate-y-0.5 active:translate-y-0 active:shadow-md transition-all duration-200 rounded-2xl font-bold tracking-wide"
               >
                 <div className="flex items-center justify-center gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                  </svg>
+                  <MessageSquare className="h-4 w-4" />
                   Share Results via WhatsApp
                 </div>
               </Button>
