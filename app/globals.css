@@ -898,11 +898,11 @@ a:focus-visible {
 @keyframes pulse-slow {
   0%, 100% {
     opacity: 1;
-    transform: translateY(2px) scale(1);
+    transform: translate(var(--tw-translate-x, 0), var(--tw-translate-y, 0)) scale(1);
   }
   50% {
     opacity: 0.2;
-    transform: translateY(2px) scale(0.85);
+    transform: translate(var(--tw-translate-x, 0), var(--tw-translate-y, 0)) scale(0.85);
   }
 }
 

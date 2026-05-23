@@ -130,7 +130,7 @@ export default function CalculatorsContentRefined() {
               }`}
               aria-label="Scroll left"
             >
-              <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-white/60 backdrop-blur-md shadow-sm border border-white/50 ring-1 ring-black/[0.04]"><ChevronLeft className="flex-shrink-0 w-3.5 h-3.5 -translate-x-[0.5px] -translate-y-[1px] text-orange-600 animate-pulse-slow" /></span>
+              <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-white/60 backdrop-blur-md shadow-sm border border-white/50 ring-1 ring-black/[0.04]"><ChevronLeft className="flex-shrink-0 w-3.5 h-3.5 -translate-x-[0.5px] text-orange-600 animate-pulse-slow" /></span>
             </button>
 
             {/* Right fade scroll indicator */}
@@ -142,7 +142,7 @@ export default function CalculatorsContentRefined() {
               }`}
               aria-label="Scroll right"
             >
-              <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-white/60 backdrop-blur-md shadow-sm border border-white/50 ring-1 ring-black/[0.04]"><ChevronRight className="flex-shrink-0 w-3.5 h-3.5 translate-x-[0.5px] -translate-y-[1px] text-orange-600 animate-pulse-slow" /></span>
+              <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-white/60 backdrop-blur-md shadow-sm border border-white/50 ring-1 ring-black/[0.04]"><ChevronRight className="flex-shrink-0 w-3.5 h-3.5 translate-x-[0.5px] text-orange-600 animate-pulse-slow" /></span>
             </button>
 
             <div 
