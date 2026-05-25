@@ -81,3 +81,8 @@ export function runComprehensiveTests(): void {
     assertFiniteNumbers(result, "SWP result");
   }
 }
+
+if (process.argv[1] && (process.argv[1].endsWith('comprehensive-tests.ts') || process.argv[1].endsWith('comprehensive-tests.js'))) {
+  runComprehensiveTests();
+  console.log("Comprehensive tests passed successfully.");
+}

@@ -75,3 +75,8 @@ export function runBasicTests(): void {
     futureValue: 0,
   });
 }
+
+if (process.argv[1] && (process.argv[1].endsWith('basic-tests.ts') || process.argv[1].endsWith('basic-tests.js'))) {
+  runBasicTests();
+  console.log("Basic tests passed successfully.");
+}

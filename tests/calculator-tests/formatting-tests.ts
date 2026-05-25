@@ -32,3 +32,8 @@ export function runFormattingTests(): void {
     );
   }
 }
+
+if (process.argv[1] && (process.argv[1].endsWith('formatting-tests.ts') || process.argv[1].endsWith('formatting-tests.js'))) {
+  runFormattingTests();
+  console.log("Formatting tests passed successfully.");
+}
