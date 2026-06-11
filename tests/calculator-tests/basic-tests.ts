@@ -13,8 +13,8 @@ export function runBasicTests(): void {
   const sipResult = calculateSIP(5000, 12, 10);
   assert.deepEqual(sipResult, {
     totalInvested: 600000,
-    wealthGained: 561695,
-    futureValue: 1161695,
+    wealthGained: 520179,
+    futureValue: 1120179,
   });
 
   const lumpsumResult = calculateLumpsum(100000, 12, 10);
@@ -28,15 +28,15 @@ export function runBasicTests(): void {
   assert.deepEqual(swpResult, {
     totalInvested: 500000,
     totalWithdrawn: 600000,
-    finalBalance: 5256,
-    wealthGained: 105256,
-    futureValue: 5256,
+    finalBalance: 5218,
+    wealthGained: 105218,
+    futureValue: 5218,
   });
 
   const educationResult = calculateEducationPlan(1000000, 7, 13, 200000, 10);
   assert.deepEqual(educationResult, {
     projectedCost: 2409845,
-    monthlyInvestment: 5363,
+    monthlyInvestment: 5547,
     yearsUntilEducation: 13,
     shortfall: 1719391,
   });
@@ -44,7 +44,7 @@ export function runBasicTests(): void {
   const retirementResult = calculateRetirementPlan(30, 60, 85, 50000, 6, 10);
   assert.deepEqual(retirementResult, {
     retirementCorpus: 57228025,
-    monthlySavingsRequired: 25107,
+    monthlySavingsRequired: 27523,
     yearsUntilRetirement: 30,
     yearsInRetirement: 25,
     futureMonthlyExpenses: 287175,
@@ -53,7 +53,7 @@ export function runBasicTests(): void {
   const marriageResult = calculateMarriagePlan(5, 25, 2000000, 7, 300000, 10);
   assert.deepEqual(marriageResult, {
     futureCostOfMarriage: 7739369,
-    sipInvestment: 7472,
+    sipInvestment: 7902,
     lumpSumInvestment: 850408,
     yearsUntilMarriage: 20,
   });

@@ -6,7 +6,8 @@ import { Input } from "@/components/ui/input";
 import { FormattedInput } from "@/components/ui/formatted-input";
 import { Button } from "@/components/ui/button";
 import { formatLargeNumber } from "@/lib/format-large-number";
-import { CheckCircle, Calendar, CircleDollarSign, Info, AlertCircle, BookOpen, MessageSquare, Clock } from "lucide-react";
+import { calculateEducationPlan } from "@/lib/calculators";
+import { CheckCircle, Calendar, CircleDollarSign, Info, BookOpen, MessageSquare, Clock } from "lucide-react";
 
 // Define the type for SIP calculation results
 interface SipCalculationResults {
@@ -41,9 +42,67 @@ export function ChildEducationCalculatorCardRefined({ calculatorType }: { calcul
 
   const [showResults, setShowResults] = useState(false);
 
+  // Validation checks
+  const errors = useMemo(() => {
+    const errs: Record<string, string> = {};
+
+    if (childName === "" && showResults) {
+      errs.childName = "Please enter your child's name";
+    }
+
+    if (calculatorType === "sip") {
+      const age = parseInt(childAge);
+      if (childAge !== "") {
+        if (isNaN(age)) errs.childAge = "Please enter a valid age";
+        else if (age < 0 || age > 30) errs.childAge = "Age must be between 0 and 30 years";
+      }
+
+      const startAge = parseInt(educationStartAge);
+      if (educationStartAge !== "") {
+        if (isNaN(startAge)) errs.educationStartAge = "Please enter a valid age";
+        else if (startAge < 0 || startAge > 30) errs.educationStartAge = "Age must be between 0 and 30 years";
+        else if (!isNaN(age) && startAge <= age) errs.educationStartAge = "Education age must be greater than current age";
+      }
+
+      const cost = parseFloat(presentCost);
+      if (presentCost !== "") {
+        if (isNaN(cost)) errs.presentCost = "Please enter a valid amount";
+        else if (cost < 1000 || cost > 100000000) errs.presentCost = "Cost should be between ₹1,000 and ₹10 Crores";
+      }
+
+      const inf = parseFloat(inflationRate);
+      if (inflationRate !== "") {
+        if (isNaN(inf)) errs.inflationRate = "Please enter a valid rate";
+        else if (inf < 0 || inf > 30) errs.inflationRate = "Inflation rate should be between 0% and 30%";
+      }
+
+      const ret = parseFloat(expectedReturn);
+      if (expectedReturn !== "") {
+        if (isNaN(ret)) errs.expectedReturn = "Please enter a valid rate";
+        else if (ret < 0 || ret > 50) errs.expectedReturn = "Return rate should be between 0% and 50%";
+      }
+
+      const saved = parseFloat(amountSaved);
+      if (amountSaved !== "") {
+        if (isNaN(saved)) errs.amountSaved = "Please enter a valid amount";
+        else if (saved < 0 || saved > 100000000) errs.amountSaved = "Amount saved cannot exceed ₹10 Crores";
+      }
+    }
+
+    if (calculatorType === "sip-swp") {
+      const sav = parseFloat(monthlySavings);
+      if (monthlySavings !== "") {
+        if (isNaN(sav)) errs.monthlySavings = "Please enter a valid number";
+        else if (sav < 100 || sav > 10000000) errs.monthlySavings = "Savings should be between ₹100 and ₹1 Crore";
+      }
+    }
+
+    return errs;
+  }, [childName, childAge, educationStartAge, presentCost, inflationRate, expectedReturn, amountSaved, monthlySavings, calculatorType, showResults]);
+
   // Calculate SIP results based on inputs
   const sipCalculationResults = useMemo<SipCalculationResults | null>(() => {
-    if (calculatorType !== "sip" || !childName || !childAge || !educationStartAge || !presentCost || !inflationRate || !expectedReturn) return null;
+    if (calculatorType !== "sip" || !childName || !childAge || !educationStartAge || !presentCost || !inflationRate || !expectedReturn || Object.keys(errors).length > 0) return null;
 
     const currentAge = parseInt(childAge);
     const startAge = parseInt(educationStartAge);
@@ -62,43 +121,20 @@ export function ChildEducationCalculatorCardRefined({ calculatorType }: { calcul
     // Calculate years until education starts
     const yearsUntilEducation = startAge - currentAge;
 
-    // Calculate projected cost of education after inflation
-    const projectedCost = presentCostValue * Math.pow(1 + inflationRateValue / 100, yearsUntilEducation);
-
-    // Calculate future value of amount already saved
-    const futureValueOfSavings = amountSavedValue * Math.pow(1 + expectedReturnValue / 100, yearsUntilEducation);
-
-    // Calculate shortfall
-    const shortfall = projectedCost - futureValueOfSavings;
-
-    // If no shortfall, no investment needed
-    if (shortfall <= 0) {
-      return {
-        projectedCost,
-        monthlyInvestment: 0,
-        yearsUntilEducation
-      };
-    }
-
-    // Calculate monthly investment required to cover shortfall
-    // Using the future value of ordinary annuity formula: PMT = FV * r / ((1 + r)^n - 1)
-    const monthlyRate = expectedReturnValue / 100 / 12;
-    const numberOfMonths = yearsUntilEducation * 12;
-
-    let monthlyInvestment;
-    if (monthlyRate === 0) {
-      monthlyInvestment = shortfall / numberOfMonths;
-    } else {
-      // Future value of ordinary annuity formula (payments at end of period)
-      monthlyInvestment = shortfall * monthlyRate / (Math.pow(1 + monthlyRate, numberOfMonths) - 1);
-    }
+    const result = calculateEducationPlan(
+      presentCostValue,
+      inflationRateValue,
+      yearsUntilEducation,
+      amountSavedValue,
+      expectedReturnValue
+    );
 
     return {
-      projectedCost,
-      monthlyInvestment,
-      yearsUntilEducation
+      projectedCost: result.projectedCost,
+      monthlyInvestment: result.monthlyInvestment,
+      yearsUntilEducation: result.yearsUntilEducation
     };
-  }, [calculatorType, childName, childAge, educationStartAge, presentCost, inflationRate, amountSaved, expectedReturn]);
+  }, [calculatorType, childName, childAge, educationStartAge, presentCost, inflationRate, amountSaved, expectedReturn, errors]);
 
   // Calculate SIP+SWP results based on inputs
   const sipSwpCalculationResults = useMemo<SipSwpCalculationResults | null>(() => {
@@ -229,10 +265,10 @@ export function ChildEducationCalculatorCardRefined({ calculatorType }: { calcul
 
     return (
       <div className="space-y-6">
-        <div className="md:flex items-center justify-between gap-6 p-6 bg-slate-50/80 rounded-2xl border border-slate-100">
-          <div className="flex flex-col gap-1">
+        <div className="flex flex-col md:flex-row items-center md:justify-between gap-6 p-6 bg-slate-50/80 rounded-2xl border border-slate-100">
+          <div className="flex flex-col gap-1 items-center md:items-start text-center md:text-left">
             <span className="text-slate-500 font-bold font-sans text-xs uppercase tracking-wider">Projected Cost</span>
-            <span className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-none text-left font-sans">
+            <span className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight leading-none font-sans break-all">
               {formatLargeNumber(projectedCost)}
             </span>
             <span className="text-xs text-slate-400 font-medium mt-1">
@@ -241,11 +277,11 @@ export function ChildEducationCalculatorCardRefined({ calculatorType }: { calcul
           </div>
 
           <div className="hidden md:block w-px h-16 bg-slate-200"></div>
-          <div className="md:hidden w-full h-px bg-slate-200 my-4"></div>
+          <div className="md:hidden w-full h-px bg-slate-200 my-2"></div>
 
-          <div className="flex flex-col gap-1 items-start md:items-end">
+          <div className="flex flex-col gap-1 items-center md:items-end text-center md:text-right">
             <span className="text-emerald-600 font-bold font-sans text-xs uppercase tracking-wider">Monthly SIP Required</span>
-            <span className="text-3xl sm:text-4xl font-extrabold text-emerald-600 tracking-tight leading-none font-sans">
+            <span className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-emerald-600 tracking-tight leading-none font-sans break-all">
               {formatLargeNumber(monthlyInvestment)}
             </span>
             <span className="text-xs text-emerald-600/60 font-medium mt-1">
@@ -355,6 +391,9 @@ export function ChildEducationCalculatorCardRefined({ calculatorType }: { calcul
               placeholder="e.g., Arjun"
               className="w-full rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-3 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-emerald-400 focus:bg-white focus:ring-4 focus:ring-emerald-400/15 font-medium"
             />
+            {errors.childName && (
+              <p className="text-red-500 text-xs text-left font-semibold mt-1">{errors.childName}</p>
+            )}
           </div>
 
           {/* Age Inputs */}
@@ -369,6 +408,9 @@ export function ChildEducationCalculatorCardRefined({ calculatorType }: { calcul
                 className="w-full rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-3 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-emerald-400 focus:bg-white focus:ring-4 focus:ring-emerald-400/15 font-medium"
                 placeholder="e.g., 5"
               />
+              {errors.childAge && (
+                <p className="text-red-500 text-xs text-left font-semibold mt-1">{errors.childAge}</p>
+              )}
             </div>
 
             <div className="space-y-2">
@@ -381,6 +423,9 @@ export function ChildEducationCalculatorCardRefined({ calculatorType }: { calcul
                 className="w-full rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-3 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-emerald-400 focus:bg-white focus:ring-4 focus:ring-emerald-400/15 font-medium"
                 placeholder="e.g., 18"
               />
+              {errors.educationStartAge && (
+                <p className="text-red-500 text-xs text-left font-semibold mt-1">{errors.educationStartAge}</p>
+              )}
             </div>
           </div>
 
@@ -395,6 +440,9 @@ export function ChildEducationCalculatorCardRefined({ calculatorType }: { calcul
               className="w-full rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-3 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-emerald-400 focus:bg-white focus:ring-4 focus:ring-emerald-400/15 font-medium"
               placeholder="e.g., 1000000"
             />
+            {errors.presentCost && (
+              <p className="text-red-500 text-xs text-left font-semibold mt-1">{errors.presentCost}</p>
+            )}
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -408,6 +456,9 @@ export function ChildEducationCalculatorCardRefined({ calculatorType }: { calcul
                 className="w-full rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-3 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-emerald-400 focus:bg-white focus:ring-4 focus:ring-emerald-400/15 font-medium"
                 placeholder="e.g., 7"
               />
+              {errors.inflationRate && (
+                <p className="text-red-500 text-xs text-left font-semibold mt-1">{errors.inflationRate}</p>
+              )}
             </div>
 
             <div className="space-y-2">
@@ -420,6 +471,9 @@ export function ChildEducationCalculatorCardRefined({ calculatorType }: { calcul
                 className="w-full rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-3 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-emerald-400 focus:bg-white focus:ring-4 focus:ring-emerald-400/15 font-medium"
                 placeholder="e.g., 10"
               />
+              {errors.expectedReturn && (
+                <p className="text-red-500 text-xs text-left font-semibold mt-1">{errors.expectedReturn}</p>
+              )}
             </div>
           </div>
 
@@ -433,23 +487,16 @@ export function ChildEducationCalculatorCardRefined({ calculatorType }: { calcul
               className="w-full rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-3 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-emerald-400 focus:bg-white focus:ring-4 focus:ring-emerald-400/15 font-medium"
               placeholder="e.g., 200000"
             />
+            {errors.amountSaved && (
+              <p className="text-red-500 text-xs text-left font-semibold mt-1">{errors.amountSaved}</p>
+            )}
           </div>
-
-          {/* Error Message */}
-          {childAge && educationStartAge && parseInt(educationStartAge) <= parseInt(childAge) && (
-            <div className="flex items-center gap-2 p-3 bg-red-50 rounded-2xl border border-red-200">
-              <AlertCircle className="h-5 w-5 text-red-500" />
-              <p className="text-red-500 text-sm font-medium">
-                Education start age must be greater than current age.
-              </p>
-            </div>
-          )}
 
           {/* Calculate Button */}
           <Button
             onClick={handleCalculate}
             className="w-full py-3.5 bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-md shadow-emerald-500/10 hover:shadow-lg hover:shadow-emerald-500/15 hover:-translate-y-0.5 active:translate-y-0 active:shadow-md transition-all duration-200 rounded-2xl font-bold tracking-wide"
-            disabled={!childName || !childAge || !educationStartAge || !presentCost || !inflationRate || !expectedReturn}
+            disabled={!childName || !childAge || !educationStartAge || !presentCost || !inflationRate || !expectedReturn || Object.keys(errors).length > 0}
           >
             Calculate Education Plan
           </Button>
@@ -496,6 +543,9 @@ export function ChildEducationCalculatorCardRefined({ calculatorType }: { calcul
               placeholder="e.g., Arjun"
               className="w-full rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-3 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-emerald-400 focus:bg-white focus:ring-4 focus:ring-emerald-400/15 font-medium"
             />
+            {errors.childName && (
+              <p className="text-red-500 text-xs text-left font-semibold mt-1">{errors.childName}</p>
+            )}
           </div>
 
           {/* Monthly Savings Input */}
@@ -509,6 +559,9 @@ export function ChildEducationCalculatorCardRefined({ calculatorType }: { calcul
               className="w-full rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-3 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-emerald-400 focus:bg-white focus:ring-4 focus:ring-emerald-400/15 font-medium"
               placeholder="e.g., 5000"
             />
+            {errors.monthlySavings && (
+              <p className="text-red-500 text-xs text-left font-semibold mt-1">{errors.monthlySavings}</p>
+            )}
           </div>
 
           {/* Payment Duration Options */}
@@ -542,7 +595,7 @@ export function ChildEducationCalculatorCardRefined({ calculatorType }: { calcul
           <Button
             onClick={handleCalculate}
             className="w-full py-3.5 bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-md shadow-emerald-500/10 hover:shadow-lg hover:shadow-emerald-500/15 hover:-translate-y-0.5 active:translate-y-0 active:shadow-md transition-all duration-200 rounded-2xl font-bold tracking-wide"
-            disabled={!childName || !monthlySavings}
+            disabled={!childName || !monthlySavings || Object.keys(errors).length > 0}
           >
             Calculate Education Plan
           </Button>

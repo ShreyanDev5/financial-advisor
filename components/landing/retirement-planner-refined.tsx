@@ -8,7 +8,7 @@ import { FormattedInput } from "@/components/ui/formatted-input";
 import { Button } from "@/components/ui/button";
 import { formatLargeNumber } from "@/lib/format-large-number";
 import { calculateRetirementPlan, RetirementPlanResult } from "@/lib/calculators";
-import { Umbrella, AlertCircle, CreditCard, MessageSquare } from "lucide-react";
+import { Umbrella, CreditCard, MessageSquare } from "lucide-react";
 
 export default function IncomePlanningCalculatorRefined() {
   const [name, setName] = useState("");
@@ -20,9 +20,58 @@ export default function IncomePlanningCalculatorRefined() {
   const [expectedReturn, setExpectedReturn] = useState("");
   const [showResults, setShowResults] = useState(false);
 
+  // Validation checks
+  const errors = useMemo(() => {
+    const errs: Record<string, string> = {};
+
+    if (name === "" && showResults) {
+      errs.name = "Please enter your name";
+    }
+
+    const current = parseInt(currentAge);
+    if (currentAge !== "") {
+      if (isNaN(current)) errs.currentAge = "Please enter a valid age";
+      else if (current < 15 || current > 99) errs.currentAge = "Current age must be between 15 and 99 years";
+    }
+
+    const retirement = parseInt(retirementAge);
+    if (retirementAge !== "") {
+      if (isNaN(retirement)) errs.retirementAge = "Please enter a valid age";
+      else if (retirement < 15 || retirement > 100) errs.retirementAge = "Retirement age must be between 15 and 100 years";
+      else if (!isNaN(current) && retirement <= current) errs.retirementAge = "Retirement age must be greater than current age";
+    }
+
+    const expectancy = parseInt(lifeExpectancy);
+    if (lifeExpectancy !== "") {
+      if (isNaN(expectancy)) errs.lifeExpectancy = "Please enter a valid life expectancy";
+      else if (expectancy < 15 || expectancy > 120) errs.lifeExpectancy = "Life expectancy must be between 15 and 120 years";
+      else if (!isNaN(retirement) && expectancy <= retirement) errs.lifeExpectancy = "Life expectancy must be greater than retirement age";
+    }
+
+    const expenses = parseFloat(monthlyExpenses);
+    if (monthlyExpenses !== "") {
+      if (isNaN(expenses)) errs.monthlyExpenses = "Please enter a valid amount";
+      else if (expenses < 100 || expenses > 5000000) errs.monthlyExpenses = "Expenses should be between ₹100 and ₹50 Lakhs";
+    }
+
+    const inf = parseFloat(inflationRate);
+    if (inflationRate !== "") {
+      if (isNaN(inf)) errs.inflationRate = "Please enter a valid rate";
+      else if (inf < 0 || inf > 30) errs.inflationRate = "Inflation rate should be between 0% and 30%";
+    }
+
+    const ret = parseFloat(expectedReturn);
+    if (expectedReturn !== "") {
+      if (isNaN(ret)) errs.expectedReturn = "Please enter a valid rate";
+      else if (ret < 0 || ret > 50) errs.expectedReturn = "Return rate should be between 0% and 50%";
+    }
+
+    return errs;
+  }, [name, currentAge, retirementAge, lifeExpectancy, monthlyExpenses, inflationRate, expectedReturn, showResults]);
+
   // Calculate results based on inputs
   const calculationResults = useMemo<RetirementPlanResult | null>(() => {
-    if (!name || !currentAge || !retirementAge || !lifeExpectancy || !monthlyExpenses || !inflationRate || !expectedReturn) return null;
+    if (!name || !currentAge || !retirementAge || !lifeExpectancy || !monthlyExpenses || !inflationRate || !expectedReturn || Object.keys(errors).length > 0) return null;
 
     const current = parseInt(currentAge);
     const retirement = parseInt(retirementAge);
@@ -47,7 +96,7 @@ export default function IncomePlanningCalculatorRefined() {
       inflation,
       expectedReturnRate
     );
-  }, [name, currentAge, retirementAge, lifeExpectancy, monthlyExpenses, inflationRate, expectedReturn]);
+  }, [name, currentAge, retirementAge, lifeExpectancy, monthlyExpenses, inflationRate, expectedReturn, errors]);
 
   const handleCalculate = () => {
     if (name && currentAge && retirementAge && lifeExpectancy && monthlyExpenses && inflationRate && expectedReturn) {
@@ -79,10 +128,10 @@ export default function IncomePlanningCalculatorRefined() {
 
     return (
       <div className="space-y-6">
-        <div className="md:flex items-center justify-between gap-6 p-6 bg-white/80 rounded-2xl border border-indigo-100 shadow-sm">
-          <div className="flex flex-col gap-1">
+        <div className="flex flex-col md:flex-row items-center md:justify-between gap-6 p-6 bg-white/80 rounded-2xl border border-indigo-100 shadow-sm">
+          <div className="flex flex-col gap-1 items-center md:items-start text-center md:text-left">
             <span className="text-slate-500 font-bold font-serif text-xs uppercase tracking-wider">Retirement Corpus</span>
-            <span className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-none text-left font-serif">
+            <span className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight leading-none font-serif break-all">
               {formatLargeNumber(retirementCorpus)}
             </span>
             <span className="text-xs text-slate-400 font-medium mt-1">
@@ -91,11 +140,11 @@ export default function IncomePlanningCalculatorRefined() {
           </div>
 
           <div className="hidden md:block w-px h-16 bg-slate-200"></div>
-          <div className="md:hidden w-full h-px bg-slate-200 my-4"></div>
+          <div className="md:hidden w-full h-px bg-slate-200 my-2"></div>
 
-          <div className="flex flex-col gap-1 items-start md:items-end">
+          <div className="flex flex-col gap-1 items-center md:items-end text-center md:text-right">
             <span className="text-indigo-600 font-bold font-serif text-xs uppercase tracking-wider">Monthly Savings</span>
-            <span className="text-3xl sm:text-4xl font-extrabold text-indigo-600 tracking-tight leading-none font-serif">
+            <span className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-indigo-600 tracking-tight leading-none font-serif break-all">
               {formatLargeNumber(monthlySavingsRequired)}
             </span>
             <span className="text-xs text-indigo-600/60 font-medium mt-1">
@@ -107,11 +156,11 @@ export default function IncomePlanningCalculatorRefined() {
         <div className="grid grid-cols-2 gap-4">
           <div className="bg-white p-4.5 rounded-2xl border border-indigo-50 shadow-sm text-center">
             <span className="block text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Time to Ret.</span>
-            <span className="block text-xl font-serif font-bold text-slate-700">{yearsUntilRetirement} Years</span>
+            <span className="block text-xl font-serif font-bold text-slate-700 break-all">{yearsUntilRetirement} Years</span>
           </div>
           <div className="bg-white p-4.5 rounded-2xl border border-indigo-50 shadow-sm text-center">
             <span className="block text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Future Exp.</span>
-            <span className="block text-xl font-serif font-bold text-slate-700">{formatLargeNumber(futureMonthlyExpenses)}</span>
+            <span className="block text-xl font-serif font-bold text-slate-700 break-all">{formatLargeNumber(futureMonthlyExpenses)}</span>
           </div>
         </div>
       </div>
@@ -163,6 +212,9 @@ export default function IncomePlanningCalculatorRefined() {
                 placeholder="e.g., Arjun Sharma"
                 className="w-full rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-3 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-indigo-400 focus:bg-white focus:ring-4 focus:ring-indigo-400/15 font-medium"
               />
+              {errors.name && (
+                <p className="text-red-500 text-xs text-left font-semibold mt-1">{errors.name}</p>
+              )}
             </div>
 
             {/* Age Inputs */}
@@ -177,6 +229,9 @@ export default function IncomePlanningCalculatorRefined() {
                   className="w-full rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-3 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-indigo-400 focus:bg-white focus:ring-4 focus:ring-indigo-400/15 font-medium"
                   placeholder="e.g., 35"
                 />
+                {errors.currentAge && (
+                  <p className="text-red-500 text-xs text-left font-semibold mt-1">{errors.currentAge}</p>
+                )}
               </div>
 
               <div className="space-y-2">
@@ -189,6 +244,9 @@ export default function IncomePlanningCalculatorRefined() {
                   className="w-full rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-3 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-indigo-400 focus:bg-white focus:ring-4 focus:ring-indigo-400/15 font-medium"
                   placeholder="e.g., 60"
                 />
+                {errors.retirementAge && (
+                  <p className="text-red-500 text-xs text-left font-semibold mt-1">{errors.retirementAge}</p>
+                )}
               </div>
 
               <div className="space-y-2">
@@ -201,6 +259,9 @@ export default function IncomePlanningCalculatorRefined() {
                   className="w-full rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-3 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-indigo-400 focus:bg-white focus:ring-4 focus:ring-indigo-400/15 font-medium"
                   placeholder="e.g., 85"
                 />
+                {errors.lifeExpectancy && (
+                  <p className="text-red-500 text-xs text-left font-semibold mt-1">{errors.lifeExpectancy}</p>
+                )}
               </div>
             </div>
 
@@ -215,6 +276,9 @@ export default function IncomePlanningCalculatorRefined() {
                 className="w-full rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-3 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-indigo-400 focus:bg-white focus:ring-4 focus:ring-indigo-400/15 font-medium"
                 placeholder="e.g., ₹50,000 per month"
               />
+              {errors.monthlyExpenses && (
+                <p className="text-red-500 text-xs text-left font-semibold mt-1">{errors.monthlyExpenses}</p>
+              )}
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -228,6 +292,9 @@ export default function IncomePlanningCalculatorRefined() {
                   className="w-full rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-3 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-indigo-400 focus:bg-white focus:ring-4 focus:ring-indigo-400/15 font-medium"
                   placeholder="e.g., 6"
                 />
+                {errors.inflationRate && (
+                  <p className="text-red-500 text-xs text-left font-semibold mt-1">{errors.inflationRate}</p>
+                )}
               </div>
 
               <div className="space-y-2">
@@ -240,78 +307,17 @@ export default function IncomePlanningCalculatorRefined() {
                   className="w-full rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-3 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-indigo-400 focus:bg-white focus:ring-4 focus:ring-indigo-400/15 font-medium"
                   placeholder="e.g., 10"
                 />
+                {errors.expectedReturn && (
+                  <p className="text-red-500 text-xs text-left font-semibold mt-1">{errors.expectedReturn}</p>
+                )}
               </div>
             </div>
-
-            {/* Error Messages */}
-            {currentAge && parseInt(currentAge) < 15 && (
-              <div className="flex items-center gap-2 p-3 bg-red-50 rounded-2xl border border-red-200">
-                <AlertCircle className="h-5 w-5 text-red-500" />
-                <p className="text-red-500 text-sm font-medium">
-                  Current age must be at least 15 years.
-                </p>
-              </div>
-            )}
-
-            {retirementAge && parseInt(retirementAge) > 100 && (
-              <div className="flex items-center gap-2 p-3 bg-red-50 rounded-2xl border border-red-200">
-                <AlertCircle className="h-5 w-5 text-red-500" />
-                <p className="text-red-500 text-sm font-medium">
-                  Retirement age must be at most 100 years.
-                </p>
-              </div>
-            )}
-
-            {monthlyExpenses && parseFloat(monthlyExpenses) <= 0 && (
-              <div className="flex items-center gap-2 p-3 bg-red-50 rounded-2xl border border-red-200">
-                <AlertCircle className="h-5 w-5 text-red-500" />
-                <p className="text-red-500 text-sm font-medium">
-                  Monthly expenses must be greater than 0.
-                </p>
-              </div>
-            )}
-
-            {inflationRate && parseFloat(inflationRate) < 0 && (
-              <div className="flex items-center gap-2 p-3 bg-red-50 rounded-2xl border border-red-200">
-                <AlertCircle className="h-5 w-5 text-red-500" />
-                <p className="text-red-500 text-sm font-medium">
-                  Inflation rate cannot be negative.
-                </p>
-              </div>
-            )}
-
-            {expectedReturn && parseFloat(expectedReturn) < 0 && (
-              <div className="flex items-center gap-2 p-3 bg-red-50 rounded-2xl border border-red-200">
-                <AlertCircle className="h-5 w-5 text-red-500" />
-                <p className="text-red-500 text-sm font-medium">
-                  Expected return rate cannot be negative.
-                </p>
-              </div>
-            )}
-
-            {currentAge && retirementAge && parseInt(retirementAge) <= parseInt(currentAge) && (
-              <div className="flex items-center gap-2 p-3 bg-red-50 rounded-2xl border border-red-200">
-                <AlertCircle className="h-5 w-5 text-red-500" />
-                <p className="text-red-500 text-sm font-medium">
-                  Retirement age must be greater than current age.
-                </p>
-              </div>
-            )}
-
-            {retirementAge && lifeExpectancy && parseInt(lifeExpectancy) <= parseInt(retirementAge) && (
-              <div className="flex items-center gap-2 p-3 bg-red-50 rounded-2xl border border-red-200">
-                <AlertCircle className="h-5 w-5 text-red-500" />
-                <p className="text-red-500 text-sm font-medium">
-                  Life expectancy must be greater than retirement age.
-                </p>
-              </div>
-            )}
 
             {/* Calculate Button */}
             <Button
               onClick={handleCalculate}
               className="w-full py-3.5 bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-md shadow-indigo-500/10 hover:shadow-lg hover:shadow-indigo-500/15 hover:-translate-y-0.5 active:translate-y-0 active:shadow-md transition-all duration-200 rounded-2xl font-bold tracking-wide"
-              disabled={!name || !currentAge || !retirementAge || !lifeExpectancy || !monthlyExpenses || !inflationRate || !expectedReturn}
+              disabled={!name || !currentAge || !retirementAge || !lifeExpectancy || !monthlyExpenses || !inflationRate || !expectedReturn || Object.keys(errors).length > 0}
             >
               Calculate Retirement Plan
             </Button>

@@ -9,6 +9,96 @@ import { calculateSIP, calculateLumpsum, calculateSWP, CalculationResult, SWPRes
 import { RotateCcw, CircleDollarSign, CreditCard } from "lucide-react";
 
 
+// Piecewise-linear mappings for sliders to provide more gradual controls at common lower ranges.
+// 1. SIP Monthly Investment (₹500 to ₹10 Lakhs)
+// - 0% to 50% pos: ₹500 to ₹50,000 (step = ₹500)
+// - 50% to 100% pos: ₹50,000 to ₹10,00,000 (step = ₹5,000)
+const sipValToPos = (val: number): number => {
+  if (val <= 500) return 0;
+  if (val >= 1000000) return 100;
+  if (val <= 50000) {
+    return ((val - 500) / 49500) * 50;
+  }
+  return 50 + ((val - 50000) / 950000) * 50;
+};
+const sipPosToVal = (pos: number): number => {
+  if (pos <= 0) return 500;
+  if (pos >= 100) return 1000000;
+  if (pos <= 50) {
+    const val = 500 + (pos / 50) * 49500;
+    return Math.round(val / 500) * 500;
+  }
+  const val = 50000 + ((pos - 50) / 50) * 950000;
+  return Math.round(val / 5000) * 5000;
+};
+
+// 2. Lumpsum Total Investment (₹1,000 to ₹1 Crore)
+// - 0% to 50% pos: ₹1,000 to ₹10,00,000 (10 Lakhs) (step = ₹1,000)
+// - 50% to 100% pos: ₹10,00,000 to ₹1,00,00,000 (1 Crore) (step = ₹50,000)
+const lumpValToPos = (val: number): number => {
+  if (val <= 1000) return 0;
+  if (val >= 10000000) return 100;
+  if (val <= 1000000) {
+    return ((val - 1000) / 999000) * 50;
+  }
+  return 50 + ((val - 1000000) / 9000000) * 50;
+};
+const lumpPosToVal = (pos: number): number => {
+  if (pos <= 0) return 1000;
+  if (pos >= 100) return 10000000;
+  if (pos <= 50) {
+    const val = 1000 + (pos / 50) * 999000;
+    return Math.round(val / 1000) * 1000;
+  }
+  const val = 1000000 + ((pos - 50) / 50) * 9000000;
+  return Math.round(val / 50000) * 50000;
+};
+
+// 3. SWP Total Investment (₹10,000 to ₹1 Crore)
+// - 0% to 50% pos: ₹10,000 to ₹10,00,000 (10 Lakhs) (step = ₹10,000)
+// - 50% to 100% pos: ₹10,00,000 to ₹1,00,00,000 (1 Crore) (step = ₹50,000)
+const swpInvValToPos = (val: number): number => {
+  if (val <= 10000) return 0;
+  if (val >= 10000000) return 100;
+  if (val <= 1000000) {
+    return ((val - 10000) / 990000) * 50;
+  }
+  return 50 + ((val - 1000000) / 9000000) * 50;
+};
+const swpInvPosToVal = (pos: number): number => {
+  if (pos <= 0) return 10000;
+  if (pos >= 100) return 10000000;
+  if (pos <= 50) {
+    const val = 10000 + (pos / 50) * 990000;
+    return Math.round(val / 10000) * 10000;
+  }
+  const val = 1000000 + ((pos - 50) / 50) * 9000000;
+  return Math.round(val / 50000) * 50000;
+};
+
+// 4. SWP Withdrawal Amount (₹500 to ₹2.5 Lakhs)
+// - 0% to 50% pos: ₹500 to ₹25,000 (step = ₹500)
+// - 50% to 100% pos: ₹25,000 to ₹2,50,000 (step = ₹2,500)
+const swpWdValToPos = (val: number): number => {
+  if (val <= 500) return 0;
+  if (val >= 250000) return 100;
+  if (val <= 25000) {
+    return ((val - 500) / 24500) * 50;
+  }
+  return 50 + ((val - 25000) / 225000) * 50;
+};
+const swpWdPosToVal = (pos: number): number => {
+  if (pos <= 0) return 500;
+  if (pos >= 100) return 250000;
+  if (pos <= 50) {
+    const val = 500 + (pos / 50) * 24500;
+    return Math.round(val / 500) * 500;
+  }
+  const val = 25000 + ((pos - 50) / 50) * 225000;
+  return Math.round(val / 2500) * 2500;
+};
+
+
 export function InvestmentCalculatorCardRefined({ investmentType }: { investmentType: string }) {
   const [isMounted, setIsMounted] = useState(false);
   useEffect(() => {
@@ -20,30 +110,102 @@ export function InvestmentCalculatorCardRefined({ investmentType }: { investment
   const [expectedReturnRate, setExpectedReturnRate] = useState("12");
   const [timePeriod, setTimePeriod] = useState("10");
 
-  const calculatedResult: CalculationResult | SWPResult | null = useMemo(() => {
-    const principal = parseFloat(totalInvestment);
-    const monthlyAmt = parseFloat(investmentAmount);
-    const withdrawalAmt = parseFloat(withdrawalAmount);
-    const annualRate = parseFloat(expectedReturnRate);
-    const years = parseInt(timePeriod);
+  // Validation checks
+  const errors = useMemo(() => {
+    const errs: Record<string, string> = {};
 
     if (investmentType === "sip") {
-      if (isNaN(monthlyAmt) || isNaN(annualRate) || isNaN(years)) return null;
+      const amt = parseFloat(investmentAmount);
+      if (investmentAmount !== "") {
+        if (isNaN(amt)) errs.investmentAmount = "Please enter a valid number";
+        else if (amt < 100 || amt > 10000000) errs.investmentAmount = "Amount should be between ₹100 and ₹1 Crore";
+      }
+    }
+
+    if (investmentType === "lumpsum") {
+      const tot = parseFloat(totalInvestment);
+      if (totalInvestment !== "") {
+        if (isNaN(tot)) errs.totalInvestment = "Please enter a valid number";
+        else if (tot < 100 || tot > 100000000) errs.totalInvestment = "Amount should be between ₹100 and ₹10 Crores";
+      }
+    }
+
+    if (investmentType === "swp") {
+      const tot = parseFloat(totalInvestment);
+      if (totalInvestment !== "") {
+        if (isNaN(tot)) errs.totalInvestment = "Please enter a valid number";
+        else if (tot < 1000 || tot > 100000000) errs.totalInvestment = "Amount should be between ₹1,000 and ₹10 Crores";
+      }
+
+      const wd = parseFloat(withdrawalAmount);
+      if (withdrawalAmount !== "") {
+        if (isNaN(wd)) errs.withdrawalAmount = "Please enter a valid number";
+        else if (wd < 100 || wd > 10000000) errs.withdrawalAmount = "Withdrawal should be between ₹100 and ₹1 Crore";
+        else if (!isNaN(tot) && wd > tot) errs.withdrawalAmount = "Withdrawal cannot exceed the initial investment";
+      }
+    }
+
+    const rate = parseFloat(expectedReturnRate);
+    if (expectedReturnRate !== "") {
+      if (isNaN(rate)) errs.expectedReturnRate = "Please enter a valid rate";
+      else if (rate < 0.1 || rate > 50) errs.expectedReturnRate = "Rate should be between 0.1% and 50%";
+    }
+
+    const yrs = parseInt(timePeriod);
+    if (timePeriod !== "") {
+      if (isNaN(yrs)) errs.timePeriod = "Please enter a valid number of years";
+      else if (yrs < 1 || yrs > 40) errs.timePeriod = "Period should be between 1 and 40 years";
+    }
+
+    return errs;
+  }, [investmentType, investmentAmount, totalInvestment, withdrawalAmount, expectedReturnRate, timePeriod]);
+
+  const calculatedResult: CalculationResult | SWPResult | null = useMemo(() => {
+    // Return null if there are validation errors
+    if (Object.keys(errors).length > 0) return null;
+
+    // Return null if any required input field is empty
+    if (expectedReturnRate === "" || timePeriod === "") return null;
+    if (investmentType === "sip" && investmentAmount === "") return null;
+    if (investmentType === "lumpsum" && totalInvestment === "") return null;
+    if (investmentType === "swp" && (totalInvestment === "" || withdrawalAmount === "")) return null;
+
+    const clamp = (val: number, min: number, max: number) => Math.min(max, Math.max(min, val));
+
+    let principal = parseFloat(totalInvestment);
+    if (isNaN(principal)) principal = 100000;
+    principal = clamp(principal, 100, 100000000);
+
+    let monthlyAmt = parseFloat(investmentAmount);
+    if (isNaN(monthlyAmt)) monthlyAmt = 5000;
+    monthlyAmt = clamp(monthlyAmt, 100, 10000000);
+
+    let withdrawalAmt = parseFloat(withdrawalAmount);
+    if (isNaN(withdrawalAmt)) withdrawalAmt = 5000;
+    withdrawalAmt = clamp(withdrawalAmt, 100, Math.min(10000000, principal));
+
+    let annualRate = parseFloat(expectedReturnRate);
+    if (isNaN(annualRate)) annualRate = 12;
+    annualRate = clamp(annualRate, 0.1, 50);
+
+    let years = parseInt(timePeriod);
+    if (isNaN(years)) years = 10;
+    years = clamp(years, 1, 40);
+
+    if (investmentType === "sip") {
       return calculateSIP(monthlyAmt, annualRate, years);
     }
 
     if (investmentType === "lumpsum") {
-      if (isNaN(principal) || isNaN(annualRate) || isNaN(years)) return null;
       return calculateLumpsum(principal, annualRate, years);
     }
 
     if (investmentType === "swp") {
-      if (isNaN(principal) || isNaN(withdrawalAmt) || isNaN(annualRate) || isNaN(years)) return null;
       return calculateSWP(principal, withdrawalAmt, annualRate, years);
     }
 
     return null;
-  }, [totalInvestment, investmentAmount, withdrawalAmount, expectedReturnRate, timePeriod, investmentType]);
+  }, [totalInvestment, investmentAmount, withdrawalAmount, expectedReturnRate, timePeriod, investmentType, errors]);
 
   const { chartData } = useMemo(() => {
     if (!calculatedResult) {
@@ -110,8 +272,11 @@ export function InvestmentCalculatorCardRefined({ investmentType }: { investment
                     className="w-full sm:w-1/3 rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-2.5 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-orange-400 focus:bg-white focus:ring-4 focus:ring-orange-400/15 font-medium"
                   />
                 </div>
+                {errors.investmentAmount && (
+                  <p className="text-red-500 text-xs text-left font-semibold mt-1">{errors.investmentAmount}</p>
+                )}
                 <div className="pt-2">
-                  <Slider value={[Number(investmentAmount) || 0]} onValueChange={([v]) => setInvestmentAmount(String(Math.round(v)))} min={500} max={1000000} step={500} className="mx-auto w-full [&>span:first-child]:h-2 [&>span:first-child]:bg-orange-100 [&>span:first-child>span]:bg-orange-500 [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:border-orange-500 [&_[role=slider]]:shadow-md" />
+                  <Slider value={[sipValToPos(Number(investmentAmount) || 0)]} onValueChange={([v]) => setInvestmentAmount(String(sipPosToVal(v)))} min={0} max={100} step={1} className="mx-auto w-full [&>span:first-child]:h-2 [&>span:first-child]:bg-orange-100 [&>span:first-child>span]:bg-orange-500 [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:border-orange-500 [&_[role=slider]]:shadow-md" />
                 </div>
               </div>
             )}
@@ -127,8 +292,11 @@ export function InvestmentCalculatorCardRefined({ investmentType }: { investment
                     className="w-full sm:w-1/3 rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-2.5 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-orange-400 focus:bg-white focus:ring-4 focus:ring-orange-400/15 font-medium"
                   />
                 </div>
+                {errors.totalInvestment && (
+                  <p className="text-red-500 text-xs text-left font-semibold mt-1">{errors.totalInvestment}</p>
+                )}
                 <div className="pt-2">
-                  <Slider value={[Number(totalInvestment) || 0]} onValueChange={([v]) => setTotalInvestment(String(Math.round(v)))} min={500} max={10000000} step={10000} className="mx-auto w-full [&>span:first-child]:h-2 [&>span:first-child]:bg-orange-100 [&>span:first-child>span]:bg-orange-500 [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:border-orange-500 [&_[role=slider]]:shadow-md" />
+                  <Slider value={[lumpValToPos(Number(totalInvestment) || 0)]} onValueChange={([v]) => setTotalInvestment(String(lumpPosToVal(v)))} min={0} max={100} step={1} className="mx-auto w-full [&>span:first-child]:h-2 [&>span:first-child]:bg-orange-100 [&>span:first-child>span]:bg-orange-500 [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:border-orange-500 [&_[role=slider]]:shadow-md" />
                 </div>
               </div>
             )}
@@ -145,8 +313,11 @@ export function InvestmentCalculatorCardRefined({ investmentType }: { investment
                       className="w-full sm:w-1/3 rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-2.5 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-orange-400 focus:bg-white focus:ring-4 focus:ring-orange-400/15 font-medium"
                     />
                   </div>
+                  {errors.totalInvestment && (
+                    <p className="text-red-500 text-xs text-left font-semibold mt-1">{errors.totalInvestment}</p>
+                  )}
                   <div className="pt-2">
-                    <Slider value={[Number(totalInvestment) || 0]} onValueChange={([v]) => setTotalInvestment(String(Math.round(v)))} min={10000} max={10000000} step={10000} className="mx-auto w-full [&>span:first-child]:h-2 [&>span:first-child]:bg-orange-100 [&>span:first-child>span]:bg-orange-500 [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:border-orange-500 [&_[role=slider]]:shadow-md" />
+                    <Slider value={[swpInvValToPos(Number(totalInvestment) || 0)]} onValueChange={([v]) => setTotalInvestment(String(swpInvPosToVal(v)))} min={0} max={100} step={1} className="mx-auto w-full [&>span:first-child]:h-2 [&>span:first-child]:bg-orange-100 [&>span:first-child>span]:bg-orange-500 [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:border-orange-500 [&_[role=slider]]:shadow-md" />
                   </div>
                 </div>
                 <div className="space-y-2.5">
@@ -160,8 +331,11 @@ export function InvestmentCalculatorCardRefined({ investmentType }: { investment
                       className="w-full sm:w-1/3 rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-2.5 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-orange-400 focus:bg-white focus:ring-4 focus:ring-orange-400/15 font-medium"
                     />
                   </div>
+                  {errors.withdrawalAmount && (
+                    <p className="text-red-500 text-xs text-left font-semibold mt-1">{errors.withdrawalAmount}</p>
+                  )}
                   <div className="pt-2">
-                    <Slider value={[Number(withdrawalAmount) || 0]} onValueChange={([v]) => setWithdrawalAmount(String(Math.round(v)))} min={500} max={1000000} step={500} className="mx-auto w-full [&>span:first-child]:h-2 [&>span:first-child]:bg-orange-100 [&>span:first-child>span]:bg-orange-500 [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:border-orange-500 [&_[role=slider]]:shadow-md" />
+                    <Slider value={[swpWdValToPos(Number(withdrawalAmount) || 0)]} onValueChange={([v]) => setWithdrawalAmount(String(swpWdPosToVal(v)))} min={0} max={100} step={1} className="mx-auto w-full [&>span:first-child]:h-2 [&>span:first-child]:bg-orange-100 [&>span:first-child>span]:bg-orange-500 [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:border-orange-500 [&_[role=slider]]:shadow-md" />
                   </div>
                 </div>
               </>
@@ -171,8 +345,11 @@ export function InvestmentCalculatorCardRefined({ investmentType }: { investment
                 <Label htmlFor="expectedReturnRate" className="text-sm font-semibold text-orange-950 w-full sm:w-1/2">Expected Return Rate (% p.a.)</Label>
                 <Input id="expectedReturnRate" inputMode="numeric" value={expectedReturnRate} onChange={(e) => setExpectedReturnRate(e.target.value)} className="w-full sm:w-1/3 rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-2.5 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-orange-400 focus:bg-white focus:ring-4 focus:ring-orange-400/15 font-medium" />
               </div>
+              {errors.expectedReturnRate && (
+                <p className="text-red-500 text-xs text-left font-semibold mt-1">{errors.expectedReturnRate}</p>
+              )}
               <div className="pt-2">
-                <Slider value={[Number(expectedReturnRate) || 0]} onValueChange={([v]) => setExpectedReturnRate(String(v))} min={1} max={30} step={0.5} className="mx-auto w-full [&>span:first-child]:h-2 [&>span:first-child]:bg-orange-100 [&>span:first-child>span]:bg-orange-500 [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:border-orange-500 [&_[role=slider]]:shadow-md" />
+                <Slider value={[Number(expectedReturnRate) || 0]} onValueChange={([v]) => setExpectedReturnRate(String(v))} min={1} max={30} step={0.1} className="mx-auto w-full [&>span:first-child]:h-2 [&>span:first-child]:bg-orange-100 [&>span:first-child>span]:bg-orange-500 [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:border-orange-500 [&_[role=slider]]:shadow-md" />
               </div>
             </div>
             <div className="space-y-2.5 mb-6">
@@ -180,6 +357,9 @@ export function InvestmentCalculatorCardRefined({ investmentType }: { investment
                 <Label htmlFor="timePeriod" className="text-sm font-semibold text-orange-950 w-full sm:w-1/2">Time Period (Years)</Label>
                 <Input id="timePeriod" inputMode="numeric" value={timePeriod} onChange={(e) => setTimePeriod(e.target.value)} className="w-full sm:w-1/3 rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-2.5 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-orange-400 focus:bg-white focus:ring-4 focus:ring-orange-400/15 font-medium" />
               </div>
+              {errors.timePeriod && (
+                <p className="text-red-500 text-xs text-left font-semibold mt-1">{errors.timePeriod}</p>
+              )}
               <div className="pt-2">
                 <Slider value={[Number(timePeriod) || 0]} onValueChange={([v]) => setTimePeriod(String(v))} min={1} max={40} step={1} className="mx-auto w-full [&>span:first-child]:h-2 [&>span:first-child]:bg-orange-100 [&>span:first-child>span]:bg-orange-500 [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:border-orange-500 [&_[role=slider]]:shadow-md" />
               </div>
@@ -282,36 +462,38 @@ export function InvestmentCalculatorCardRefined({ investmentType }: { investment
                   </div>
 
                   {/* Mobile View Results Block */}
-                  <div className="flex flex-col items-center justify-center gap-3 text-base md:hidden w-full p-4 bg-slate-50/80 rounded-2xl border border-slate-100">
-                    <div className="flex flex-col w-full px-2">
-                      <div className="flex items-center justify-between gap-2">
-                        <div className="flex items-center gap-2">
-                          <span className="inline-block h-3 w-3 rounded-full" style={{ backgroundColor: investedColor }} />
-                          <span className="text-slate-500 font-semibold font-sans text-sm">Invested</span>
+                  <div className="flex flex-col items-center justify-center gap-4 text-base md:hidden w-full p-4 bg-slate-50/80 rounded-2xl border border-slate-100">
+                    <div className="grid grid-cols-2 gap-4 w-full px-2">
+                      <div className="flex flex-col items-center p-3.5 bg-white rounded-xl border border-slate-100 shadow-sm text-center">
+                        <div className="flex items-center gap-1.5 mb-1">
+                          <span className="inline-block h-2.5 w-2.5 rounded-full" style={{ backgroundColor: investedColor }} />
+                          <span className="text-slate-500 font-bold font-sans text-[10px] uppercase tracking-wider">Invested</span>
                         </div>
-                        <span className="font-extrabold text-orange-600 text-right truncate font-sans" style={{ fontSize: '1rem' }}>{formatLargeNumber(investedValue)}</span>
+                        <span className="font-extrabold text-orange-600 font-sans text-base break-all leading-tight">
+                          {formatLargeNumber(investedValue)}
+                        </span>
+                      </div>
+
+                      <div className="flex flex-col items-center p-3.5 bg-white rounded-xl border border-slate-100 shadow-sm text-center">
+                        <div className="flex items-center gap-1.5 mb-1">
+                          <span className="inline-block h-2.5 w-2.5 rounded-full" style={{ backgroundColor: gainsColor }} />
+                          <span className="text-slate-500 font-bold font-sans text-[10px] uppercase tracking-wider truncate max-w-[80px]">
+                            {investmentType === "swp" ? "Withdrawal" : "Returns"}
+                          </span>
+                        </div>
+                        <span className="font-extrabold text-emerald-600 font-sans text-base break-all leading-tight">
+                          {formatLargeNumber(investmentType === "swp" ? ((calculatedResult as SWPResult)?.totalWithdrawn || 0) : returnsValue)}
+                        </span>
                       </div>
                     </div>
 
-                    <div className="flex flex-col w-full px-2">
-                      <div className="flex items-center justify-between gap-2">
-                        <div className="flex items-center gap-2">
-                          <span className="inline-block h-3 w-3 rounded-full" style={{ backgroundColor: gainsColor }} />
-                          <span className="text-slate-500 font-semibold font-sans text-sm">{investmentType === "swp" ? "Withdrawal" : "Returns"}</span>
-                        </div>
-                        <span className="font-extrabold text-emerald-600 text-right truncate font-sans" style={{ fontSize: '1rem' }}>{formatLargeNumber(investmentType === "swp" ? ((calculatedResult as SWPResult)?.totalWithdrawn || 0) : returnsValue)}</span>
-                      </div>
-                    </div>
-
-                    <hr className="w-full my-1.5 border-slate-200" />
-
-                    {calculatedResult && (
-                      <div className="flex flex-col items-center w-full px-2">
-                        <span className="text-slate-500 font-bold text-xs uppercase tracking-widest mb-1 font-sans">
+                    <div className="w-full px-2">
+                      <div className="flex flex-col items-center w-full p-3.5 bg-white rounded-xl border border-slate-100 shadow-sm text-center">
+                        <span className="text-slate-500 font-bold text-[10px] uppercase tracking-wider mb-1 font-sans">
                           {investmentType === 'swp' ? 'Final Balance' : 'Future Value'}
                         </span>
                         <span
-                          className="font-extrabold text-slate-900 text-center break-all font-sans text-2xl leading-tight"
+                          className="font-extrabold text-slate-900 break-all font-sans text-xl leading-tight"
                         >
                           {formatLargeNumber(
                             investmentType === 'sip' ? (calculatedResult as CalculationResult).futureValue || 0 :
@@ -320,12 +502,12 @@ export function InvestmentCalculatorCardRefined({ investmentType }: { investment
                           )}
                         </span>
                       </div>
-                    )}
+                    </div>
                   </div>
                 </div>
               ) : (
-                <div className="h-[260px] w-full max-w-[260px] md:h-[320px] md:max-w-[320px] flex items-center justify-center rounded-2xl border text-sm text-muted-foreground">
-                  Adjust inputs to see the chart
+                <div className="h-[260px] w-full max-w-[260px] md:h-[320px] md:max-w-[320px] flex items-center justify-center rounded-2xl border border-dashed border-slate-200 text-sm text-muted-foreground p-6 text-center font-sans">
+                  Please enter valid inputs to see the chart and results
                 </div>
               )}
             </div>

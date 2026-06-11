@@ -43,7 +43,7 @@ export function calculateSIP(
     return { totalInvested: 0, wealthGained: 0, futureValue: 0 };
   }
 
-  const monthlyRate = expectedReturnRate / 100 / 12;
+  const monthlyRate = Math.pow(1 + expectedReturnRate / 100, 1 / 12) - 1;
   const months = years * 12;
   const totalInvested = monthlyInvestment * months;
 
@@ -106,27 +106,25 @@ export function calculateSWP(
     return { totalInvested: 0, totalWithdrawn: 0, finalBalance: 0, wealthGained: 0, futureValue: 0 };
   }
 
-  const monthlyRate = expectedReturnRate / 100 / 12;
+  const monthlyRate = Math.pow(1 + expectedReturnRate / 100, 1 / 12) - 1;
   const months = years * 12;
 
   let balance = principal;
   let totalWithdrawn = 0;
 
   for (let i = 0; i < months; i++) {
-    // Withdrawal at beginning of month
-    balance -= monthlyWithdrawal;
+    // Interest at end of month (Ordinary Annuity: interest grows first)
+    balance += balance * monthlyRate;
 
-    // If balance goes negative, stop (last withdrawal is limited to remaining balance)
-    if (balance < 0) {
-      totalWithdrawn += (monthlyWithdrawal + balance);
+    // Withdrawal at end of month
+    if (balance < monthlyWithdrawal) {
+      totalWithdrawn += balance;
       balance = 0;
       break;
     }
 
+    balance -= monthlyWithdrawal;
     totalWithdrawn += monthlyWithdrawal;
-
-    // Interest at end of month
-    balance += balance * monthlyRate;
   }
 
   // Total Value = Final Balance + Total Withdrawn
@@ -173,7 +171,7 @@ export function calculateEducationPlan(
   // FutureValue = P * [ (1+r)^n - 1 ] * (1+r) / r
   // P = FutureValue * r / ( [ (1+r)^n - 1 ] * (1+r) )
 
-  const monthlyRate = expectedReturnRate / 100 / 12;
+  const monthlyRate = Math.pow(1 + expectedReturnRate / 100, 1 / 12) - 1;
   const months = yearsUntilEducation * 12;
 
   let monthlyInvestment = 0;
@@ -231,11 +229,11 @@ export function calculateRetirementPlan(
   }
 
   // Calculate monthly savings required (Annuity Due: payments at beginning)
-  const monthlyRate = expectedReturnRate / 100 / 12;
+  const monthlyRate = Math.pow(1 + expectedReturnRate / 100, 1 / 12) - 1;
   const numberOfMonths = yearsUntilRetirement * 12;
 
   let monthlySavingsRequired: number;
-  if (monthlyRate === 0) {
+  if (expectedReturnRate === 0) {
     monthlySavingsRequired = retirementCorpus / numberOfMonths;
   } else {
     monthlySavingsRequired = retirementCorpus * monthlyRate /
@@ -287,11 +285,11 @@ export function calculateMarriagePlan(
   }
 
   // Calculate SIP (Annuity Due for consistency across the site)
-  const monthlyRate = expectedReturnRate / 100 / 12;
+  const monthlyRate = Math.pow(1 + expectedReturnRate / 100, 1 / 12) - 1;
   const numberOfMonths = yearsUntilMarriage * 12;
 
   let sipInvestment: number;
-  if (monthlyRate === 0) {
+  if (expectedReturnRate === 0) {
     sipInvestment = shortfall / numberOfMonths;
   } else {
     sipInvestment = shortfall * monthlyRate / ((Math.pow(1 + monthlyRate, numberOfMonths) - 1) * (1 + monthlyRate));

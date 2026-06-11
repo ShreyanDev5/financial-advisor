@@ -8,7 +8,7 @@ import { FormattedInput } from "@/components/ui/formatted-input";
 import { Button } from "@/components/ui/button";
 import { formatLargeNumber } from "@/lib/format-large-number";
 import { calculateMarriagePlan, MarriagePlanResult } from "@/lib/calculators";
-import { CircleDollarSign, CreditCard, CheckCircle, Heart, AlertCircle, MessageSquare } from "lucide-react";
+import { CheckCircle, Heart, MessageSquare } from "lucide-react";
 
 export default function ChildMarriageCalculatorRefined() {
   const [childName, setChildName] = useState("");
@@ -20,9 +20,57 @@ export default function ChildMarriageCalculatorRefined() {
   const [expectedReturn, setExpectedReturn] = useState("");
   const [showResults, setShowResults] = useState(false);
 
+  // Validation checks
+  const errors = useMemo(() => {
+    const errs: Record<string, string> = {};
+
+    if (childName === "" && showResults) {
+      errs.childName = "Please enter your child's name";
+    }
+
+    const age = parseInt(currentAge);
+    if (currentAge !== "") {
+      if (isNaN(age)) errs.currentAge = "Please enter a valid age";
+      else if (age < 0 || age > 40) errs.currentAge = "Age must be between 0 and 40 years";
+    }
+
+    const marAge = parseInt(marriageAge);
+    if (marriageAge !== "") {
+      if (isNaN(marAge)) errs.marriageAge = "Please enter a valid age";
+      else if (marAge < 0 || marAge > 40) errs.marriageAge = "Age must be between 0 and 40 years";
+      else if (!isNaN(age) && marAge <= age) errs.marriageAge = "Marriage age must be greater than current age";
+    }
+
+    const cost = parseFloat(estimatedExpenditure);
+    if (estimatedExpenditure !== "") {
+      if (isNaN(cost)) errs.estimatedExpenditure = "Please enter a valid amount";
+      else if (cost < 1000 || cost > 100000000) errs.estimatedExpenditure = "Expenditure should be between ₹1,000 and ₹10 Crores";
+    }
+
+    const inf = parseFloat(inflationRate);
+    if (inflationRate !== "") {
+      if (isNaN(inf)) errs.inflationRate = "Please enter a valid rate";
+      else if (inf < 0 || inf > 30) errs.inflationRate = "Inflation rate should be between 0% and 30%";
+    }
+
+    const ret = parseFloat(expectedReturn);
+    if (expectedReturn !== "") {
+      if (isNaN(ret)) errs.expectedReturn = "Please enter a valid rate";
+      else if (ret < 0 || ret > 50) errs.expectedReturn = "Return rate should be between 0% and 50%";
+    }
+
+    const saved = parseFloat(amountSaved);
+    if (amountSaved !== "") {
+      if (isNaN(saved)) errs.amountSaved = "Please enter a valid amount";
+      else if (saved < 0 || saved > 100000000) errs.amountSaved = "Amount saved cannot exceed ₹10 Crores";
+    }
+
+    return errs;
+  }, [childName, currentAge, marriageAge, estimatedExpenditure, inflationRate, expectedReturn, amountSaved, showResults]);
+
   // Calculate results based on inputs
   const calculationResults = useMemo<MarriagePlanResult | null>(() => {
-    if (!childName || !currentAge || !marriageAge || !estimatedExpenditure || !inflationRate || !amountSaved || !expectedReturn) return null;
+    if (!childName || !currentAge || !marriageAge || !estimatedExpenditure || !inflationRate || !amountSaved || !expectedReturn || Object.keys(errors).length > 0) return null;
 
     const childCurrentAge = parseInt(currentAge);
     const childMarriageAge = parseInt(marriageAge);
@@ -43,7 +91,7 @@ export default function ChildMarriageCalculatorRefined() {
       savedAmount,
       returnRate
     );
-  }, [childName, currentAge, marriageAge, estimatedExpenditure, inflationRate, amountSaved, expectedReturn]);
+  }, [childName, currentAge, marriageAge, estimatedExpenditure, inflationRate, amountSaved, expectedReturn, errors]);
 
   const handleCalculate = () => {
     if (childName && currentAge && marriageAge && estimatedExpenditure && inflationRate && amountSaved && expectedReturn) {
@@ -75,58 +123,36 @@ export default function ChildMarriageCalculatorRefined() {
 
     return (
       <>
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 p-4 bg-white/70 rounded-xl border border-rose-100 shadow-sm">
-          <div className="flex items-center gap-3">
-            <div className="bg-rose-100 p-2 rounded-lg">
-              <CircleDollarSign className="h-5 w-5 text-rose-600" />
-            </div>
-            <div>
-              <p className="text-sm text-rose-600">Projected Cost of Marriage</p>
-              <p className="font-medium text-rose-800">after {yearsUntilMarriage} years</p>
-            </div>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full">
+          <div className="flex flex-col items-center p-4 bg-white/70 rounded-2xl border border-rose-100 shadow-sm text-center justify-center">
+            <span className="text-slate-500 font-bold font-sans text-[10px] uppercase tracking-wider mb-1">Cost after {yearsUntilMarriage} yrs</span>
+            <span className="text-lg sm:text-xl font-extrabold text-rose-800 break-all font-sans">
+              {formatLargeNumber(futureCostOfMarriage)}
+            </span>
           </div>
-          <span className="font-bold text-lg text-rose-800">
-            {formatLargeNumber(futureCostOfMarriage)}
-          </span>
-        </div>
 
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 p-4 bg-white/70 rounded-xl border border-rose-100 shadow-sm">
-          <div className="flex items-center gap-3">
-            <div className="bg-rose-100 p-2 rounded-lg">
-              <CreditCard className="h-5 w-5 text-rose-600" />
-            </div>
-            <div>
-              <p className="text-sm text-rose-600">Monthly SIP Investment Required</p>
-              <p className="font-medium text-rose-800">to meet marriage goal</p>
-            </div>
+          <div className="flex flex-col items-center p-4 bg-white/70 rounded-2xl border border-rose-100 shadow-sm text-center justify-center">
+            <span className="text-rose-600 font-bold font-sans text-[10px] uppercase tracking-wider mb-1">Monthly SIP Required</span>
+            <span className="text-lg sm:text-xl font-extrabold text-rose-800 break-all font-sans">
+              {formatLargeNumber(sipInvestment)}
+            </span>
           </div>
-          <span className="font-bold text-lg text-rose-800">
-            {formatLargeNumber(sipInvestment)}
-          </span>
-        </div>
 
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 p-4 bg-white/70 rounded-xl border border-rose-100 shadow-sm">
-          <div className="flex items-center gap-3">
-            <div className="bg-rose-100 p-2 rounded-lg">
-              <CircleDollarSign className="h-5 w-5 text-rose-600" />
-            </div>
-            <div>
-              <p className="text-sm text-rose-600">One-time Lump Sum Investment Required</p>
-              <p className="font-medium text-rose-800">to meet marriage goal</p>
-            </div>
+          <div className="flex flex-col items-center p-4 bg-white/70 rounded-2xl border border-rose-100 shadow-sm text-center justify-center">
+            <span className="text-rose-600 font-bold font-sans text-[10px] uppercase tracking-wider mb-1">One-time Lumpsum</span>
+            <span className="text-lg sm:text-xl font-extrabold text-rose-800 break-all font-sans">
+              {formatLargeNumber(lumpSumInvestment)}
+            </span>
           </div>
-          <span className="font-bold text-lg text-rose-800">
-            {formatLargeNumber(lumpSumInvestment)}
-          </span>
         </div>
 
         {sipInvestment > 0 ? (
           <div className="bg-rose-50/80 p-4 rounded-xl border border-rose-200 shadow-sm">
             <div className="flex items-start gap-3">
-              <div className="bg-rose-100 p-2 rounded-lg mt-0.5">
+              <div className="bg-rose-100 p-2 rounded-lg mt-0.5 animate-pulse-slow">
                  <CheckCircle className="h-5 w-5 text-rose-600" />
               </div>
-              <div>
+              <div className="text-left">
                 <p className="text-sm font-medium text-rose-800">
                   You need to invest <span className="font-bold">₹{formatLargeNumber(sipInvestment)?.replace('₹', '')}</span> every month for the next <span className="font-bold">{yearsUntilMarriage} years</span> to meet your child&apos;s marriage goal.
                 </p>
@@ -141,7 +167,7 @@ export default function ChildMarriageCalculatorRefined() {
           </div>
         ) : (
           <div className="bg-rose-50/80 p-4 rounded-xl border border-rose-200 shadow-sm">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 text-left">
               <div className="bg-rose-100 p-2 rounded-lg">
                  <CheckCircle className="h-5 w-5 text-rose-600" />
               </div>
@@ -199,6 +225,9 @@ export default function ChildMarriageCalculatorRefined() {
                 placeholder="Enter your child's name"
                 className="w-full rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-3 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-rose-400 focus:bg-white focus:ring-4 focus:ring-rose-400/15 font-medium"
               />
+              {errors.childName && (
+                <p className="text-red-500 text-xs text-left font-semibold mt-1">{errors.childName}</p>
+              )}
             </div>
 
             {/* Age Inputs */}
@@ -213,6 +242,9 @@ export default function ChildMarriageCalculatorRefined() {
                   className="w-full rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-3 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-rose-400 focus:bg-white focus:ring-4 focus:ring-rose-400/15 font-medium"
                   placeholder="Enter current age"
                 />
+                {errors.currentAge && (
+                  <p className="text-red-500 text-xs text-left font-semibold mt-1">{errors.currentAge}</p>
+                )}
               </div>
 
               <div className="space-y-2">
@@ -225,6 +257,9 @@ export default function ChildMarriageCalculatorRefined() {
                   className="w-full rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-3 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-rose-400 focus:bg-white focus:ring-4 focus:ring-rose-400/15 font-medium"
                   placeholder="Enter marriage age"
                 />
+                {errors.marriageAge && (
+                  <p className="text-red-500 text-xs text-left font-semibold mt-1">{errors.marriageAge}</p>
+                )}
               </div>
             </div>
 
@@ -239,6 +274,9 @@ export default function ChildMarriageCalculatorRefined() {
                 className="w-full rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-3 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-rose-400 focus:bg-white focus:ring-4 focus:ring-rose-400/15 font-medium"
                 placeholder="e.g., 1000000"
               />
+              {errors.estimatedExpenditure && (
+                <p className="text-red-500 text-xs text-left font-semibold mt-1">{errors.estimatedExpenditure}</p>
+              )}
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -252,6 +290,9 @@ export default function ChildMarriageCalculatorRefined() {
                   className="w-full rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-3 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-rose-400 focus:bg-white focus:ring-4 focus:ring-rose-400/15 font-medium"
                   placeholder="e.g., 7"
                 />
+                {errors.inflationRate && (
+                  <p className="text-red-500 text-xs text-left font-semibold mt-1">{errors.inflationRate}</p>
+                )}
               </div>
 
               <div className="space-y-2">
@@ -264,6 +305,9 @@ export default function ChildMarriageCalculatorRefined() {
                   className="w-full rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-3 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-rose-400 focus:bg-white focus:ring-4 focus:ring-rose-400/15 font-medium"
                   placeholder="e.g., 10"
                 />
+                {errors.expectedReturn && (
+                  <p className="text-red-500 text-xs text-left font-semibold mt-1">{errors.expectedReturn}</p>
+                )}
               </div>
             </div>
 
@@ -277,23 +321,16 @@ export default function ChildMarriageCalculatorRefined() {
                 className="w-full rounded-2xl border-slate-200/80 bg-white/50 backdrop-blur-sm px-4 py-3 text-slate-800 transition-all duration-200 placeholder:text-slate-400 focus:border-rose-400 focus:bg-white focus:ring-4 focus:ring-rose-400/15 font-medium"
                 placeholder="e.g., 200000"
               />
+              {errors.amountSaved && (
+                <p className="text-red-500 text-xs text-left font-semibold mt-1">{errors.amountSaved}</p>
+              )}
             </div>
-
-            {/* Error Message */}
-            {currentAge && marriageAge && parseInt(marriageAge) <= parseInt(currentAge) && (
-              <div className="flex items-center gap-2 p-3 bg-red-50 rounded-2xl border border-red-200">
-                <AlertCircle className="h-5 w-5 text-red-500" />
-                <p className="text-red-500 text-sm font-medium">
-                  Marriage age must be greater than current age.
-                </p>
-              </div>
-            )}
 
             {/* Calculate Button */}
             <Button
               onClick={handleCalculate}
               className="w-full py-3.5 bg-gradient-to-r from-rose-500 to-pink-500 text-white shadow-md shadow-rose-500/10 hover:shadow-lg hover:shadow-rose-500/15 hover:-translate-y-0.5 active:translate-y-0 active:shadow-md transition-all duration-200 rounded-2xl font-bold tracking-wide"
-              disabled={!childName || !currentAge || !marriageAge || !estimatedExpenditure || !inflationRate || !amountSaved || !expectedReturn}
+              disabled={!childName || !currentAge || !marriageAge || !estimatedExpenditure || !inflationRate || !amountSaved || !expectedReturn || Object.keys(errors).length > 0}
             >
               Calculate Marriage Plan
             </Button>
