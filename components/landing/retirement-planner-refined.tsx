@@ -128,10 +128,11 @@ export default function IncomePlanningCalculatorRefined() {
 
     return (
       <div className="space-y-6">
-        <div className="flex flex-col md:flex-row items-center md:justify-between gap-6 p-6 bg-white/80 rounded-2xl border border-indigo-100 shadow-sm">
-          <div className="flex flex-col gap-1 items-center md:items-start text-center md:text-left">
-            <span className="text-slate-500 font-bold font-serif text-xs uppercase tracking-wider">Retirement Corpus</span>
-            <span className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight leading-none font-serif break-all">
+        {/* Desktop View Corpus & Savings */}
+        <div className="hidden md:flex items-center justify-between gap-6 p-6 bg-white/80 rounded-2xl border border-indigo-100 shadow-sm">
+          <div className="flex flex-col gap-1 items-start text-left font-serif">
+            <span className="text-slate-500 font-bold font-sans text-xs uppercase tracking-wider">Retirement Corpus</span>
+            <span className="text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight leading-none break-all">
               {formatLargeNumber(retirementCorpus)}
             </span>
             <span className="text-xs text-slate-400 font-medium mt-1">
@@ -139,12 +140,11 @@ export default function IncomePlanningCalculatorRefined() {
             </span>
           </div>
 
-          <div className="hidden md:block w-px h-16 bg-slate-200"></div>
-          <div className="md:hidden w-full h-px bg-slate-200 my-2"></div>
+          <div className="w-px h-16 bg-slate-200"></div>
 
-          <div className="flex flex-col gap-1 items-center md:items-end text-center md:text-right">
-            <span className="text-indigo-600 font-bold font-serif text-xs uppercase tracking-wider">Monthly Savings</span>
-            <span className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-indigo-600 tracking-tight leading-none font-serif break-all">
+          <div className="flex flex-col gap-1 items-end text-right font-serif">
+            <span className="text-indigo-600 font-bold font-sans text-xs uppercase tracking-wider">Monthly Savings</span>
+            <span className="text-3xl lg:text-4xl font-extrabold text-indigo-600 tracking-tight leading-none break-all">
               {formatLargeNumber(monthlySavingsRequired)}
             </span>
             <span className="text-xs text-indigo-600/60 font-medium mt-1">
@@ -153,14 +153,34 @@ export default function IncomePlanningCalculatorRefined() {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
-          <div className="bg-white p-4.5 rounded-2xl border border-indigo-50 shadow-sm text-center">
-            <span className="block text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Time to Ret.</span>
-            <span className="block text-xl font-serif font-bold text-slate-700 break-all">{yearsUntilRetirement} Years</span>
+        {/* Mobile View Corpus & Savings */}
+        <div className="flex flex-col md:hidden gap-3.5 w-full">
+          <div className="flex flex-col items-center p-4 bg-white rounded-xl border border-slate-100 shadow-sm text-center">
+            <span className="text-slate-500 font-bold font-sans text-xs uppercase tracking-wider mb-1">Retirement Corpus</span>
+            <span className="text-xl font-extrabold text-slate-900 break-all font-sans">
+              {formatLargeNumber(retirementCorpus)}
+            </span>
+            <span className="text-[10px] text-slate-400 font-medium mt-1">Required to maintain lifestyle</span>
           </div>
-          <div className="bg-white p-4.5 rounded-2xl border border-indigo-50 shadow-sm text-center">
-            <span className="block text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Future Exp.</span>
-            <span className="block text-xl font-serif font-bold text-slate-700 break-all">{formatLargeNumber(futureMonthlyExpenses)}</span>
+
+          <div className="flex flex-col items-center p-4 bg-gradient-to-r from-indigo-500/5 to-purple-500/5 rounded-xl border border-indigo-100/50 shadow-sm text-center">
+            <span className="text-indigo-600 font-bold font-sans text-xs uppercase tracking-wider mb-1">Monthly Savings Required</span>
+            <span className="text-xl font-extrabold text-indigo-600 break-all font-sans">
+              {formatLargeNumber(monthlySavingsRequired)}
+            </span>
+            <span className="text-[10px] text-indigo-600/60 font-medium mt-1">To reach your goal</span>
+          </div>
+        </div>
+
+        {/* Supporting Details */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="bg-white p-4.5 rounded-2xl border border-indigo-50 shadow-sm text-center justify-center flex flex-col items-center">
+            <span className="block text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1 font-sans">Time to Retirement</span>
+            <span className="block text-lg font-serif font-bold text-slate-700 break-all">{yearsUntilRetirement} Years</span>
+          </div>
+          <div className="bg-white p-4.5 rounded-2xl border border-indigo-50 shadow-sm text-center justify-center flex flex-col items-center">
+            <span className="block text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1 font-sans">Future Monthly Expenses</span>
+            <span className="block text-lg font-serif font-bold text-slate-700 break-all">{formatLargeNumber(futureMonthlyExpenses)}</span>
           </div>
         </div>
       </div>

@@ -265,10 +265,11 @@ export function ChildEducationCalculatorCardRefined({ calculatorType }: { calcul
 
     return (
       <div className="space-y-6">
-        <div className="flex flex-col md:flex-row items-center md:justify-between gap-6 p-6 bg-slate-50/80 rounded-2xl border border-slate-100">
-          <div className="flex flex-col gap-1 items-center md:items-start text-center md:text-left">
+        {/* Desktop View Results */}
+        <div className="hidden md:flex items-center justify-between gap-6 p-6 bg-slate-50/80 rounded-2xl border border-slate-100">
+          <div className="flex flex-col gap-1 items-start text-left">
             <span className="text-slate-500 font-bold font-sans text-xs uppercase tracking-wider">Projected Cost</span>
-            <span className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight leading-none font-sans break-all">
+            <span className="text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight leading-none font-sans break-all">
               {formatLargeNumber(projectedCost)}
             </span>
             <span className="text-xs text-slate-400 font-medium mt-1">
@@ -276,17 +277,35 @@ export function ChildEducationCalculatorCardRefined({ calculatorType }: { calcul
             </span>
           </div>
 
-          <div className="hidden md:block w-px h-16 bg-slate-200"></div>
-          <div className="md:hidden w-full h-px bg-slate-200 my-2"></div>
+          <div className="w-px h-16 bg-slate-200"></div>
 
-          <div className="flex flex-col gap-1 items-center md:items-end text-center md:text-right">
+          <div className="flex flex-col gap-1 items-end text-right">
             <span className="text-emerald-600 font-bold font-sans text-xs uppercase tracking-wider">Monthly SIP Required</span>
-            <span className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-emerald-600 tracking-tight leading-none font-sans break-all">
+            <span className="text-3xl lg:text-4xl font-extrabold text-emerald-600 tracking-tight leading-none font-sans break-all">
               {formatLargeNumber(monthlyInvestment)}
             </span>
             <span className="text-xs text-emerald-600/60 font-medium mt-1">
               To reach your goal
             </span>
+          </div>
+        </div>
+
+        {/* Mobile View Results */}
+        <div className="flex flex-col md:hidden gap-3.5 w-full">
+          <div className="flex flex-col items-center p-4 bg-white rounded-xl border border-slate-100 shadow-sm text-center">
+            <span className="text-slate-500 font-bold font-sans text-xs uppercase tracking-wider mb-1">Projected Cost</span>
+            <span className="text-xl font-extrabold text-slate-900 break-all font-sans">
+              {formatLargeNumber(projectedCost)}
+            </span>
+            <span className="text-[10px] text-slate-400 font-medium mt-1">Estimated cost after {yearsUntilEducation} years</span>
+          </div>
+
+          <div className="flex flex-col items-center p-4 bg-gradient-to-r from-emerald-500/5 to-teal-500/5 rounded-xl border border-emerald-100/50 shadow-sm text-center">
+            <span className="text-emerald-600 font-bold font-sans text-xs uppercase tracking-wider mb-1">Monthly SIP Required</span>
+            <span className="text-xl font-extrabold text-emerald-600 break-all font-sans">
+              {formatLargeNumber(monthlyInvestment)}
+            </span>
+            <span className="text-[10px] text-emerald-600/60 font-medium mt-1">To reach your goal</span>
           </div>
         </div>
 

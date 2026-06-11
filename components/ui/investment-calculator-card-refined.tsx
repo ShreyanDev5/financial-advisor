@@ -462,34 +462,35 @@ export function InvestmentCalculatorCardRefined({ investmentType }: { investment
                   </div>
 
                   {/* Mobile View Results Block */}
-                  <div className="flex flex-col items-center justify-center gap-4 text-base md:hidden w-full p-4 bg-slate-50/80 rounded-2xl border border-slate-100">
-                    <div className="grid grid-cols-2 gap-4 w-full px-2">
+                  <div className="flex flex-col items-center justify-center gap-3.5 text-base md:hidden w-full p-4 bg-slate-50/80 rounded-2xl border border-slate-100">
+                    <div className="flex flex-col gap-3 w-full px-2">
+                      {/* Invested Amount Card */}
                       <div className="flex flex-col items-center p-3.5 bg-white rounded-xl border border-slate-100 shadow-sm text-center">
                         <div className="flex items-center gap-1.5 mb-1">
                           <span className="inline-block h-2.5 w-2.5 rounded-full" style={{ backgroundColor: investedColor }} />
-                          <span className="text-slate-500 font-bold font-sans text-[10px] uppercase tracking-wider">Invested</span>
+                          <span className="text-slate-500 font-bold font-sans text-xs uppercase tracking-wider">Invested Amount</span>
                         </div>
-                        <span className="font-extrabold text-orange-600 font-sans text-base break-all leading-tight">
+                        <span className="font-extrabold text-orange-600 font-sans text-lg break-all leading-tight">
                           {formatLargeNumber(investedValue)}
                         </span>
                       </div>
 
+                      {/* Returns/Withdrawal Card */}
                       <div className="flex flex-col items-center p-3.5 bg-white rounded-xl border border-slate-100 shadow-sm text-center">
                         <div className="flex items-center gap-1.5 mb-1">
                           <span className="inline-block h-2.5 w-2.5 rounded-full" style={{ backgroundColor: gainsColor }} />
-                          <span className="text-slate-500 font-bold font-sans text-[10px] uppercase tracking-wider truncate max-w-[80px]">
-                            {investmentType === "swp" ? "Withdrawal" : "Returns"}
+                          <span className="text-slate-500 font-bold font-sans text-xs uppercase tracking-wider">
+                            {investmentType === "swp" ? "Total Withdrawal" : "Total Returns"}
                           </span>
                         </div>
-                        <span className="font-extrabold text-emerald-600 font-sans text-base break-all leading-tight">
+                        <span className="font-extrabold text-emerald-600 font-sans text-lg break-all leading-tight">
                           {formatLargeNumber(investmentType === "swp" ? ((calculatedResult as SWPResult)?.totalWithdrawn || 0) : returnsValue)}
                         </span>
                       </div>
-                    </div>
 
-                    <div className="w-full px-2">
-                      <div className="flex flex-col items-center w-full p-3.5 bg-white rounded-xl border border-slate-100 shadow-sm text-center">
-                        <span className="text-slate-500 font-bold text-[10px] uppercase tracking-wider mb-1 font-sans">
+                      {/* Final Value/Balance Card */}
+                      <div className="flex flex-col items-center p-3.5 bg-gradient-to-r from-orange-500/5 to-red-500/5 rounded-xl border border-orange-100/50 shadow-sm text-center">
+                        <span className="text-slate-600 font-bold text-xs uppercase tracking-wider mb-1 font-sans">
                           {investmentType === 'swp' ? 'Final Balance' : 'Future Value'}
                         </span>
                         <span
