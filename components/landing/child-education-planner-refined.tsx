@@ -20,20 +20,20 @@ export function ChildEducationCalculatorToggleRefined({
       type="single"
       value={calculatorType}
       onValueChange={(val) => val && onCalculatorTypeChange(val)}
-      className="bg-muted/60 backdrop-blur supports-[backdrop-filter]:bg-muted/40 rounded-full p-1 border shadow-sm sm:p-1.5"
+      className="bg-slate-100/60 border-slate-200/40 backdrop-blur supports-[backdrop-filter]:bg-slate-100/40 rounded-full p-1 shadow-sm sm:p-1.5 border"
       variant="outline"
     >
       <ToggleGroupItem
         value="sip"
         aria-label="SIP"
-        className="rounded-full data-[state=on]:bg-gradient-to-r data-[state=on]:from-emerald-500 data-[state=on]:to-teal-500 data-[state=on]:text-white data-[state=on]:shadow-lg data-[state=on]:ring-1 data-[state=on]:ring-black/10 h-9 px-3.5 py-1.5 min-w-[4rem] sm:h-10 sm:px-4 sm:min-w-[4.5rem] text-xs sm:text-xs touch-manipulation transition-all duration-200 ease-out"
+        className="rounded-full data-[state=on]:bg-white data-[state=on]:text-slate-900 data-[state=on]:border-slate-200 data-[state=on]:shadow-sm border border-transparent h-9 px-3.5 py-1.5 min-w-[4rem] sm:h-10 sm:px-4 sm:min-w-[4.5rem] text-xs sm:text-xs touch-manipulation transition-all duration-200 ease-out text-slate-500 hover:text-slate-800"
       >
         <Coins className="mr-1.5 h-3.5 w-3.5 sm:mr-2 sm:h-4 sm:w-4" /> SIP
       </ToggleGroupItem>
       <ToggleGroupItem
         value="sip-swp"
         aria-label="SIP with SWP"
-        className="rounded-full data-[state=on]:bg-gradient-to-r data-[state=on]:from-emerald-500 data-[state=on]:to-teal-500 data-[state=on]:text-white data-[state=on]:shadow-lg data-[state=on]:ring-1 data-[state=on]:ring-black/10 h-9 px-3.5 py-1.5 min-w-[5.2rem] sm:h-10 sm:px-4 sm:min-w-[6rem] text-xs sm:text-xs touch-manipulation transition-all duration-200 ease-out"
+        className="rounded-full data-[state=on]:bg-white data-[state=on]:text-slate-900 data-[state=on]:border-slate-200 data-[state=on]:shadow-sm border border-transparent h-9 px-3.5 py-1.5 min-w-[5.2rem] sm:h-10 sm:px-4 sm:min-w-[6rem] text-xs sm:text-xs touch-manipulation transition-all duration-200 ease-out text-slate-500 hover:text-slate-800"
       >
         <Wallet className="mr-1.5 h-3.5 w-3.5 sm:mr-2 sm:h-4 sm:w-4" /> SIP + SWP
       </ToggleGroupItem>

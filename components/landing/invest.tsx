@@ -47,17 +47,14 @@ export default function InvestContent() {
       />
 
       <div className="container mx-auto space-y-6 sm:space-y-8 px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-4 sm:mb-6">
-          <span className="inline-block text-[11px] font-bold uppercase tracking-wider text-orange-600 bg-orange-50 px-2.5 py-0.5 rounded-full border border-orange-100 mb-1">
-            Wealth & Growth
-          </span>
-          <SimplePageHeader 
-            title="Investments" 
-            description="Grow your wealth, intelligently." 
-            className="mb-0" 
-            color="from-orange-700 via-orange-600 to-red-700" 
-          />
-        </div>
+        <SimplePageHeader 
+          title="Investments" 
+          description="Grow your wealth, intelligently." 
+          badge="Wealth & Growth"
+          badgeColorScheme="orange"
+          className="mb-4 sm:mb-6" 
+          color="from-orange-700 via-orange-600 to-red-700" 
+        />
 
         {/* Mutual Fund Advisory */}
         <div id="mutual-funds" className="scroll-mt-28 sm:scroll-mt-32">

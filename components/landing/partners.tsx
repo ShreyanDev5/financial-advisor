@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import { cn } from "@/lib/utils";
 
 const partnerLogos = [
     { src: '/axis.png', alt: 'Axis Mutual Fund' },
@@ -19,15 +20,13 @@ const partnerLogos = [
 
 const Partners = ({ className }: { className?: string }) => {
     return (
-        <section className={`pt-12 sm:pt-16 pb-16 ${className}`}>
+        <section className={cn("py-8 sm:py-14", className)}>
             <div className="container px-4 md:px-6">
-                <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
-                    <div className="space-y-2">
-                        <h2 className="text-3xl sm:text-4xl font-bold font-serif tracking-tight">Trusted Partners</h2>
-                        <p className="max-w-[900px] text-gray-600 text-base sm:text-lg">
-                            Offering products from India&apos;s leading financial institutions.
-                        </p>
-                    </div>
+                <div className="flex flex-col items-center justify-center text-center mb-12">
+                    <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold font-serif tracking-tight mb-1">Trusted Partners</h2>
+                    <p className="max-w-[900px] text-slate-500 text-xs sm:text-sm">
+                        Offering products from India&apos;s leading financial institutions.
+                    </p>
                 </div>
                 <div
                     className="w-full inline-flex flex-nowrap overflow-hidden 

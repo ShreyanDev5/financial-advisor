@@ -24,7 +24,7 @@ export const StatCard = ({
   return (
     <div
       className={cn(
-        "bg-white/90 p-3 sm:p-3.5 rounded-xl border border-white/50 flex flex-col justify-between h-full transition-all duration-300 shadow-medium hover:shadow-strong hover:-translate-y-0.5 card-shine touch-manipulation backdrop-blur-md",
+        "bg-white/90 p-3.5 sm:p-4 rounded-2xl border border-slate-100 flex flex-col justify-between h-full transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 touch-manipulation backdrop-blur-md",
         className
       )}
     >
@@ -37,7 +37,7 @@ export const StatCard = ({
         </div>
         
         {/* Numerical stat - scaled down */}
-        <div className="text-lg sm:text-xl lg:text-2xl font-extrabold text-slate-900 mb-0.5 leading-tight tracking-tight bg-gradient-to-br from-slate-900 to-slate-700 bg-clip-text text-transparent">
+        <div className="text-lg sm:text-xl lg:text-2xl font-extrabold text-slate-900 mb-0.5 leading-tight tracking-tight">
           {value}
         </div>
         

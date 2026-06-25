@@ -120,82 +120,82 @@ export default function CalculatorsContentRefined() {
           </div>
 
           {/* Category Filter Pills Wrapper */}
-          <div className="relative w-full max-w-4xl mx-auto overflow-hidden z-20">
+          <div className="relative w-full max-w-4xl mx-auto overflow-hidden z-20 py-0.5">
             {/* Left fade scroll indicator */}
             <button 
               type="button"
               onClick={() => scroll("left")}
-              className={`absolute left-1 top-[15px] -translate-y-1/2 z-30 transition-opacity duration-300 sm:hidden ${
+              className={`absolute left-1 top-1/2 -translate-y-1/2 z-30 transition-opacity duration-300 sm:hidden ${
                 showLeftScroll ? "opacity-100 cursor-pointer" : "opacity-0 pointer-events-none"
               }`}
               aria-label="Scroll left"
             >
-              <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-white/60 backdrop-blur-md shadow-sm border border-white/50 ring-1 ring-black/[0.04]"><ChevronLeft className="flex-shrink-0 w-3.5 h-3.5 -translate-x-[0.5px] text-orange-600 animate-pulse-slow" /></span>
+              <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-white/80 backdrop-blur-md shadow-sm border border-white/50 ring-1 ring-black/[0.04]"><ChevronLeft className="flex-shrink-0 w-3.5 h-3.5 -translate-x-[0.5px] text-orange-600 animate-pulse-slow" /></span>
             </button>
 
             {/* Right fade scroll indicator */}
             <button 
               type="button"
               onClick={() => scroll("right")}
-              className={`absolute right-1 top-[15px] -translate-y-1/2 z-30 transition-opacity duration-300 sm:hidden ${
+              className={`absolute right-1 top-1/2 -translate-y-1/2 z-30 transition-opacity duration-300 sm:hidden ${
                 showRightScroll ? "opacity-100 cursor-pointer" : "opacity-0 pointer-events-none"
               }`}
               aria-label="Scroll right"
             >
-              <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-white/60 backdrop-blur-md shadow-sm border border-white/50 ring-1 ring-black/[0.04]"><ChevronRight className="flex-shrink-0 w-3.5 h-3.5 translate-x-[0.5px] text-orange-600 animate-pulse-slow" /></span>
+              <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-white/80 backdrop-blur-md shadow-sm border border-white/50 ring-1 ring-black/[0.04]"><ChevronRight className="flex-shrink-0 w-3.5 h-3.5 translate-x-[0.5px] text-orange-600 animate-pulse-slow" /></span>
             </button>
 
             <div 
               ref={scrollContainerRef}
               onScroll={checkScrollLimits}
-              className="flex overflow-x-auto sm:overflow-x-visible whitespace-nowrap [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] w-full justify-start sm:justify-center gap-2 px-4 sm:px-0 pb-1.5 sm:pb-0 relative z-20"
+              className="flex overflow-x-auto sm:overflow-x-visible whitespace-nowrap [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] w-full justify-start sm:justify-center gap-2 px-4 sm:px-0 py-2 relative z-20"
             >
               <button
                 onClick={() => setActiveCategory('all')}
-                className={`px-4 py-1.5 sm:px-5 sm:py-2 text-xs sm:text-xs font-semibold rounded-xl border transition-all duration-300 ${
+                className={`px-4 py-1.5 sm:px-5 sm:py-2 text-xs font-medium rounded-full border transition-all duration-200 ${
                   activeCategory === 'all'
-                    ? 'bg-orange-600 text-white border-orange-600 shadow-md shadow-orange-500/25 scale-[1.02]'
-                    : 'bg-white/80 text-slate-600 border-slate-200/80 hover:bg-slate-50'
+                    ? 'bg-white/70 backdrop-blur-md text-slate-900 border-slate-300/50 shadow-sm shadow-slate-200/30'
+                    : 'bg-slate-50/30 text-slate-500 border-transparent hover:bg-white/50 hover:text-slate-800 hover:border-slate-200/50'
                 }`}
               >
                 All Planners
               </button>
               <button
                 onClick={() => setActiveCategory('investment')}
-                className={`px-4 py-1.5 sm:px-5 sm:py-2 text-xs sm:text-xs font-semibold rounded-xl border transition-all duration-300 ${
+                className={`px-4 py-1.5 sm:px-5 sm:py-2 text-xs font-medium rounded-full border transition-all duration-200 ${
                   activeCategory === 'investment'
-                    ? 'bg-orange-600 text-white border-orange-600 shadow-md shadow-orange-500/25 scale-[1.02]'
-                    : 'bg-white/80 text-slate-600 border-slate-200/80 hover:bg-slate-50'
+                    ? 'bg-white/70 backdrop-blur-md text-slate-900 border-slate-300/50 shadow-sm shadow-slate-200/30'
+                    : 'bg-slate-50/30 text-slate-500 border-transparent hover:bg-white/50 hover:text-slate-800 hover:border-slate-200/50'
                 }`}
               >
                 Investment (SIP/Lump Sum)
               </button>
               <button
                 onClick={() => setActiveCategory('education')}
-                className={`px-4 py-1.5 sm:px-5 sm:py-2 text-xs sm:text-xs font-semibold rounded-xl border transition-all duration-300 ${
+                className={`px-4 py-1.5 sm:px-5 sm:py-2 text-xs font-medium rounded-full border transition-all duration-200 ${
                   activeCategory === 'education'
-                    ? 'bg-orange-600 text-white border-orange-600 shadow-md shadow-orange-500/25 scale-[1.02]'
-                    : 'bg-white/80 text-slate-600 border-slate-200/80 hover:bg-slate-50'
+                    ? 'bg-white/70 backdrop-blur-md text-slate-900 border-slate-300/50 shadow-sm shadow-slate-200/30'
+                    : 'bg-slate-50/30 text-slate-500 border-transparent hover:bg-white/50 hover:text-slate-800 hover:border-slate-200/50'
                 }`}
               >
                 Child Education
               </button>
               <button
                 onClick={() => setActiveCategory('retirement')}
-                className={`px-4 py-1.5 sm:px-5 sm:py-2 text-xs sm:text-xs font-semibold rounded-xl border transition-all duration-300 ${
+                className={`px-4 py-1.5 sm:px-5 sm:py-2 text-xs font-medium rounded-full border transition-all duration-200 ${
                   activeCategory === 'retirement'
-                    ? 'bg-orange-600 text-white border-orange-600 shadow-md shadow-orange-500/25 scale-[1.02]'
-                    : 'bg-white/80 text-slate-600 border-slate-200/80 hover:bg-slate-50'
+                    ? 'bg-white/70 backdrop-blur-md text-slate-900 border-slate-300/50 shadow-sm shadow-slate-200/30'
+                    : 'bg-slate-50/30 text-slate-500 border-transparent hover:bg-white/50 hover:text-slate-800 hover:border-slate-200/50'
                 }`}
               >
                 Retirement
               </button>
               <button
                 onClick={() => setActiveCategory('marriage')}
-                className={`px-4 py-1.5 sm:px-5 sm:py-2 text-xs sm:text-xs font-semibold rounded-xl border transition-all duration-300 ${
+                className={`px-4 py-1.5 sm:px-5 sm:py-2 text-xs font-medium rounded-full border transition-all duration-200 ${
                   activeCategory === 'marriage'
-                    ? 'bg-orange-600 text-white border-orange-600 shadow-md shadow-orange-500/25 scale-[1.02]'
-                    : 'bg-white/80 text-slate-600 border-slate-200/80 hover:bg-slate-50'
+                    ? 'bg-white/70 backdrop-blur-md text-slate-900 border-slate-300/50 shadow-sm shadow-slate-200/30'
+                    : 'bg-slate-50/30 text-slate-500 border-transparent hover:bg-white/50 hover:text-slate-800 hover:border-slate-200/50'
                 }`}
               >
                 Child Marriage

@@ -371,24 +371,23 @@ export default function InvestFaq() {
       <div className="w-full max-w-3xl mx-auto px-1 sm:px-0">
         {/* Section heading */}
         <div className="text-center mb-5 sm:mb-6 px-2 sm:px-0">
-          <div className="inline-flex items-center gap-2 bg-blue-50/70 border border-blue-200/50 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full mb-2.5 tracking-wide">
+          <div className="inline-flex items-center gap-1.5 bg-blue-50 border border-blue-100 text-blue-700 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-1.5">
             <HelpCircle className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
             Frequently Asked Questions
           </div>
 
-          <h2 className="text-xl sm:text-2xl font-bold font-serif text-slate-900 mb-2 tracking-tight">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold font-serif text-slate-900 mb-1 tracking-tight">
             Everything You Need to Know
           </h2>
 
-          <p className="text-xs sm:text-sm text-gray-500 max-w-xl mx-auto leading-relaxed px-2 sm:px-0">
+          <p className="text-xs sm:text-sm text-slate-500 max-w-xl mx-auto leading-relaxed px-2 sm:px-0">
             Clear, jargon-free answers to the most common questions about mutual fund investing in India.
           </p>
         </div>
-
         {/* Main card */}
         <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-lg border border-white/50 overflow-hidden">
           {/* Category pills - scrollable on mobile & centered on desktop */}
-          <div className="relative px-3 sm:px-6 pt-3.5 sm:pt-4.5 pb-2.5 border-b border-gray-100/80 overflow-hidden">
+          <div className="relative px-3 sm:px-6 py-1 border-b border-gray-100/80 overflow-hidden">
             {/* Left fade scroll indicator */}
             <button 
               type="button"
@@ -398,7 +397,7 @@ export default function InvestFaq() {
               }`}
               aria-label="Scroll left"
             >
-              <ChevronLeft className="w-4 h-4 text-blue-600/90 animate-pulse-slow translate-y-[2px] transition-transform duration-200 hover:scale-120 active:scale-90" />
+              <ChevronLeft className="w-4 h-4 text-blue-600/90 animate-pulse-slow translate-y-[2px]" />
             </button>
 
             {/* Right fade scroll indicator */}
@@ -410,13 +409,13 @@ export default function InvestFaq() {
               }`}
               aria-label="Scroll right"
             >
-              <ChevronRight className="w-4 h-4 text-blue-600/90 animate-pulse-slow translate-y-[2px] transition-transform duration-200 hover:scale-120 active:scale-90" />
+              <ChevronRight className="w-4 h-4 text-blue-600/90 animate-pulse-slow translate-y-[2px]" />
             </button>
 
             <div 
               ref={scrollContainerRef}
               onScroll={checkScrollLimits}
-              className="flex overflow-x-auto no-scrollbar scroll-smooth gap-1.5 sm:gap-2 w-full pb-1 -mb-1 px-6"
+              className="flex overflow-x-auto no-scrollbar scroll-smooth gap-1.5 sm:gap-2 w-full py-2 px-6"
             >
               {categories.map((cat) => {
                 const Icon = cat.icon;
@@ -427,22 +426,21 @@ export default function InvestFaq() {
                     key={cat.id}
                     onClick={() => setActiveCategory(cat.id)}
                     className={`
-                      inline-flex items-center gap-1 px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-lg text-xs font-medium transition-all duration-200 whitespace-nowrap
+                      inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 whitespace-nowrap border
                       ${
                         isActive
-                          ? `${cat.bgSoft} ${cat.color} ${cat.borderSoft} border shadow-sm scale-[1.02]`
-                          : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50 border border-transparent'
+                          ? `${cat.bgSoft} backdrop-blur-md ${cat.color} ${cat.borderSoft} shadow-sm`
+                          : 'bg-slate-50/30 text-slate-500 border-transparent hover:bg-white/50 hover:text-slate-800 hover:border-slate-200/50'
                       }
                     `}
                   >
-                    <Icon className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                    <Icon className="w-3.5 h-3.5" />
                     {cat.label}
                   </button>
                 );
               })}
             </div>
           </div>
-
           {/* FAQ accordion */}
           <div className="px-3 sm:px-6 py-3.5 sm:py-4.5">
             <div>

@@ -231,8 +231,8 @@ export function InvestmentCalculatorCardRefined({ investmentType }: { investment
   }, [calculatedResult]);
 
   // Premium color scheme suitable for financial UI
-  const investedColor = "#ea580c"; // orange-600
-  const gainsColor = "#10b981"; // emerald-500
+  const investedColor = "#475569"; // slate-600 (neutral & sophisticated)
+  const gainsColor = "#059669"; // emerald-600 (clean & premium)
   const hasChartData = chartData.some((d) => Number(d.value) > 0);
   const investedValue = Math.max(0, Number(chartData.find((d) => d.key === "invested")?.value || 0));
   const returnsValue = Math.max(0, Number(chartData.find((d) => d.key === "gains")?.value || 0));
@@ -276,7 +276,7 @@ export function InvestmentCalculatorCardRefined({ investmentType }: { investment
                   <p className="text-red-500 text-xs text-left font-semibold mt-1">{errors.investmentAmount}</p>
                 )}
                 <div className="pt-2">
-                  <Slider value={[sipValToPos(Number(investmentAmount) || 0)]} onValueChange={([v]) => setInvestmentAmount(String(sipPosToVal(v)))} min={0} max={100} step={1} className="mx-auto w-full [&>span:first-child]:h-2 [&>span:first-child]:bg-orange-100 [&>span:first-child>span]:bg-orange-500 [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:border-orange-500 [&_[role=slider]]:shadow-md" />
+                  <Slider value={[sipValToPos(Number(investmentAmount) || 0)]} onValueChange={([v]) => setInvestmentAmount(String(sipPosToVal(v)))} min={0} max={100} step={1} className="mx-auto w-full [&>span:first-child]:h-1 [&>span:first-child]:bg-slate-100 [&>span:first-child>span]:bg-slate-800 [&_[role=slider]]:h-4 [&_[role=slider]]:w-4 [&_[role=slider]]:bg-white [&_[role=slider]]:border [&_[role=slider]]:border-slate-300 [&_[role=slider]]:shadow-sm [&_[role=slider]]:transition-transform [&_[role=slider]]:hover:scale-110 [&_[role=slider]]:active:scale-95 [&_[role=slider]]:focus-visible:ring-0 [&_[role=slider]]:focus-visible:outline-none" />
                 </div>
               </div>
             )}
@@ -296,7 +296,7 @@ export function InvestmentCalculatorCardRefined({ investmentType }: { investment
                   <p className="text-red-500 text-xs text-left font-semibold mt-1">{errors.totalInvestment}</p>
                 )}
                 <div className="pt-2">
-                  <Slider value={[lumpValToPos(Number(totalInvestment) || 0)]} onValueChange={([v]) => setTotalInvestment(String(lumpPosToVal(v)))} min={0} max={100} step={1} className="mx-auto w-full [&>span:first-child]:h-2 [&>span:first-child]:bg-orange-100 [&>span:first-child>span]:bg-orange-500 [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:border-orange-500 [&_[role=slider]]:shadow-md" />
+                  <Slider value={[lumpValToPos(Number(totalInvestment) || 0)]} onValueChange={([v]) => setTotalInvestment(String(lumpPosToVal(v)))} min={0} max={100} step={1} className="mx-auto w-full [&>span:first-child]:h-1 [&>span:first-child]:bg-slate-100 [&>span:first-child>span]:bg-slate-800 [&_[role=slider]]:h-4 [&_[role=slider]]:w-4 [&_[role=slider]]:bg-white [&_[role=slider]]:border [&_[role=slider]]:border-slate-300 [&_[role=slider]]:shadow-sm [&_[role=slider]]:transition-transform [&_[role=slider]]:hover:scale-110 [&_[role=slider]]:active:scale-95 [&_[role=slider]]:focus-visible:ring-0 [&_[role=slider]]:focus-visible:outline-none" />
                 </div>
               </div>
             )}
@@ -317,7 +317,7 @@ export function InvestmentCalculatorCardRefined({ investmentType }: { investment
                     <p className="text-red-500 text-xs text-left font-semibold mt-1">{errors.totalInvestment}</p>
                   )}
                   <div className="pt-2">
-                    <Slider value={[swpInvValToPos(Number(totalInvestment) || 0)]} onValueChange={([v]) => setTotalInvestment(String(swpInvPosToVal(v)))} min={0} max={100} step={1} className="mx-auto w-full [&>span:first-child]:h-2 [&>span:first-child]:bg-orange-100 [&>span:first-child>span]:bg-orange-500 [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:border-orange-500 [&_[role=slider]]:shadow-md" />
+                    <Slider value={[swpInvValToPos(Number(totalInvestment) || 0)]} onValueChange={([v]) => setTotalInvestment(String(swpInvPosToVal(v)))} min={0} max={100} step={1} className="mx-auto w-full [&>span:first-child]:h-1 [&>span:first-child]:bg-slate-100 [&>span:first-child>span]:bg-slate-800 [&_[role=slider]]:h-4 [&_[role=slider]]:w-4 [&_[role=slider]]:bg-white [&_[role=slider]]:border [&_[role=slider]]:border-slate-300 [&_[role=slider]]:shadow-sm [&_[role=slider]]:transition-transform [&_[role=slider]]:hover:scale-110 [&_[role=slider]]:active:scale-95 [&_[role=slider]]:focus-visible:ring-0 [&_[role=slider]]:focus-visible:outline-none" />
                   </div>
                 </div>
                 <div className="space-y-2.5">
@@ -335,7 +335,7 @@ export function InvestmentCalculatorCardRefined({ investmentType }: { investment
                     <p className="text-red-500 text-xs text-left font-semibold mt-1">{errors.withdrawalAmount}</p>
                   )}
                   <div className="pt-2">
-                    <Slider value={[swpWdValToPos(Number(withdrawalAmount) || 0)]} onValueChange={([v]) => setWithdrawalAmount(String(swpWdPosToVal(v)))} min={0} max={100} step={1} className="mx-auto w-full [&>span:first-child]:h-2 [&>span:first-child]:bg-orange-100 [&>span:first-child>span]:bg-orange-500 [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:border-orange-500 [&_[role=slider]]:shadow-md" />
+                    <Slider value={[swpWdValToPos(Number(withdrawalAmount) || 0)]} onValueChange={([v]) => setWithdrawalAmount(String(swpWdPosToVal(v)))} min={0} max={100} step={1} className="mx-auto w-full [&>span:first-child]:h-1 [&>span:first-child]:bg-slate-100 [&>span:first-child>span]:bg-slate-800 [&_[role=slider]]:h-4 [&_[role=slider]]:w-4 [&_[role=slider]]:bg-white [&_[role=slider]]:border [&_[role=slider]]:border-slate-300 [&_[role=slider]]:shadow-sm [&_[role=slider]]:transition-transform [&_[role=slider]]:hover:scale-110 [&_[role=slider]]:active:scale-95 [&_[role=slider]]:focus-visible:ring-0 [&_[role=slider]]:focus-visible:outline-none" />
                   </div>
                 </div>
               </>
@@ -349,7 +349,7 @@ export function InvestmentCalculatorCardRefined({ investmentType }: { investment
                 <p className="text-red-500 text-xs text-left font-semibold mt-1">{errors.expectedReturnRate}</p>
               )}
               <div className="pt-2">
-                <Slider value={[Number(expectedReturnRate) || 0]} onValueChange={([v]) => setExpectedReturnRate(String(v))} min={1} max={30} step={0.1} className="mx-auto w-full [&>span:first-child]:h-2 [&>span:first-child]:bg-orange-100 [&>span:first-child>span]:bg-orange-500 [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:border-orange-500 [&_[role=slider]]:shadow-md" />
+                <Slider value={[Number(expectedReturnRate) || 0]} onValueChange={([v]) => setExpectedReturnRate(String(v))} min={1} max={30} step={0.1} className="mx-auto w-full [&>span:first-child]:h-1 [&>span:first-child]:bg-slate-100 [&>span:first-child>span]:bg-slate-800 [&_[role=slider]]:h-4 [&_[role=slider]]:w-4 [&_[role=slider]]:bg-white [&_[role=slider]]:border [&_[role=slider]]:border-slate-300 [&_[role=slider]]:shadow-sm [&_[role=slider]]:transition-transform [&_[role=slider]]:hover:scale-110 [&_[role=slider]]:active:scale-95 [&_[role=slider]]:focus-visible:ring-0 [&_[role=slider]]:focus-visible:outline-none" />
               </div>
             </div>
             <div className="space-y-2.5 mb-6">
@@ -361,7 +361,7 @@ export function InvestmentCalculatorCardRefined({ investmentType }: { investment
                 <p className="text-red-500 text-xs text-left font-semibold mt-1">{errors.timePeriod}</p>
               )}
               <div className="pt-2">
-                <Slider value={[Number(timePeriod) || 0]} onValueChange={([v]) => setTimePeriod(String(v))} min={1} max={40} step={1} className="mx-auto w-full [&>span:first-child]:h-2 [&>span:first-child]:bg-orange-100 [&>span:first-child>span]:bg-orange-500 [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 [&_[role=slider]]:border-orange-500 [&_[role=slider]]:shadow-md" />
+                <Slider value={[Number(timePeriod) || 0]} onValueChange={([v]) => setTimePeriod(String(v))} min={1} max={40} step={1} className="mx-auto w-full [&>span:first-child]:h-1 [&>span:first-child]:bg-slate-100 [&>span:first-child>span]:bg-slate-800 [&_[role=slider]]:h-4 [&_[role=slider]]:w-4 [&_[role=slider]]:bg-white [&_[role=slider]]:border [&_[role=slider]]:border-slate-300 [&_[role=slider]]:shadow-sm [&_[role=slider]]:transition-transform [&_[role=slider]]:hover:scale-110 [&_[role=slider]]:active:scale-95 [&_[role=slider]]:focus-visible:ring-0 [&_[role=slider]]:focus-visible:outline-none" />
               </div>
             </div>
 
@@ -425,31 +425,31 @@ export function InvestmentCalculatorCardRefined({ investmentType }: { investment
                   <div className="hidden md:block h-6"></div>
                   
                   {/* Desktop View Results Block */}
-                  <div className="hidden md:flex items-center justify-center gap-8 w-full p-6 bg-slate-50/80 rounded-2xl border border-slate-100 shadow-sm">
-                    <div className="flex flex-col gap-4 flex-1">
+                  <div className="hidden md:flex items-stretch justify-between gap-6 p-6 bg-slate-50/50 backdrop-blur-sm rounded-2xl border border-slate-200/30 shadow-sm text-center">
+                    <div className="flex-[1.2] flex flex-col gap-4 justify-center">
                       <div className="flex items-center gap-3">
                         <span className="inline-block h-3.5 w-3.5 rounded-full shadow-sm" style={{ backgroundColor: investedColor }} />
-                        <span className="text-slate-500 font-semibold font-sans text-sm">Invested</span>
-                        <span className="font-extrabold text-orange-600 text-lg ml-auto font-sans">{formatLargeNumber(investedValue)}</span>
+                        <span className="text-slate-500 font-semibold font-sans text-sm whitespace-nowrap">Invested</span>
+                        <span className="font-semibold text-slate-600 text-lg ml-auto font-sans">{formatLargeNumber(investedValue)}</span>
                       </div>
                       <div className="flex items-center gap-3">
                         <span className="inline-block h-3.5 w-3.5 rounded-full shadow-sm" style={{ backgroundColor: gainsColor }} />
-                        <span className="text-slate-500 font-semibold font-sans text-sm">{investmentType === "swp" ? "Total Withdrawal" : "Total Returns"}</span>
-                        <span className="font-extrabold text-emerald-600 text-lg ml-auto font-sans">
+                        <span className="text-slate-500 font-semibold font-sans text-sm whitespace-nowrap">{investmentType === "swp" ? "Total Withdrawal" : "Total Returns"}</span>
+                        <span className="font-semibold text-emerald-600 text-lg ml-auto font-sans">
                           {formatLargeNumber(investmentType === "swp" ? (calculatedResult as SWPResult)?.totalWithdrawn || 0 : returnsValue)}
                         </span>
                       </div>
                     </div>
 
-                    <div className="h-16 w-px bg-slate-200"></div>
+                    <div className="w-px bg-slate-200 self-stretch my-1"></div>
 
                     {calculatedResult && (
-                      <div className="flex flex-col items-start gap-1.5 flex-1">
-                        <span className="text-slate-500 font-bold text-xs font-sans uppercase tracking-wider">
+                      <div className="flex-[0.8] flex flex-col items-start justify-center gap-1.5 pl-4">
+                        <span className="text-slate-500 font-bold text-xs font-sans uppercase tracking-wider whitespace-nowrap">
                           {investmentType === 'swp' ? 'Final Balance' : 'Future Value'}
                         </span>
                         <span
-                          className="font-extrabold text-slate-900 tracking-tight font-sans text-3xl leading-none"
+                          className="font-bold text-slate-900 tracking-tight font-sans text-3xl leading-none"
                         >
                           {formatLargeNumber(
                             investmentType === 'swp'
@@ -462,39 +462,39 @@ export function InvestmentCalculatorCardRefined({ investmentType }: { investment
                   </div>
 
                   {/* Mobile View Results Block */}
-                  <div className="flex flex-col items-center justify-center gap-3.5 text-base md:hidden w-full p-4 bg-slate-50/80 rounded-2xl border border-slate-100">
+                  <div className="flex flex-col items-stretch justify-center gap-3 w-full p-4 bg-slate-50/50 backdrop-blur-sm rounded-2xl border border-slate-200/30 shadow-sm text-center md:hidden">
                     <div className="flex flex-col gap-3 w-full px-2">
                       {/* Invested Amount Card */}
-                      <div className="flex flex-col items-center p-3.5 bg-white rounded-xl border border-slate-100 shadow-sm text-center">
+                      <div className="flex flex-col items-center p-3.5 bg-white/70 backdrop-blur-sm rounded-xl border border-slate-100 shadow-sm text-center">
                         <div className="flex items-center gap-1.5 mb-1">
                           <span className="inline-block h-2.5 w-2.5 rounded-full" style={{ backgroundColor: investedColor }} />
-                          <span className="text-slate-500 font-bold font-sans text-xs uppercase tracking-wider">Invested Amount</span>
+                          <span className="text-slate-500 font-medium font-sans text-xs uppercase tracking-wider">Invested Amount</span>
                         </div>
-                        <span className="font-extrabold text-orange-600 font-sans text-lg break-all leading-tight">
+                        <span className="font-semibold text-slate-600 font-sans text-lg break-all leading-tight">
                           {formatLargeNumber(investedValue)}
                         </span>
                       </div>
 
                       {/* Returns/Withdrawal Card */}
-                      <div className="flex flex-col items-center p-3.5 bg-white rounded-xl border border-slate-100 shadow-sm text-center">
+                      <div className="flex flex-col items-center p-3.5 bg-white/70 backdrop-blur-sm rounded-xl border border-slate-100 shadow-sm text-center">
                         <div className="flex items-center gap-1.5 mb-1">
                           <span className="inline-block h-2.5 w-2.5 rounded-full" style={{ backgroundColor: gainsColor }} />
-                          <span className="text-slate-500 font-bold font-sans text-xs uppercase tracking-wider">
+                          <span className="text-slate-500 font-medium font-sans text-xs uppercase tracking-wider">
                             {investmentType === "swp" ? "Total Withdrawal" : "Total Returns"}
                           </span>
                         </div>
-                        <span className="font-extrabold text-emerald-600 font-sans text-lg break-all leading-tight">
+                        <span className="font-semibold text-emerald-600 font-sans text-lg break-all leading-tight">
                           {formatLargeNumber(investmentType === "swp" ? ((calculatedResult as SWPResult)?.totalWithdrawn || 0) : returnsValue)}
                         </span>
                       </div>
 
                       {/* Final Value/Balance Card */}
-                      <div className="flex flex-col items-center p-3.5 bg-gradient-to-r from-orange-500/5 to-red-500/5 rounded-xl border border-orange-100/50 shadow-sm text-center">
-                        <span className="text-slate-600 font-bold text-xs uppercase tracking-wider mb-1 font-sans">
+                      <div className="flex flex-col items-center p-3.5 bg-white/80 backdrop-blur-sm rounded-xl border border-slate-200/50 shadow-sm text-center">
+                        <span className="text-slate-600 font-medium text-xs uppercase tracking-wider mb-1 font-sans">
                           {investmentType === 'swp' ? 'Final Balance' : 'Future Value'}
                         </span>
                         <span
-                          className="font-extrabold text-slate-900 break-all font-sans text-xl leading-tight"
+                          className="font-bold text-slate-900 break-all font-sans text-xl leading-tight"
                         >
                           {formatLargeNumber(
                             investmentType === 'sip' ? (calculatedResult as CalculationResult).futureValue || 0 :

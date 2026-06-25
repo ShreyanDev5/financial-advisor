@@ -17,6 +17,7 @@ import { AnimatedSection } from "@/components/ui/animated-section";
 import { TestimonialCard } from "@/components/ui/testimonial-card";
 import { Button } from "@/components/ui/button";
 import Advisor from "@/components/landing/advisor";
+import Partners from "@/components/landing/partners";
 
 export default function HomeContent() {
   const scrollToServices = () => {
@@ -75,7 +76,7 @@ export default function HomeContent() {
   ];
 
   return (
-    <div className="pb-0 space-y-12 sm:space-y-16 relative overflow-hidden">
+    <div className="pb-0 relative overflow-hidden">
       {/* Subtle Static Ambient Background Orbs for a smooth, premium, non-distracting feel */}
       <div className="absolute top-[12%] left-[-15%] w-[450px] h-[450px] rounded-full bg-emerald-500/3 blur-[120px] pointer-events-none -z-10" />
       <div className="absolute top-[40%] right-[-15%] w-[550px] h-[550px] rounded-full bg-teal-500/3 blur-[150px] pointer-events-none -z-10" />
@@ -109,8 +110,8 @@ export default function HomeContent() {
             </h1>
 
             {/* Description Text - Left aligned on desktop */}
-            <p className="text-sm sm:text-base text-gray-600 max-w-xl leading-relaxed mb-8 text-pretty">
-              Clear, honest guidance from <span className="underline-wavy font-medium whitespace-nowrap">Monotosh Sardar</span> to help you secure <span className="inline-block whitespace-nowrap">your family&apos;s future.</span>
+            <p className="text-sm sm:text-base text-slate-600 max-w-xl leading-relaxed mb-8 text-pretty">
+              Clear, honest guidance from <span className="underline decoration-emerald-500/30 decoration-2 underline-offset-4 font-semibold whitespace-nowrap text-slate-900 transition-colors hover:decoration-emerald-500/60">Monotosh Sardar</span> to help you secure <span className="inline-block whitespace-nowrap">your family&apos;s future.</span>
             </p>
 
             {/* Double Action Button Grid */}
@@ -151,64 +152,57 @@ export default function HomeContent() {
                 value="750+"
                 icon={Users}
                 description="Families & individuals guided."
-                iconBgColor="bg-blue-100"
+                iconBgColor="bg-blue-50"
                 iconTextColor="text-blue-600"
-                className="bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200 shadow-md hover:shadow-lg"
+                className="bg-white/80 border-blue-100/70 hover:border-blue-300"
               />
               <StatCard
-                title="Services & Offerings"
+                title="Services Offered"
                 value="20+"
                 icon={ClipboardList}
                 description="Insurance, tax, and documents."
-                iconBgColor="bg-emerald-100"
+                iconBgColor="bg-emerald-50"
                 iconTextColor="text-emerald-600"
-                className="bg-gradient-to-br from-emerald-50 to-emerald-100 border-emerald-200 shadow-md hover:shadow-lg"
+                className="bg-white/80 border-emerald-100/70 hover:border-emerald-300"
               />
               <StatCard
                 title="Years of Experience"
                 value="19+"
                 icon={Award}
                 description="Years of trusted expertise."
-                iconBgColor="bg-purple-100"
+                iconBgColor="bg-purple-50"
                 iconTextColor="text-purple-600"
-                className="bg-gradient-to-br from-purple-50 to-purple-100 border-purple-200 shadow-md hover:shadow-lg"
+                className="bg-white/80 border-purple-100/70 hover:border-purple-300"
               />
               <StatCard
                 title="Mutual Fund AUM"
                 value="₹30 Lakhs"
                 icon={TrendingUp}
                 description="Total assets managed."
-                iconBgColor="bg-orange-100"
+                iconBgColor="bg-orange-50"
                 iconTextColor="text-orange-600"
-                className="bg-gradient-to-br from-orange-50 to-orange-100 border-orange-200 shadow-md hover:shadow-lg"
+                className="bg-white/80 border-orange-100/70 hover:border-orange-300"
               />
             </div>
           </div>
         </div>
       </AnimatedSection>
 
-      <div className="w-1/2 sm:w-1/3 md:w-1/4 mx-auto my-6 sm:my-8">
-        <div className="h-px w-full bg-gray-200 dark:bg-gray-800 opacity-60" />
-      </div>
-
-      <div className="py-2 sm:py-3 animate-fade-in">
+      {/* Advisor Section */}
+      <div className="animate-fade-in pt-16 sm:pt-28 pb-8 sm:pb-14">
         <Advisor />
-      </div>
-
-      <div className="w-1/2 sm:w-1/3 md:w-1/4 mx-auto my-6 sm:my-8">
-        <div className="h-px w-full bg-gray-200 dark:bg-gray-800 opacity-60" />
       </div>
       
       {/* Redesigned Core Services Section with scrolling and premium cards */}
-      <AnimatedSection id="core-services-section" className="text-center py-4 sm:py-6 scroll-mt-24">
-        <div className="space-y-2 mb-8 sm:mb-10">
-          <span className="text-xs font-bold uppercase tracking-widest text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">
+      <AnimatedSection id="core-services-section" className="text-center scroll-mt-24 py-8 sm:py-14">
+        <div className="mb-8 sm:mb-10 flex flex-col items-center">
+          <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">
             Our Offerings
           </span>
-          <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-bold font-serif text-slate-900 tracking-tight mt-3">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold font-serif text-slate-900 tracking-tight mt-1.5 mb-1">
             Advisory & Essential Services
           </h2>
-          <p className="text-sm sm:text-base text-gray-500 max-w-xl mx-auto px-4 sm:px-0 leading-relaxed text-pretty">
+          <p className="text-xs sm:text-sm text-slate-500 max-w-xl mx-auto px-4 sm:px-0 leading-relaxed text-pretty">
             Expert help with your investments, insurance, and essential documentation.
           </p>
         </div>
@@ -218,7 +212,7 @@ export default function HomeContent() {
           {quickServices.map((service, index) => (
             <Link href={service.href!} key={index} className="h-full">
               <div
-                className={`group relative p-3.5 sm:p-6 md:p-8 rounded-2xl transition-all duration-300 border border-slate-100/80 bg-white/70 ${service.hoverBorderColor} hover:bg-white/95 shadow-sm hover:shadow-md flex flex-col items-center text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 backdrop-blur-md h-full transform-gpu`}
+                className={`group relative p-3.5 sm:p-6 md:p-8 rounded-2xl transition-all duration-300 border border-slate-200/50 bg-white/80 ${service.hoverBorderColor} hover:bg-white/95 shadow-sm hover:shadow-md flex flex-col items-center text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 backdrop-blur-md h-full transform-gpu`}
               >
                 {/* Premium, ultra-thin centered, rounded colored hover pill (w-12 h-[3.5px] instead of full width) */}
                 <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-12 h-[3.5px] rounded-b-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${service.barColor}`} />
@@ -231,7 +225,7 @@ export default function HomeContent() {
                 </div>
                 
                 {/* Fixed Title text: no color change on hover */}
-                <h3 className="text-sm sm:text-base font-extrabold text-slate-800 leading-tight">
+                <h3 className="text-sm sm:text-base font-bold text-slate-900 leading-tight">
                   {service.title}
                 </h3>
               </div>
@@ -240,20 +234,16 @@ export default function HomeContent() {
         </div>
       </AnimatedSection>
 
-      <div className="w-1/2 sm:w-1/3 md:w-1/4 mx-auto my-6 sm:my-8">
-        <div className="h-px w-full bg-gray-200 dark:bg-gray-800 opacity-60" />
-      </div>
-
       {/* Redesigned Testimonials Section */}
-      <AnimatedSection className="text-center py-2">
-        <div className="space-y-2 mb-10">
-          <span className="text-xs font-bold uppercase tracking-widest text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">
+      <AnimatedSection className="text-center py-8 sm:py-14">
+        <div className="mb-10 flex flex-col items-center">
+          <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">
             Client Feedback
           </span>
-          <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-bold font-serif text-slate-900 tracking-tight mt-3">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold font-serif text-slate-900 tracking-tight mt-1.5 mb-1">
             What Our Clients Say
           </h2>
-          <p className="text-sm sm:text-base text-gray-500 max-w-xl mx-auto px-4 sm:px-0">
+          <p className="text-xs sm:text-sm text-slate-500 max-w-xl mx-auto px-4 sm:px-0">
             Honest reviews from the families we protect.
           </p>
         </div>
@@ -279,12 +269,11 @@ export default function HomeContent() {
         </div>
       </AnimatedSection>
 
-      <div className="w-1/2 sm:w-1/3 md:w-1/4 mx-auto my-10 sm:my-12">
-        <div className="h-px w-full bg-gray-200 dark:bg-gray-800 opacity-60" />
-      </div>
+      {/* Trusted Partners section */}
+      <Partners />
 
       {/* Redesigned High-Impact Dark-Emerald CTA Section */}
-      <AnimatedSection className="relative bg-gradient-to-br from-slate-900 via-emerald-950 to-emerald-900 p-6 sm:p-12 lg:p-16 rounded-2xl text-center border border-emerald-800/80 shadow-lg sm:shadow-strong mx-2.5 sm:mx-12 lg:mx-20 overflow-hidden transform-gpu">
+      <AnimatedSection className="relative bg-gradient-to-br from-slate-900 via-emerald-950 to-emerald-900 p-6 sm:p-12 lg:p-16 rounded-3xl text-center border border-emerald-800/80 shadow-lg sm:shadow-strong mx-2.5 sm:mx-12 lg:mx-20 overflow-hidden transform-gpu">
         {/* Subtle grid lines in the background */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:16px_24px] pointer-events-none" />
         {/* Glowing atmospheric bubbles inside card */}
@@ -292,10 +281,10 @@ export default function HomeContent() {
         <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-teal-500/10 rounded-full blur-3xl pointer-events-none -z-10" />
 
         <div className="relative z-10 max-w-2xl mx-auto flex flex-col items-center">
-          <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-emerald-400 bg-emerald-950/60 border border-emerald-800/60 px-3 py-1 rounded-full mb-5 backdrop-blur-md">
+          <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-400 bg-emerald-950/60 border border-emerald-800/60 px-3 py-1 rounded-full mb-1.5 backdrop-blur-md">
             Get in Touch
           </span>
-          <h2 className="text-2xl sm:text-3xl lg:text-[36px] font-bold font-serif leading-tight text-white mb-4 tracking-tight">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold font-serif leading-tight text-white mb-1.5 tracking-tight">
             Let&apos;s Discuss Your Financial Goals
           </h2>
           <p className="text-xs sm:text-sm text-emerald-100/70 max-w-md mx-auto mb-8 leading-relaxed text-pretty">

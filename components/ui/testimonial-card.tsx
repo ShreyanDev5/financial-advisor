@@ -15,23 +15,23 @@ export function TestimonialCard({
   avatarSrc,
 }: TestimonialCardProps) {
   return (
-    <div className="bg-white/90 backdrop-blur-md p-5 sm:p-6 rounded-2xl border border-white/50 flex flex-col items-center text-center h-full transition-all duration-300 shadow-medium hover:shadow-strong hover:-translate-y-0.5 card-shine relative transform-gpu">
+    <div className="bg-white/90 backdrop-blur-md p-6 rounded-2xl border border-slate-100 flex flex-col items-center text-center h-full transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 relative transform-gpu">
       
-      {/* Profile Picture Frame with custom borders - refined sizing */}
+      {/* Profile Picture Frame with custom borders */}
       <div className="mb-4 flex items-center justify-center relative">
         {avatarSrc ? (
-          <div className="relative rounded-full border-4 border-white shadow-md w-16 h-16 sm:w-18 sm:h-18 overflow-hidden ring-2 ring-emerald-500/10">
+          <div className="relative rounded-full border-2 border-white shadow-sm w-16 h-16 overflow-hidden ring-1 ring-slate-100">
             <Image
               src={avatarSrc}
               alt={name}
               fill
               className="object-cover"
-              sizes="72px"
+              sizes="64px"
             />
           </div>
         ) : (
-          <div className="bg-gradient-to-br from-emerald-100 to-teal-100 border-4 border-white rounded-full w-16 h-16 sm:w-18 sm:h-18 flex items-center justify-center shadow-md ring-2 ring-emerald-500/10">
-            <div className="bg-gradient-to-br from-emerald-300 to-teal-300 rounded-full w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center">
+          <div className="bg-gradient-to-br from-emerald-100 to-teal-100 border-2 border-white rounded-full w-16 h-16 flex items-center justify-center shadow-sm ring-1 ring-slate-100">
+            <div className="bg-gradient-to-br from-emerald-300 to-teal-300 rounded-full w-12 h-12 flex items-center justify-center">
               <span className="text-emerald-700 font-bold text-xl">
                 {name.charAt(0)}
               </span>
@@ -54,8 +54,8 @@ export function TestimonialCard({
       
       {/* Card Footer: Client Info */}
       <div className="mt-auto pt-3.5 border-t border-slate-100/50 w-full">
-        <p className="font-extrabold text-xs sm:text-sm text-slate-900 leading-none">{name}</p>
-        <p className="text-[10px] sm:text-xs text-gray-500 mt-1 font-medium">{role}</p>
+        <p className="font-bold text-xs sm:text-sm text-slate-900 leading-none">{name}</p>
+        <p className="text-[10px] sm:text-xs text-slate-500 mt-1 font-medium">{role}</p>
       </div>
     </div>
   );

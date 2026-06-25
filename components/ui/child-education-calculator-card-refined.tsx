@@ -252,7 +252,6 @@ export function ChildEducationCalculatorCardRefined({ calculatorType }: { calcul
     const encodedText = encodeURIComponent(shareTextContent);
     const whatsappUrl = `https://wa.me/?text=${encodedText}`;
 
-    // Open WhatsApp
     window.open(whatsappUrl, '_blank');
   };
 
@@ -266,10 +265,10 @@ export function ChildEducationCalculatorCardRefined({ calculatorType }: { calcul
     return (
       <div className="space-y-6">
         {/* Desktop View Results */}
-        <div className="hidden md:flex items-center justify-between gap-6 p-6 bg-slate-50/80 rounded-2xl border border-slate-100">
-          <div className="flex flex-col gap-1 items-start text-left">
-            <span className="text-slate-500 font-bold font-sans text-xs uppercase tracking-wider">Projected Cost</span>
-            <span className="text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight leading-none font-sans break-all">
+        <div className="hidden md:flex items-stretch justify-between gap-6 p-6 bg-slate-50/50 backdrop-blur-sm rounded-2xl border border-slate-200/30 shadow-sm text-center">
+          <div className="flex-1 flex flex-col gap-1 items-start text-left justify-center">
+            <span className="text-slate-500 font-medium font-sans text-xs uppercase tracking-wider">Projected Cost</span>
+            <span className="text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight leading-none font-sans break-all">
               {formatLargeNumber(projectedCost)}
             </span>
             <span className="text-xs text-slate-400 font-medium mt-1">
@@ -277,11 +276,11 @@ export function ChildEducationCalculatorCardRefined({ calculatorType }: { calcul
             </span>
           </div>
 
-          <div className="w-px h-16 bg-slate-200"></div>
+          <div className="w-px bg-slate-200 self-stretch my-1"></div>
 
-          <div className="flex flex-col gap-1 items-end text-right">
-            <span className="text-emerald-600 font-bold font-sans text-xs uppercase tracking-wider">Monthly SIP Required</span>
-            <span className="text-3xl lg:text-4xl font-extrabold text-emerald-600 tracking-tight leading-none font-sans break-all">
+          <div className="flex-1 flex flex-col gap-1 items-end text-right justify-center pl-6">
+            <span className="text-emerald-600 font-medium font-sans text-xs uppercase tracking-wider">Monthly SIP Required</span>
+            <span className="text-3xl lg:text-4xl font-bold text-emerald-650 tracking-tight leading-none font-sans break-all">
               {formatLargeNumber(monthlyInvestment)}
             </span>
             <span className="text-xs text-emerald-600/60 font-medium mt-1">
@@ -291,18 +290,18 @@ export function ChildEducationCalculatorCardRefined({ calculatorType }: { calcul
         </div>
 
         {/* Mobile View Results */}
-        <div className="flex flex-col md:hidden gap-3.5 w-full">
-          <div className="flex flex-col items-center p-4 bg-white rounded-xl border border-slate-100 shadow-sm text-center">
-            <span className="text-slate-500 font-bold font-sans text-xs uppercase tracking-wider mb-1">Projected Cost</span>
-            <span className="text-xl font-extrabold text-slate-900 break-all font-sans">
+        <div className="flex flex-col md:hidden gap-3 w-full">
+          <div className="flex flex-col items-center p-3.5 bg-white/70 backdrop-blur-sm rounded-xl border border-slate-150 shadow-sm text-center">
+            <span className="text-slate-500 font-medium font-sans text-xs uppercase tracking-wider mb-1">Projected Cost</span>
+            <span className="text-xl font-bold text-slate-900 break-all font-sans">
               {formatLargeNumber(projectedCost)}
             </span>
             <span className="text-[10px] text-slate-400 font-medium mt-1">Estimated cost after {yearsUntilEducation} years</span>
           </div>
 
-          <div className="flex flex-col items-center p-4 bg-gradient-to-r from-emerald-500/5 to-teal-500/5 rounded-xl border border-emerald-100/50 shadow-sm text-center">
-            <span className="text-emerald-600 font-bold font-sans text-xs uppercase tracking-wider mb-1">Monthly SIP Required</span>
-            <span className="text-xl font-extrabold text-emerald-600 break-all font-sans">
+          <div className="flex flex-col items-center p-3.5 bg-white/80 backdrop-blur-sm rounded-xl border border-slate-200/50 shadow-sm text-center">
+            <span className="text-emerald-600 font-medium font-sans text-xs uppercase tracking-wider mb-1">Monthly SIP Required</span>
+            <span className="text-xl font-bold text-emerald-600 break-all font-sans">
               {formatLargeNumber(monthlyInvestment)}
             </span>
             <span className="text-[10px] text-emerald-600/60 font-medium mt-1">To reach your goal</span>
@@ -310,9 +309,9 @@ export function ChildEducationCalculatorCardRefined({ calculatorType }: { calcul
         </div>
 
         {monthlyInvestment > 0 ? (
-          <div className="bg-emerald-50/80 p-4 rounded-xl border border-emerald-200 shadow-sm">
+          <div className="bg-emerald-50/50 p-4 rounded-xl border border-emerald-100 shadow-sm">
             <div className="flex items-start gap-3">
-              <div className="bg-emerald-100 p-2 rounded-lg mt-0.5">
+              <div className="bg-emerald-100/60 p-2 rounded-lg mt-0.5">
                 <CheckCircle className="h-5 w-5 text-emerald-600" />
               </div>
               <div>
@@ -326,12 +325,12 @@ export function ChildEducationCalculatorCardRefined({ calculatorType }: { calcul
             </div>
           </div>
         ) : (
-          <div className="bg-emerald-50/80 p-4 rounded-xl border border-emerald-200 shadow-sm">
+          <div className="bg-emerald-50/50 p-4 rounded-xl border border-emerald-100 shadow-sm">
             <div className="flex items-center gap-3">
-              <div className="bg-emerald-100 p-2 rounded-lg">
+              <div className="bg-emerald-100/60 p-2 rounded-lg">
                 <CheckCircle className="h-5 w-5 text-emerald-600" />
               </div>
-              <p className="text-sm text-emerald-800">
+              <p className="text-sm text-emerald-800 font-medium">
                 Great! Your current savings are sufficient to meet your child&apos;s education goal.
               </p>
             </div>
@@ -353,40 +352,40 @@ export function ChildEducationCalculatorCardRefined({ calculatorType }: { calcul
       <div className="space-y-4">
         <div className="space-y-3">
           {[...Array(educationYears)].map((_, i) => (
-            <div key={i} className="flex flex-col sm:flex-row items-center justify-between p-4 bg-white/70 rounded-xl border border-emerald-100 shadow-sm gap-3">
+            <div key={i} className="flex flex-col sm:flex-row items-center justify-between p-4 bg-white/70 backdrop-blur-sm rounded-xl border border-slate-200/40 shadow-sm gap-3">
               <div className="flex items-center gap-3">
-                <div className="bg-emerald-100 p-2 rounded-lg">
-                  <Calendar className="h-5 w-5 text-emerald-600" />
+                <div className="bg-slate-100 p-2 rounded-lg">
+                  <Calendar className="h-5 w-5 text-slate-600" />
                 </div>
-                <span className="font-medium text-emerald-800">{startYear + i} years:</span>
+                <span className="font-medium text-slate-800">{startYear + i} years:</span>
               </div>
-              <span className="font-bold text-emerald-800">🪙 ₹{formatLargeNumber(yearlyAmount)?.replace('₹', '')}</span>
+              <span className="font-bold text-slate-900">🪙 ₹{formatLargeNumber(yearlyAmount)?.replace('₹', '')}</span>
             </div>
           ))}
         </div>
 
-        <div className="mt-4 pt-4 border-t border-emerald-200">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 p-4 bg-white/70 rounded-xl border border-emerald-100 shadow-sm">
+        <div className="mt-4 pt-4 border-t border-slate-200">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 p-4 bg-white/70 backdrop-blur-sm rounded-xl border border-slate-200/40 shadow-sm">
             <div className="flex items-center gap-3">
-              <div className="bg-emerald-100 p-2 rounded-lg">
-                <CircleDollarSign className="h-5 w-5 text-emerald-600" />
+              <div className="bg-slate-100 p-2 rounded-lg">
+                <CircleDollarSign className="h-5 w-5 text-slate-600" />
               </div>
-              <span className="font-medium text-emerald-800">
+              <span className="font-medium text-slate-800">
                 One-time Career Support Fund
               </span>
             </div>
-            <span className="font-bold text-emerald-800">
+            <span className="font-bold text-slate-900">
               ₹{formatLargeNumber(careerFund)?.replace('₹', '')} at {finalYear} years
             </span>
           </div>
         </div>
 
-        <div className="bg-emerald-50/80 p-4 rounded-xl border border-emerald-200 shadow-sm">
+        <div className="bg-slate-50/50 p-4 rounded-xl border border-slate-200/40 shadow-sm">
           <div className="flex items-center gap-3">
-            <div className="bg-emerald-100 p-2 rounded-lg">
-              <Info className="h-5 w-5 text-emerald-600" />
+            <div className="bg-slate-100 p-2 rounded-lg">
+              <Info className="h-5 w-5 text-slate-600" />
             </div>
-            <p className="text-xs sm:text-sm text-emerald-600/80">
+            <p className="text-xs sm:text-sm text-slate-600/80">
               *Calculations consider standard financial assumptions for education funding.
             </p>
           </div>

@@ -123,33 +123,33 @@ export default function ChildMarriageCalculatorRefined() {
 
     return (
       <>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full">
-          <div className="flex flex-col items-center p-4 bg-white/70 rounded-2xl border border-rose-100 shadow-sm text-center justify-center">
-            <span className="text-slate-500 font-bold font-sans text-[10px] uppercase tracking-wider mb-1">Cost after {yearsUntilMarriage} yrs</span>
-            <span className="text-lg sm:text-xl font-extrabold text-rose-800 break-all font-sans">
+        <div className="flex flex-col sm:flex-row items-stretch justify-between gap-6 p-6 bg-slate-50/50 backdrop-blur-sm rounded-2xl border border-slate-200/30 shadow-sm text-center">
+          <div className="flex-1 flex flex-col items-center justify-center">
+            <span className="text-slate-500 font-medium font-sans text-[10px] uppercase tracking-wider mb-1.5">Cost after {yearsUntilMarriage} yrs</span>
+            <span className="text-lg sm:text-xl font-bold text-slate-900 break-all font-sans">
               {formatLargeNumber(futureCostOfMarriage)}
             </span>
           </div>
-
-          <div className="flex flex-col items-center p-4 bg-white/70 rounded-2xl border border-rose-100 shadow-sm text-center justify-center">
-            <span className="text-rose-600 font-bold font-sans text-[10px] uppercase tracking-wider mb-1">Monthly SIP Required</span>
-            <span className="text-lg sm:text-xl font-extrabold text-rose-800 break-all font-sans">
+          <div className="hidden sm:block w-px bg-slate-200 self-stretch my-1"></div>
+          <div className="flex-1 flex flex-col items-center justify-center">
+            <span className="text-slate-500 font-medium font-sans text-[10px] uppercase tracking-wider mb-1.5">Monthly SIP Required</span>
+            <span className="text-lg sm:text-xl font-bold text-rose-600 break-all font-sans">
               {formatLargeNumber(sipInvestment)}
             </span>
           </div>
-
-          <div className="flex flex-col items-center p-4 bg-white/70 rounded-2xl border border-rose-100 shadow-sm text-center justify-center">
-            <span className="text-rose-600 font-bold font-sans text-[10px] uppercase tracking-wider mb-1">One-time Lumpsum</span>
-            <span className="text-lg sm:text-xl font-extrabold text-rose-800 break-all font-sans">
+          <div className="hidden sm:block w-px bg-slate-200 self-stretch my-1"></div>
+          <div className="flex-1 flex flex-col items-center justify-center">
+            <span className="text-slate-500 font-medium font-sans text-[10px] uppercase tracking-wider mb-1.5">One-time Lumpsum</span>
+            <span className="text-lg sm:text-xl font-bold text-slate-900 break-all font-sans">
               {formatLargeNumber(lumpSumInvestment)}
             </span>
           </div>
         </div>
 
         {sipInvestment > 0 ? (
-          <div className="bg-rose-50/80 p-4 rounded-xl border border-rose-200 shadow-sm">
+          <div className="bg-rose-50/50 p-4 rounded-xl border border-rose-100 shadow-sm">
             <div className="flex items-start gap-3">
-              <div className="bg-rose-100 p-2 rounded-lg mt-0.5 animate-pulse-slow">
+              <div className="bg-rose-100/60 p-2 rounded-lg mt-0.5 animate-pulse-slow">
                  <CheckCircle className="h-5 w-5 text-rose-600" />
               </div>
               <div className="text-left">
@@ -166,12 +166,12 @@ export default function ChildMarriageCalculatorRefined() {
             </div>
           </div>
         ) : (
-          <div className="bg-rose-50/80 p-4 rounded-xl border border-rose-200 shadow-sm">
+          <div className="bg-rose-50/50 p-4 rounded-xl border border-rose-100 shadow-sm">
             <div className="flex items-center gap-3 text-left">
-              <div className="bg-rose-100 p-2 rounded-lg">
+              <div className="bg-rose-100/60 p-2 rounded-lg">
                  <CheckCircle className="h-5 w-5 text-rose-600" />
               </div>
-              <p className="text-sm text-rose-800">
+              <p className="text-sm text-rose-800 font-medium">
                 Great! Your current savings are sufficient to meet your child&apos;s marriage goal.
               </p>
             </div>
