@@ -56,4 +56,6 @@ Open [http://localhost:3000](http://localhost:3000) to view the website.
 
 ## 🌐 Deployment
 
-Platform: Vercel
+* **Platform**: [Vercel](https://vercel.com)
+* **Live Link**: [monotosh.vercel.app](https://monotosh.vercel.app/)
+
