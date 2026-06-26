@@ -18,6 +18,7 @@ A portfolio landing page and financial planning tool for a Certified Financial P
 *   **Components & Icons**: Radix UI, Lucide Icons
 *   **Language & Tooling**: TypeScript, ESLint
 *   **AI Tools**: GitHub Copilot, Antigravity
+*   **Deployment**: Vercel
 
 ## 🚀 Quick Start
 
@@ -52,3 +53,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the website.
 *   `components/` — UI components and main landing sections.
 *   `lib/` — Financial calculators and core helper functions.
 *   `tests/` — Test suites validating mathematical formulas.
+
+## 🌐 Deployment
+
+Platform: Vercel
