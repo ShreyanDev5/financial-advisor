@@ -5,45 +5,15 @@ const path = require('path');
 const LOGO_PATH = 'public/monotosh_logo_1.1.png';
 
 async function generateFavicon(size) {
-  // 1. Create a white rounded rectangle as SVG
-  const rx = size * 0.22;
-  const ry = size * 0.22;
-  
-  const roundedRectSvg = Buffer.from(`
-    <svg width="${size}" height="${size}">
-      <rect x="0" y="0" width="${size}" height="${size}" rx="${rx}" ry="${ry}" fill="#ffffff" />
-    </svg>
-  `);
-
-  // 2. Resize the original logo
-  // Logo has aspect ratio of 1000/794 = 1.2594
-  // We want the logo to occupy ~75% of the square size
-  const logoWidth = Math.round(size * 0.75);
-  const logoHeight = Math.round(logoWidth * (794 / 1000));
-  
-  const resizedLogo = await sharp(LOGO_PATH)
-    .resize(logoWidth, logoHeight)
-    .toBuffer();
-
-  // 3. Composite the white rounded rectangle and then the resized logo
-  // We will create a transparent background first, then composite the white rounded rect, then composite the logo.
-  const left = Math.round((size - logoWidth) / 2);
-  const top = Math.round((size - logoHeight) / 2);
-
-  const finalImage = await sharp({
-    create: {
-      width: size,
-      height: size,
-      channels: 4,
+  // Resize the original logo using fit: 'contain' to preserve aspect ratio
+  // within the square and keep the background transparent.
+  const finalImage = await sharp(LOGO_PATH)
+    .resize(size, size, {
+      fit: 'contain',
       background: { r: 0, g: 0, b: 0, alpha: 0 }
-    }
-  })
-  .composite([
-    { input: roundedRectSvg, top: 0, left: 0 },
-    { input: resizedLogo, top: top, left: left }
-  ])
-  .png()
-  .toBuffer();
+    })
+    .png()
+    .toBuffer();
 
   return finalImage;
 }
@@ -68,7 +38,7 @@ function pngToIco(pngBuffer, width, height) {
 }
 
 async function run() {
-  console.log('Generating premium favicons with white rounded rectangular background...');
+  console.log('Generating premium favicons with transparent background...');
 
   // Test with 512 first
   const img512 = await generateFavicon(512);
