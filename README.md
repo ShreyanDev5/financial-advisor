@@ -1,56 +1,54 @@
-# WealthWise
+# <img src="public/monotosh_logo_1.1.png" width="38" height="38" align="center" style="vertical-align: middle; margin-right: 8px;" /> WealthWise
 
-A portfolio landing page and financial planning application for a Certified Financial Planner (CFP). It includes interactive financial calculators, service details, and contact funnels.
+A portfolio landing page and financial planning tool for a Certified Financial Planner (CFP). It features interactive calculators, service lists, and a direct WhatsApp contact funnel.
 
-## Key Features
+![WealthWise Home Page](public/readme_home_page.png)
 
-*   **Financial Calculators**: Custom modules for SIP, Lumpsum, SWP, Retirement, Child Education, and Marriage planning.
-*   **Service Pages**: Informative breakdowns of mutual funds, insurance policies, and essential registry documents.
-*   **Dynamic Configurations**: All contact details, WhatsApp message templates, and logos are configurable via environment variables.
-*   **Mathematical Testing**: Unit tests verifying the accuracy of the financial math engine.
+## 💡 Key Features
 
-## Tech Stack
+*   **Financial Calculators**: Tools to calculate SIP, Lumpsum, SWP, Retirement, Child Education, and Marriage planning.
+*   **Service Catalogs**: Organized guides for local mutual funds, insurance packages, and identity/tax document services.
+*   **Easy Customization**: All contact information, logos, and WhatsApp messages can be changed via environment variables.
+*   **Math Testing**: Automated unit tests that verify all calculations.
 
-*   **Framework**: Next.js 15 (App Router) & React 18
-*   **Styling**: Tailwind CSS & CSS Variables
-*   **Components & Icons**: Radix UI & Lucide Icons
-*   **Language & Tooling**: TypeScript & ESLint
-*   **AI Tooling**: GitHub Copilot & Antigravity
+## 🛠️ Tech Stack
 
-## Quick Start
+*   **Framework**: Next.js 15 (App Router), React 18
+*   **Styling**: Tailwind CSS, CSS Variables
+*   **Components & Icons**: Radix UI, Lucide Icons
+*   **Language & Tooling**: TypeScript, ESLint
+*   **AI Tools**: GitHub Copilot, Antigravity
+
+## 🚀 Quick Start
 
 ### 1. Install Dependencies
 ```bash
 npm install
 ```
 
-### 2. Configure Environment
-Copy `.env.example` to `.env` and fill in the advisor's details:
+### 2. Set Up Environment Variables
+Copy `.env.example` to a new `.env` file and enter the advisor's details:
 ```bash
 cp .env.example .env
 ```
-*Note: If no variables are set, the app defaults to the original client's contact information.*
+*Note: If these variables are not set, the app will automatically default to the original client's details.*
 
-### 3. Run the App
+### 3. Run Locally
 ```bash
 npm run dev
 ```
-Open [http://localhost:3000](http://localhost:3000) to view it.
+Open [http://localhost:3000](http://localhost:3000) to view the website.
 
-## Key Commands
+## ⚙️ Commands
 
 *   `npm run dev` — Starts the local development server.
-*   `npm run build` — Compiles the optimized production build.
-*   `npm test` — Runs all mathematical unit tests.
-*   `npm run lint` — Performs static analysis checks.
+*   `npm run build` — Compiles and builds the production app.
+*   `npm test` — Runs all unit tests.
+*   `npm run lint` — Runs static code checks.
 
-## Project Structure
+## 📂 Project Structure
 
-*   `app/` — Next.js layout wrappers and page routes.
-*   `components/` — UI components and section layouts.
-*   `lib/` — Core mathematical logic and utility functions.
-*   `tests/` — Mathematical validations and edge case test suites.
-
-## License
-
-MIT
+*   `app/` — Next.js page routes and global styles.
+*   `components/` — UI components and main landing sections.
+*   `lib/` — Financial calculators and core helper functions.
+*   `tests/` — Test suites validating mathematical formulas.
