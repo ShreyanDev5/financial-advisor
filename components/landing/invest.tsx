@@ -6,6 +6,7 @@ import { SimplePageHeader } from "@/components/ui/simple-page-header";
 import InvestFaq from "@/components/landing/invest-faq";
 
 export default function InvestContent() {
+  const clientFirstName = process.env.NEXT_PUBLIC_CLIENT_FIRST_NAME || "Monotosh";
   const mutualFundServices = {
     title: "Mutual Funds",
     description: "Grow your wealth with mutual funds.",
@@ -71,7 +72,7 @@ export default function InvestContent() {
             colorScheme="orange"
             delay={0}
             animation="elegant-fade"
-            whatsAppMessage={`Hi Monotosh, I'm interested in mutual funds and would like to start investing. Could you please help me understand the options based on my risk profile?`}
+            whatsAppMessage={`Hi ${clientFirstName}, I'm interested in mutual funds and would like to start investing. Could you please help me understand the options based on my risk profile?`}
           />
         </div>
 

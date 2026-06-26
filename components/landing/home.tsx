@@ -20,6 +20,12 @@ import Advisor from "@/components/landing/advisor";
 import Partners from "@/components/landing/partners";
 
 export default function HomeContent() {
+  const clientName = process.env.NEXT_PUBLIC_CLIENT_NAME || "Monotosh Sardar";
+  const clientFirstName = process.env.NEXT_PUBLIC_CLIENT_FIRST_NAME || "Monotosh";
+  const rawPhone = process.env.NEXT_PUBLIC_CLIENT_PHONE || "98364 72260";
+  const cleanPhone = rawPhone.replace(/\s/g, '');
+  const whatsAppNumber = cleanPhone.startsWith('91') ? cleanPhone : `91${cleanPhone}`;
+
   const scrollToServices = () => {
     const el = document.getElementById('core-services-section');
     if (el) {
@@ -111,13 +117,13 @@ export default function HomeContent() {
 
             {/* Description Text - Left aligned on desktop */}
             <p className="text-sm sm:text-base text-slate-600 max-w-xl leading-relaxed mb-8 text-pretty">
-              Clear, honest guidance from <span className="underline decoration-emerald-500/30 decoration-2 underline-offset-4 font-semibold whitespace-nowrap text-slate-900 transition-colors hover:decoration-emerald-500/60">Monotosh Sardar</span> to help you secure <span className="inline-block whitespace-nowrap">your family&apos;s future.</span>
+              Clear, honest guidance from <span className="underline decoration-emerald-500/30 decoration-2 underline-offset-4 font-semibold whitespace-nowrap text-slate-900 transition-colors hover:decoration-emerald-500/60">{clientName}</span> to help you secure <span className="inline-block whitespace-nowrap">your family&apos;s future.</span>
             </p>
 
             {/* Double Action Button Grid */}
             <div className="flex flex-col sm:flex-row gap-3.5 items-center justify-center lg:justify-start w-full sm:w-auto">
               <a
-                href="https://wa.me/919836472260?text=Hi%20Monotosh%2C%20I'd%20like%20to%20schedule%20a%20free%20consultation%20to%20discuss%20my%20financial%20goals."
+                href={`https://wa.me/${whatsAppNumber}?text=Hi%20${encodeURIComponent(clientFirstName)}%2C%20I'd%20like%20to%20schedule%20a%20free%20consultation%20to%20discuss%20my%20financial%20goals.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto inline-block"
@@ -251,19 +257,19 @@ export default function HomeContent() {
           <TestimonialCard
             name="Apurbo Saha"
             role="CEO, GS Diesel Company"
-            testimonial="Monotosh made setting up our insurance and mutual funds incredibly simple. His honest guidance gives us complete peace of mind."
+            testimonial={`${clientFirstName} made setting up our insurance and mutual funds incredibly simple. His honest guidance gives us complete peace of mind.`}
             avatarSrc="/Apurbo Saha.png"
           />
           <TestimonialCard
             name="Sanchita Mondal"
             role="Cashier, SBI"
-            testimonial="I trust Monotosh completely with my investments and insurance. He explains everything clearly and is always there when I need help."
+            testimonial={`I trust ${clientFirstName} completely with my investments and insurance. He explains everything clearly and is always there when I need help.`}
             avatarSrc="/Sanchita Mondal.png"
           />
           <TestimonialCard
             name="Dr. Debashis Sarkar"
             role="Physician"
-            testimonial="Monotosh helped me choose the right life insurance for my family. He is professional, reliable, and made the process completely stress-free."
+            testimonial={`${clientFirstName} helped me choose the right life insurance for my family. He is professional, reliable, and made the process completely stress-free.`}
             avatarSrc="/Dr. Debashis Sarkar.png"
           />
         </div>
@@ -292,7 +298,7 @@ export default function HomeContent() {
           </p>
 
           <a
-            href="https://wa.me/919836472260?text=Hi%20Monotosh%2C%20I'd%20like%20to%20learn%20more%20about%20your%20financial%20advisory%20services.%20Could%20we%20connect%3F"
+            href={`https://wa.me/${whatsAppNumber}?text=Hi%20${encodeURIComponent(clientFirstName)}%2C%20I'd%20like%20to%20learn%20more%20about%20your%20financial%20advisory%20services.%20Could%20we%20connect%3F`}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block w-full sm:w-auto"

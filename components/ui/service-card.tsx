@@ -21,6 +21,10 @@ interface ServiceCardProps {
   whatsAppMessage?: string;
   whatsAppNumber?: string;
 }
+const clientFirstName = process.env.NEXT_PUBLIC_CLIENT_FIRST_NAME || "Monotosh";
+const rawPhone = process.env.NEXT_PUBLIC_CLIENT_PHONE || "98364 72260";
+const cleanPhone = rawPhone.replace(/\s/g, '');
+const resolvedWhatsAppNumber = cleanPhone.startsWith('91') ? cleanPhone : `91${cleanPhone}`;
 
 export function ServiceCard({
   title,
@@ -38,6 +42,7 @@ export function ServiceCard({
   whatsAppMessage,
   whatsAppNumber = "919836472260",
 }: ServiceCardProps) {
+
   const accentGradient = useMemo(() => {
     const map: Record<string, string> = {
       teal: "from-teal-400/70 via-emerald-400/70 to-teal-600/70",
@@ -105,9 +110,10 @@ export function ServiceCard({
   }, [colorScheme]);
 
   const waHref = useMemo(() => {
-    const defaultMessage = whatsAppMessage || `Hi Monotosh, I'm interested in your ${title} service. Could we schedule a quick chat to discuss how this works?`;
+    const defaultMessage = whatsAppMessage || `Hi ${clientFirstName}, I'm interested in your ${title} service. Could we schedule a quick chat to discuss how this works?`;
     const encoded = encodeURIComponent(defaultMessage);
-    return `https://wa.me/${whatsAppNumber}?text=${encoded}`;
+    const targetNumber = whatsAppNumber === "919836472260" ? resolvedWhatsAppNumber : whatsAppNumber;
+    return `https://wa.me/${targetNumber}?text=${encoded}`;
   }, [whatsAppMessage, whatsAppNumber, title]);
 
   const hasTabs = (documents && documents.length > 0) || (process && process.length > 0) || (costs && costs.length > 0);

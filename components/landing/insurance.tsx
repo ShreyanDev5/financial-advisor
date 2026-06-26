@@ -6,6 +6,7 @@ import { ServiceCard } from "@/components/ui/service-card";
 import { SimplePageHeader } from "@/components/ui/simple-page-header";
 
 export default function InsuranceContent() {
+  const clientFirstName = process.env.NEXT_PUBLIC_CLIENT_FIRST_NAME || "Monotosh";
   const [activeCategory, setActiveCategory] = useState<'all' | 'health-life' | 'vehicle'>('all');
 
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -321,7 +322,7 @@ export default function InsuranceContent() {
                   colorScheme={service.colorScheme}
                   delay={0}
                   animation="elegant-fade"
-                  whatsAppMessage={`Hi Monotosh, I'm interested in ${service.title.toLowerCase()}. Could you please help me understand the coverage options and premium details?`}
+                  whatsAppMessage={`Hi ${clientFirstName}, I'm interested in ${service.title.toLowerCase()}. Could you please help me understand the coverage options and premium details?`}
                 />
               </div>
 

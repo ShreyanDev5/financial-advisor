@@ -130,11 +130,11 @@ export function AdvisorSection({ advisor }: { advisor: AdvisorInfo }) {
 // Default export for the component
 export default function Advisor() {
   const advisorData: AdvisorInfo = {
-    name: "Monotosh Sardar",
+    name: process.env.NEXT_PUBLIC_CLIENT_NAME || "Monotosh Sardar",
     profession: "Certified Financial Planner",
-    phone: "98364 72260",
-    email: "moni22rick@gmail.com",
-    address: "Budge Budge, Kolkata, West Bengal, India"
+    phone: process.env.NEXT_PUBLIC_CLIENT_PHONE || "98364 72260",
+    email: process.env.NEXT_PUBLIC_CLIENT_EMAIL || "moni22rick@gmail.com",
+    address: process.env.NEXT_PUBLIC_CLIENT_ADDRESS || "Budge Budge, Kolkata, West Bengal, India"
   };
 
   return <AdvisorSection advisor={advisorData} />;

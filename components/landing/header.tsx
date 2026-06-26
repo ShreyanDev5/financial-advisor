@@ -22,6 +22,13 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const clientName = process.env.NEXT_PUBLIC_CLIENT_NAME || "Monotosh Sardar";
+  const clientFirstName = process.env.NEXT_PUBLIC_CLIENT_FIRST_NAME || "Monotosh";
+  const rawPhone = process.env.NEXT_PUBLIC_CLIENT_PHONE || "98364 72260";
+  const cleanPhone = rawPhone.replace(/\s/g, '');
+  const whatsAppNumber = cleanPhone.startsWith('91') ? cleanPhone : `91${cleanPhone}`;
+  const logoSrc = process.env.NEXT_PUBLIC_CLIENT_LOGO || "/monotosh_logo_1.1.png";
+
   return (
     <div className="fixed top-0 left-0 right-0 z-50">
       {/* Subtle gradient background overlay */}
@@ -33,8 +40,8 @@ export default function Header() {
           {/* Left side - Logo and brand */}
           <div className="flex items-center gap-2.5 md:gap-3">
             <Image
-              src="/monotosh_logo_1.1.png"
-              alt="Monotosh Logo"
+              src={logoSrc}
+              alt={`${clientName} Logo`}
               width={48}
               height={48}
               className="w-10 h-10 md:w-12 md:h-12 object-contain"
@@ -52,7 +59,7 @@ export default function Header() {
           {/* Right side - WhatsApp contact */}
           <div className={`transition-all duration-300 ease-in-out ${isScrolled ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'}`}>
             <a
-              href="https://wa.me/919836472260?text=Hi%20Monotosh%2C%20I'd%20like%20to%20learn%20more%20about%20your%20financial%20advisory%20services.%20Could%20we%20connect%3F"
+              href={`https://wa.me/${whatsAppNumber}?text=Hi%20${encodeURIComponent(clientFirstName)}%2C%20I'd%20like%20to%20learn%20more%20about%20your%20financial%20advisory%20services.%20Could%20we%20connect%3F`}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Contact on WhatsApp"
@@ -66,4 +73,3 @@ export default function Header() {
     </div>
   );
 }
-

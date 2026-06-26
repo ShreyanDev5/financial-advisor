@@ -6,6 +6,7 @@ import { ServiceCard } from "@/components/ui/service-card";
 import { SimplePageHeader } from "@/components/ui/simple-page-header";
 
 export default function DocumentsContent() {
+  const clientFirstName = process.env.NEXT_PUBLIC_CLIENT_FIRST_NAME || "Monotosh";
   const [activeCategory, setActiveCategory] = useState<'all' | 'personal' | 'vehicle' | 'business'>('all');
 
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -650,7 +651,7 @@ export default function DocumentsContent() {
                   colorScheme={service.colorScheme}
                   delay={0}
                   animation="elegant-fade"
-                  whatsAppMessage={service.whatsAppMessage}
+                  whatsAppMessage={service.whatsAppMessage?.replace("Monotosh", clientFirstName)}
                 />
               </div>
 
