@@ -1,4 +1,4 @@
-# WealthWise
+# <img src="public/monotosh_logo_1.1.png" width="32" height="32" valign="middle" /> WealthWise
 
 Financial planning platform built for an independent financial advisor, featuring interactive investment calculators, insurance and mutual fund catalogs, and direct WhatsApp lead capture.
 
