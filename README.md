@@ -26,6 +26,7 @@ Financial planning platform built for an independent financial advisor, featurin
 | **Language** | TypeScript |
 | **Styling & UI** | Tailwind CSS, Radix UI, Lucide Icons |
 | **Testing** | tsx |
+| **AI Tooling** | Antigravity, GitHub Copilot |
 | **Deployment** | Vercel |
 
 ---
