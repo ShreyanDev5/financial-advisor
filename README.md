@@ -2,7 +2,7 @@
 
 Financial planning platform built for an independent financial advisor, featuring interactive investment calculators, insurance and mutual fund catalogs, and direct WhatsApp lead capture.
 
-[**Live Demo**](https://monotosh.vercel.app/) · [**GitHub Repository**](https://github.com/ShreyanDev5/financial-advisor)
+[**Live Demo**](https://monotosh.vercel.app/)
 
 ![WealthWise Home Page](public/readme_home_page.png)
 
