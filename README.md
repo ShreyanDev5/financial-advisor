@@ -1,61 +1,81 @@
-# <img src="public/monotosh_logo_1.1.png" width="38" height="38" align="center" style="vertical-align: middle; margin-right: 8px;" /> WealthWise
+# WealthWise
 
-A portfolio landing page and financial planning tool for a Certified Financial Planner (CFP). It features interactive calculators, service lists, and a direct WhatsApp contact funnel.
+Financial planning platform built for an independent financial advisor, featuring interactive investment calculators, insurance and mutual fund catalogs, and direct WhatsApp lead capture.
+
+[**Live Demo**](https://monotosh.vercel.app/) · [**GitHub Repository**](https://github.com/ShreyanDev5/financial-advisor)
 
 ![WealthWise Home Page](public/readme_home_page.png)
 
-## 💡 Key Features
+---
 
-*   **Financial Calculators**: Tools to calculate SIP, Lumpsum, SWP, Retirement, Child Education, and Marriage planning.
-*   **Service Catalogs**: Organized guides for local mutual funds, insurance packages, and identity/tax document services.
-*   **Easy Customization**: All contact information, logos, and WhatsApp messages can be changed via environment variables.
-*   **Math Testing**: Automated unit tests that verify all calculations.
+## Features
 
-## 🛠️ Tech Stack
+- **Financial Calculators**: Real-time calculations for SIP, Lumpsum, SWP, Retirement, Child Education, and Child Marriage.
+- **Service Catalogs**: Structured guides for mutual funds, health/life insurance, and document services (PAN, Aadhaar, ITR).
+- **WhatsApp Lead Funnel**: Pre-filled WhatsApp inquiry buttons based on client calculator inputs or selected services.
+- **Configurable Advisor Details**: Change advisor name, phone, email, and address via `.env` without modifying code.
+- **Formula Unit Tests**: Automated unit tests validating compounding interest, inflation, and annuity formulas.
 
-*   **Framework**: Next.js 15 (App Router), React 18
-*   **Styling**: Tailwind CSS, CSS Variables
-*   **Components & Icons**: Radix UI, Lucide Icons
-*   **Language & Tooling**: TypeScript, ESLint
-*   **AI Tools**: GitHub Copilot, Antigravity
-*   **Deployment**: Vercel
+---
 
-## 🚀 Quick Start
+## Tech Stack
 
-### 1. Install Dependencies
+| Layer | Technology |
+| :--- | :--- |
+| **Framework** | Next.js 15 (App Router), React 18 |
+| **Language** | TypeScript |
+| **Styling & UI** | Tailwind CSS, Radix UI, Lucide Icons |
+| **Testing** | tsx |
+| **Deployment** | Vercel |
+
+---
+
+## Quick Start
+
 ```bash
+# 1. Clone and install
+git clone https://github.com/ShreyanDev5/financial-advisor.git
+cd financial-advisor
 npm install
-```
 
-### 2. Set Up Environment Variables
-Copy `.env.example` to a new `.env` file and enter the advisor's details:
-```bash
+# 2. Configure environment (PowerShell/Bash: cp, Command Prompt: copy)
 cp .env.example .env
-```
-*Note: If these variables are not set, the app will automatically default to the original client's details.*
 
-### 3. Run Locally
-```bash
+# 3. Start local development server
 npm run dev
 ```
-Open [http://localhost:3000](http://localhost:3000) to view the website.
 
-## ⚙️ Commands
+Open [http://localhost:3000](http://localhost:3000) to view the app.
 
-*   `npm run dev` — Starts the local development server.
-*   `npm run build` — Compiles and builds the production app.
-*   `npm test` — Runs all unit tests.
-*   `npm run lint` — Runs static code checks.
+---
 
-## 📂 Project Structure
+## Commands
 
-*   `app/` — Next.js page routes and global styles.
-*   `components/` — UI components and main landing sections.
-*   `lib/` — Financial calculators and core helper functions.
-*   `tests/` — Test suites validating mathematical formulas.
+| Command | Action |
+| :--- | :--- |
+| `npm run dev` | Start development server at `localhost:3000` |
+| `npm run build` | Build production bundle |
+| `npm test` | Run all financial formula math tests |
+| `npm run lint` | Run ESLint checks |
 
-## 🌐 Deployment
+---
 
-* **Platform**: [Vercel](https://vercel.com)
-* **Live Link**: [monotosh.vercel.app](https://monotosh.vercel.app/)
+## Project Structure
 
+```text
+financial-advisor/
+├── app/                  # Next.js App Router pages and routes
+├── components/           # Landing sections and Radix UI components
+├── lib/                  # Compounding math, calculators, and currency formatters
+├── public/               # Static assets and partner logos
+└── tests/                # Mathematical unit tests
+```
+
+---
+
+## Author
+
+**Shreyan Sardar**
+- Portfolio: [shreyandev.vercel.app](https://shreyandev.vercel.app)
+- GitHub: [@ShreyanDev5](https://github.com/ShreyanDev5)
+- LinkedIn: [linkedin.com/in/shreyansardar](https://www.linkedin.com/in/shreyansardar/)
