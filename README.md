@@ -1,63 +1,36 @@
-# <img src="public/monotosh_logo_1.1.png" width="32" height="32" valign="middle" /> WealthWise
+# <img src="public/monotosh_logo_1.1.png" width="28" height="28" style="vertical-align: middle;" /> WealthWise
 
 Financial planning platform built for an independent financial advisor, featuring interactive investment calculators, insurance and mutual fund catalogs, and direct WhatsApp lead capture.
 
-[**Live Demo**](https://monotosh.vercel.app/)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-monotosh.vercel.app-blue?style=flat-square&logo=vercel&logoColor=white)](https://monotosh.vercel.app/)
+[![Tests](https://img.shields.io/badge/Tests-3%2F3%20Passing-brightgreen?style=flat-square)](tests/)
 
-![WealthWise Home Page](public/readme_home_page.png)
+---
+
+## Preview
+
+| WealthWise Platform Overview |
+| :---: |
+| <img src="public/readme_home_page.png" width="800" alt="WealthWise Platform Preview" /> |
 
 ---
 
 ## Features
 
-- **Financial Calculators**: Real-time calculations for SIP, Lumpsum, SWP, Retirement, Child Education, and Child Marriage.
-- **Service Catalogs**: Structured guides for mutual funds, health/life insurance, and document services (PAN, Aadhaar, ITR).
-- **WhatsApp Lead Funnel**: Pre-filled WhatsApp inquiry buttons based on client calculator inputs or selected services.
-- **Configurable Advisor Details**: Change advisor name, phone, email, and address via `.env` without modifying code.
-- **Formula Unit Tests**: Automated unit tests validating compounding interest, inflation, and annuity formulas.
+- **Financial Calculators**: Real-time calculation engines for SIP, Lumpsum, SWP, Retirement, Child Education, and Child Marriage goals.
+- **Service Catalogs**: Structured advisory guides for mutual funds, life/health insurance, and government document services.
+- **WhatsApp Lead Funnel**: Context-aware lead capture generating pre-filled consultation inquiries directly from client calculator inputs.
+- **Configurable Advisor Profile**: Zero-code advisor customization for contact details, address, and metadata via environment variables.
+- **Mathematical Verification**: Comprehensive automated unit test suite validating compounding interest, inflation adjustments, and annuity formulas.
 
 ---
 
 ## Tech Stack
 
-| Layer | Technology |
-| :--- | :--- |
-| **Framework** | Next.js 15 (App Router), React 18 |
-| **Language** | TypeScript |
-| **Styling & UI** | Tailwind CSS, Radix UI, Lucide Icons |
-| **Testing** | tsx |
-| **AI Tooling** | Antigravity, GitHub Copilot |
-| **Deployment** | Vercel |
-
----
-
-## Quick Start
-
-```bash
-# 1. Clone and install
-git clone https://github.com/ShreyanDev5/financial-advisor.git
-cd financial-advisor
-npm install
-
-# 2. Configure environment (PowerShell/Bash: cp, Command Prompt: copy)
-cp .env.example .env
-
-# 3. Start local development server
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) to view the app.
-
----
-
-## Commands
-
-| Command | Action |
-| :--- | :--- |
-| `npm run dev` | Start development server at `localhost:3000` |
-| `npm run build` | Build production bundle |
-| `npm test` | Run all financial formula math tests |
-| `npm run lint` | Run ESLint checks |
+- **Backend / Runtime**: Next.js 15 (App Router, Server Components), Node.js
+- **Frontend**: React 18, TypeScript, Tailwind CSS, Radix UI, Lucide Icons
+- **Deployment & Infra**: Vercel
+- **AI Tooling**: Antigravity, GitHub Copilot
 
 ---
 
@@ -65,18 +38,86 @@ Open [http://localhost:3000](http://localhost:3000) to view the app.
 
 ```text
 financial-advisor/
-├── app/                  # Next.js App Router pages and routes
-├── components/           # Landing sections and Radix UI components
-├── lib/                  # Compounding math, calculators, and currency formatters
-├── public/               # Static assets and partner logos
-└── tests/                # Mathematical unit tests
+├── app/                  # Next.js App Router pages, layouts, and routes
+├── components/           # UI components and interactive landing sections
+│   ├── landing/          # Domain sections (calculators, insurance, advisory)
+│   └── ui/               # Radix UI primitives and styled components
+├── hooks/                # Custom React hooks for interactive state & UI observers
+├── lib/                  # Mathematical calculation engines and number formatters
+├── public/               # Static assets, advisor imagery, and partner logos
+├── scripts/              # Asset generation and formula verification scripts
+└── tests/                # Automated formula verification and math unit tests
 ```
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- **Node.js**: Version `18.17.0` or higher (Node 20 recommended)
+- **npm**: Version `9.0.0` or higher
+
+### 1. Installation
+
+Clone the repository and install dependencies:
+
+**PowerShell / CMD / Unix / macOS:**
+```bash
+git clone https://github.com/ShreyanDev5/financial-advisor.git
+cd financial-advisor
+npm install
+```
+
+### 2. Environment Configuration
+
+Copy the sample environment file to create your local `.env`:
+
+**PowerShell:**
+```powershell
+Copy-Item .env.example .env
+```
+
+**CMD:**
+```cmd
+copy .env.example .env
+```
+
+**Unix / macOS:**
+```bash
+cp .env.example .env
+```
+
+### 3. Development Server
+
+Start the local Next.js development server:
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
+
+### 4. Running Tests
+
+Execute the financial formula test suite:
+
+```bash
+npm test
+```
+
+---
+
+## Deployment
+
+- **Production Web Application**: [https://monotosh.vercel.app](https://monotosh.vercel.app/)
+- **Hosting Platform**: Vercel (Continuous Deployment from `main` branch)
 
 ---
 
 ## Author
 
 **Shreyan Sardar**
-- Portfolio: [shreyandev.vercel.app](https://shreyandev.vercel.app)
-- GitHub: [@ShreyanDev5](https://github.com/ShreyanDev5)
-- LinkedIn: [linkedin.com/in/shreyansardar](https://www.linkedin.com/in/shreyansardar/)
+- **Portfolio**: [shreyandev.vercel.app](https://shreyandev.vercel.app)
+- **GitHub**: [@ShreyanDev5](https://github.com/ShreyanDev5)
+- **LinkedIn**: [shreyansardar](https://www.linkedin.com/in/shreyansardar/)
