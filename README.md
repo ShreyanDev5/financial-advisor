@@ -11,7 +11,7 @@ Financial planning platform built for an independent financial advisor, featurin
 
 | WealthWise Platform Overview |
 | :---: |
-| <img src="public/readme_home_page.png" width="800" alt="WealthWise Platform Preview" /> |
+| <img src="public/readme_home_page.png" width="100%" alt="WealthWise Platform Preview" /> |
 
 ---
 
