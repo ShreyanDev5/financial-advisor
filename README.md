@@ -3,7 +3,7 @@
 Financial planning platform built for an independent financial advisor, featuring interactive investment calculators, insurance and mutual fund catalogs, and direct WhatsApp lead capture.
 
 [![Live Demo](https://img.shields.io/badge/Live_Demo-monotosh.vercel.app-blue?style=flat-square&logo=vercel&logoColor=white)](https://monotosh.vercel.app/)
-[![Tests](https://img.shields.io/badge/Tests-3%2F3%20Passing-brightgreen?style=flat-square)](tests/)
+[![Tests](https://img.shields.io/badge/Tests-3%2F3%20Passing-brightgreen?style=flat-square)](#4-running-tests)
 
 ---
 
@@ -30,7 +30,7 @@ Financial planning platform built for an independent financial advisor, featurin
 - **Backend / Runtime**: Next.js 15 (App Router, Server Components), Node.js
 - **Frontend**: React 18, TypeScript, Tailwind CSS, Radix UI, Lucide Icons
 - **Deployment & Infra**: Vercel
-- **AI Tooling**: Antigravity, GitHub Copilot
+- **AI Tooling**: Antigravity, Cursor
 
 ---
 
@@ -40,8 +40,6 @@ Financial planning platform built for an independent financial advisor, featurin
 financial-advisor/
 ├── app/                  # Next.js App Router pages, layouts, and routes
 ├── components/           # UI components and interactive landing sections
-│   ├── landing/          # Domain sections (calculators, insurance, advisory)
-│   └── ui/               # Radix UI primitives and styled components
 ├── hooks/                # Custom React hooks for interactive state & UI observers
 ├── lib/                  # Mathematical calculation engines and number formatters
 ├── public/               # Static assets, advisor imagery, and partner logos
@@ -73,20 +71,18 @@ npm install
 
 Copy the sample environment file to create your local `.env`:
 
-**PowerShell:**
-```powershell
-Copy-Item .env.example .env
-```
-
-**CMD:**
-```cmd
-copy .env.example .env
-```
-
-**Unix / macOS:**
-```bash
-cp .env.example .env
-```
+- **PowerShell (Windows)**:
+  ```powershell
+  Copy-Item .env.example .env
+  ```
+- **CMD (Windows)**:
+  ```cmd
+  copy .env.example .env
+  ```
+- **Unix / macOS**:
+  ```bash
+  cp .env.example .env
+  ```
 
 ### 3. Development Server
 
@@ -110,8 +106,8 @@ npm test
 
 ## Deployment
 
-- **Production Web Application**: [https://monotosh.vercel.app](https://monotosh.vercel.app/)
-- **Hosting Platform**: Vercel (Continuous Deployment from `main` branch)
+- **Live Application**: [monotosh.vercel.app](https://monotosh.vercel.app/)
+- **Platform**: Hosted and deployed continuously via [Vercel](https://vercel.com)
 
 ---
 
